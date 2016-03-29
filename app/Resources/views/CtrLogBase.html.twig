@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Control Room Logging{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+<body class="{% block theme %}default{% endblock %}">
+    {% block headertop %}{% endblock %}
+    {% block headerbottom %}{% endblock %}
+    {% block layout %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

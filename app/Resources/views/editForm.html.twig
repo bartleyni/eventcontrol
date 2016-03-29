@@ -1,0 +1,110 @@
+{% extends 'SummerBallBathSU.html.twig' %}
+{% block headerbottom %}
+<h2>Control Room Log</h2>
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Log Entry Form</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(log_entry) }}
+                            {{ form_errors(log_entry) }}
+                            {{ form_widget(log_entry.reset) }}
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form_label(log_entry.operator) }} 
+                                        {{ form_errors(log_entry.operator) }}
+                                        {{ form_widget(log_entry.operator) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">    
+                                    <div class="form-group">
+                                        {{ form_label(log_entry.log_entry_open_time) }}
+                                        {{ form_errors(log_entry.log_entry_open_time) }}
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            {{ form_widget(log_entry.log_entry_open_time) }}
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>         
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">  
+                                    <div class="form-group">
+                                        {{ form_label(log_entry.log_blurb) }}
+                                        {{ form_errors(log_entry.log_blurb) }}
+                                        {{ form_widget(log_entry.log_blurb) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">  
+                                    <div class="form-group">
+                                    {{ form_label(log_entry.location) }}
+                                    {{ form_errors(log_entry.location) }}
+                                    {{ form_widget(log_entry.location) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">  
+                                    <div class="form-group">
+                                        {{ form_label(log_entry.reported_by) }}
+                                        {{ form_errors(log_entry.reported_by) }}
+                                        {{ form_widget(log_entry.reported_by) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">  
+                                    <button type="button" class="btn btn-info btn-block">
+                                        General
+                                    </button>
+                                </div>
+                                <div class="col-md-3">  
+                                    <button type="button" class="btn btn-info btn-block">
+                                        Medical
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-info btn-block">
+                                        Security
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-info btn-block">
+                                        Lost Property
+                                    </button>
+                                </div>
+                            </div>
+                        <br>               
+                        {{ form_widget(log_entry.submit) }}
+                        {{ form_end(log_entry) }}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                useCurrent: true,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+    </script>        
+{% endblock %}

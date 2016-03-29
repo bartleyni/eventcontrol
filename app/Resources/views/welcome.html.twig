@@ -1,0 +1,17 @@
+{% extends 'SummerBallBathSU.html.twig' %}
+{% block headerbottom %}
+    <div class="container">
+        <h2>Welcome!</h2>
+    </div>
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            My awesome content            
+            {{name}}
+        {% endblock %}
+        {% block sidebar %}
+            My sidebar content
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

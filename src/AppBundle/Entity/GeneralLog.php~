@@ -1,0 +1,129 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of GeneralLog
+ *
+ * @author Nick
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="generallog")
+ */
+
+class GeneralLog {
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="LogEntries")
+     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
+     */
+    private $LogEntries;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $entry_closed;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return GeneralLog
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set entryClosed
+     *
+     * @param \DateTime $entryClosed
+     *
+     * @return GeneralLog
+     */
+    public function setEntryClosed($entryClosed)
+    {
+        $this->entry_closed = $entryClosed;
+
+        return $this;
+    }
+
+    /**
+     * Get entryClosed
+     *
+     * @return \DateTime
+     */
+    public function getEntryClosed()
+    {
+        return $this->entry_closed;
+    }
+
+    /**
+     * Set logEntries
+     *
+     * @param \AppBundle\Entity\LogEntries $logEntries
+     *
+     * @return GeneralLog
+     */
+    public function setLogEntries(\AppBundle\Entity\LogEntries $logEntries = null)
+    {
+        $this->LogEntries = $logEntries;
+
+        return $this;
+    }
+
+    /**
+     * Get logEntries
+     *
+     * @return \AppBundle\Entity\LogEntries
+     */
+    public function getLogEntries()
+    {
+        return $this->LogEntries;
+    }
+}

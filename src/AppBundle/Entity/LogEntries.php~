@@ -1,0 +1,215 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of LogEntries
+ *
+ * @author Nick
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="logentries")
+ */
+
+class LogEntries {
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $timestamp;
+    
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    protected $blurb;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $operator;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $entry_open;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $location;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $reported_by;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set timestamp
+     *
+     * @param \DateTime $timestamp
+     *
+     * @return LogEntries
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get timestamp
+     *
+     * @return \DateTime
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Set blurb
+     *
+     * @param string $blurb
+     *
+     * @return LogEntries
+     */
+    public function setBlurb($blurb)
+    {
+        $this->blurb = $blurb;
+
+        return $this;
+    }
+
+    /**
+     * Get blurb
+     *
+     * @return string
+     */
+    public function getBlurb()
+    {
+        return $this->blurb;
+    }
+
+    /**
+     * Set operator
+     *
+     * @param integer $operator
+     *
+     * @return LogEntries
+     */
+    public function setOperator($operator)
+    {
+        $this->operator = $operator;
+
+        return $this;
+    }
+
+    /**
+     * Get operator
+     *
+     * @return integer
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
+
+    /**
+     * Set entryOpen
+     *
+     * @param \DateTime $entryOpen
+     *
+     * @return LogEntries
+     */
+    public function setEntryOpen($entryOpen)
+    {
+        $this->entry_open = $entryOpen;
+
+        return $this;
+    }
+
+    /**
+     * Get entryOpen
+     *
+     * @return \DateTime
+     */
+    public function getEntryOpen()
+    {
+        return $this->entry_open;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return LogEntries
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set reportedBy
+     *
+     * @param string $reportedBy
+     *
+     * @return LogEntries
+     */
+    public function setReportedBy($reportedBy)
+    {
+        $this->reported_by = $reportedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get reportedBy
+     *
+     * @return string
+     */
+    public function getReportedBy()
+    {
+        return $this->reported_by;
+    }
+}

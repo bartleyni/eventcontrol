@@ -1,0 +1,74 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of SecurityLog
+ *
+ * @author Nick
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="securitylog")
+ */
+
+class SecurityLog {
+     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="LogEntries")
+     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id", nullable=true)
+     */
+    private $LogEntries_id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="SecurityLogType", inversedBy="securitylogs")
+     * @ORM\JoinColumn(name="security_logtype", referencedColumnName="id")
+     */
+    protected $security_logtype;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="SecurityIncidentType", inversedBy="securitylogs")
+     * @ORM\JoinColumn(name="security_incidenttype_id", referencedColumnName="id", nullable=false)
+     */
+    protected $security_incidenttype;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $security_description;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $security_dispatched;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $security_responded;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $security_resolution;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $security_entry_closed;
+}

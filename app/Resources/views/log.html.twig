@@ -1,0 +1,90 @@
+{% extends 'SummerBallBathSU.html.twig' %}
+{% block headerbottom %}
+<h2>Control Room Log</h2>
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Log Entries</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if logs is empty %}
+                            No logs available
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Log Time</strong></td>
+                                        <td><strong>Log Title</strong></td>
+                                        <td><strong>Location</strong></td>
+                                        <td><strong>Reported By</strong></td>
+                                        <td><strong>General</strong></td>
+                                        <td><strong>Medical</strong></td>
+                                        <td><strong>Security</strong></td>
+                                        <td><strong>Lost Property</strong></td>
+                                    </tr>
+                                    {% for log in logs %}
+                                        <tr>
+                                            <td>{{ log.log_entry_open_time|date('Y-m-d H:i:s') }}</td>
+                                            <td><a href="/ctrlog/Symfony/web/index.php/entry/{{log.id}}">{{ log.log_blurb }}</a></td>
+                                            <td>{{ log.location }}</td>
+                                            <td>{{ log.reported_by }}</td>
+                                            <td>
+                                                {% if log.general_description is null %}
+                                                    <br>
+                                                {% else %}
+                                                    {{ log.general_description[:12]|striptags ~ ' ...'  }}
+                                                {% endif %}
+                                            </td>
+                                            <td {% if log.medical_entry_closed_time is null %} class="severity{{ log.medical_severity }}" {% endif %}>
+                                                {% if log.medical_injury_description is null %}
+                                                    <br>
+                                                {% else %}
+                                                    {{ log.medical_injury_description }}
+                                                    <br> 
+                                                    {% if log.medical_entry_closed_time is not null %}
+                                                        {{ log.medical_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td {% if log.security_entry_closed_time is null %} class="severity{{ log.severity }}" {% endif %}>
+                                                {% if log.security_description is null %}
+                                                    <br>
+                                                {% else %}
+                                                    {{ log.security_incident_description }}
+                                                    <br> 
+                                                    {% if log.security_entry_closed_time is not null %}
+                                                        {{ log.security_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td> 
+                                            <td>
+                                                {% if log.lost_property_description is null %}
+                                                    <br>
+                                                {% else %}
+                                                    {{ log.lost_property_description[:12]|striptags ~ ' ...' }}
+                                                    <br>
+                                                    {% if log.lost_property_entry_closed_time is not null %}
+                                                        {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td> 
+                                        </tr>
+                                    {% endfor %}                           
+                                </tbody>
+                            </table>
+                        {% endif %}  
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,115 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of SecurityLogType
+ *
+ * @author Nick
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="securitylogtype")
+ */
+
+class SecurityLogType {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+ 
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    protected $description;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="SecurityLog", mappedBy="security_logtype")
+     */
+    private $securitylogs;
+    
+    public function __construct()
+    {
+        $this->securitylogs = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return SecurityLogType
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Add securitylog
+     *
+     * @param \AppBundle\Entity\SecurityLog $securitylog
+     *
+     * @return SecurityLogType
+     */
+    public function addSecuritylog(\AppBundle\Entity\SecurityLog $securitylog)
+    {
+        $this->securitylogs[] = $securitylog;
+
+        return $this;
+    }
+
+    /**
+     * Remove securitylog
+     *
+     * @param \AppBundle\Entity\SecurityLog $securitylog
+     */
+    public function removeSecuritylog(\AppBundle\Entity\SecurityLog $securitylog)
+    {
+        $this->securitylogs->removeElement($securitylog);
+    }
+
+    /**
+     * Get securitylogs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSecuritylogs()
+    {
+        return $this->securitylogs;
+    }
+}

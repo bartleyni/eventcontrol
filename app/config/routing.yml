@@ -1,0 +1,4 @@
+app:
+    resource: "@AppBundle/ControlRoomLog/"
+    type:     annotation
+    

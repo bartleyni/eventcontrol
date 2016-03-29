@@ -1,0 +1,11 @@
+{
+    "name": "symfony",
+    "authors": [
+        "Beelab <info@bee-lab.net>",
+        " <>"
+    ],
+    "private": true,
+    "dependencies": {
+        "bootstrap": "*"
+    }
+}
