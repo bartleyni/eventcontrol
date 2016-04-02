@@ -31,7 +31,7 @@
                                     {% for log in logs %}
                                         <tr>
                                             <td>{{ log.log_entry_open_time|date('Y-m-d H:i:s') }}</td>
-                                            <td><a href="/ctrlog/Symfony/web/index.php/entry/{{log.id}}">{{ log.log_blurb }}</a></td>
+                                            <td><a href="/index.php/entry/{{log.id}}">{{ log.log_blurb }}</a></td>
                                             <td>{{ log.location }}</td>
                                             <td>{{ log.reported_by }}</td>
                                             <td>
