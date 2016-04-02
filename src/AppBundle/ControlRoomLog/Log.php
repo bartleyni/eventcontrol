@@ -4,7 +4,6 @@ namespace AppBundle\ControlRoomLog;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Symfony\Component\HttpFoundation\Request;
 
 class Log extends Controller
 {
@@ -17,10 +16,10 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
     */
+    
     public function logAction($sort='ASC', $filter=null, $filter_type=null)
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
-        //$logs->getRepository('AppBundle:LogEntries');
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder(); 
         
@@ -39,72 +38,45 @@ class Log extends Controller
         
         if ($filter_type=="medical"){
             if ($filter=="open"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('med.medical_description'),
                             $qb->expr()->isNull('med.medical_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } elseif ($filter=="closed"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('med.medical_description'),
                             $qb->expr()->isNotNull('med.medical_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } else {
-                $qb
-                    ->where($qb->expr()->isNotNull('med.medical_description')
-                    )
-                ;
+                $qb->where($qb->expr()->isNotNull('med.medical_description'));
             }
         } elseif ($filter_type=="security"){
             if ($filter=="open"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('sec.security_description'),
                             $qb->expr()->isNull('sec.security_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } elseif ($filter=="closed"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('sec.security_description'),
                             $qb->expr()->isNotNull('sec.security_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } else {
-                $qb
-                    ->where($qb->expr()->isNotNull('sec.security_description')
-                    )
-                ;
+                $qb->where($qb->expr()->isNotNull('sec.security_description'));
             }
         } elseif ($filter_type=="general"){
             if ($filter=="open"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('gen.general_description'),
                             $qb->expr()->isNull('gen.general_entry_closed_time')
-                        )
-                    )
-                ;
+                        ) );
             } elseif ($filter=="closed"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('gen.general_description'),
                             $qb->expr()->isNotNull('gen.general_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } else {
-                $qb
-                    ->where($qb->expr()->isNotNull('gen.general_description')
-                    )
-                ;
+                $qb->where($qb->expr()->isNotNull('gen.general_description'));
             }
         } elseif ($filter_type=="lost"){
             if ($filter=="open"){
@@ -112,27 +84,19 @@ class Log extends Controller
                     ->where($qb->expr()->andX(
                             $qb->expr()->isNotNull('lost.lost_property_description'),
                             $qb->expr()->isNull('lost.lost_property_entry_closed_time')
-                        )
-                    )
-                ;
+                        ));
             } elseif ($filter=="closed"){
-                $qb
-                    ->where($qb->expr()->andX(
-                            $qb->expr()->isNotNull('lost.lost_property_description'),
-                            $qb->expr()->isNotNull('lost.lost_property_entry_closed_time')
-                        )
-                    )
-                ;
+                $qb->where($qb->expr()->andX(
+                           $qb->expr()->isNotNull('lost.lost_property_description'),
+                           $qb->expr()->isNotNull('lost.lost_property_entry_closed_time')
+                        ));
+
             } else {
-                $qb
-                    ->where($qb->expr()->isNotNull('lost.lost_property_description')
-                    )
-                ;
+                $qb->where($qb->expr()->isNotNull('lost.lost_property_description'));
             }
         }else{
             if ($filter=="open"){
-                $qb
-                    ->where($qb->expr()->orX(
+                $qb->where($qb->expr()->orX(
                         $qb->expr()->andX(
                             $qb->expr()->isNotNull('gen.general_description'),
                             $qb->expr()->isNull('gen.general_entry_closed_time')
@@ -148,13 +112,9 @@ class Log extends Controller
                         $qb->expr()->andX(
                             $qb->expr()->isNotNull('lost.lost_property_description'),
                             $qb->expr()->isNull('lost.lost_property_entry_closed_time')
-                            )
-                        )
-                    )
-                ;
+                            )));
             } elseif ($filter=="closed"){
-                $qb
-                    ->where($qb->expr()->andX(
+                $qb->where($qb->expr()->andX(
                         $qb->expr()->orX(   
                             $qb->expr()->isNull('gen.general_description'),
                             $qb->expr()->andX(
@@ -181,18 +141,12 @@ class Log extends Controller
                             $qb->expr()->andX(
                                 $qb->expr()->isNotNull('med.medical_description'),
                                 $qb->expr()->isNotNull('med.medical_entry_closed_time')
-                                )
-                            )
-                        )
-                    )
-                ;
+                                ))));
             }
         }
 
         $query = $qb->getQuery();
-
         $logs = $query->getResult();
-        
         return $this->render('log.html.twig', array('logs' => $logs));
     }
 }
