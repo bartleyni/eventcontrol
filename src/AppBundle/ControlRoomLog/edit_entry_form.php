@@ -36,12 +36,17 @@ class edit_entry_form extends Controller
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
         $form = $this->createForm(new LogType(), $entry);
-        $new_general = new general_log();
+        $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
+        if (!$medical){
+                $medical = new medical_log();
+                $medical->setLogEntryId($entry);
+            }
+                
+        $new_general = new general_log();        
         $new_general->setLogEntryId($entry);
         $new_lost_property = new lost_property();
         $new_lost_property->setLogEntryId($entry);
-        $new_medical = new medical_log();
-        $new_medical->setLogEntryId($entry);
+
         $new_security = new security_log();
         $new_security->setLogEntryId($entry);
         /*$generalForm = $this->createForm(new GeneralType(), $new__general, array(
@@ -50,7 +55,7 @@ class edit_entry_form extends Controller
         $lostPropertyForm = $this->createForm(new LostPropertyType(), $new_lost_property, array(
             'method' => 'POST',
         ));*/
-        $medicalForm = $this->createForm(new MedicalType(), $new_medical, array(
+        $medicalForm = $this->createForm(new MedicalType(), $medical, array(
             'method' => 'POST',
         ));
         /*$securityForm = $this->createForm(new SecurityType(), $new_security, array(
@@ -58,12 +63,24 @@ class edit_entry_form extends Controller
         ));*/
         
         if ($request->getMethod() == 'POST') {
-            $form->handleRequest($request);
-        
-            if ($form->isValid()) {
-                $em->persist($entry);
-                $em->flush();
-                return $this->redirect($this->generateUrl('full_log'));
+            
+            
+            if($request->request->has('log_entry')){
+                $form->handleRequest($request);
+                if ($form->isValid()) {
+                    $em->persist($entry);
+                    $em->flush();
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
+                }
+            }
+            
+            if($request->request->has('medical_entry')){
+                $medicalForm->handleRequest($request);
+                if ($medicalForm->isValid()) {
+                    $em->persist($medical);
+                    $em->flush();
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
+                }
             }
         }
         else

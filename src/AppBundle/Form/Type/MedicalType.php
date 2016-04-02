@@ -35,37 +35,62 @@ class MedicalType extends AbstractType
             ->add('medical_response', 'entity', array(
                 'class' => 'AppBundle:medical_response',
                 'label' => 'Medical Response',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control col-sm-10'
                 )
             ))
-            ->add('nine_nine_nine_required', 'checkbox', array(
+            ->add('medics_informed', 'checkbox', array(
+                'label' => "Medics Informed?",
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('medical_entry_closed_time', 'datetime', array(
-                'label' => 'Time',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd HH:mm:ss',
+            ->add('nine_nine_nine_required', 'checkbox', array(
+                'label' => "999 Required?",
+                'required' => false,
                 'attr' => array(
-                    'class' => 'form-control datetimepicker1',
-                    'data-provide' => 'datetimepicker1',
-                    'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
+                    'class' => 'form-control'
                 )
             ))
-            ->add('submit', 'submit', array(
+            ->add('medical_treatment', 'entity', array(
+                'class' => 'AppBundle:medical_treatment',
+                'label' => 'Medical Treatment',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control col-sm-10'
+                )
+            ))
+            ->add('medical_resolution', 'entity', array(
+                'class' => 'AppBundle:medical_resolution',
+                'label' => 'Medical Resolution',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control col-sm-10'
+                )
+            ))
+            ->add('medical_notes', 'textarea', array(
+                'label' => 'Medical Notes',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                    'rows' => '5'
+                )
+            ))              
+            ->add('submit_medical', 'submit', array(
+                'label' => 'Submit Medical',
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
                     'class' => 'btn btn-success btn-block',
                     'method' => 'POST',
                 )
             ))
-            ->add('reset', 'reset', array(
-                'attr' => array(
-                    'class' => 'btn btn-danger btn-block'
-                )
-            ))
+//            ->add('reset', 'reset', array(
+//                'attr' => array(
+//                    'class' => 'btn btn-danger btn-block'
+//                )
+//            ))
             ->setMethod('POST')
         ;
     }

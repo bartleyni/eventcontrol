@@ -47,7 +47,7 @@ class medical_log {
     protected $medical_description;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $medics_informed;
     
@@ -58,7 +58,7 @@ class medical_log {
     private $medical_response;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $nine_nine_nine_required;
 
@@ -75,7 +75,7 @@ class medical_log {
     private $medical_resolution;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true, nullable=true)
      */
     protected $medical_notes;
     

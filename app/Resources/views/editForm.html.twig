@@ -63,6 +63,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {{ form_widget(log_entry.submit) }} <br>
+                            {{ form_end(log_entry) }}
                             <div class="row">
                                 <div class="col-md-3">  
                                     <button type="button" class="btn btn-info btn-block">
@@ -85,9 +87,13 @@
                                     </button>
                                 </div>
                             </div>
-                        <br>               
-                        {{ form_widget(log_entry.submit) }}
-                        {{ form_end(log_entry) }}
+                            <div class="row" id="Medical">
+                                <div class="col-md-12">
+                                    {% block medical %}
+                                        {% include 'medicalForm.twig' %}
+                                    {% endblock %}
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
