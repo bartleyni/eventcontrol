@@ -15,6 +15,7 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}");
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
+    * @Route("/");
     */
     
     public function logAction($sort='ASC', $filter=null, $filter_type=null)
