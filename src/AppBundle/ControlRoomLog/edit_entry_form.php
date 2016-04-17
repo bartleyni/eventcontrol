@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Form\Type\LogType;
 use AppBundle\Form\Type\MedicalType;
+use AppBundle\Form\Type\GeneralType;
+use AppBundle\Form\Type\SecurityType;
+use AppBundle\Form\Type\LostPropertyType;
 use AppBundle\Entity\log_entries;
 use AppBundle\Entity\general_log;
 use AppBundle\Entity\medical_log;
@@ -41,53 +44,82 @@ class edit_entry_form extends Controller
                 $medical = new medical_log();
                 $medical->setLogEntryId($entry);
             }
-                
-        $new_general = new general_log();        
-        $new_general->setLogEntryId($entry);
-        $new_lost_property = new lost_property();
-        $new_lost_property->setLogEntryId($entry);
-
-        $new_security = new security_log();
-        $new_security->setLogEntryId($entry);
-        /*$generalForm = $this->createForm(new GeneralType(), $new__general, array(
+        $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $id));
+        if (!$security){
+                $security = new security_log();
+                $security->setLogEntryId($entry);
+            }
+        $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $id));
+        if (!$general){
+                $general = new general_log();
+                $general->setLogEntryId($entry);
+            }
+        $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $id));
+        if (!$lostProperty){
+                $lostProperty = new lost_property();
+                $lostProperty->setLogEntryId($entry);
+            }
+        $generalForm = $this->createForm(new GeneralType(), $general, array(
             'method' => 'POST',
         ));
-        $lostPropertyForm = $this->createForm(new LostPropertyType(), $new_lost_property, array(
+        $lostPropertyForm = $this->createForm(new LostPropertyType(), $lostProperty, array(
             'method' => 'POST',
-        ));*/
+        ));
         $medicalForm = $this->createForm(new MedicalType(), $medical, array(
             'method' => 'POST',
         ));
-        /*$securityForm = $this->createForm(new SecurityType(), $new_security, array(
+        $securityForm = $this->createForm(new SecurityType(), $security, array(
             'method' => 'POST',
-        ));*/
+        ));
         
         if ($request->getMethod() == 'POST') {
             
+            $form->handleRequest($request);
+            $medicalForm->handleRequest($request);
+            $generalForm->handleRequest($request);
+            $securityForm->handleRequest($request);
+            $lostPropertyForm->handleRequest($request);
             
-            if($request->request->has('log_entry')){
-                $form->handleRequest($request);
-                if ($form->isValid()) {
+            if ($form->isValid()) {
+                if ($form->get('submit')->isClicked()){
                     $em->persist($entry);
                     $em->flush();
-                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
                 }
             }
-            
-            if($request->request->has('medical_entry')){
-                $medicalForm->handleRequest($request);
-                if ($medicalForm->isValid()) {
+            if ($medicalForm->isValid()) {    
+                if ($medicalForm->get('submit_medical')->isClicked()){
                     $em->persist($medical);
                     $em->flush();
-                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
                 }
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
+            }
+            if ($generalForm->isValid()) {    
+                if ($generalForm->get('submit_general')->isClicked()){
+                    $em->persist($general);
+                    $em->flush();
+                }
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
+            }
+            if ($securityForm->isValid()) {    
+                if ($securityForm->get('submit_security')->isClicked()){
+                    $em->persist($security);
+                    $em->flush();
+                }
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
+            }
+            if ($lostPropertyForm->isValid()) {    
+                if ($lostPropertyForm->get('submit_lostProperty')->isClicked()){
+                    $em->persist($lostProperty);
+                    $em->flush();
+                }
+                    return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
             }
         }
         else
         {
             //return $this->redirect('../log/');
         }
-        return $this->render('editForm.html.twig', array('log_entry' => $form->createView(),'medical_entry' => $medicalForm->createView(),));
+        return $this->render('editForm.html.twig', array('log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
     }
 }
 

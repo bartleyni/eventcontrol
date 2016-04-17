@@ -31,7 +31,7 @@ class general_log {
     
     /**
      * @ORM\OneToOne(targetEntity="log_entries")
-     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="log_entry_id", referencedColumnName="id", nullable=true)
      */
     private $log_entry_id;
     

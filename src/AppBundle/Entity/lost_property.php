@@ -31,7 +31,7 @@ class lost_property {
     
     /**
      * @ORM\OneToOne(targetEntity="log_entries")
-     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="log_entry_id", referencedColumnName="id", nullable=true)
      */
     private $log_entry_id;
  
@@ -55,9 +55,6 @@ class lost_property {
      */
     protected $lost_property_contact_details;
     
-
-
-    
     /**
      * @ORM\ManyToOne(targetEntity="lost_property_resolution", inversedBy="lost_property_logs")
      * @ORM\JoinColumn(name="lost_property_resolution_id", referencedColumnName="id", nullable=true)
@@ -67,7 +64,7 @@ class lost_property {
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    protected $lost_property_resoltuion_description;
+    protected $lost_property_resolution_description;
     
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -181,27 +178,27 @@ class lost_property {
     }
 
     /**
-     * Set lostPropertyResoltuionDescription
+     * Set lostPropertyResolutionDescription
      *
-     * @param string $lostPropertyResoltuionDescription
+     * @param string $lostPropertyResolutionDescription
      *
      * @return lost_property
      */
-    public function setLostPropertyResoltuionDescription($lostPropertyResoltuionDescription)
+    public function setLostPropertyResolutionDescription($lostPropertyResolutionDescription)
     {
-        $this->lost_property_resoltuion_description = $lostPropertyResoltuionDescription;
+        $this->lost_property_resolution_description = $lostPropertyResolutionDescription;
 
         return $this;
     }
 
     /**
-     * Get lostPropertyResoltuionDescription
+     * Get lostPropertyResolutionDescription
      *
      * @return string
      */
-    public function getLostPropertyResoltuionDescription()
+    public function getLostPropertyResolutionDescription()
     {
-        return $this->lost_property_resoltuion_description;
+        return $this->lost_property_resolution_description;
     }
 
     /**
