@@ -108,7 +108,7 @@ class edit_entry_form extends Controller
                     return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
             }
             if ($lostPropertyForm->isValid()) {    
-                if ($lostPropertyForm->get('submit_lostProperty')->isClicked()){
+                if ($lostPropertyForm->get('submit_lost_property')->isClicked()){
                     $em->persist($lostProperty);
                     $em->flush();
                 }
