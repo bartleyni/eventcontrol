@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12">
+        {{ form_start(general_entry) }}
+            {{ form_errors(general_entry) }}
+            <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(general_entry.general_description) }} 
+            {{ form_errors(general_entry.general_description) }}
+            {{ form_widget(general_entry.general_description) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <br>
+        {{ form_widget(general_entry.submit_general) }}           
+        {{ form_end(general_entry) }}
+        <br>
+    </div>
+    <div class="col-md-2">
+        <br>
+        <button type="button" id="general_close_button" class="btn btn-warning btn-block">
+            Close General
+        </button>
+    </div>        
+</div>

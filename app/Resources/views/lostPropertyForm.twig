@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12">
+        {{ form_start(lost_entry) }}
+            {{ form_errors(lost_entry) }}
+            <br>
+    </div>
+</div>
+<div class="row">            
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_item_lost) }}
+            {{ form_widget(lost_entry.lost_property_item_lost) }}
+            {{ form_errors(lost_entry.lost_property_item_lost) }}
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_item_found) }}
+            {{ form_widget(lost_entry.lost_property_item_found) }}
+            {{ form_errors(lost_entry.lost_property_item_found) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_description) }} 
+            {{ form_errors(lost_entry.lost_property_description) }}
+            {{ form_widget(lost_entry.lost_property_description) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_contact_details) }} 
+            {{ form_errors(lost_entry.lost_property_contact_details) }}
+            {{ form_widget(lost_entry.lost_property_contact_details) }}
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_resolution) }} 
+            {{ form_errors(lost_entry.lost_property_resolution) }}
+            {{ form_widget(lost_entry.lost_property_resolution) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(lost_entry.lost_property_resolution_description) }} 
+            {{ form_errors(lost_entry.lost_property_resolution_description) }}
+            {{ form_widget(lost_entry.lost_property_resolution_description) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <br>
+        {{ form_widget(lost_entry.submit_lost_property) }}           
+        {{ form_end(lost_entry) }}
+        <br>
+    </div>
+    <div class="col-md-2">
+        <br>
+        <button type="button" id="lost_close_button" class="btn btn-warning btn-block">
+            Close Lost Property
+        </button>
+    </div>        
+</div>

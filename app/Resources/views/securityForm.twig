@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12">
+        {{ form_start(security_entry) }}
+            {{ form_errors(security_entry) }}
+            <br>
+    </div>
+</div>
+<div class="row">            
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(security_entry.security_log_type) }} 
+            {{ form_errors(security_entry.security_log_type) }}
+            {{ form_widget(security_entry.security_log_type) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(security_entry.security_incident_type) }}
+            {{ form_widget(security_entry.security_incident_type) }}
+            {{ form_errors(security_entry.security_incident_type) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(security_entry.security_description) }} 
+            {{ form_errors(security_entry.security_description) }}
+            {{ form_widget(security_entry.security_description) }}
+        </div>
+    </div>
+</div>        
+<div class="row">        
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ form_label(security_entry.security_dispatched) }}
+            {{ form_widget(security_entry.security_dispatched) }}
+            {{ form_errors(security_entry.security_dispatched) }}
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ form_label(security_entry.security_responded) }}
+            {{ form_widget(security_entry.security_responded) }}
+            {{ form_errors(security_entry.security_responded) }}
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(security_entry.security_resolution) }} 
+            {{ form_errors(security_entry.security_resolution) }}
+            {{ form_widget(security_entry.security_resolution) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <br>
+        {{ form_widget(security_entry.submit_security) }}           
+        {{ form_end(security_entry) }}
+        <br>
+    </div>
+    <div class="col-md-2">
+        <br>
+        <button type="button" id="security_close_button" class="btn btn-warning btn-block">
+            Close Security
+        </button>
+    </div>        
+</div>
