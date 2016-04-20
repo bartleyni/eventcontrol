@@ -40,8 +40,8 @@ class log_entries {
     protected $log_blurb;
     
     /**
-     * @ORM\ManyToOne(targetEntity="log_operator", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="log_operator_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="log_entries")
+     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      */
     private $operator;
     
@@ -193,11 +193,11 @@ class log_entries {
     /**
      * Set operator
      *
-     * @param \AppBundle\Entity\log_operator $operator
+     * @param \AppBundle\Entity\User $operator
      *
      * @return log_entries
      */
-    public function setOperator(\AppBundle\Entity\log_operator $operator = null)
+    public function setOperator(\AppBundle\Entity\User $operator = null)
     {
         $this->operator = $operator;
 
@@ -207,7 +207,7 @@ class log_entries {
     /**
      * Get operator
      *
-     * @return \AppBundle\Entity\log_operator
+     * @return \AppBundle\Entity\User
      */
     public function getOperator()
     {
