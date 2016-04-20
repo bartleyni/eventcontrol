@@ -13,8 +13,11 @@
                 {{ form_row(form.plainPassword.first) }}
                 {{ form_row(form.plainPassword.second) }}
 
-                <button type="submit">Register!</button>
+                <button type="submit">Register Operator</button>
             {{ form_end(form) }}
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
         {% endblock %}
     {% endembed %}
 {% endblock %}              

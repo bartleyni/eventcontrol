@@ -1,4 +1,5 @@
 app:
     resource: "@AppBundle/ControlRoomLog/"
     type:     annotation
-    
+logout:
+    path: /logout

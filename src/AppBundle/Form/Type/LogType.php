@@ -20,7 +20,8 @@ class LogType extends AbstractType
         $builder
             ->add('operator', 'entity', array(
                 'class' => 'AppBundle:User',
-                'label' => 'Operator ID',
+                'label' => 'Operator',
+                'disabled' => 'true',
                 'attr' => array(
                     'class' => 'form-control col-sm-10'
                 )

@@ -32,6 +32,9 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+            logout:
+                path:   /logout
+                target: /
             #logout:       true
             #anonymous:    true
             # activate different ways to authenticate
@@ -44,6 +47,6 @@ security:
 
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: ROLE_USER }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER}

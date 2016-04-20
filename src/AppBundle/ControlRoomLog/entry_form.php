@@ -26,8 +26,15 @@ class entry_form extends Controller
     {
         $new_entry = new log_entries();
         
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user = $this->getUser();
+        
         //$new_entry->setLogTimestamp(new \DateTime());
         $new_entry->setLogEntryOpenTime(new \DateTime());
+        $new_entry->setOperator($user);
         //$new_general = new general_log();
         //$new_lost_property = new lost_property();
         //$new_medical = new medical_log();
