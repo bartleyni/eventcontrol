@@ -177,4 +177,72 @@ class User implements UserInterface, \Serializable {
             // $this->salt
         ) = unserialize($serialized);
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Add logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     *
+     * @return User
+     */
+    public function addLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries[] = $logEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     */
+    public function removeLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries->removeElement($logEntry);
+    }
+
+    /**
+     * Get logEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogEntries()
+    {
+        return $this->log_entries;
+    }
 }

@@ -1,0 +1,52 @@
+{% extends 'SummerBallBathSU.html.twig' %}
+{% block headerbottom %}
+<h2>Event Control Fire Register</h2>
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Attendees</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if attendees is empty %}
+                            No attendees signed in
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Name</strong></td>
+                                        <td><strong>Phone</strong></td>
+                                        <td><strong>Email</strong></td>
+                                        <td><strong>Time In</strong></td>
+                                        <td><strong>Time Out</strong></td>
+                                    </tr>
+                                    {% for attendee in attendees %}
+                                        <tr>
+                                            <td>{{ attendee.name }}</td>
+                                            <td>{{ attendee.phone }}</td>
+                                            <td>{{ attendee.email }}</td>
+                                            <td>{{ attendee.time_in|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                            {% if attendee.time_out is null %}
+                                                <td><a href="/index.php/signout/{{attendee.id}}">Sign-out</a></td>
+                                            {% else %}
+                                            <td>{{ attendee.time_out|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}                           
+                                </tbody>
+                            </table>
+                        {% endif %}  
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

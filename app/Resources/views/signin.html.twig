@@ -1,0 +1,61 @@
+{# app/Resources/views/signin.html.twig #}
+{% extends 'SummerBallBathSU.html.twig' %}
+{% block headerbottom %}
+    <h2>Control Room Sign-in Register</h2>
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(form) }}
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.name) }} 
+                                    {{ form_errors(form.name) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.name) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.phone) }} 
+                                    {{ form_errors(form.phone) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.phone) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">                                
+                                <div class="col-md-2">
+                                    {{ form_label(form.email) }} 
+                                    {{ form_errors(form.email) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.email) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">  
+                            <div class="col-md-4">  
+                                <button class="btn btn-success btn-block" type="submit">Sign-in</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}              
