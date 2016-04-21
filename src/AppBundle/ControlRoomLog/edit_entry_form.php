@@ -88,6 +88,9 @@ class edit_entry_form extends Controller
             }
             if ($medicalForm->isValid()) {    
                 if ($medicalForm->get('submit_medical')->isClicked()){
+                    if ($medical->getMedicalResolution()){
+                        $medical->setMedicalEntryClosedTime(new \DateTime());
+                    }
                     $em->persist($medical);
                     $em->flush();
                 }
@@ -95,6 +98,9 @@ class edit_entry_form extends Controller
             }
             if ($generalForm->isValid()) {    
                 if ($generalForm->get('submit_general')->isClicked()){
+                    if ($general->getGeneralDescription()){
+                        $general->setGeneralEntryClosedTime(new \DateTime());
+                    }
                     $em->persist($general);
                     $em->flush();
                 }
@@ -102,6 +108,9 @@ class edit_entry_form extends Controller
             }
             if ($securityForm->isValid()) {    
                 if ($securityForm->get('submit_security')->isClicked()){
+                    if ($security->getSecurityResolution()){
+                        $security->setSecurityEntryClosedTime(new \DateTime());
+                    }
                     $em->persist($security);
                     $em->flush();
                 }
@@ -109,6 +118,9 @@ class edit_entry_form extends Controller
             }
             if ($lostPropertyForm->isValid()) {    
                 if ($lostPropertyForm->get('submit_lost_property')->isClicked()){
+                    if ($lostProperty->getLostPropertyResolution()){
+                        $lostProperty->setLostPropertyEntryClosedTime(new \DateTime());
+                    }    
                     $em->persist($lostProperty);
                     $em->flush();
                 }
