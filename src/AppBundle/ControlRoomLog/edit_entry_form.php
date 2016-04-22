@@ -49,12 +49,16 @@ class edit_entry_form extends Controller
                 $medical = new medical_log();
                 $medical->setLogEntryId($entry);
                 $medicalTab = null;
+            } else {
+                $medicalTab = $medical;
             }
         $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $id));
         if (!$security){
                 $security = new security_log();
                 $security->setLogEntryId($entry);
                 $securityTab = null;
+            } else {
+                $securityTab = $security;
             }
         $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $id));
         if (!$general){
@@ -62,12 +66,16 @@ class edit_entry_form extends Controller
                 $general->setLogEntryId($entry);
                 $general->setGeneralOpen(true);
                 $generalTab = null;
+            } else {
+                $generalTab = $general->getGeneralEntryClosedTime();
             }
         $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $id));
         if (!$lostProperty){
                 $lostProperty = new lost_property();
                 $lostProperty->setLogEntryId($entry);
                 $lostTab = null;
+            } else {
+                $lostTab = $lostProperty;
             }
         $generalForm = $this->createForm(new GeneralType(), $general, array(
             'method' => 'POST',
