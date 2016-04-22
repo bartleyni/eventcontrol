@@ -39,6 +39,10 @@
                                                     <br>
                                                 {% else %}
                                                     {{ log.general_description[:12]|striptags ~ ' ...'  }}
+                                                    <br>
+                                                    {% if log.general_entry_closed_time is not null %}
+                                                        {{ log.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
+                                                    {% endif %}
                                                 {% endif %}
                                             </td>
                                             <td {% if log.medical_entry_closed_time is null %} class="severity{{ log.medical_severity }}" {% endif %}>
@@ -46,9 +50,9 @@
                                                     <br>
                                                 {% else %}
                                                     {{ log.medical_injury_description }}
-                                                    <br> 
+                                                        <br> 
                                                     {% if log.medical_entry_closed_time is not null %}
-                                                        {{ log.medical_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                        {{ log.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
                                                     {% endif %}
                                                 {% endif %}
                                             </td>
@@ -59,7 +63,7 @@
                                                     {{ log.security_incident_description }}
                                                     <br> 
                                                     {% if log.security_entry_closed_time is not null %}
-                                                        {{ log.security_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                        {{ log.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
                                                     {% endif %}
                                                 {% endif %}
                                             </td> 
@@ -70,7 +74,7 @@
                                                     {{ log.lost_property_description[:12]|striptags ~ ' ...' }}
                                                     <br>
                                                     {% if log.lost_property_entry_closed_time is not null %}
-                                                        {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s') }}
+                                                        {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
                                                     {% endif %}
                                                 {% endif %}
                                             </td> 

@@ -51,7 +51,7 @@ class lost_property {
     protected $lost_property_description;
     
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $lost_property_contact_details;
     

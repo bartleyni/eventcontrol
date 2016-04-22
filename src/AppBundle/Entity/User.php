@@ -60,7 +60,6 @@ class User implements UserInterface, \Serializable {
      * @Assert\Email()
      */
     private $email;
-
         
     /**
      * @ORM\Column(type="string", length=255, unique=false)

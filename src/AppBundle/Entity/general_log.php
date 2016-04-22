@@ -41,7 +41,12 @@ class general_log {
     protected $general_description;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="boolean")
+     */
+    protected $general_open;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $general_entry_closed_time;
 
@@ -77,6 +82,30 @@ class general_log {
     public function getGeneralDescription()
     {
         return $this->general_description;
+    }
+
+    /**
+     * Set generalOpen
+     *
+     * @param boolean $generalOpen
+     *
+     * @return general_log
+     */
+    public function setGeneralOpen($generalOpen)
+    {
+        $this->general_open = $generalOpen;
+
+        return $this;
+    }
+
+    /**
+     * Get generalOpen
+     *
+     * @return boolean
+     */
+    public function getGeneralOpen()
+    {
+        return $this->general_open;
     }
 
     /**

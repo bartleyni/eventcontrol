@@ -20,12 +20,19 @@ class GeneralType extends AbstractType
         $builder
             ->add('general_description', 'textarea', array(
                 'label' => 'General Description',
-                'required' => false,
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control',
                     'rows' => '5'
                 )
-            ))              
+            ))  
+            ->add('general_open', 'checkbox', array(
+                'label' => "Incident Open?",
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))                
             ->add('submit_general', 'submit', array(
                 'label' => 'Submit General',
                 'attr' => array(

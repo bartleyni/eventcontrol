@@ -34,7 +34,7 @@ class LostPropertyType extends AbstractType
             ))
             ->add('lost_property_description', 'textarea', array(
                 'label' => 'Item Description',
-                'required' => false,
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control',
                     'rows' => '3'

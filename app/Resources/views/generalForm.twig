@@ -15,6 +15,15 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            {{ form_label(general_entry.general_open) }} 
+            {{ form_errors(general_entry.general_open) }}
+            {{ form_widget(general_entry.general_open) }}
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-10">
         <br>
         {{ form_widget(general_entry.submit_general) }}           

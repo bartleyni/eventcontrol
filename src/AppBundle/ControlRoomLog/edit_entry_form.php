@@ -39,25 +39,35 @@ class edit_entry_form extends Controller
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
         $form = $this->createForm(new LogType(), $entry);
+        $medicalTab = true;
+        $securityTab = true;
+        $generalTab = true;
+        $lostTab = true;
+        
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
                 $medical = new medical_log();
                 $medical->setLogEntryId($entry);
+                $medicalTab = null;
             }
         $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $id));
         if (!$security){
                 $security = new security_log();
                 $security->setLogEntryId($entry);
+                $securityTab = null;
             }
         $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $id));
         if (!$general){
                 $general = new general_log();
                 $general->setLogEntryId($entry);
+                $general->setGeneralOpen(true);
+                $generalTab = null;
             }
         $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $id));
         if (!$lostProperty){
                 $lostProperty = new lost_property();
                 $lostProperty->setLogEntryId($entry);
+                $lostTab = null;
             }
         $generalForm = $this->createForm(new GeneralType(), $general, array(
             'method' => 'POST',
@@ -98,7 +108,8 @@ class edit_entry_form extends Controller
             }
             if ($generalForm->isValid()) {    
                 if ($generalForm->get('submit_general')->isClicked()){
-                    if ($general->getGeneralDescription()){
+                    $generalOpen = $general->getGeneralOpen();
+                    if ($generalOpen == false){
                         $general->setGeneralEntryClosedTime(new \DateTime());
                     }
                     $em->persist($general);
@@ -131,7 +142,7 @@ class edit_entry_form extends Controller
         {
             //return $this->redirect('../log/');
         }
-        return $this->render('editForm.html.twig', array('log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
+        return $this->render('editForm.html.twig', array('medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab,'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
     }
 }
 

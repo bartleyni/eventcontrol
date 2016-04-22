@@ -69,23 +69,39 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-3">  
-                                    <button type="button" id="general_button" class="btn btn-info btn-block">
+                                <div class="col-md-3">
+                                    {% if generalTab is null %}
+                                        <button type="button" id="general_button" class="btn btn-info-outline btn-block">
+                                    {% else %}
+                                        <button type="button" id="general_button" class="btn btn-info btn-block">
+                                    {% endif %}
                                         General
                                     </button>
                                 </div>
-                                <div class="col-md-3">  
-                                    <button type="button" id="medical_button" class="btn btn-info btn-block">
+                                <div class="col-md-3"> 
+                                    {% if medicalTab is null %}                                      
+                                        <button type="button" id="medical_button" class="btn btn-info-outline btn-block">
+                                    {% else %}
+                                        <button type="button" id="medical_button" class="btn btn-info btn-block">
+                                    {% endif %}    
                                         Medical
                                     </button>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" id="security_button" class="btn btn-info btn-block">
+                                    {% if securityTab is null %}
+                                        <button type="button" id="security_button" class="btn btn-info-outline btn-block">
+                                    {% else %}
+                                        <button type="button" id="security_button" class="btn btn-info btn-block">
+                                    {% endif %}    
                                         Security
                                     </button>
                                 </div>
                                 <div class="col-md-3">
-                                    <button type="button" id="lost_button" class="btn btn-info btn-block">
+                                    {% if lostTab is null %}
+                                        <button type="button" id="lost_button" class="btn btn-info-outline btn-block">
+                                    {% else %}    
+                                        <button type="button" id="lost_button" class="btn btn-info btn-block">
+                                    {% endif %}
                                         Lost Property
                                     </button>
                                 </div>
