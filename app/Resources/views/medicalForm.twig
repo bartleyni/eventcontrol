@@ -68,6 +68,15 @@
         </div>
     </div>
 </div>
+{% if medicalClosed is not null %}
+    <div class="row">        
+        <div class="col-md-4">
+            <div class="alert alert-info" role="alert">
+                <strong>Incident Closed: </strong>{{ medicalClosed|date('Y-m-d H:i:s', "Europe/London") }}
+            </div>
+        </div>
+    </div>
+{% endif %} 
 <div class="row">
     <div class="col-md-10">
         <br>

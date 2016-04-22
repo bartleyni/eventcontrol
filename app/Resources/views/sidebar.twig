@@ -15,28 +15,28 @@
             </div>
         </div>
     </a>
-    <a href="/log/desc/open/" class="btn btn-default btn-block" role="button">
+    <a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 Latest Open Entries View
             </div>
         </div>
     </a>
-    <a href="/log/desc/all/medical/" class="btn btn-default btn-block" role="button">
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "medical"}) }}" class="btn btn-default btn-block" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 Latest Medical Entries View
             </div>
         </div>
     </a>
-    <a href="/log/desc/all/security/" class="btn btn-default btn-block" role="button">
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "security"}) }}" class="btn btn-default btn-block" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 Latest Security Entries View
             </div>
         </div>
     </a>
-    <a href="/log/desc/all/lost/" class="btn btn-default btn-block" role="button">
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "lost"}) }}" class="btn btn-default btn-block" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 Latest Lost Property View

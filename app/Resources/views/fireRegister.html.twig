@@ -32,7 +32,7 @@
                                             <td>{{ attendee.email }}</td>
                                             <td>{{ attendee.time_in|date('Y-m-d H:i:s', "Europe/London") }}</td>
                                             {% if attendee.time_out is null %}
-                                                <td><a href="/index.php/signout/{{attendee.id}}">Sign-out</a></td>
+                                                <td><a href="{{ path('signout', {'id': attendee.id}) }}">Sign-out</a></td>
                                             {% else %}
                                             <td>{{ attendee.time_out|date('Y-m-d H:i:s', "Europe/London") }}</td>
                                             {% endif %}

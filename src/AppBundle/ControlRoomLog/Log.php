@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class Log extends Controller
 {
     /**
-    * @Route("/log/{sort}");
+    * @Route("/log/{sort}", name="sort_log");
     * @Route("/log/{sort}/");
-    * @Route("/log/{sort}/{filter}");
+    * @Route("/log/{sort}/{filter}", name="sort_filter_log"); 
     * @Route("/log/{sort}/{filter}/");
-    * @Route("/log/{sort}/{filter}/{filter_type}");
+    * @Route("/log/{sort}/{filter}/{filter_type}", name="sort_filter_type_log");
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
     * @Route("/");
