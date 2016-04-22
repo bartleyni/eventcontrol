@@ -22,7 +22,7 @@
             {{ form_widget(general_entry.general_open) }}
         </div>
     </div>
-</div>
+</div><br>
 {% if generalClosed is not null %}
     <div class="row">
         <div class="col-md-12">
@@ -34,15 +34,12 @@
 {% endif %}
 <div class="row">
     <div class="col-md-10">
-        <br>
         {{ form_widget(general_entry.submit_general) }}           
         {{ form_end(general_entry) }}
-        <br>
     </div>
     <div class="col-md-2">
-        <br>
         <button type="button" id="general_close_button" class="btn btn-warning btn-block">
             Hide General
         </button>
     </div>        
-</div>
+</div><br>

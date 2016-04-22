@@ -67,10 +67,10 @@
             {{ form_widget(medical_entry.medical_resolution) }}
         </div>
     </div>
-</div>
+</div><br>
 {% if medicalClosed is not null %}
     <div class="row">        
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="alert alert-info" role="alert">
                 <strong>Incident Closed: </strong>{{ medicalClosed|date('Y-m-d H:i:s', "Europe/London") }}
             </div>
@@ -79,15 +79,12 @@
 {% endif %} 
 <div class="row">
     <div class="col-md-10">
-        <br>
         {{ form_widget(medical_entry.submit_medical) }}           
         {{ form_end(medical_entry) }}
-        <br>
     </div>
     <div class="col-md-2">
-        <br>
         <button type="button" id="medical_close_button" class="btn btn-warning btn-block">
             Hide Medical
         </button>
     </div>
-</div>
+</div><br>

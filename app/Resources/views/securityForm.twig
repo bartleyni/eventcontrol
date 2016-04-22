@@ -54,10 +54,10 @@
             {{ form_widget(security_entry.security_resolution) }}
         </div>
     </div>
-</div>
+</div><br>
 {% if securityClosed is not null %}
     <div class="row">        
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="alert alert-info" role="alert">
                 <strong>Incident Closed: </strong>{{ securityClosed|date('Y-m-d H:i:s', "Europe/London") }}
             </div>
@@ -66,15 +66,12 @@
 {% endif %} 
 <div class="row">
     <div class="col-md-10">
-        <br>
         {{ form_widget(security_entry.submit_security) }}           
         {{ form_end(security_entry) }}
-        <br>
     </div>
     <div class="col-md-2">
-        <br>
         <button type="button" id="security_close_button" class="btn btn-warning btn-block">
             Hide Security
         </button>
     </div>        
-</div>
+</div><br>

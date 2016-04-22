@@ -54,10 +54,10 @@
             {{ form_widget(lost_entry.lost_property_resolution_description) }}
         </div>
     </div>
-</div>
+</div><br>
 {% if lostClosed is not null %}
     <div class="row">        
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="alert alert-info" role="alert">
                 <strong>Incident Closed: </strong>{{ lostClosed|date('Y-m-d H:i:s', "Europe/London") }}
             </div>
@@ -66,15 +66,12 @@
 {% endif %}    
 <div class="row">
     <div class="col-md-10">
-        <br>
         {{ form_widget(lost_entry.submit_lost_property) }}           
         {{ form_end(lost_entry) }}
-        <br>
     </div>
     <div class="col-md-2">
-        <br>
         <button type="button" id="lost_close_button" class="btn btn-warning btn-block">
             Hide Lost Property
         </button>
     </div>        
-</div>
+</div><br>
