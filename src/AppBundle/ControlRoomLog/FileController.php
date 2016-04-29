@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class FileController extends Controller
 {
     /**
-     * @Route("/media/{filename}/{type}", name="media")
+     * @Route("/media/{type}/{filename}", name="media")
      */
     public function fileDisplayAction(Request $request, $filename=null, $type=null)
     {
