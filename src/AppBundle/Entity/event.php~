@@ -1,0 +1,68 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of event
+ *
+ *
+ * @author Nick
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="event")
+ */
+
+class event {
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+ 
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    protected $client;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $event_date;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $event_log_start_date;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $event_log_stop_date;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $event_active;
+    
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+}

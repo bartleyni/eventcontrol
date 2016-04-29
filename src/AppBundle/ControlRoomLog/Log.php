@@ -22,6 +22,12 @@ class Log extends Controller
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('event_active' => true));
+        
+        $em->flush();
+        
         $qb = $em->createQueryBuilder(); 
         
         $qb
@@ -146,11 +152,20 @@ class Log extends Controller
             }
         }
         
-        $qb->andWhere('entry.log_entry_open_time <= :begin')
-            ->andWhere('entry.log_entry_open_time >= :end')
-            ->setParameter('begin', new \DateTime('2016-04-30'))
-            ->setParameter('end', new \DateTime('2015-04-25'));
-        
+        if ($event){
+            $begin = $event->getEventLogStartDate();
+            $end = $event->getEventLogStopDate();
+            
+            $qb->andWhere('entry.log_entry_open_time <= :begin')
+                ->andWhere('entry.log_entry_open_time >= :end')
+                ->setParameter('begin', $begin)
+                ->setParameter('end', $end);
+        }else{
+            $qb->andWhere('entry.log_entry_open_time <= :begin')
+                ->andWhere('entry.log_entry_open_time >= :end')
+                ->setParameter('begin', new \DateTime('2016-04-30'))
+                ->setParameter('end', new \DateTime('2015-04-25'));
+        }
         $query = $qb->getQuery();
         $logs = $query->getResult();
         return $this->render('log.html.twig', array('logs' => $logs));

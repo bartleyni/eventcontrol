@@ -21,6 +21,7 @@ class RegisterDisplay extends Controller
             ->from('AppBundle\Entity\event_control_register', 'attendee')
             ->orderBy('attendee.time_in', 'ASC')
             ;
+        
         $qb->andWhere('attendee.time_in <= :begin')
             ->andWhere('attendee.time_in >= :end')
             ->setParameter('begin', new \DateTime('2016-04-30'))
