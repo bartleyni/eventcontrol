@@ -17,13 +17,27 @@ class RegisterController extends Controller
     public function registerAction(Request $request, $id=null)
     {
         if ($id){
+            if ($id == "all"){
+                $em = $this->getDoctrine()->getManager();
+                $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(
+                    array('time_out' => null));
+                if ($attendees){
+                    foreach($attendees as $attendee){
+                        $attendee->setTimeOut(new \DateTime());
+                        $em->persist($attendee);
+                        $em->flush();
+                    }
+                }
+                return $this->redirectToRoute('fire_register');
+            }else{
+            
             $em = $this->getDoctrine()->getManager();
             $attendee = $em->getRepository('AppBundle\Entity\event_control_register')->find($id);
             $attendee->setTimeOut(new \DateTime());
             $em->persist($attendee);
             $em->flush();
             return $this->redirectToRoute('fire_register');
-            
+            }
         }else{
             // 1) build the form
             $attendee = new event_control_register();

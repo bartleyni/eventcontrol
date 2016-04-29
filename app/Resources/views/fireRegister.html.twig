@@ -40,6 +40,11 @@
                                     {% endfor %}                           
                                 </tbody>
                             </table>
+                                    <div class="col-md-12">
+                                        <a href="{{ path('signout', {'id': 'all'}) }}" class="btn btn-warning btn-block">
+                                           Sign All Out
+                                        </a>
+                                    </div> 
                         {% endif %}  
                     </div>
                 </div>
