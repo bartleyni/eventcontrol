@@ -145,7 +145,12 @@ class Log extends Controller
                                 ))));
             }
         }
-
+        
+        $qb->andWhere('entry.log_entry_open_time <= :begin')
+            ->andWhere('entry.log_entry_open_time >= :end')
+            ->setParameter('begin', new \DateTime('2016-04-30'))
+            ->setParameter('end', new \DateTime('2015-04-25'));
+        
         $query = $qb->getQuery();
         $logs = $query->getResult();
         return $this->render('log.html.twig', array('logs' => $logs));
