@@ -202,12 +202,12 @@
             $('#Lost').hide(100);
             $('#submit_button').show();
         });
-        $(function timestampFunction(e,i){
+        function timestampFunction(e,i) {
             if(e.keycode == 13){
                 var d = new Date();
                 var text = this.innerHTML;
                 this.innerHTML = text + d.toLocalString();
             }
-        });
+        }
     </script>        
 {% endblock %}
