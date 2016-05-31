@@ -23,7 +23,8 @@ class GeneralType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control',
-                    'rows' => '5'
+                    'rows' => '5',
+                    'onkeypress' => "timestampFunction(event,this)"
                 )
             ))  
             ->add('general_open', 'checkbox', array(

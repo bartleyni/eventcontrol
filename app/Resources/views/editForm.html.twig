@@ -201,6 +201,12 @@
         $('#lost_close_button').click(function(){
             $('#Lost').hide(100);
             $('#submit_button').show();
-        });         
+        });
+        $(function timestampFunction(e,i) {
+            if(e.keycode == 13){
+                var d = new Date();
+                this.value = this.value+d.toLocalString();
+            }
+        });
     </script>        
 {% endblock %}
