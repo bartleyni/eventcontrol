@@ -205,7 +205,8 @@
         $(function timestampFunction(e,i) {
             if(e.keycode == 13){
                 var d = new Date();
-                this.value = this.value+d.toLocalString();
+                var text = this.innerHTML;
+                this.innerHTML = text + d.toLocalString();
             }
         });
     </script>        
