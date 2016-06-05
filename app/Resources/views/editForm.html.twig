@@ -156,7 +156,7 @@
                         e.preventDefault();
                         var timestamp = new Date();
                         var currentText = $('textarea#new_general_form_general_description').val();
-                        $('textarea#new_general_form_general_description').val(currentText + "\n" + timestamp.toString() + " ");
+                        $('textarea#new_general_form_general_description').val(currentText + "\n" + timestamp.toLocaleString('en-GB') + " ");
                     }
                 }
             });
