@@ -165,6 +165,18 @@
                 e.preventDefault();
                 showSecurity();
             });
+            Mousetrap.bind('ctrl+m', function(e) {
+                e.preventDefault();
+                showMedical();
+            });
+            Mousetrap.bind('ctrl+g', function(e) {
+                e.preventDefault();
+                showGeneral();
+            });
+            Mousetrap.bind('ctrl+l', function(e) {
+                e.preventDefault();
+                showLostProperty();
+            });
         });
         $(function () {
             $('#datetimepicker1').datetimepicker({
@@ -173,20 +185,21 @@
                 showTodayButton: true
             });
         });
-        $('#general_button').click(function(){
+        
+        function showGeneral(){
             $('#General').show(200);
             $('#Medical').hide(100);
             $('#Security').hide(100);
             $('#Lost').hide(100);
             $('#submit_button').hide();
-        });
-        $('#medical_button').click(function(){
+        }
+        function showMedical(){
             $('#Medical').show(200);
             $('#General').hide(100);
             $('#Security').hide(100);
             $('#Lost').hide(100);
             $('#submit_button').hide();
-        });
+        }
         function showSecurity(){
             $('#Security').show(200);
             $('#Medical').hide(100);
@@ -194,21 +207,18 @@
             $('#Lost').hide(100);
             $('#submit_button').hide();
         }
-        $('#security_button').click(showSecurity);
-        //$('#security_button').click(function(){
-            //$('#Security').show(200);
-            //$('#Medical').hide(100);
-            //$('#General').hide(100);
-            //$('#Lost').hide(100);
-            //$('#submit_button').hide();
-        //});
-        $('#lost_button').click(function(){
+        function showLostProperty(){
             $('#Lost').show(500);
             $('#Medical').hide(250);
             $('#Security').hide(250);
             $('#General').hide(250);
             $('#submit_button').hide();
-        });
+        }
+        $('#security_button').click(showSecurity);
+        $('#general_button').click(showGeneral);
+        $('#medical_button').click(showMedical);
+        $('#lost_button').click(showLostProperty);
+
         $('#general_close_button').click(function(){
             $('#General').hide(100);
             $('#submit_button').show();
