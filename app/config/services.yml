@@ -9,3 +9,9 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 #app.slugger:
  #   class: AppBundle\Utils\Slugger
+ 
+ app.twig.database_globals_extension:
+     class: AppBundle\Twig\AppExtension
+     arguments: ["@doctrine.orm.entity_manager"]
+     tags:
+         - { name: twig.extension }
