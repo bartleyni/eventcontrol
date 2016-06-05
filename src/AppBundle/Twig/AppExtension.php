@@ -26,6 +26,8 @@ class AppExtension extends \Twig_Extension
 
         $eventName = $event->getName();
         
+        $eventName = 'test';
+        
         return $eventName;
     }
     
