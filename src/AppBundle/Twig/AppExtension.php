@@ -15,6 +15,13 @@ class AppExtension extends \Twig_Extension
     //    $this->em = $em;
     //}
     
+    protected $service;
+
+    public function __construct(MyService $service)
+    {
+        $this->service = $service;
+    }
+    
     public function getFunctions()
     {
         return array(
