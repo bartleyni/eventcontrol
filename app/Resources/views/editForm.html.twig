@@ -202,8 +202,8 @@
             $('#Lost').hide(100);
             $('#submit_button').show();
         });
-        $('textarea#new_general_form_general_description').live({
-            keypress: function(e) {
+        $('textarea#new_general_form_general_description').on({
+            keydown: function(e) {
                 if (e.which == '13') {
                     e.preventDefault();
                     var timestamp = new Date();
