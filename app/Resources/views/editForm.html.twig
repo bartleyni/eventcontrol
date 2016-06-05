@@ -206,7 +206,7 @@
             if (e.which == '13') {
                 e.preventDefault();
                 var timestamp = new Date();
-                currentText = $('textarea#new_general_form_general_description').val();
+                var currentText = $('textarea#new_general_form_general_description').val();
                 $('textarea#new_general_form_general_description').val(currentText + timestamp.toLocalString());
             }
         });
