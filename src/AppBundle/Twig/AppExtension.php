@@ -12,9 +12,8 @@ class AppExtension extends \Twig_Extension
     private $em;
     private $conn;
   
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
-        $this->em = $em;
-        $this->conn = $em->getConnection();
+    public function __construct(\Doctrine\ORM\EntityManager $doctrine) {
+        $this->doctrine = $doctrine;
     }
     
     public function getGlobals()
@@ -31,7 +30,7 @@ class AppExtension extends \Twig_Extension
     
     public function getEventName()
     {
-        //$em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
 
