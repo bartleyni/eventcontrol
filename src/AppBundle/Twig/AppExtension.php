@@ -3,24 +3,12 @@
 
 namespace AppBundle\Twig;
 
+use Doctrine\ORM\Mapping as ORM;
+
 use Doctrine\ORM\EntityManager;
 
 class AppExtension extends \Twig_Extension
 {
-
-    protected $em;
-    
-    //public function __construct(EntityManager $em)
-    //{
-    //    $this->em = $em;
-    //}
-    
-    protected $service;
-
-    public function __construct(MyService $service)
-    {
-        $this->service = $service;
-    }
     
     public function getFunctions()
     {
@@ -37,7 +25,6 @@ class AppExtension extends \Twig_Extension
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('event_active' => true));
 
-        $em->flush();
         $eventName = $event->getName();
         
         return $eventName;
