@@ -161,7 +161,10 @@
                     }
                 }
             });
-            Mousetrap.bind('ctrl+s', showSecurity);
+            Mousetrap.bind('ctrl+s', function(e) {
+                e.preventDefault();
+                showSecurity;
+            });
         });
         $(function () {
             $('#datetimepicker1').datetimepicker({
