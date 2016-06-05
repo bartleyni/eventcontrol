@@ -202,12 +202,14 @@
             $('#Lost').hide(100);
             $('#submit_button').show();
         });
-        $('textarea#new_general_form_general_description').live("keypress", function(e) {
-            if (e.which == '13') {
-                e.preventDefault();
-                var timestamp = new Date();
-                var currentText = $('textarea#new_general_form_general_description').text();
-                $('textarea#new_general_form_general_description').text(currentText + "\n" + timestamp.toISOString() + " ");
+        $('textarea#new_general_form_general_description').on({
+            keypress: function(e) {
+                if (e.which == '13') {
+                    e.preventDefault();
+                    var timestamp = new Date();
+                    var currentText = $('textarea#new_general_form_general_description').text();
+                    $('textarea#new_general_form_general_description').text(currentText + "\n" + timestamp.toISOString() + " ");
+                }
             }
         });
     </script>        
