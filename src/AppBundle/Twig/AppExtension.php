@@ -4,15 +4,15 @@
 namespace AppBundle\Twig;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityManager;
 
 class AppExtension extends \Twig_Extension
 {
-    private $em;
+    private $doctrine;
   
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
-        $this->entityManager = $em;
+    public function __construct(RegistryInterface $doctrine) {
+        $this->doctrine = $doctrine;
     }
     
     public function getGlobals()
@@ -29,7 +29,9 @@ class AppExtension extends \Twig_Extension
     
     public function getEventName()
     {
-        $event = $em->doctrine()->getManager()->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+        $em = $this->doctrine->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
 
         $eventName = $event->getName();
         
