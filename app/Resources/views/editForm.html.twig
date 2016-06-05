@@ -202,12 +202,13 @@
             $('#Lost').hide(100);
             $('#submit_button').show();
         });
-        function timestampFunction(e,i) {
-            if(e.keycode == 13){
-                var d = new Date();
-                var text = $(i).val();
-                $(i).val(text + d.toLocalString());
+        $('textarea#new_general_form_general_description').keypress(function(e) {
+            if (e.which == '13') {
+                e.preventDefault();
+                var timestamp = new Date();
+                currentText = $('textarea#new_general_form_general_description').val();
+                $('textarea#new_general_form_general_description').val(currentText + timestamp.toLocalString());
             }
-        }
+        });
     </script>        
 {% endblock %}
