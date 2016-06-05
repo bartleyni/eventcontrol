@@ -10,7 +10,7 @@ services:
 #app.slugger:
  #   class: AppBundle\Utils\Slugger
  
-    app.twig.database_globals_extension:
+    app.twig.AppExtension:
         class: AppBundle\Twig\AppExtension
         arguments:
             em: "@doctrine.orm.entity_manager"
