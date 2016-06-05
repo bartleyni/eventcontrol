@@ -28,7 +28,7 @@ class MedicalType extends AbstractType
             ->add('medical_description', 'textarea', array(
                 'label' => 'Description',
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '5'
                 )
             ))            
@@ -74,7 +74,7 @@ class MedicalType extends AbstractType
                 'label' => 'Medical Notes',
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '5'
                 )
             ))              

@@ -22,7 +22,7 @@ class GeneralType extends AbstractType
                 'label' => 'General Description',
                 'required' => true,
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '5'                    
                 )
             ))  
