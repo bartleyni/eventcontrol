@@ -15,9 +15,18 @@ class AppExtension extends \Twig_Extension
         $this->em = $em;
     }
     
-    public function getGlobals()
+    public function getEventGlobals()
     {
-        return array ();
+        $em = $this->getDoctrine()->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('event_active' => true));
+        
+        $em->flush();
+        
+        $eventName = $event->getName();
+        
+        return array ("thisEvent" => $eventName);
     }
     
     public function getName()
