@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\ORM\EntityManager;
 
-class AppExtension extends \Twig_Extension
+class AppExtension extends Twig_Extension
 {
     
     public function getFunctions()
