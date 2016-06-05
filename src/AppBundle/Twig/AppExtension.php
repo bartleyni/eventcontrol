@@ -29,7 +29,7 @@ class AppExtension extends \Twig_Extension
 
         $eventName = $event->getName();
         
-        //$eventName = 'test';
+        $eventName = 'test';
         
         return $eventName;
     }
