@@ -92,7 +92,8 @@
         });
         $('#now_button').click(function(){
             var d = Date();
-            $('.datetimepicker1').val(d);
+            var nowTime = moment(d).format("YYYY-MM-DD HH:mm:ss");
+            $('.datetimepicker1').val(nowTime);
         });
     </script>        
 {% endblock %}
