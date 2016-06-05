@@ -9,10 +9,19 @@ use Doctrine\ORM\EntityManager;
 
 class AppExtension extends \Twig_Extension
 {
+    private $em;
+    private $conn;
+  
+    public function __construct(\Doctrine\ORM\EntityManager $em) {
+        $this->em = $em;
+        $this->conn = $em->getConnection();
+    }
+    
     public function getGlobals()
     {
         return array("GlobalTest" => "Hello Test",);
     }
+    
     public function getFunctions()
     {
         return array(

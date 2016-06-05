@@ -11,5 +11,7 @@ services:
  #   class: AppBundle\Utils\Slugger
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
+        arguments:
+            em: "@doctrine.orm.entity_manager"
         tags:
             - { name: twig.extension }
