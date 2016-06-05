@@ -150,6 +150,16 @@
             $('#Medical').hide();
             $('#Security').hide();
             $('#Lost').hide();
+            $('textarea#new_general_form_general_description').on({
+                keydown: function(e) {
+                    if (e.which == '13') {
+                        e.preventDefault();
+                        var timestamp = new Date();
+                        var currentText = $('textarea#new_general_form_general_description').text();
+                        $('textarea#new_general_form_general_description').text(currentText + "\n" + timestamp.toLocaleString() + " ");
+                    }
+                }
+            });
         });
         $(function () {
             $('#datetimepicker1').datetimepicker({
@@ -201,16 +211,6 @@
         $('#lost_close_button').click(function(){
             $('#Lost').hide(100);
             $('#submit_button').show();
-        });
-        $('textarea#new_general_form_general_description').on({
-            keydown: function(e) {
-                if (e.which == '13') {
-                    e.preventDefault();
-                    var timestamp = new Date();
-                    var currentText = $('textarea#new_general_form_general_description').text();
-                    $('textarea#new_general_form_general_description').text(currentText + "\n" + timestamp.toLocaleString() + " ");
-                }
-            }
         });
     </script>        
 {% endblock %}
