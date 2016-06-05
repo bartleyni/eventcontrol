@@ -25,7 +25,7 @@
                                         {{ form_widget(log_entry.operator) }}
                                     </div>
                                 </div>
-                                <div class="col-md-6">    
+                                <div class="col-md-4">    
                                     <div class="form-group">
                                         {{ form_label(log_entry.log_entry_open_time) }}
                                         {{ form_errors(log_entry.log_entry_open_time) }}
@@ -36,6 +36,11 @@
                                             </span>
                                         </div>
                                     </div>         
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="now_button" class="btn btn-info-outline btn-block">
+                                        Now
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
