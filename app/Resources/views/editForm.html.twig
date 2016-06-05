@@ -161,6 +161,7 @@
                     }
                 }
             });
+            Mousetrap.bind('ctrl+s', showSecurity);
         });
         $(function () {
             $('#datetimepicker1').datetimepicker({
@@ -183,13 +184,21 @@
             $('#Lost').hide(100);
             $('#submit_button').hide();
         });
-        $('#security_button').click(function(){
+        function showSecurity(){
             $('#Security').show(200);
             $('#Medical').hide(100);
             $('#General').hide(100);
             $('#Lost').hide(100);
             $('#submit_button').hide();
-        });
+        }
+        $('#security_button').click(showSecurity);
+        //$('#security_button').click(function(){
+            //$('#Security').show(200);
+            //$('#Medical').hide(100);
+            //$('#General').hide(100);
+            //$('#Lost').hide(100);
+            //$('#submit_button').hide();
+        //});
         $('#lost_button').click(function(){
             $('#Lost').show(500);
             $('#Medical').hide(250);
