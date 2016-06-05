@@ -1,7 +1,11 @@
 <div class="row">
     <h4>Event Info</h4>
     Current Event: 
+    <br>
     Currnet User: 
+    {% if is_granted("ROLE") %}
+        {{ app.user.username }}
+    {% endif %}
 </div>
 
 <div class="row">
