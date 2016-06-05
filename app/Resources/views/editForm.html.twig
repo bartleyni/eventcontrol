@@ -205,9 +205,9 @@
         $('textarea#new_general_form_general_description').keypress(function(e) {
             if (e.which == '13') {
                 e.preventDefault();
-                var timestamp = new Date();
-                var currentText = $('textarea#new_general_form_general_description').text();
-                $('textarea#new_general_form_general_description').text(currentText + timestamp.toLocalString());
+                //var timestamp = new Date();
+                //var currentText = $('textarea#new_general_form_general_description').text();
+                $('textarea#new_general_form_general_description').text('Hello World');
             }
         });
     </script>        
