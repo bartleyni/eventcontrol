@@ -1,6 +1,8 @@
 <div class="row">
     <h4>Event Info</h4>
-    Current Event: {{ activeEventName }}
+    Current Event: {{ activeEventName() }}
+    <br>
+    {{ GlobalTest }}
     <br>
     Current User: {{ app.user.username }}
 </div>

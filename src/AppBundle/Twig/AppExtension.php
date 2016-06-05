@@ -9,7 +9,10 @@ use Doctrine\ORM\EntityManager;
 
 class AppExtension extends \Twig_Extension
 {
-    
+    public function getGlobals()
+    {
+        return array("GlobalTest" => "Hello Test",);
+    }
     public function getFunctions()
     {
         return array(
