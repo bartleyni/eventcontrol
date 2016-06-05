@@ -90,5 +90,9 @@
                 showTodayButton: true
             });
         });
+        $('#now_button').click(function(){
+            var d = Date();
+            $('.datetimepicker1').val(d);
+        });
     </script>        
 {% endblock %}
