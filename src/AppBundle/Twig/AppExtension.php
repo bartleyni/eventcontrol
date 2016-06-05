@@ -13,7 +13,7 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('eventName', 'getEventName'),
+            new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
         );
     }
     
