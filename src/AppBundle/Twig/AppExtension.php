@@ -19,12 +19,12 @@ class AppExtension extends \Twig_Extension
     
     public function getEventName()
     {
-        $em = $this->getDoctrine()->getManager();
+        //$em = $this->getDoctrine()->getManager();
         
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            //array('event_active' => true));
 
-        $eventName = $event->getName();
+        //$eventName = $event->getName();
         
         $eventName = 'test';
         
