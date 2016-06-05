@@ -60,7 +60,7 @@ class LostPropertyType extends AbstractType
                 'label' => 'Lost Property Resolution Notes',
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '3'
                 )
             ))              

@@ -35,7 +35,7 @@ class SecurityType extends AbstractType
             ->add('security_description', 'textarea', array(
                 'label' => 'Description',
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '5'
                 )
             ))            
@@ -57,7 +57,7 @@ class SecurityType extends AbstractType
                 'label' => 'Security Resolution',
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control tsText',
                     'rows' => '5'
                 )
             ))              
