@@ -10,10 +10,9 @@ use Doctrine\ORM\EntityManager;
 class AppExtension extends \Twig_Extension
 {
     private $em;
-    private $conn;
   
-    public function __construct(\Doctrine\ORM\EntityManager $doctrine) {
-        $this->doctrine = $doctrine;
+    public function __construct(\Doctrine\ORM\EntityManager $em) {
+        $this->entityManager = $em;
     }
     
     public function getGlobals()
@@ -30,9 +29,7 @@ class AppExtension extends \Twig_Extension
     
     public function getEventName()
     {
-        $em = $this->getDoctrine()->getManager();
-        
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+        $event = $em->doctrine()->getManager()->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
 
         $eventName = $event->getName();
         

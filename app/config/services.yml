@@ -12,6 +12,6 @@ services:
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         arguments:
-            doctrine: "@doctrine.orm.entity_manager"
+            em: "@doctrine.orm.entity_manager"
         tags:
             - { name: twig.extension }
