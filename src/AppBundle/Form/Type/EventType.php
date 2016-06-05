@@ -33,12 +33,12 @@ class EventType extends AbstractType
             ->add('event_date', 'datetime', array(
                 'label' => 'Date of Event',
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd HH:mm:ss',
+                'format' => 'yyyy-MM-dd HH:mm',
                 'view_timezone' => 'Europe/London',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
                     'data-provide' => 'datetimepicker1',
-                    'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
+                    'data-datetime-format' => 'yyyy-MM-dd HH:mm'
                 )
             ))
             ->add('event_log_start_date', 'datetime', array(
