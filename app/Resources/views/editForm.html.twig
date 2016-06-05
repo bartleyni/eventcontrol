@@ -206,8 +206,8 @@
             if (e.which == '13') {
                 e.preventDefault();
                 var timestamp = new Date();
-                //var currentText = $('textarea#new_general_form_general_description').text();
-                $('textarea#new_general_form_general_description').text('Hello World ' + timestamp.toLocalString());
+                var currentText = $('textarea#new_general_form_general_description').text();
+                $('textarea#new_general_form_general_description').text(currentText + "\n" + timestamp.toLocaleString());
             }
         });
     </script>        
