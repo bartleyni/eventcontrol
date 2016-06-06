@@ -44,7 +44,7 @@ class EventController extends Controller
         $qb
             ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_active')
             ->from('AppBundle\Entity\event', 'event')
-            ->orderBy('event.event_date', $sort_dir)
+            ->orderBy('event.event_date', 'DESC')
             ;
         
         $query = $qb->getQuery();
