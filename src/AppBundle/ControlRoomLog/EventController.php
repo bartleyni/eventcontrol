@@ -5,7 +5,7 @@ namespace AppBundle\ControlRoomLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Form\Type\RegisterType;
+use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
 
 class EventController extends Controller
