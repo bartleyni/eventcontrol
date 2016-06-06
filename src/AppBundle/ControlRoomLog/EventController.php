@@ -4,19 +4,41 @@ namespace AppBundle\ControlRoomLog;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\Type\RegisterType;
+use AppBundle\Entity\event;
 
 class EventController extends Controller
 {
     /**
-    * @Route("/event/{sort}", name="sort_event");
-    * @Route("/event/{sort}/");
-    * @Route("/event/", name="full_event_list");
+    * @Route("/event/edit/{editId}", name="edit_event");
+    * @Route("/event/delete/{deleteId}", name="delete_event");
+    * @Route("/event/{filter}", name="filter_event_list");
+    * @Route("/event/", name="event_list");
     */
     
-    public function eventAction($sort='DESC')
+    public function eventAction(Request $request, $editId=null, $deleteId=null, $filter=null)
     {
-        $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
+        
+        if ($editId){
+            //Do the edit thing
+        }
+        
+        if ($deleteId){
+            //Do the delete thing
+        }
+        
+        if ($filter){
+            if ($filter == "new"){
+                //Do the new thing
+            } else {
+                //Do the filter thing
+            }
+        } else {
+            //Do the display thing
+        }
         
         $qb = $em->createQueryBuilder(); 
         
