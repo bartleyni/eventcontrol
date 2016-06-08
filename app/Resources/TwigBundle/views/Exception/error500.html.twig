@@ -11,10 +11,11 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 {# ... #}
             {% endif %}
-            <h1> An Error has occured! </h1>
+            <h1> An Error has occured!</h1>
             <br>
-            <h2>{{ status_code }}</h2>
-            {{ status_text }}
+            <h3>{{ status_code }}</h3>
+            <h4>{{ status_text }}</h4>
+            <br>
             <br>
             <p>
                 Something is broken. Please let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.

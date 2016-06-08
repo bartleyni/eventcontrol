@@ -35,8 +35,8 @@
                                             <td>{{ event.event_date|date('Y-m-d H:i', "Europe/London") }}</td>
                                             <td>{{ event.name }}</td>
                                             <td>{{ event.client }}</td>
-                                            <td>{{ event.event_log_start_date }}</td>
-                                            <td>{{ event.event_log_stop_date }}</td>
+                                            <td>{{ event.event_log_start_date|date('Y-m-d H:i', "Europe/London") }}</td>
+                                            <td>{{ event.event_log_stop_date|date('Y-m-d H:i', "Europe/London") }}</td>
                                             <td>{{ event.event_active }}</td>
                                             <td><a href="{{ path('edit_event', {'id': event.id}) }}">Edit</a></td>
                                             <td><a href="{{ path('delete_event', {'id': event.id}) }}">Delete</a></td>
