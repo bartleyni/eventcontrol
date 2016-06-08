@@ -12,6 +12,7 @@ class EventController extends Controller
 {
     /**
     * @Route("/event/edit/{editId}", name="edit_event");
+    * @Route("/event/activate/{activateId}", name="activate_event");
     * @Route("/event/delete/{deleteId}", name="delete_event");
     * @Route("/event/{filter}", name="filter_event_list");
     * @Route("/event/", name="event_list");
@@ -20,6 +21,10 @@ class EventController extends Controller
     public function eventAction(Request $request, $editId=null, $deleteId=null, $filter=null)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        if ($activateId){
+            //Do the activate thing
+        }
         
         if ($editId){
             //Do the edit thing
