@@ -19,11 +19,11 @@
                             <table class="table table-sm table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Event Date</th>
-                                        <th>Event Name</th>
-                                        <th>Event Client</th>
-                                        <th>Event Logging Start Date</td>
-                                        <th>Event Logging Stop Date</td>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Client</th>
+                                        <th>Logging Start Date</td>
+                                        <th>Logging Stop Date</td>
                                         <th>Active?</td>
                                         <th>Edit</td>
                                         <th>Delete</td>
@@ -37,7 +37,7 @@
                                             <td>{{ event.client }}</td>
                                             <td>{{ event.event_log_start_date|date('Y-m-d H:i', "Europe/London") }}</td>
                                             <td>{{ event.event_log_stop_date|date('Y-m-d H:i', "Europe/London") }}</td>
-                                            <td>{{ event.event_active }}</td>
+                                            <td>{{ event.event_active }} <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> </td>
                                             <td><a href="{{ path('edit_event', {'id': event.id}) }}">Edit</a></td>
                                             <td><a href="{{ path('delete_event', {'id': event.id}) }}">Delete</a></td>
                                         </tr>
