@@ -29,7 +29,7 @@ class EditUserController extends Controller
      */
     public function editUserAction(Request $request)
     {
-        $user = new User();
+        //$user = new User();
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $form = $this->createForm(new EditUserType(), $user, array(
@@ -43,6 +43,7 @@ class EditUserController extends Controller
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
+            
             if ($user->getPlainPassword() != NULL){
                 $user->setPassword($password);
             }
