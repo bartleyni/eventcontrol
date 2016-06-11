@@ -41,6 +41,7 @@ class venue {
      */
     protected $cameras;
 
+}
 
 
 
