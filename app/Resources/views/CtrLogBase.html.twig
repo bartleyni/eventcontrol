@@ -10,17 +10,14 @@
 <body class="{% block theme %}default{% endblock %}">
     <div class="page-header">
         <h1>
-            <div class="col-md-4">
                 {% block headertop %}{% endblock %}
                 <small>
                     {% block headerbottom %}{% endblock %}
                 </small>
-            </div>
+            
             {% if app.user %}
-                <div class="col-md-8">
                     <div id="HeaderClock">
                     </div>
-                </div>
             {% endif %}
         </h1>
     </div>
