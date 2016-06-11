@@ -196,4 +196,8 @@ class camera {
     {
         return $this->venue;
     }
+
 }
+
+
+
