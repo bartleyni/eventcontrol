@@ -202,7 +202,28 @@ class camera {
         return $this->venue;
     }
 
+
+    /**
+     * Set cameraId
+     *
+     * @param integer $cameraId
+     *
+     * @return camera
+     */
+    public function setCameraId($cameraId)
+    {
+        $this->camera_id = $cameraId;
+
+        return $this;
+    }
+
+    /**
+     * Get cameraId
+     *
+     * @return integer
+     */
+    public function getCameraId()
+    {
+        return $this->camera_id;
+    }
 }
-
-
-
