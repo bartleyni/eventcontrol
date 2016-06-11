@@ -45,7 +45,13 @@ class camera {
     /**
      * @ORM\Column(type="integer")
      */
-    protected $count;
+    protected $count_in;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $count_out;
+
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -225,5 +231,53 @@ class camera {
     public function getCameraId()
     {
         return $this->camera_id;
+    }
+
+    /**
+     * Set countIn
+     *
+     * @param integer $countIn
+     *
+     * @return camera
+     */
+    public function setCountIn($countIn)
+    {
+        $this->count_in = $countIn;
+
+        return $this;
+    }
+
+    /**
+     * Get countIn
+     *
+     * @return integer
+     */
+    public function getCountIn()
+    {
+        return $this->count_in;
+    }
+
+    /**
+     * Set countOut
+     *
+     * @param integer $countOut
+     *
+     * @return camera
+     */
+    public function setCountOut($countOut)
+    {
+        $this->count_out = $countOut;
+
+        return $this;
+    }
+
+    /**
+     * Get countOut
+     *
+     * @return integer
+     */
+    public function getCountOut()
+    {
+        return $this->count_out;
     }
 }
