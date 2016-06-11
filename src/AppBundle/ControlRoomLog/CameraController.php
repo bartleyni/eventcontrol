@@ -3,6 +3,7 @@
 namespace AppBundle\ControlRoomLog;
 
 use AppBundle\Entity\camera;
+use AppBundle\Entity\venue;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +18,11 @@ class CameraController extends Controller
         if ($camera_id and $venue_id and $count) {
 
             $camera = new camera();
-            $camera->setCameraId(1);
-            $camera->setCount(30);
-            $camera->setVenue(1);
+            $camera->setCameraId($camera_id);
+            $camera->setCount($count);
+            //$venue = new venue();
+            //$venue->setName("test")'
+            $camera->setVenue($venue_id);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($camera);
