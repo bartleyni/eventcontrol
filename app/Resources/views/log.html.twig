@@ -32,13 +32,21 @@ Control Room Log
                                 <tbody>
                                     {% for log in logs %}
                                         <tr>
-                                            <td>{{ log.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                            <td>
+                                                {% if log.log_update_timestamp is not null %}
+                                                    <div data-toggle="tooltip" data-placement="left" title="Updated: {{ log.log_update_timestamp|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                {% endif %}
+                                                {{ log.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") }}
+                                                {% if log.log_update_timestamp is not null %}
+                                                    </div>
+                                                {% endif %}
+                                            </td>
                                             <td><a href="{{ path('edit_entry', {'id': log.id}) }}">{{ log.log_blurb }}</a></td>
                                             <td>{{ log.location }}</td>
                                             <td>{{ log.reported_by }}</td>
                                             <td>
                                             {% if log.general_entry_closed_time is not null %}
-                                                <div data-toggle="tooltip" data-placement="left" title="{{ log.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
                                                 {% if log.general_description is null %}
                                                     <br>
@@ -53,7 +61,7 @@ Control Room Log
                                             </td>
                                             <td {% if log.medical_entry_closed_time is null %} class="severity{{ log.medical_severity }}" {% endif %}>
                                             {% if log.medical_entry_closed_time is not null %}
-                                                <div data-toggle="tooltip" data-placement="left" title="{{ log.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
                                                 {% if log.medical_injury_description is null %}
                                                     <br>
@@ -68,7 +76,7 @@ Control Room Log
                                             </td>
                                             <td {% if log.security_entry_closed_time is null %} class="severity{{ log.severity }}" {% endif %}>
                                             {% if log.security_entry_closed_time is not null %}
-                                                <div data-toggle="tooltip" data-placement="left" title="{{ log.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
                                                 {% if log.security_description is null %}
                                                     <br>
@@ -86,7 +94,7 @@ Control Room Log
                                                     <br>
                                                 {% else %}
                                                     {% if log.lost_property_entry_closed_time is not null %}
-                                                        <div data-toggle="tooltip" data-placement="left" title="{{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                        <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                                     {% endif %}
                                                     {{ log.lost_property_description[:12]|striptags ~ ' ...' }}
                                                     <br>

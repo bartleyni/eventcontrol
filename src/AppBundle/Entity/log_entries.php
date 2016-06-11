@@ -35,6 +35,11 @@ class log_entries {
     protected $log_timestamp;
     
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $log_update_timestamp;
+    
+    /**
      * @ORM\Column(type="string", length=150)
      */
     protected $log_blurb;
@@ -94,6 +99,31 @@ class log_entries {
         return $this->log_timestamp;
     }
 
+    /**
+     * Set logUpdateTimestamp
+     *
+     * @param \DateTime $logUpdateTimestamp
+     *
+     * @return log_entries
+     */
+    public function setLogUpdateTimestamp($logUpdateTimestamp)
+    {
+        $this->log_update_timestamp = $logUpdateTimestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get logUpdateTimestamp
+     *
+     * @return \DateTime
+     */
+    public function getLogUpdateTimestamp()
+    {
+        return $this->log_update_timestamp;
+    }
+    
+    
     /**
      * Set logBlurb
      *
