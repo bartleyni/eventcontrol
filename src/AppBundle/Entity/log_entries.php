@@ -35,7 +35,7 @@ class log_entries {
     protected $log_timestamp;
     
     /**
-     * @ORM\Column(type="datetime" nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $log_update_timestamp;
     
