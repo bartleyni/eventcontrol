@@ -9,17 +9,17 @@
     </head>
 <body class="{% block theme %}default{% endblock %}">
     <div class="page-header">
-        <h1>
+        <h1 class="pull-left">
                 {% block headertop %}{% endblock %}
                 <small>
                     {% block headerbottom %}{% endblock %}
                 </small>
-            
+        <h1>    
             {% if app.user %}
-                    <div id="HeaderClock">
+                    <div class="pull-right" id="HeaderClock">
                     </div>
             {% endif %}
-        </h1>
+        
     </div>
     {% block layout %}{% endblock %}
     {% block scripts %}{% endblock %}
