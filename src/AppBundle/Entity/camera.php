@@ -74,6 +74,22 @@ class camera {
 
 
     /**
+     * calculat running total
+     *
+     * @ORM\PrePersist
+     */
+    public function calculate_running_total()
+    {
+        $Camera = $entity->createQueryBuilder()->select('count_in')
+            ->from("\Application\Entity\Camera", 'Camera')
+            ->orderBy('Camera.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleScalarResult();
+        print_r($Camera);
+    }
+
+    /**
      * Set timestamp
      *
      * @param \DateTime $timestamp
