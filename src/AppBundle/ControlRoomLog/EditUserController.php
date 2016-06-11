@@ -20,7 +20,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\Type\EditUserType;
-use AppBundle\Form\Model\ChangePassword;
 use AppBundle\Entity\User;
 
 class EditUserController extends Controller
@@ -30,7 +29,7 @@ class EditUserController extends Controller
      */
     public function editUserAction(Request $request)
     {
-        $changePasswordModel = new ChangePassword();
+        $user = new User();
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $form = $this->createForm(new EditUserType(), $user, array(

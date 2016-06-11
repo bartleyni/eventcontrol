@@ -17,6 +17,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -45,6 +46,13 @@ class User implements UserInterface, \Serializable {
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
+    
+    /**
+     * @SecurityAssert\UserPassword(
+     *     message = "Wrong value for your current password"
+     * )
+     */
+     protected $oldPassword;
     
     /**
      * The below length depends on the "algorithm" you use for encoding
