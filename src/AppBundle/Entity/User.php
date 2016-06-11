@@ -52,7 +52,7 @@ class User implements UserInterface, \Serializable {
      *     message = "Wrong value for your current password"
      * )
      */
-     protected $oldPassword;
+     private $oldPassword;
     
     /**
      * The below length depends on the "algorithm" you use for encoding
