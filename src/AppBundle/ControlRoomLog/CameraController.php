@@ -22,19 +22,17 @@ class CameraController extends Controller
             $camera = new camera();
             $camera->setCameraId($camera_id);
             $camera->setCount($count);
-<<<<<<< HEAD
+            
             //$venue = new venue();
             //$venue->setName("test")'
             $venue = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $venue_id));
             
             $camera->setVenue($venue);
-=======
-            $venue = new venue();
-            $venue->getId($venue_id);
-            $camera->setVenue($venue);
 
-            $em = $this->getDoctrine()->getManager();
->>>>>>> e755ed17505403112e0e85a040a242d02e483eff
+            //$venue = new venue();
+            //$venue->getId($venue_id);
+            //$camera->setVenue($venue);
+            
             $em->persist($camera);
             $em->flush();
 
