@@ -35,11 +35,13 @@
             <h1> Event Control</h1>
         </div>
         <div class="col-md-8">
-            <h1>
-                <div id="HeaderClock">
-                    Clock
-                </div>
-            </h1>
+            {% if app.user %}
+                <h1>
+                    <div id="HeaderClock">
+                        Clock
+                    </div>
+                </h1>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
