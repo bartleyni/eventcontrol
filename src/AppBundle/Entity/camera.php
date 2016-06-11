@@ -53,8 +53,8 @@ class camera {
     protected $doors;
 
     /**
-     * @ManyToOne(targetEntity="venue")
-     * @JoinColumn(name="venue_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="venue")
+     * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
      */
     protected $venue;
 
