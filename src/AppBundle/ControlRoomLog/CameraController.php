@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CameraController extends Controller
 {
     /**
-     * @Route("/camera/newdata/{camera_id}/{venue_id}/{count}/", name="newdata")
+     * @Route("/camera/newdata/{camera_id}/{venue_id}/{count}/", name="new_camera_data")
      */
     public function newdataAction($camera_id, $venue_id, $count)
     {
