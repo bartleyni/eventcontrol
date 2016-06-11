@@ -39,9 +39,19 @@ class EditUserController extends Controller
         $request = $this->getRequest();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // perform some action,
-            // such as encoding with MessageDigestPasswordEncoder and persist
-            return $this->redirect($this->generateUrl('change_passwd_success'));
+
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($user, $user->getPlainPassword());
+            if ($user->getPlainPassword() != NULL){
+                $user->setPassword($password);
+            }
+            // 4) save the User!
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('user_update');
         }
 
 
