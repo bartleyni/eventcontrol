@@ -36,8 +36,8 @@ class venue {
      */
     protected $name;
 
-     /**
-      * @ORM\OneToMany(targetEntity="camera", mappedBy="venue")
+    /**
+     * @ORM\OneToMany(targetEntity="camera", mappedBy="venue")
      */
     protected $cameras;
 
@@ -48,6 +48,29 @@ class venue {
     {
         $this->cameras = new \Doctrine\Common\Collections\ArrayCollection();
     }
+<<<<<<< HEAD
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return venue
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+=======
 
     /**
      * Get id
@@ -93,6 +116,32 @@ class venue {
     public function addCamera(\AppBundle\Entity\camera $camera)
     {
         $this->cameras[] = $camera;
+>>>>>>> 899d5dad8e7523aa685213879c52065d69edf542
+
+        return $this;
+    }
+
+    /**
+<<<<<<< HEAD
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add camera
+     *
+     * @param \AppBundle\Entity\camera $camera
+     *
+     * @return venue
+     */
+    public function addCamera(\AppBundle\Entity\camera $camera)
+    {
+        $this->cameras[] = $camera;
 
         return $this;
     }
@@ -108,6 +157,18 @@ class venue {
     }
 
     /**
+=======
+     * Remove camera
+     *
+     * @param \AppBundle\Entity\camera $camera
+     */
+    public function removeCamera(\AppBundle\Entity\camera $camera)
+    {
+        $this->cameras->removeElement($camera);
+    }
+
+    /**
+>>>>>>> 899d5dad8e7523aa685213879c52065d69edf542
      * Get cameras
      *
      * @return \Doctrine\Common\Collections\Collection

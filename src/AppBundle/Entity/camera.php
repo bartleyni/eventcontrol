@@ -33,6 +33,11 @@ class camera {
     protected $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $camera_id;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $timestamp;
