@@ -45,7 +45,13 @@ class camera {
     /**
      * @ORM\Column(type="integer")
      */
-    protected $count;
+    protected $count_in;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $count_out;
+
 
     /**
      * @ORM\Column(type="integer", nullable=true)
