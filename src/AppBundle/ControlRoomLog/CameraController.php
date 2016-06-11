@@ -25,7 +25,7 @@ class CameraController extends Controller
             
             //$venue = new venue();
             //$venue->setName("test")'
-            $venue = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $venue_id));
+            $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venue_id));
             
             $camera->setVenue($venue);
 
