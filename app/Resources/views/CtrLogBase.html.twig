@@ -14,12 +14,12 @@
                 <small>
                     {% block headerbottom %}{% endblock %}
                 </small>
-        <h1>    
+        </h1>    
             {% if app.user %}
                     <div class="pull-right" id="HeaderClock">
                     </div>
             {% endif %}
-        
+        <div class="clearfix"></div>
     </div>
     {% block layout %}{% endblock %}
     {% block scripts %}{% endblock %}
