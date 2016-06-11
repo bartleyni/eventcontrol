@@ -9,12 +9,22 @@
     </head>
 <body class="{% block theme %}default{% endblock %}">
     <div class="page-header">
-        <h1>
-            {% block headertop %}{% endblock %}
-            <small>
-                {% block headerbottom %}{% endblock %}
-            </small>
-        </h1>
+        <div class="col-md-4">
+            <h1>
+                {% block headertop %}{% endblock %}
+                <small>
+                    {% block headerbottom %}{% endblock %}
+                </small>
+            </h1>
+        </div>
+        <div class="col-md-8">
+            {% if app.user %}
+                <h1>
+                    <div id="HeaderClock">
+                    </div>
+                </h1>
+            {% endif %}
+        </div>
     </div>
     {% block layout %}{% endblock %}
     {% block scripts %}{% endblock %}
