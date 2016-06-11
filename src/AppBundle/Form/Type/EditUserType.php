@@ -30,7 +30,7 @@ class EditUserType extends AbstractType
         $builder->add('username', 'text')
                 ->add('name', 'text')
                 ->add('email', 'email')
-                //->add('oldPassword', 'password')
+                ->add('oldPassword', 'password')
                 ->add('plainPassword', 'repeated', array(
                     'type' => 'password',
                     'invalid_message' => 'The password fields must match.',
