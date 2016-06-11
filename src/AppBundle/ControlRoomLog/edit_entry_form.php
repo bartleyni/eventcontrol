@@ -108,6 +108,7 @@ class edit_entry_form extends Controller
             
             if ($form->isValid()) {
                 if ($form->get('submit')->isClicked()){
+                    $entry->setLogUpdateTimestamp(new \DateTime());
                     $em->persist($entry);
                     $em->flush();
                 }
@@ -118,6 +119,9 @@ class edit_entry_form extends Controller
                         $medical->setMedicalEntryClosedTime(new \DateTime());
                     }
                     $em->persist($medical);
+                    $em->flush();
+                    $entry->setLogUpdateTimestamp(new \DateTime());
+                    $em->persist($entry);
                     $em->flush();
                 }
                     return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
@@ -130,6 +134,9 @@ class edit_entry_form extends Controller
                     }
                     $em->persist($general);
                     $em->flush();
+                    $entry->setLogUpdateTimestamp(new \DateTime());
+                    $em->persist($entry);
+                    $em->flush();
                 }
                     return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
             }
@@ -140,6 +147,9 @@ class edit_entry_form extends Controller
                     }
                     $em->persist($security);
                     $em->flush();
+                    $entry->setLogUpdateTimestamp(new \DateTime());
+                    $em->persist($entry);
+                    $em->flush();
                 }
                     return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
             }
@@ -149,6 +159,9 @@ class edit_entry_form extends Controller
                         $lostProperty->setLostPropertyEntryClosedTime(new \DateTime());
                     }    
                     $em->persist($lostProperty);
+                    $em->flush();
+                    $entry->setLogUpdateTimestamp(new \DateTime());
+                    $em->persist($entry);
                     $em->flush();
                 }
                     return $this->redirect($this->generateUrl('edit_entry', array('id' => $entry->getId())));
