@@ -38,7 +38,7 @@
             {% if app.user %}
                 <h1>
                     <div id="HeaderClock">
-                        Clock
+                         
                     </div>
                 </h1>
             {% endif %}
@@ -74,8 +74,8 @@
             currentHours = ( currentHours == 0 ) ? 12 : currentHours;
 
             // Compose the string for display
-            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-
+            //var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+            var currentTimeString = currentTime.toLocaleString('en-GB');
 
             $("#HeaderClock").html(currentTimeString);
 
