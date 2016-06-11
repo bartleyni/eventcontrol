@@ -33,7 +33,11 @@ class EditUserController extends Controller
         $changePasswordModel = new ChangePassword();
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $form->handleRequest($request);
+        $form = $this->createForm(new EditUserType(), $user, array(
+            'method' => 'POST',
+        ));
+        
+        $request = $this->getRequest();
 
         if ($form->isSubmitted() && $form->isValid()) {
             // perform some action,
@@ -42,8 +46,6 @@ class EditUserController extends Controller
         }
 
 
-        return $this->render('editUser.html.twig', array(
-            'form' => $form->createView(),
-        ));      
+        return $this->render('userEdit.html.twig', array('form' => $form->createView(),));      
     }
 }
