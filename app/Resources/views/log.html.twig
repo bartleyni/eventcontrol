@@ -32,7 +32,15 @@ Control Room Log
                                 <tbody>
                                     {% for log in logs %}
                                         <tr>
-                                            <td>{{ log.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                            <td>
+                                                {% if log.log_update_timestamp is not null %}
+                                                    <div data-toggle="tooltip" data-placement="left" title="Updated: {{ log.log_update_timestamp|date('Y-m-d H:i:s', "Europe/London") }}">
+                                                {% endif %}
+                                                {{ log.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") }}
+                                                {% if log.log_update_timestamp is not null %}
+                                                    </div>
+                                                {% endif %}
+                                            </td>
                                             <td><a href="{{ path('edit_entry', {'id': log.id}) }}">{{ log.log_blurb }}</a></td>
                                             <td>{{ log.location }}</td>
                                             <td>{{ log.reported_by }}</td>
