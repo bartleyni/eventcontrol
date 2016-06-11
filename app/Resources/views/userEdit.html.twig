@@ -1,0 +1,94 @@
+{# app/Resources/views/userEdit.html.twig #}
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+Control Room Edit User Details
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(form) }}
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.username) }} 
+                                    {{ form_errors(form.username) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.username) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.name) }} 
+                                    {{ form_errors(form.name) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.name) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">                                
+                                <div class="col-md-2">
+                                    {{ form_label(form.email) }} 
+                                    {{ form_errors(form.email) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.email) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">                                                        
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.oldPassword.first) }} 
+                                    {{ form_errors(form.oldPassword.first) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.oldPassword.first) }}
+                                </div>
+                            </div>
+                        </div><br>                        
+                        <div class="row">                                                        
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.plainPassword.first) }} 
+                                    {{ form_errors(form.plainPassword.first) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.plainPassword.first) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.plainPassword.second) }} 
+                                    {{ form_errors(form.plainPassword.second) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.plainPassword.second) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">  
+                            <div class="col-md-4">  
+                                <button class="btn btn-success btn-block" type="submit">Update Operator Details</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}              
