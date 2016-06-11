@@ -16,15 +16,23 @@ class CameraController extends Controller
     public function newdataAction($camera_id, $venue_id, $count)
     {
         if ($camera_id and $venue_id and $count) {
-
+            
+            $em = $this->getDoctrine()->getManager();
+            
             $camera = new camera();
             $camera->setCameraId($camera_id);
             $camera->setCount($count);
-            $venue = new venue();
-            $venue->getId($venue_id);
+            
+            //$venue = new venue();
+            //$venue->setName("test")'
+            $venue = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $venue_id));
+            
             $camera->setVenue($venue);
 
-            $em = $this->getDoctrine()->getManager();
+            //$venue = new venue();
+            //$venue->getId($venue_id);
+            //$camera->setVenue($venue);
+            
             $em->persist($camera);
             $em->flush();
 
