@@ -19,7 +19,7 @@ class CameraController extends Controller
             $camera = new camera();
             $camera->setCameraId(1);
             $camera->setCount(30);
-            $camera->getVenue(1);
+            $camera->setVenue(1);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($camera);
