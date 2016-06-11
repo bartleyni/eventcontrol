@@ -52,3 +52,4 @@ security:
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER}
         - { path: ^/$, roles: ROLE_USER}
+        - { path: ^/*, roles: ROLE_USER}
