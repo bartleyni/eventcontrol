@@ -112,29 +112,6 @@ class camera {
         return $this->timestamp;
     }
 
-    /**
-     * Set count
-     *
-     * @param integer $count
-     *
-     * @return camera
-     */
-    public function setCount($count)
-    {
-        $this->count = $count;
-
-        return $this;
-    }
-
-    /**
-     * Get count
-     *
-     * @return integer
-     */
-    public function getCount()
-    {
-        return $this->count;
-    }
 
     /**
      * Set runningCount
