@@ -30,8 +30,15 @@
 {% endblock %}
 
 {% block headertop %}
-    <div class="wrapper">
-        <h1> Event Control</h1>
+    <div class="col-md-4">
+        <div class="wrapper">
+            <h1> Event Control</h1>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div id="HeaderClock">
+            Clock
+        </div>
     </div>
 {% endblock %}
 
@@ -41,4 +48,37 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+    <script type="text/javascript">
+        function updateClock ( )
+            {
+            var currentTime = new Date ( );
+            var currentHours = currentTime.getHours ( );
+            var currentMinutes = currentTime.getMinutes ( );
+            var currentSeconds = currentTime.getSeconds ( );
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+            currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+
+            $("#HeaderClock").html(currentTimeString);
+
+        }
+        $(document).ready(function()
+        {
+            setInterval('updateClock()', 1000);
+        });
+    </script>
 {% endblock %}
