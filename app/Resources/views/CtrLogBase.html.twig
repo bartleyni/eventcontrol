@@ -9,7 +9,11 @@
     </head>
 <body class="{% block theme %}default{% endblock %}">
     {% block headertop %}{% endblock %}
-    <div class="container-fluid"> {% block headerbottom %}{% endblock %} </div>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            {% block headerbottom %}{% endblock %}
+        </div>
+    </div>
     {% block layout %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>
