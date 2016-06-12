@@ -78,7 +78,7 @@ class camera {
      *
      * @ORM\PrePersist
      */
-    public function calculate_running_total(LifecycleEventArgs $args)
+    public function calculate_running_total($args)
     {
         $Camera = $args->getEntityManager()->createQueryBuilder()->select('count_in')
             ->from("\Application\Entity\Camera", 'Camera')
