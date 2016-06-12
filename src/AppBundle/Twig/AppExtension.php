@@ -26,6 +26,8 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
+            new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
+            new \Twig_SimpleFunction('activeLostPropertyLogs', array($this, 'getLostPropertyLogs')),
         );
     }
     
@@ -37,16 +39,12 @@ class AppExtension extends \Twig_Extension
 
         $eventName = $event->getName();
         
-        //$eventName = 'test';
-        
         return $eventName;
     }
     
     public function getTotalLogs()
     {
         $em = $this->doctrine->getManager();
-        
-        //$logs = $em->getRepository('AppBundle\Entity\log_entries');
         
         $qb = $em->createQueryBuilder(); 
         
@@ -56,16 +54,14 @@ class AppExtension extends \Twig_Extension
             ;
 
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
-        //$totalLogs = 25;
+
         return $totalLogs;
     }
     
     public function getMedicalLogs()
     {
         $em = $this->doctrine->getManager();
-        
-        //$logs = $em->getRepository('AppBundle\Entity\log_entries');
-        
+
         $qb = $em->createQueryBuilder(); 
         
         $qb
@@ -78,6 +74,42 @@ class AppExtension extends \Twig_Extension
         $totalMedical = $qb->getQuery()->getSingleScalarResult();
         //$totalLogs = 25;
         return $totalMedical;
+    }
+    
+    public function getSecurityLogs()
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
+            ->where($qb->expr()->isNotNull('sec.security_description')
+            );
+
+        $totalSecurity = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalSecurity;
+    }
+    
+    public function getLostPropertyLogs()
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->where($qb->expr()->isNotNull('lost.lost_property_description')
+            );
+
+        $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalLostProperty;
     }
     
     public function getName()
