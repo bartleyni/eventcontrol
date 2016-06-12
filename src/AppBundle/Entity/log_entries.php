@@ -51,6 +51,12 @@ class log_entries {
     private $operator;
     
     /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $log_entry_open_time;

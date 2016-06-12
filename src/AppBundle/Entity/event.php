@@ -61,6 +61,11 @@ class event {
      */
     protected $event_active;
     
+    /**
+     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="event")
+     */
+    private $log_entries;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -218,5 +223,15 @@ class event {
     public function getEventActive()
     {
         return $this->event_active;
+    }
+    
+    /**
+     * Get logEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogEntries()
+    {
+        return $this->log_entries;
     }
 }

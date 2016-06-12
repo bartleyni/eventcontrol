@@ -18,35 +18,35 @@
     <a href="{{ path('full_log') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Full Log View
+                Full Log View <span class="badge">{{ activeTotalLogs() }}</span>
             </div>
         </div>
     </a>
     <a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Latest Open
+                Latest Open <span class="badge">{{ activeOpenLogs() }}</span>
             </div>
         </div>
     </a>
     <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "medical"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Latest Medical
+                Latest Medical <span class="badge">{{ activeMedicalLogs() }}</span>
             </div>
         </div>
     </a>
     <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "security"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Latest Security
+                Latest Security <span class="badge">{{ activeSecurityLogs() }}</span>
             </div>
         </div>
     </a>
     <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "lost"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Latest Lost Property
+                Latest Lost Property <span class="badge">{{ activeLostPropertyLogs() }}</span>
             </div>
         </div>
     </a>
@@ -61,10 +61,16 @@
             New Operator
         </div>
     </a>
+    <a href="{{ path('user_update') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Update User Details
+        </div>
+    </a>
     <a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             Logout
         </div>
+    </a>
     <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             Register Sign-in
