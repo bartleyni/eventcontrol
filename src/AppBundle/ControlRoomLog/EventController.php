@@ -18,7 +18,7 @@ class EventController extends Controller
     * @Route("/event/", name="event_list");
     */
     
-    public function eventAction(Request $request, $editId=null, $deleteId=null, $filter=null)
+    public function eventAction(Request $request, $editId=null, $deleteId=null, $filter=null, $activateId=null)
     {
         $em = $this->getDoctrine()->getManager();
         
