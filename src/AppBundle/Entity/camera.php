@@ -24,6 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 class camera {
+    
 
     /**
      * @ORM\Column(type="integer")
