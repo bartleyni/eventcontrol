@@ -26,6 +26,13 @@ class Log extends Controller
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('event_active' => true));
         
+        if ($event)
+        {
+            $eventId = $event->getId();
+        } else {
+            $eventId = 0;
+        }
+        
         $em->flush();
         
         $qb = $em->createQueryBuilder(); 
@@ -44,7 +51,7 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\User', 'user', 'WITH', 'user.id = entry.operator')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
-            ->setParameter('eventId', $event->getId())
+            ->setParameter('eventId', $eventId)
             ;
         
         if ($filter_type=="medical"){
