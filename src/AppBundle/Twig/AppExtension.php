@@ -28,6 +28,7 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
             new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
             new \Twig_SimpleFunction('activeLostPropertyLogs', array($this, 'getLostPropertyLogs')),
+            new \Twig_SimpleFunction('activeOpenLogs', array($this, 'getOpenLogs')),
         );
     }
     
@@ -110,6 +111,42 @@ class AppExtension extends \Twig_Extension
         $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
 
         return $totalLostProperty;
+    }
+    
+    public function getOpenLogs()
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id), entry.log_entry_open_time, entry.log_update_timestamp, entry.log_blurb, entry.location, entry.reported_by, gen.general_description, gen.general_open, gen.general_entry_closed_time, sec.security_description, sec.security_entry_closed_time, secinc.security_incident_description, secinc.severity, secinc.security_incident_colour, med.medical_entry_closed_time, medinj.medical_severity, medinj.medical_injury_description, medrsp.medical_response_description, med.nine_nine_nine_required, lost.lost_property_entry_closed_time, lost.lost_property_description')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\general_log', 'gen', 'WITH', 'gen.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->where($qb->expr()->andX(
+                        $qb->expr()->isNotNull('med.medical_description'),
+                        $qb->expr()->isNull('med.medical_entry_closed_time')
+                    ))
+            ->where($qb->expr()->andX(
+                            $qb->expr()->isNotNull('sec.security_description'),
+                            $qb->expr()->isNull('sec.security_entry_closed_time')
+                    ))
+            ->where($qb->expr()->andX(
+                            $qb->expr()->isNotNull('gen.general_description'),
+                            $qb->expr()->isNull('gen.general_entry_closed_time')
+                    ))
+            ->where($qb->expr()->andX(
+                            $qb->expr()->isNotNull('lost.lost_property_description'),
+                            $qb->expr()->isNull('lost.lost_property_entry_closed_time')
+                    ))
+            ;
+
+        $totalOpen = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalOpen;
     }
     
     public function getName()

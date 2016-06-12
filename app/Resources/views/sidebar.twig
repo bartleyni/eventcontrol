@@ -25,7 +25,7 @@
     <a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                Latest Open
+                Latest Open <span class="badge">{{ activeOpenLogs() }}</span>
             </div>
         </div>
     </a>
