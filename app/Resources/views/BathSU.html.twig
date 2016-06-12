@@ -105,10 +105,7 @@
             updateClock();
             setInterval('updateClock()', 1000);
             
-            Mousetrap.bind('ctrl+n', function(e) {
-                e.preventDefault();
-                window.location.href = "{{ path('new_entry') }}";
-            });
+           
         });
         
         function resizeHeader() {
@@ -116,5 +113,13 @@
         }
         $(document).ready(resizeHeader);
         $(window).resize(resizeHeader);
+        
+        $(document).ready(function()
+        {
+            Mousetrap.bind('ctrl+n', function(e) {
+                   e.preventDefault();
+                   window.location.href = "{{ path('new_entry') }}";
+            });
+        });
     </script>
 {% endblock %}
