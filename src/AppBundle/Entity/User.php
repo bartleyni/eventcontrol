@@ -37,12 +37,12 @@ class User implements UserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration", "update"})
      */
     private $username;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -52,7 +52,7 @@ class User implements UserInterface, \Serializable {
      *     message = "Wrong value for your current password"
      * )
      */
-     private $oldPassword;
+    private $oldPassword;
     
     /**
      * The below length depends on the "algorithm" you use for encoding
@@ -64,14 +64,14 @@ class User implements UserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration", "update"})
      * @Assert\Email()
      */
     private $email;
         
     /**
      * @ORM\Column(type="string", length=255, unique=false)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"registration", "update"})
      */
     private $name;
 
