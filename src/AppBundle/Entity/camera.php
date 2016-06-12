@@ -88,6 +88,8 @@ class camera {
         $Camera = $args->getEntityManager()->createQueryBuilder()->select('Camera')
             ->from("AppBundle\Entity\camera", 'Camera')
             ->orderBy('Camera.id', 'DESC')
+            ->where('Camera.camera_id = ?1')
+            ->setParameter(1, $this->camera_id)
             ->setMaxResults(1)
             ->getQuery()
             ->getScalarResult();
