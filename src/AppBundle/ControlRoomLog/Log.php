@@ -44,7 +44,7 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\User', 'user', 'WITH', 'user.id = entry.operator')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
-            ->setParameter('eventId', 1)
+            ->setParameter('eventId', 2)
             ;
         
         if ($filter_type=="medical"){
