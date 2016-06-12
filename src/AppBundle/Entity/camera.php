@@ -93,7 +93,25 @@ class camera {
             ->getScalarResult();
         print_r($Camera);
         //print_r($this);
-        $this->running_count = $Camera[0]['Camera_id'];
+
+
+        $diffrance_in = $this->count_in - $Camera[0]['Camera_count_in'];
+        $diffrance_out = $this->count_out - $Camera[0]['Camera_count_out'];
+
+        if($diffrance_in < 0){
+            $this->running_count_in = $this->count_in + $Camera[0]['Camera_count_in'];
+        }else{
+            $this->running_count_in = $this->count_in + $diffrance_in;
+        }
+
+        if($diffrance_out < 0){
+            $this->running_count_out = $this->count_out + $Camera[0]['Camera_count_out'];
+        }else{
+            $this->running_count_out = $this->count_out + $diffrance_out;
+        }
+        
+
+        //$this->running_count = $Camera[0]['Camera_id'];
 
         return $this;
     }
