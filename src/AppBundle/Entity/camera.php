@@ -87,7 +87,8 @@ class camera {
             ->getQuery()
             ->getScalarResult();
         print_r($Camera);
-        $this->timestamp = $Camera->id;
+        print_r($this);
+        $this->timestamp = $Camera->Camera_id;
     }
 
     /**
