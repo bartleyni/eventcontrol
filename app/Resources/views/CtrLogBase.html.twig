@@ -8,7 +8,6 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 <body class="{% block theme %}default{% endblock %}">
-    <div class="page-header-fixed">
     <div class="page-header">
         <h1 class="pull-left">
                 {% block headertop %}{% endblock %}
@@ -24,7 +23,6 @@
             {% endif %}
         <div class="clearfix"></div>
     </div>
-</div>
     {% block layout %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>
