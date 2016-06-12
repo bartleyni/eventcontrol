@@ -25,6 +25,7 @@ class AppExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
+            new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
         );
     }
     
@@ -57,6 +58,26 @@ class AppExtension extends \Twig_Extension
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
         //$totalLogs = 25;
         return $totalLogs;
+    }
+    
+    public function getMedicalLogs()
+    {
+        $em = $this->doctrine->getManager();
+        
+        //$logs = $em->getRepository('AppBundle\Entity\log_entries');
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
+            ->where($qb->expr()->isNotNull('med.medical_description')
+            );
+
+        $totalMedical = $qb->getQuery()->getSingleScalarResult();
+        //$totalLogs = 25;
+        return $totalMedical;
     }
     
     public function getName()
