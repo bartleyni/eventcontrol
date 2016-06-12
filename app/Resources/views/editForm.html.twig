@@ -69,7 +69,7 @@ Control Room Log Edit
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3" data-toggle="tooltip" data-placement="bottom" title="ctrl-g">
                                     {% if generalTab is null %}
                                         <button type="button" id="general_button" class="btn btn-info-outline btn-block">
                                     {% else %}
@@ -78,7 +78,7 @@ Control Room Log Edit
                                         General
                                     </button>
                                 </div>
-                                <div class="col-md-3"> 
+                                <div class="col-md-3" data-toggle="tooltip" data-placement="bottom" title="ctrl-m"> 
                                     {% if medicalTab is null %}                                      
                                         <button type="button" id="medical_button" class="btn btn-info-outline btn-block">
                                     {% else %}
@@ -87,7 +87,7 @@ Control Room Log Edit
                                         Medical
                                     </button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" data-toggle="tooltip" data-placement="bottom" title="ctrl-s">
                                     {% if securityTab is null %}
                                         <button type="button" id="security_button" class="btn btn-info-outline btn-block">
                                     {% else %}
@@ -96,7 +96,7 @@ Control Room Log Edit
                                         Security
                                     </button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" data-toggle="tooltip" data-placement="bottom" title="ctrl-l">
                                     {% if lostTab is null %}
                                         <button type="button" id="lost_button" class="btn btn-info-outline btn-block">
                                     {% else %}    
