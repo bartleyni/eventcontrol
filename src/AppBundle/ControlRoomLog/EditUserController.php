@@ -39,6 +39,8 @@ class EditUserController extends Controller
         ));
         
         $request = $this->getRequest();
+        
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
