@@ -219,4 +219,14 @@ class event {
     {
         return $this->event_active;
     }
+    
+    /**
+     * Get logEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogEntries()
+    {
+        return $this->log_entries;
+    }
 }
