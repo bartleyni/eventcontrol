@@ -24,12 +24,24 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
+            new \Twig_SimpleFunction('activeEventId', array($this, 'getEventId')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
             new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
             new \Twig_SimpleFunction('activeLostPropertyLogs', array($this, 'getLostPropertyLogs')),
             new \Twig_SimpleFunction('activeOpenLogs', array($this, 'getOpenLogs')),
         );
+    }
+    
+    public function getEventId()
+    {
+        $em = $this->doctrine->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+
+        $eventId = $event->getId();
+        
+        return $eventId;
     }
     
     public function getEventName()
@@ -52,6 +64,9 @@ class AppExtension extends \Twig_Extension
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where('event.id = :eventId')
+            ->setParameter('eventId', getEventId())
             ;
 
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
@@ -69,8 +84,11 @@ class AppExtension extends \Twig_Extension
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
-            ->where($qb->expr()->isNotNull('med.medical_description')
-            );
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('med.medical_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', getEventId())
+            ;
 
         $totalMedical = $qb->getQuery()->getSingleScalarResult();
         //$totalLogs = 25;
@@ -87,8 +105,11 @@ class AppExtension extends \Twig_Extension
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
-            ->where($qb->expr()->isNotNull('sec.security_description')
-            );
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('sec.security_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', getEventId())
+            ;
 
         $totalSecurity = $qb->getQuery()->getSingleScalarResult();
 
@@ -105,8 +126,11 @@ class AppExtension extends \Twig_Extension
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
-            ->where($qb->expr()->isNotNull('lost.lost_property_description')
-            );
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('lost.lost_property_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', getEventId())
+            ;
 
         $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
 
@@ -126,6 +150,7 @@ class AppExtension extends \Twig_Extension
             ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb->expr()->andX(
                         $qb->expr()->isNotNull('med.medical_description'),
                         $qb->expr()->isNull('med.medical_entry_closed_time')
@@ -142,6 +167,8 @@ class AppExtension extends \Twig_Extension
                             $qb->expr()->isNotNull('lost.lost_property_description'),
                             $qb->expr()->isNull('lost.lost_property_entry_closed_time')
                     ))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', getEventId())
             ;
 
         $totalOpen = $qb->getQuery()->getSingleScalarResult();
