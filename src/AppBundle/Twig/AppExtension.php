@@ -38,8 +38,6 @@ class AppExtension extends \Twig_Extension
         $em = $this->doctrine->getManager();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
-
-        $eventId = $event->getId();
         
         if($event)
         {
