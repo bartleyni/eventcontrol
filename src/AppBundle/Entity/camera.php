@@ -89,6 +89,8 @@ class camera {
         print_r($Camera);
         //print_r($this);
         $this->running_count = $Camera->Camera_id;
+
+        return $this
     }
 
     /**
