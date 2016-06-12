@@ -81,7 +81,7 @@ class camera {
     public function calculate_running_total($args)
     {
         $Camera = $args->getEntityManager()->createQueryBuilder()->select('count_in')
-            ->from("\Application\Entity\Camera", 'Camera')
+            ->from("AppBundle\Entity\camera", 'Camera')
             ->orderBy('Camera.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
