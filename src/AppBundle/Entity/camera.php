@@ -56,7 +56,12 @@ class camera {
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $running_count;
+    protected $running_count_in;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $running_count_out;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
