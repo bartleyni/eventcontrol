@@ -105,7 +105,7 @@ class camera {
         }
 
         if($diffrance_out < 0){
-            $this->running_count_out = $this->count_out + $Camera[0]['Camera_running_count_out']
+            $this->running_count_out = $this->count_out + $Camera[0]['Camera_running_count_out'];
         }else{
             $this->running_count_out = $Camera[0]['Camera_running_count_out'] + $diffrance_out;
         }
