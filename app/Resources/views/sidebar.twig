@@ -1,8 +1,14 @@
 <div class="row">
-    <h4>Event Info</h4>
-    Current Event: {{ activeEventName() }}
-    <br>
-    Current User: {{ app.user.username }}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Event Info</h4>
+        </div>
+        <div class="panel-body">
+            Current Event: {{ activeEventName() }}
+            <br>
+            Current User: {{ app.user.username }}
+        </div>
+    </div>
 </div>
 
 <div class="row">
