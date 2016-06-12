@@ -87,6 +87,8 @@ class camera {
             ->getQuery()
             ->getScalarResult();
         print_r($Camera);
+        print_r($this);
+        $this->running_count = $Camera->id;
     }
 
     /**
