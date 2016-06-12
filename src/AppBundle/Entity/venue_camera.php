@@ -22,6 +22,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="venue_camera")
  */
 
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\venue_cameraRepository")
+ */
 class venue_camera {
 
     /**
