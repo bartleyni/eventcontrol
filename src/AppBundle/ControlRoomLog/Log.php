@@ -41,7 +41,8 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\medical_reported_injury_type', 'medinj', 'WITH', 'medinj.id = med.medical_reported_injury_type')
             ->leftJoin('AppBundle\Entity\medical_response', 'medrsp', 'WITH', 'medrsp.id = med.medical_response')
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
-            ->where('entry.event = 1')
+            ->where('entry.event = :event')
+            ->setParameter('event', 1)
             ;
         
         if ($filter_type=="medical"){
