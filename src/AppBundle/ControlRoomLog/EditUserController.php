@@ -30,8 +30,10 @@ class EditUserController extends Controller
     public function editUserAction(Request $request)
     {
         //$user = new User();
+        $em = $this->getDoctrine()->getManager();
+        
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
+        
         $form = $this->createForm(new EditUserType(), $user, array(
             'method' => 'POST',
         ));
