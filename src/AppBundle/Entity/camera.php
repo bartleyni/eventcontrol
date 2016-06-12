@@ -80,7 +80,7 @@ class camera {
      */
     public function calculate_running_total()
     {
-        $Camera = $em->createQueryBuilder()->select('count_in')
+        $Camera = $event->getEntityManager()->createQueryBuilder()->select('count_in')
             ->from("\Application\Entity\Camera", 'Camera')
             ->orderBy('Camera.id', 'DESC')
             ->setMaxResults(1)
