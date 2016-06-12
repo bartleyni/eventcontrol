@@ -85,7 +85,7 @@ class camera {
             ->orderBy('Camera.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getScalarResult();
         print_r($Camera);
     }
 
