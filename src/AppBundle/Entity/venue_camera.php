@@ -45,4 +45,62 @@ class venue_camera {
     protected $venue_id;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cameraId
+     *
+     * @param integer $cameraId
+     *
+     * @return venue_camera
+     */
+    public function setCameraId($cameraId)
+    {
+        $this->camera_id = $cameraId;
+
+        return $this;
+    }
+
+    /**
+     * Get cameraId
+     *
+     * @return integer
+     */
+    public function getCameraId()
+    {
+        return $this->camera_id;
+    }
+
+    /**
+     * Set venueId
+     *
+     * @param integer $venueId
+     *
+     * @return venue_camera
+     */
+    public function setVenueId($venueId)
+    {
+        $this->venue_id = $venueId;
+
+        return $this;
+    }
+
+    /**
+     * Get venueId
+     *
+     * @return integer
+     */
+    public function getVenueId()
+    {
+        return $this->venue_id;
+    }
 }
