@@ -24,6 +24,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
+            new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
         );
     }
     
@@ -38,6 +39,24 @@ class AppExtension extends \Twig_Extension
         //$eventName = 'test';
         
         return $eventName;
+    }
+    
+    public function getTotalLogs()
+    {
+        $em = $this->doctrine->getManager();
+        
+        //$logs = $em->getRepository('AppBundle\Entity\log_entries');
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ;
+
+        $totalLogs = $qb->getQuery()->getSingleScalarResult;
+        
+        return $totalLogs;
     }
     
     public function getName()
