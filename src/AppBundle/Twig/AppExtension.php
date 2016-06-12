@@ -54,8 +54,8 @@ class AppExtension extends \Twig_Extension
             ->from('AppBundle\Entity\log_entries', 'entry')
             ;
 
-        $totalLogs = $qb->getQuery()->getSingleScalarResult;
-        
+        //$totalLogs = $qb->getQuery()->getSingleScalarResult;
+        $totalLogs = 25;
         return $totalLogs;
     }
     
