@@ -14,6 +14,8 @@ use AppBundle\Entity\general_log;
 use AppBundle\Entity\medical_log;
 use AppBundle\Entity\security_log;
 use AppBundle\Entity\lost_property;
+use AppBundle\Entity\event;
+
 
 class entry_form extends Controller
 {
@@ -25,6 +27,10 @@ class entry_form extends Controller
     public function entryAction()
     {
         $new_entry = new log_entries();
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('event_active' => true));
+        $em->flush();
         
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -52,8 +58,9 @@ class entry_form extends Controller
             $form->handleRequest($request);
         
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+                //$em = $this->getDoctrine()->getManager();
                 $new_entry->setLogTimestamp(new \DateTime());
+                $new_entry->setEvent($event);
                 $em->persist($new_entry);
                 $em->flush();
                 return $this->redirect($this->generateUrl('edit_entry', array('id' => $new_entry->getId())));
