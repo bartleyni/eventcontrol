@@ -104,6 +104,11 @@
         {
             updateClock();
             setInterval('updateClock()', 1000);
+            
+            Mousetrap.bind('ctrl+n', function(e) {
+                e.preventDefault();
+                window.location.href = "{{ path('new_entry') }}";
+            });
         });
         
         function resizeHeader() {

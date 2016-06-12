@@ -37,6 +37,7 @@ class EventController extends Controller
             $event->setEventActive(1);
             $em->persist($event);
             $em->flush();
+            return $this->redirectToRoute('event_list');
         }
         
         if ($editId){
