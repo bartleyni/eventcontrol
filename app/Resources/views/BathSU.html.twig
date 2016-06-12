@@ -104,6 +104,8 @@
         {
             updateClock();
             setInterval('updateClock()', 1000);
+            
+           
         });
         
         function resizeHeader() {
@@ -111,5 +113,13 @@
         }
         $(document).ready(resizeHeader);
         $(window).resize(resizeHeader);
+        
+        $(document).ready(function()
+        {
+            Mousetrap.bind('ctrl+e', function(e) {
+                   e.preventDefault();
+                   window.location.href = "{{ path('new_entry') }}";
+            });
+        });
     </script>
 {% endblock %}
