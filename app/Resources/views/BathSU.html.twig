@@ -107,7 +107,7 @@
         });
         
         function resizeHeader() {
-            $(".page-header-push").height($(".page-header").height());
+            $(".page-header-push").height($(".page-header").height()+5);
         }
         $(document).ready(resizeHeader);
         $(window).resize(resizeHeader);
