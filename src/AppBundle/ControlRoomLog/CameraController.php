@@ -16,7 +16,7 @@ class CameraController extends Controller
      */
     public function newdataAction($camera_id, $count_in, $count_out)
     {
-        if ($camera_id and $venue_id and $count_in and $count_out) {
+        if ($camera_id and $count_in and $count_out) {
             
             $em = $this->getDoctrine()->getManager();
             
