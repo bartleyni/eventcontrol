@@ -78,14 +78,14 @@ class camera {
      *
      * @ORM\PrePersist
      */
-    public function calculate_running_total()
+    public function calculate_running_total($args)
     {
-        $Camera = $event->getEntityManager()->createQueryBuilder()->select('count_in')
-            ->from("\Application\Entity\Camera", 'Camera')
+        $Camera = $args->getEntityManager()->createQueryBuilder()->select('Camera')
+            ->from("AppBundle\Entity\camera", 'Camera')
             ->orderBy('Camera.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getScalarResult();
         print_r($Camera);
     }
 
