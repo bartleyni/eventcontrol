@@ -88,7 +88,7 @@ class camera {
             ->getScalarResult();
         print_r($Camera);
         print_r($this);
-        $this->timestamp = $Camera->Camera_id;
+        $this->running_count = $Camera->id;
     }
 
     /**
