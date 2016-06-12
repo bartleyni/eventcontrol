@@ -41,6 +41,13 @@ class AppExtension extends \Twig_Extension
 
         $eventId = $event->getId();
         
+        if($event)
+        {
+            $eventId = $event->getId();
+        } else {
+            $eventId = 0;
+        }
+        
         return $eventId;
     }
     
@@ -49,8 +56,13 @@ class AppExtension extends \Twig_Extension
         $em = $this->doctrine->getManager();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
-
-        $eventName = $event->getName();
+        
+        if($event)
+        {
+            $eventName = $event->getName();
+        } else {
+            $eventName = "";
+        }
         
         return $eventName;
     }
