@@ -105,5 +105,11 @@
             updateClock();
             setInterval('updateClock()', 1000);
         });
+        
+        function resizeHeader() {
+            $(".page-header-push").height($(".page-header").height());
+        }
+        $(document).ready(resizeHeader);
+        $(window).resize(resizeHeader);
     </script>
 {% endblock %}
