@@ -249,4 +249,28 @@ class log_entries {
     {
         return $this->operator;
     }
+    
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return log_entries
+     */
+    public function setEvent(\AppBundle\Entity\event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }
