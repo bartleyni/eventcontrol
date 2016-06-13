@@ -45,4 +45,9 @@ class UPS_Status {
      */
     protected $timestamp;
     
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+    
 }
