@@ -136,8 +136,8 @@
                     // Use item in here
                     $('#ups-'.index.id).html("UPS" + index.id + ": "+ index.status);
                 });
+                setTimeout(sidebarPoll,1000);
             }
-            setTimeout(sidebarPoll(),1000);
         });
     }
 </script>
