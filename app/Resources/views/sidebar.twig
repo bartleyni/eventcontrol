@@ -67,10 +67,9 @@
         UPS Status
     </div>
     <ul class="list-group">
-        {% for ups in UPSs %}
-            <li class="list-group-item" id="{{ ups.id }}">UPS{{ ups.id }}: Timeout</li>
+        {% for upsId in UPSs %}
+            <li class="list-group-item" id="{{ upsId.ups.id }}">UPS{{ upsId.id }}: Timeout</li>
         {% endfor %}
-        {{ UPSs }}
         {{ GlobalTest }}
     </ul>
 </div>
