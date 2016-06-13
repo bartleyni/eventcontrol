@@ -34,7 +34,7 @@ class UPSController extends Controller
         $qb = $em->createQueryBuilder(); 
         
         $qb
-            ->select('status.id, status.status, status.timestamp')
+            ->select('status.id, status.status, status.timestamp, ups.id, ups.name, ups.location, ups.power')
             ->from('AppBundle\Entity\UPS_Status', 'status')
             ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
             ->orderBy('ups.id', 'ASC')
