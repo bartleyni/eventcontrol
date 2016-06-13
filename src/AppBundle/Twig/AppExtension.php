@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityManager;
 
+
 class AppExtension extends \Twig_Extension
 {
     private $doctrine;
@@ -17,7 +18,10 @@ class AppExtension extends \Twig_Extension
     
     public function getGlobals()
     {
-        return array("GlobalTest" => "Hello Test",);
+        $em = $this->doctrine->getManager();
+        $UPS = $em->getRepository('AppBundle\Entity\UPS');
+        
+        return array("GlobalTest" => "Hello Test", "UPSs" => $UPS);
     }
     
     public function getFunctions()
