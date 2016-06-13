@@ -16,6 +16,6 @@ return $this->getEntityManager()->createQuery('SELECT p.camera_id FROM AppBundle
 
 public function getcameravenue($id)
 {
-    return $this->getEntityManager()->createQuery('SELECT p.venue_id FROM AppBundle\Entity\venue_camera p  WHERE p.camera_id = :id')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
+    return $this->getEntityManager()->createQuery('SELECT p.venue_id FROM AppBundle\Entity\venue_camera p  WHERE p.camera_id = :id')->setParameter('id', $id)->setMaxResults(1)->getResult();
 }
 }
