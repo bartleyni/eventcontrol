@@ -114,3 +114,27 @@
     </div>
 </a>
 <br>
+<script type="text/javascript">
+    $(document).ready(function() {
+        sidebarPoll();
+    }
+    
+    function sidebarPoll(){
+        $.ajax({
+            type: 'GET',
+            url: {{ path('UPS_status') }},
+            data: data,
+            async: true,
+            beforeSend: function (xhr) {
+              if (xhr && xhr.overrideMimeType) {
+                xhr.overrideMimeType('application/json;charset=utf-8');
+              }
+            },
+            dataType: 'json',
+            success: function (data) {
+              //Do stuff with the JSON data
+            }
+            setTimeout(sidebarPoll,1000);
+        });
+    }
+</script>
