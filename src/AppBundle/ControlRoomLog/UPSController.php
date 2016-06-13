@@ -34,11 +34,18 @@ class UPSController extends Controller
         $qb = $em->createQueryBuilder();
         $qb2 = $em->createQueryBuilder(); 
         
+        $qb2
+            ->select('status2.id, max(status2.timestamp), status2.timestamp')
+            ->from('AppBundle\Entity\UPS_Status', 'status2')
+            ->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status.UPS')
+            ->groupBy('ups.id')
+            ;
+            
         $qb
             ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
             ->from('AppBundle\Entity\UPS_Status', 'status')
             ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
-            ->where(
+            ->having($qb->expr()->In('status.id',$qb2->getDQL()))
             ->orderBy('ups.id', 'ASC')
             ;
         
