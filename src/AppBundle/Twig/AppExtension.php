@@ -55,7 +55,7 @@ class AppExtension extends \Twig_Extension
         $em = $this->doctrine->getManager();
         $UPS = $em->getRepository('AppBundle\Entity\UPS');
         
-        return $UPS;
+        return array('ups' => $UPS);
     }
     
     public function getEventName()
