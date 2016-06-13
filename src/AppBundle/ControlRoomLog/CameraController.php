@@ -28,7 +28,7 @@ class CameraController extends Controller
 
             $venue = $em->getRepository('AppBundle\Entity\venue_camera')->getcameravenue($camera_id);
 
-            print_r($venue);
+            
             //$venue = new venue();
             //$venue->setName("test")'
             $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venue['venue_id']));
