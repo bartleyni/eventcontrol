@@ -16,7 +16,7 @@ class cameraRepository extends EntityRepository
 
     public function getcameracount($id)
     {
-        return "hello";
+        return getcameradoors($id);
     }
     
     
