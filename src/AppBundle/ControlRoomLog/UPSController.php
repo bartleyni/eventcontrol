@@ -45,8 +45,8 @@ class UPSController extends Controller
                         ->from('AppBundle\Entity\UPS_Status', 'status2')
                         ->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status2.UPS')
                         ->where(
-                            $qb2->expr()->eq('ups.id', 'ups2.id')
-                                )
+                            $qb2->expr()->eq('ups', 'ups2')
+                        )
                 )
             )
             ->orderBy('ups.id', 'ASC')
