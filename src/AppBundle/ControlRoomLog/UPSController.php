@@ -49,7 +49,12 @@ class UPSController extends Controller
                 'data' => $ups_statuses
             ));
 
-            return $response;
+        } else {
+        
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
+        
+        return $response;
     }
 }
