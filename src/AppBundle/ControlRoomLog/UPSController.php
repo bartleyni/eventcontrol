@@ -28,6 +28,10 @@ class UPSController extends Controller
      */
     public function UPSAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
         $qb
             ->select('status.id, status.status, status.UPS, status.timestamp, ups.name, ups.id, ups.location, ups.power')
             ->from('AppBundle\Entity\UPS_Status', 'status')
