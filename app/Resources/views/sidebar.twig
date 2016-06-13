@@ -133,7 +133,7 @@
             success: function (data) {
                 $.each(data, function (index, item) {
                     // Use item in here
-                    $('#ups-'.index.id).html("UPS" + index.id + ": "+ index.status);
+                    $('#ups-'.item.id).html("UPS" + item.id + ": "+ item.status);
                 });
                 setTimeout(sidebarPoll,1000);
             }
