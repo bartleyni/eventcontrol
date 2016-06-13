@@ -19,7 +19,14 @@ class AppExtension extends \Twig_Extension
     public function getGlobals()
     {
         $em = $this->doctrine->getManager();
-        $UPS = $em->getRepository('AppBundle\Entity\UPS');
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('ups.id, ups.name, ups.location, ups.power')
+            ->from('AppBundle\Entity\UPS', 'ups')
+        ;
+        
+        $UPS = $qb->getQuery()->getResult();
         
         return array("GlobalTest" => "Hello Test", "UPSs" => $UPS);
     }
