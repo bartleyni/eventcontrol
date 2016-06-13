@@ -26,7 +26,7 @@ class CameraController extends Controller
             $camera->setCountIn($count_in);
             $camera->setCountOut($count_out);
 
-            $venue = $em->getRepository('AppBundle\Entity\venue_camera')->findOneByCameraId($camera_id);
+            $venue = $em->getRepository('AppBundle\Entity\venue_camera')->getcameravenue($camera_id);
             
             //$venue = new venue();
             //$venue->setName("test")'

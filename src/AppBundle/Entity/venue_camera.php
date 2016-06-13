@@ -38,9 +38,10 @@ class venue_camera {
     protected $camera_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="venue")
+     * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
      */
-    protected $venue_id;
+    protected $venue;
 
 
 
