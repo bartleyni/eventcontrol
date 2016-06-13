@@ -120,23 +120,11 @@
     });
     
     function sidebarPoll(){
-        $.ajax({
-            type: 'GET',
-            url: '{{ path('UPS_status') }}',
-            async: true,
-            beforeSend: function (xhr) {
-              if (xhr && xhr.overrideMimeType) {
-                xhr.overrideMimeType('application/json;charset=utf-8');
-              }
-            },
-            dataType: 'json',
-            success: function (data) {
-                $.each(data, function (index, item) {
-                    // Use item in here
-                    $('#ups-'.item.id).html("UPS" + item.id + ": "+ item.status);
-                });
-                setTimeout(sidebarPoll,1000);
-            }
+        $.getJSON('{{ path('UPS_status') }}', { get_param: 'data' }, function(data) {
+            $.each(data, function(index, item) {
+                $('#ups-'.item.id).html("UPS" + item.id + ": "+ item.status);
+            });
+            setTimeout(sidebarPoll,1000);
         });
     }
 </script>
