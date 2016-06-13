@@ -117,12 +117,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         sidebarPoll();
-    )};
+    });
     
     function sidebarPoll(){
         $.ajax({
             type: 'GET',
-            url: {{ path('UPS_status') }},
+            url: '{{ path('UPS_status') }}',
             data: data,
             async: true,
             beforeSend: function (xhr) {
