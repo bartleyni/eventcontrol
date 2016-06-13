@@ -39,16 +39,6 @@ class UPSController extends Controller
             ->from('AppBundle\Entity\UPS_Status', 'status')
             ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
             ->where(
-                $qb->expr()->in(
-                    'status.timestamp',
-                    $qb2->select('max(status2.timestamp)')
-                        ->from('AppBundle\Entity\UPS_Status', 'status2')
-                        //->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status2.UPS')
-                        //->where(
-                            //$qb2->expr()->eq('ups', 'ups2')
-                        //)
-                )
-            )
             ->orderBy('ups.id', 'ASC')
             ;
         
@@ -58,8 +48,7 @@ class UPSController extends Controller
         if ($ups_statuses)
             {
                 $response = new JsonResponse();
-                $response->setData($ups_statuses
-            );
+                $response->setData($ups_statuses);
 
         } else {
             $response->setContent('Hello World');
