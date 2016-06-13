@@ -43,10 +43,10 @@ class UPSController extends Controller
                     'status.timestamp',
                     $qb2->select('max(status2.timestamp)')
                         ->from('AppBundle\Entity\UPS_Status', 'status2')
-                        ->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status2.UPS')
-                        ->where(
-                            $qb2->expr()->eq('ups', 'ups2')
-                        )
+                        //->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status2.UPS')
+                        //->where(
+                            //$qb2->expr()->eq('ups', 'ups2')
+                        //)
                 )
             )
             ->orderBy('ups.id', 'ASC')
