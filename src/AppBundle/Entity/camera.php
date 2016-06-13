@@ -303,4 +303,52 @@ class camera {
     {
         return $this->count_out;
     }
+
+    /**
+     * Set runningCountIn
+     *
+     * @param integer $runningCountIn
+     *
+     * @return camera
+     */
+    public function setRunningCountIn($runningCountIn)
+    {
+        $this->running_count_in = $runningCountIn;
+
+        return $this;
+    }
+
+    /**
+     * Get runningCountIn
+     *
+     * @return integer
+     */
+    public function getRunningCountIn()
+    {
+        return $this->running_count_in;
+    }
+
+    /**
+     * Set runningCountOut
+     *
+     * @param integer $runningCountOut
+     *
+     * @return camera
+     */
+    public function setRunningCountOut($runningCountOut)
+    {
+        $this->running_count_out = $runningCountOut;
+
+        return $this;
+    }
+
+    /**
+     * Get runningCountOut
+     *
+     * @return integer
+     */
+    public function getRunningCountOut()
+    {
+        return $this->running_count_out;
+    }
 }
