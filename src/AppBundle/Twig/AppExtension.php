@@ -30,6 +30,7 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
             new \Twig_SimpleFunction('activeLostPropertyLogs', array($this, 'getLostPropertyLogs')),
             new \Twig_SimpleFunction('activeOpenLogs', array($this, 'getOpenLogs')),
+            new \Twig_SimpleFunction('getUPS', array($this, 'getUPS')),
         );
     }
     
@@ -47,6 +48,14 @@ class AppExtension extends \Twig_Extension
         }
         
         return $eventId;
+    }
+    
+    public function getUPS()
+    {
+        $em = $this->doctrine->getManager();
+        $UPS = $em->getRepository('AppBundle\Entity\UPS');
+        
+        return $UPS;
     }
     
     public function getEventName()

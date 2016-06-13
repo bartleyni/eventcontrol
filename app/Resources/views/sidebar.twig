@@ -67,9 +67,9 @@
         UPS Status
     </div>
     <ul class="list-group">
-        <li class="list-group-item">UPS1: Mains</li>
-        <li class="list-group-item">UPS2: Mains</li>
-        <li class="list-group-item">UPS3: Battery</li>
+        {% for ups in getUPS() %}
+            <li class="list-group-item" id="{{ ups-ups.id }}">UPS{{ ups-ups.id }}: Timeout</li>
+        {% endfor %}
     </ul>
 </div>
 <div class="row">
