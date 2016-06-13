@@ -46,9 +46,8 @@ class UPSController extends Controller
         if ($ups_statuses)
             {
             $response = new JsonResponse();
-            $response->setData(array(
-                'data' => $ups_statuses
-            ));
+            $response->setData($ups_statuses
+            );
 
         } else {
             $response->setContent('Hello World');
