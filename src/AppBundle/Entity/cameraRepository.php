@@ -11,12 +11,13 @@ class cameraRepository extends EntityRepository
 
     public function getcameradoors($id)
     {
-        return $this->getEntityManager()->createQuery('SELECT p FROM AppBundle\Entity\camera p  WHERE p.camera_id = :id AND p.doors = 1 ORDER BY p.timestamp DESC')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
+        return "hi";
+        //return $this->getEntityManager()->createQuery('SELECT p FROM AppBundle\Entity\camera p  WHERE p.camera_id = :id AND p.doors = 1 ORDER BY p.timestamp DESC')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function getcameracount($id)
     {
-        return getcameradoors($id);
+        return $this->getcameradoors($id);
     }
     
     
