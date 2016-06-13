@@ -120,9 +120,9 @@
     });
     
     function sidebarPoll(){
-        $.getJSON('{{ path('UPS_status') }}', { get_param: 'data' }, function(data) {
-            $.each(data, function(index, item) {
-                $('#ups-'.item.id).html("UPS" + item.id + ": "+ item.status);
+        $.getJSON('{{ path('UPS_status') }}', function(data) {
+            $.each(data, function(index, ups) {
+                $('#ups-'+ups.id).html("UPS" + ups.id + ": "+ ups.status);
             });
             setTimeout(sidebarPoll,1000);
         });
