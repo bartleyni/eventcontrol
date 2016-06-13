@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="event")
+ * @ORM\Table(name="UPS")
  */
 
 class UPS {
@@ -40,14 +40,13 @@ class UPS {
      */
     protected $location;
     
-    
     /**
      * @ORM\Column(type="string", length=200)
      */
     protected $power;
     
     /**
-     * @ORM\OneToMany(targetEntity="UPS_status", mappedBy="UPS")
+     * @ORM\OneToMany(targetEntity="UPS_Status", mappedBy="UPS")
      */
     private $UPS_Status;
     
