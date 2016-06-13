@@ -50,7 +50,7 @@ class UPSController extends Controller
             ));
 
         } else {
-        
+            $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
