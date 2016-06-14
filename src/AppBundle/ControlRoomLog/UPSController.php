@@ -32,20 +32,9 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $rsm = new ResultSetMapping();
+        $upsi = $em->getRepository('AppBundle\Entity\UPS');
         
         $qb = $em->createQueryBuilder();
-        
-        $sql = 'SELECT s1.* FROM UPS_Status s1 LEFT JOIN UPS_Status s2 ON (s1.UPS_id = s2.UPS_id AND s1.timestamp < s2.timestamp) WHERE s2.timestamp IS NULL';
-        
-        $sql = 'SELECT s1.* FROM UPS_Status WHERE id IN (SELECT MAX(id) FROM posts GROUP BY UPS_id)';
-        
-        
-        //SELECT m1.* FROM messages m1 LEFT JOIN messages m2 ON (m1.name = m2.name AND m1.id < m2.id) WHERE m2.id IS NULL;
-        
-        $queryA = $em->createNativeQuery($sql, $rsm);
-        
-        $statusi = $queryA->getResult();
         
         $qb
             ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
@@ -59,11 +48,11 @@ class UPSController extends Controller
             ->groupBy('ups.id')
             //->addOrderBy('status2.timestamp', 'DESC')
             ;
-    
-        $query = $qb->getQuery();
-        //$ups_statuses = $query->getResult();
-        $ups_statuses = $statusi;
 
+        $query = $qb->getQuery();
+         
+        $ups_statuses = $query->getResult();
+        
         if ($ups_statuses)
             {
                 $response = new JsonResponse();
