@@ -40,10 +40,10 @@ class UPSController extends Controller
             //->orderBy('ups.id ASC, status.timestamp DESC')
             ->leftJoin('AppBundle\Entity\UPS_Status', 'status2', 'WITH', 'ups.id = ups.id')
             ->where('status.timestamp < status2.timestamp')
-            //->andWhere('status2.timestamp = NULL')
+            ->andWhere('status2.timestamp is NULL')
             ->orderBy('ups.id', 'ASC')
             //->groupBy('ups.id')
-            //->addOrderBy('status.timestamp', 'DESC')
+            //->addOrderBy('status2.timestamp', 'DESC')
             ;
         
         $query = $qb->getQuery();
