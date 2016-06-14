@@ -37,11 +37,11 @@ class UPSController extends Controller
             ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
             ->from('AppBundle\Entity\UPS_Status', 'status')
             ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
-            ->orderBy('status.timestamp', 'DESC')
+            //->orderBy('status.timestamp', 'DESC')
             //->leftJoin('AppBundle\Entity\UPS_Status', 'status2', 'WITH', 'status.id = status2.id')
             //->where('status.timestamp < status2.timestamp')
             //->andWhere('status2.timestamp is NULL')
-            //->orderBy('ups.id', 'ASC')
+            ->orderBy('ups.id', 'ASC')
             ->groupBy('ups.id')
             //->addOrderBy('status2.timestamp', 'DESC')
             ;
