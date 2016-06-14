@@ -39,6 +39,7 @@ class UPSController extends Controller
             ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
             ->groupBy('ups.id')
             ->orderBy('ups.id', 'ASC')
+            ->having('max(status.timestamp)')
             ;
         
         $query = $qb->getQuery();
