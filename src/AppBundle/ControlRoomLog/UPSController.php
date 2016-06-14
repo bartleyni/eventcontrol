@@ -32,23 +32,42 @@ class UPSController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $qb = $em->createQueryBuilder();
-            
-        $qb
-            ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
+        
+        $qb2 = $em->createQueryBuilder();
+        
+        $qb2
+            ->select('ups.id')
             ->from('AppBundle\Entity\UPS_Status', 'status')
-            ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
-            //->orderBy('status.timestamp', 'DESC')
-            //->leftJoin('AppBundle\Entity\UPS_Status', 'status2', 'WITH', 'status.id = status2.id')
-            //->where('status.timestamp < status2.timestamp')
-            //->andWhere('status2.timestamp is NULL')
-            ->orderBy('ups.id', 'ASC')
-            ->groupBy('ups.id')
-            //->addOrderBy('status2.timestamp', 'DESC')
             ;
+            
+        $query2 = $qb2->getQuery();
+        $upsi = $query2->getResult();
         
-        $query = $qb->getQuery();
-        $ups_statuses = $query->getResult();
+        $ups_statuses = [];
         
+        foreach($upsi as $key => $value) {
+            
+            $qb
+                ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
+                ->from('AppBundle\Entity\UPS_Status', 'status')
+                ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
+                ->orderBy('status.timestamp', 'DESC')
+                ->where('ups.id = :UPSid')
+                ->setParameter('UPSis', $value)
+                //->leftJoin('AppBundle\Entity\UPS_Status', 'status2', 'WITH', 'status.id = status2.id')
+                //->where('status.timestamp < status2.timestamp')
+                //->andWhere('status2.timestamp is NULL')
+                //->orderBy('ups.id', 'ASC')
+                //->groupBy('ups.id')
+                //->addOrderBy('status2.timestamp', 'DESC')
+                ->setMaxResults(1)
+                ;
+        
+            $query = $qb->getQuery();
+            $ups_status = $query->getResult();
+            array_push($ups_statuses, $ups_status);
+        }
+
         if ($ups_statuses)
             {
                 $response = new JsonResponse();
