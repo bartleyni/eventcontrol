@@ -38,7 +38,7 @@ class UPSController extends Controller
         
         $sql = 'SELECT s1.* FROM UPS_Status s1 LEFT JOIN UPS_Status s2 ON (s1.UPS_id = s2.UPS_id AND s1.timestamp < s2.timestamp) WHERE s2.timestamp IS NULL;';
         
-        SELECT id, category_id, post_title OM posts WHERE id IN (SELECT MAX(id) FROM posts GROUP BY category_id);
+        //SELECT id, category_id, post_title OM posts WHERE id IN (SELECT MAX(id) FROM posts GROUP BY category_id);
         
         
         //SELECT m1.* FROM messages m1 LEFT JOIN messages m2 ON (m1.name = m2.name AND m1.id < m2.id) WHERE m2.id IS NULL;
