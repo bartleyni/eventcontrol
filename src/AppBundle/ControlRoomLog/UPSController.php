@@ -58,7 +58,8 @@ class UPSController extends Controller
             ;
     
         $query = $qb->getQuery();
-        $ups_statuses = $query->getResult();
+        //$ups_statuses = $query->getResult();
+        $ups_statuses = $statusi;
 
         if ($ups_statuses)
             {
