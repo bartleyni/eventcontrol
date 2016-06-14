@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\UPS;
 use AppBundle\Entity\UPS_Status;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * Description of UPSController
@@ -31,7 +32,17 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
+        $rsm = new ResultSetMapping();
+        
         $qb = $em->createQueryBuilder();
+        
+        $sql = 'SELECT status.* FROM UPS_Status s1 LEFT JOIN Status s2 ON (s1.UPS_id = s2.UPS_id AND s1.timestamp < s2.timestamp) WHERE s2.timestamp IS NULL';
+        
+        //SELECT m1.* FROM messages m1 LEFT JOIN messages m2 ON (m1.name = m2.name AND m1.id < m2.id) WHERE m2.id IS NULL;
+        
+        $queryA = $em->createNativeQuery($sql, $rsm);
+        
+        $statusi = $queryA->getResult();
         
         $qb
             ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
