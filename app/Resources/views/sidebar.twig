@@ -124,7 +124,7 @@
     function sidebarPoll(){
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
-                var timestamp = new Moment(ups.timestampdate);
+                var timestamp = new moment(ups.timestampdate);
                 var now = new Date();
                 alert(timestamp+"   "+now);
                 if ((now-timestamp)>300000){
