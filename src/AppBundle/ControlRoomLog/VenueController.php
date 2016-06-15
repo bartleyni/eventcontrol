@@ -21,7 +21,7 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('v')
+        $qb->select('u')
             ->from('venue', 'u');
         $query = $qb->getQuery();
         $data = $query->getArrayResult();
