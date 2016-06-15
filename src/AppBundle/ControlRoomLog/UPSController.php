@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\UPS;
 use AppBundle\Entity\UPS_Status;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * Description of UPSController
@@ -31,35 +32,14 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $qb = $em->createQueryBuilder();
-        $qb2 = $em->createQueryBuilder(); 
-        
-        $qb
-            ->select('ups.id, status.timestamp, status.status, ups.name, ups.location, ups.power')
-            ->from('AppBundle\Entity\UPS_Status', 'status')
-            ->leftJoin('AppBundle\Entity\UPS', 'ups', 'WITH', 'ups.id = status.UPS')
-            ->where(
-                $qb->expr()->in(
-                    'status.timestamp',
-                    $qb2->select('max(status2.timestamp)')
-                        ->from('AppBundle\Entity\UPS_Status', 'status2')
-                        //->leftJoin('AppBundle\Entity\UPS', 'ups2', 'WITH', 'ups2.id = status2.UPS')
-                        //->where(
-                            //$qb2->expr()->eq('ups', 'ups2')
-                        //)
-                )
-            )
-            ->orderBy('ups.id', 'ASC')
-            ;
-        
-        $query = $qb->getQuery();
+        $query = $em->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)');
+
         $ups_statuses = $query->getResult();
         
         if ($ups_statuses)
             {
                 $response = new JsonResponse();
-                $response->setData($ups_statuses
-            );
+                $response->setData($ups_statuses);
 
         } else {
             $response->setContent('Hello World');

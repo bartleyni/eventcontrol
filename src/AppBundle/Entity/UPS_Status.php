@@ -50,4 +50,20 @@ class UPS_Status {
         return (string) $this->getName();
     }
     
+    /**
+     * Set timestamp
+     *
+     * @param \DateTime $timestamp
+     * @ORM\PrePersist
+     * @return Example
+     */
+    public function setTimestamp()
+    {
+
+        if(!$this->timestamp){
+            $this->timestamp = new \DateTime();
+        }
+
+        return $this;
+    }
 }
