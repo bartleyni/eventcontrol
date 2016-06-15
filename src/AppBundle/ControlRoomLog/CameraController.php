@@ -48,9 +48,7 @@ class CameraController extends Controller
      */
     public function json_data(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->getRepository('AppBundle\Entity\venue')->createQuery("SELECT venue FROM AppBundle\Entity\venue venue");
+        $query =$this->getEntityManager()->createQuery("SELECT venue FROM AppBundle\Entity\venue venue");
         
         $data = $query->getArrayResult();
 
