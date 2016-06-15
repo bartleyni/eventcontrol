@@ -143,86 +143,8 @@ class camera {
     }
 
 
-    /**
-     * Set runningCount
-     *
-     * @param integer $runningCount
-     *
-     * @return camera
-     */
-    public function setRunningCount($runningCount)
-    {
-        $this->running_count = $runningCount;
 
-        return $this;
-    }
-
-    /**
-     * Get runningCount
-     *
-     * @return integer
-     */
-    public function getRunningCount()
-    {
-        return $this->running_count;
-    }
-
-    /**
-     * Set doors
-     *
-     * @param boolean $doors
-     *
-     * @return camera
-     */
-    public function setDoors($doors)
-    {
-        $this->doors = $doors;
-
-        return $this;
-    }
-
-    /**
-     * Get doors
-     *
-     * @return boolean
-     */
-    public function getDoors()
-    {
-        return $this->doors;
-    }
-
-    /**
-     * Set venue
-     *
-     * @param \AppBundle\Entity\venue $venue
-     *
-     * @return camera
-     */
-    public function setVenue(\AppBundle\Entity\venue $venue = null)
-    {
-        $this->venue = $venue;
-
-        return $this;
-    }
-
-    /**
-     * Get venue
-     *
-     * @return \AppBundle\Entity\venue
-     */
-    public function getVenue()
-    {
-        return $this->venue;
-    }
-
-
-    /**
-     * Set cameraId
-     *
-     * @param integer $cameraId
-     *
-     * @return camera
-     */
+  
     public function setCameraId($cameraId)
     {
         $this->camera_id = $cameraId;

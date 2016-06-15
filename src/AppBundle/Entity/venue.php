@@ -158,4 +158,28 @@ class venue {
     {
         return $this->venue_camera;
     }
+
+    /**
+     * Set doors
+     *
+     * @param \DateTime $doors
+     *
+     * @return venue
+     */
+    public function setDoors($doors)
+    {
+        $this->doors = $doors;
+
+        return $this;
+    }
+
+    /**
+     * Get doors
+     *
+     * @return \DateTime
+     */
+    public function getDoors()
+    {
+        return $this->doors;
+    }
 }
