@@ -32,7 +32,7 @@ class CameraController extends Controller
             $em->persist($camera);
             $em->flush();
 
-            $response = new Response('',Response::HTTP_OK, array('content-type' => 'text/html');
+            $response = new Response('Data added',Response::HTTP_OK, array('content-type' => 'text/html'));
             
             return $response;
         }
