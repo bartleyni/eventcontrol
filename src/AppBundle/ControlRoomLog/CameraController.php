@@ -51,6 +51,7 @@ class CameraController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT v FROM AppBundle\Entity\venue v");
+        
         $data = $query->getArrayResult();
 
         print_r($data);
