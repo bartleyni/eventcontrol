@@ -36,9 +36,14 @@ class VenueController extends Controller
      * @Route("/venue/doors/{id}", name="venue_doors");
      *
      */
-    public function doots($id)
+    public function doors($id)
     {
-        $this->get('session')->getFlashBag()->add('notice','Doors set for venue');
+        $em = $this->getDoctrine()->getManager();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
+        $venue->setDoors(new \DateTime());
+        $name = $venue->getName();
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('notice','Doors set for '.$name);
         return $this->redirectToRoute('peoplecounting');
     }
     /**

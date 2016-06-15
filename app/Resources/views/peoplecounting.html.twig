@@ -32,6 +32,7 @@
                                     <td><strong>Count out</strong></td>
                                     <td><strong>Occupancy</strong></td>
                                     <td><strong>Set doors</strong></td>
+                                    <td><strong>Skew values</strong></td>
                                 </tr>
                                 {% for venue in venues %}
                                     <tr>
@@ -41,7 +42,8 @@
                                         <td>{{ venue.count.running_count_in }}</td>
                                         <td>{{ venue.count.running_count_out }}</td>
                                         <td>{{ venue.count.running_count_in-venue.count.running_count_out }}</td>
-                                        <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to set doors for the{{ venue.name }}?')"aria-hidden="true" aria-label="Set doors?"></span></a></td>
+                                        <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to set doors for the {{ venue.name }}?')" aria-hidden="true" aria-label="Set doors?"></span></a></td>
+                                        <td><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" aria-label="Adjust skew value"></span></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
