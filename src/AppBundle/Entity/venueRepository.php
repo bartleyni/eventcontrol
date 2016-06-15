@@ -10,6 +10,7 @@ class venueRepository extends EntityRepository
 {
     public function getvenuecount($id)
     {
+        $em = $this->getDoctrine()->getManager();
         $cameras = $em->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
 
         //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
