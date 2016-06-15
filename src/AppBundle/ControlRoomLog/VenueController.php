@@ -25,7 +25,9 @@ class VenueController extends Controller
             ->from('AppBundle\Entity\venue', 'u');
         $query = $qb->getQuery();
         $venues = $query->getResult();
-       
+        foreach ($venues as $key => $value) {
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
+        }
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
     }
     /**

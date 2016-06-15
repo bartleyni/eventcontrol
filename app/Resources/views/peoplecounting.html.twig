@@ -28,6 +28,9 @@
                                     <td><strong>Id</strong></td>
                                     <td><strong>Name</strong></td>
                                     <td><strong>Doors</strong></td>
+                                    <td><strong>Count in</strong></td>
+                                    <td><strong>Count out</strong></td>
+                                    <td><strong>Occupancy</strong></td>
                                     <td><strong>Set doors?</strong></td>
                                 </tr>
                                 {% for venue in venues %}
@@ -35,6 +38,9 @@
                                         <td>{{ venue.id }}</td>
                                         <td>{{ venue.name }}</td>
                                         <td>{{ venue.doors|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                        <td>{{ venue.count.in }}</td>
+                                        <td>{{ venue.count.out }}</td>
+                                        <td>{{ venue.count.in-venue.count.out }}</td>
                                         <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to set doors for the{{ venue.name }}?')"aria-hidden="true" aria-label="Set doors?"></span></a></td>
                                     </tr>
                                 {% endfor %}
