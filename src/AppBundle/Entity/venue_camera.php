@@ -43,6 +43,10 @@ class venue_camera {
      */
     protected $venue_id;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false, )
+     */
+    protected $inverse = 0;
 
 
     /**
