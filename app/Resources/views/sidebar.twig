@@ -132,7 +132,7 @@
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
                 var statusString = "UPS" + ups.id + ": "+ ups.status;
-                if ($('#ups-'+ups.id).html() != statusString && i == 1)
+                if ($('#ups-'+ups.id).html() != statusString && i > 2)
                 {
                     $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
                     $('#mainModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
@@ -140,8 +140,9 @@
                     $('#ups-'+ups.id).html(statusString);
                 }
             });
-            i = 1;
         });
+        
+        i++;
         
         
 
