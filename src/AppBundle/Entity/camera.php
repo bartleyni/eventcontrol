@@ -65,15 +65,6 @@ class camera {
     protected $running_count_out;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $doors;
-
-
-
-
-
-    /**
      * calculat running total
      *
      * @ORM\PrePersist

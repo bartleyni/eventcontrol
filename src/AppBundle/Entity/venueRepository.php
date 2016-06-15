@@ -8,6 +8,12 @@ use Doctrine\ORM\EntityRepository;
 
 class venueRepository extends EntityRepository
 {
+    public function getvenuedoors($id)
+    {
+        //return "hi";
+        $doors = $this->getEntityManager()->createQuery('SELECT p.doors FROM AppBundle\Entity\venue p  WHERE p.id = :id')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
+        return $doors['doors'];
+    }
     public function getvenuecount($id)
     {
        
