@@ -8,6 +8,9 @@ use AppBundle\Entity\venue_camera;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class CameraController extends Controller
 {
@@ -38,4 +41,21 @@ class CameraController extends Controller
             //return new Response('Saved new camera data with id '.$camera->getId());
         }
     }
+
+    /**
+     * @Route("/camera/jsondata", name="People counting json data");
+     *
+     */
+    public function json_data(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        print($em->getRepository('AppBundle\Entity\venue')->findAll());
+
+
+
+        //return $response;
+    }
+}
+
 }
