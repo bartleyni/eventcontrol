@@ -13,11 +13,11 @@ use Doctrine\ORM\Query\ResultSetMapping;
 
 class VenueController extends Controller
 {
-        /**
-     * @Route("/venue/jsondata", name="People counting json data");
+    /**
+     * @Route("/venue/jsondata", name="Venue json data");
      *
      */
-    public function json_data(Request $request)
+    public function venue_json_data(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 

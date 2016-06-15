@@ -41,35 +41,4 @@ class CameraController extends Controller
             //return new Response('Saved new camera data with id '.$camera->getId());
         }
     }
-
-    /**
-     * @Route("/camera/jsondata", name="People counting json data");
-     *
-     */
-    public function json_data(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $query = $em->createQuery("SELECT venue FROM AppBundle:Entity:venue venue");
-        
-        $data = $query->getArrayResult();
-
-        print_r($data);
-        if ($data)
-        {
-            $response = new JsonResponse();
-            $response->setData($data);
-
-        } else {
-            $response->setContent('Hello World');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-
-        return $response;
-
-
-        //return $response;
-    }
-
 }
