@@ -38,9 +38,9 @@
                                         <td>{{ venue.id }}</td>
                                         <td>{{ venue.name }}</td>
                                         <td>{{ venue.doors|date('Y-m-d H:i:s', "Europe/London") }}</td>
-                                        <td>{{ venue.count.in }}</td>
-                                        <td>{{ venue.count.out }}</td>
-                                        <td>{{ venue.count.in-venue.count.out }}</td>
+                                        <td>{{ venue.count.running_count_in }}</td>
+                                        <td>{{ venue.count.running_count_out }}</td>
+                                        <td>{{ venue.count.running_count_in-venue.count.running_count_out }}</td>
                                         <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to set doors for the{{ venue.name }}?')"aria-hidden="true" aria-label="Set doors?"></span></a></td>
                                     </tr>
                                 {% endfor %}
