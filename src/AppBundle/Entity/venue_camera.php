@@ -106,4 +106,28 @@ class venue_camera {
     {
         return $this->venue_id;
     }
+
+    /**
+     * Set inverse
+     *
+     * @param boolean $inverse
+     *
+     * @return venue_camera
+     */
+    public function setInverse($inverse)
+    {
+        $this->inverse = $inverse;
+
+        return $this;
+    }
+
+    /**
+     * Get inverse
+     *
+     * @return boolean
+     */
+    public function getInverse()
+    {
+        return $this->inverse;
+    }
 }
