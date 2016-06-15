@@ -16,14 +16,10 @@ class venueRepository extends EntityRepository
         foreach ($cameras as $camera) {
             if($camera['inverse']){
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
-                print_r($camera['camera_id']);
-                print_r($camera_count);
                 $output['running_count_in'] += $camera_count['running_count_out'];
                 $output['running_count_out'] += $camera_count['running_count_in'];
             }else {
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
-                print_r($camera['camera_id']);
-                print_r($camera_count);
                 $output['running_count_in'] += $camera_count['running_count_in'];
                 $output['running_count_out'] += $camera_count['running_count_out'];
             }
