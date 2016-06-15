@@ -40,14 +40,43 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            {#<div class="col-md-12">
-                                <a href="{{ path('doors', {'id': 'all'}) }}" class="btn btn-warning btn-block">
-                                    Sign All Out
-                                </a>
-                            </div>#}
                         {% endif %}
                     </div>
                 </div>
+                <div class="row">
+                <div class="col-md-12">
+                    {{ form_start(form) }}
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                {{ form_label(form.skew_in) }}
+                                {{ form_errors(form.skew_in) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_widget(form.skew_in) }}
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                {{ form_label(form.skew_out) }}
+                                {{ form_errors(form.skew_out) }}
+                            </div>
+                            <div class="col-md-2">
+                                {{ form_widget(form.skew_out) }}
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-success btn-block" type="submit">Add skew</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
             </div>
         {% endblock %}
         {% block sidebar %}
