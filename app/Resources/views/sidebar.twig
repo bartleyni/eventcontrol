@@ -134,10 +134,10 @@
                 {
                     //Nothing
                 } else {
-                    $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name + " Status Change")
-                    $('#mainModalBody').html("UPS Status Change")
+                    $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
+                    $('#mainModalBody').html(ups.status + "<br>Location: " + ups.location)
                     $('#mainModal').modal('show')
-                    $('#ups-'+ups.id).html("UPS" + ups.id + ": "+ ups.status);
+                    $('#ups-'+ups.id).html(statusString);
                 }
             });
         });
