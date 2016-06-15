@@ -6,7 +6,7 @@ Control Room Log
     {% embed '3-9.html.twig' %}
         {% block content %}
             <div class="wrapper">
-                <div class="row">
+                <div class="row" id="logTable">
                     <div class="col-md-12">
                         <h4>Log Entries</h4>
                     </div>
@@ -123,5 +123,24 @@ Control Room Log
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+        
+        $(document).ready(function() {
+            tablePoll();
+        });
+        
+        function tablePoll(){
+            $.ajax({
+                type:'POST',
+                url: '{{ path('full_log_table') }}',
+                data: data,
+                cache: false,
+                global: false,
+                success:function(data)
+                {
+                $("#logTable").html(data);
+                }
+            });
+            setTimeout(tablePoll,5000);
+        }
     </script>
 {% endblock %}
