@@ -126,19 +126,20 @@
         sidebarPoll();
     });
     
+    var i = 0;
+    
     function sidebarPoll(){
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
                 var statusString = "UPS" + ups.id + ": "+ ups.status;
-                if ($('#ups-'+ups.id).html() == statusString)
+                if ($('#ups-'+ups.id).html() != statusString && i == 1)
                 {
-                    //Nothing
-                } else {
                     $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
-                    $('#mainModalBody').html(ups.status + "<br>Location: " + ups.location)
+                    $('#mainModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
                     $('#mainModal').modal('show')
                     $('#ups-'+ups.id).html(statusString);
                 }
+                i = 1;
             });
         });
         
