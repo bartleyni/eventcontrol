@@ -24,13 +24,18 @@ class VenueController extends Controller
         $qb->select('u')
             ->from('AppBundle\Entity\venue', 'u');
         $query = $qb->getQuery();
-        $data = $query->getArrayResult();
+        $venues = $query->getArrayResult();
 
-        print_r($data);
-        if ($data)
+        $output = array();
+        foreach ($venues as $key => $value) {
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id]']);
+        }
+
+
+        if ($venues)
         {
             $response = new JsonResponse();
-            $response->setData($data);
+            $response->setData($venues);
 
         } else {
             $response->setContent('Hello World');
