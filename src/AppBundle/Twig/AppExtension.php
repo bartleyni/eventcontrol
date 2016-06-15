@@ -68,6 +68,14 @@ class AppExtension extends \Twig_Extension
         
         return array('ups' => $UPS);
     }
+
+    public function getVenue()
+    {
+        $em = $this->doctrine->getManager();
+        $UPS = $em->getRepository('AppBundle\Entity\venue');
+
+        return array('venue' => $venue);
+    }
     
     public function getEventName()
     {
