@@ -16,27 +16,30 @@ class venueRepository extends EntityRepository
     }
     public function getvenuecount($id)
     {
-       
+
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
         $output = array();
+        $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         foreach ($cameras as $camera) {
-            if($camera['inverse']){
+            if ($camera['inverse']) {
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
-                $output['running_count_in'] += $camera_count['running_count_out'];
-                $output['running_count_out'] += $camera_count['running_count_in'];
-            }else
-                $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
-                print_r($timestamp);
-                print_r($this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp));
+                $output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                $output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+            } else {
+
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
-                $output['running_count_in'] += $camera_count['running_count_in'];
-                $output['running_count_out'] += $camera_count['running_count_out'];
+                print_r($camera_count);
+                print_r($camera_doors);
+                $output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+                $output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
             }
-        
-        //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
-        //$output['running_count_out']=$current_data[running_count_out]-$doors_data[running_count_out];
 
+            //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
+            //$output['running_count_out']=$current_data[running_count_out]-$doors_data[running_count_out];
+        }
         return $output;
-
     }
 }
+    

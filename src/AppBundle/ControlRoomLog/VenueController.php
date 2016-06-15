@@ -30,8 +30,7 @@ class VenueController extends Controller
         foreach ($venues as $key => $value) {
               $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
-
-       print_r($em->getRepository('AppBundle\Entity\venue')->getvenuedoors(1));
+        
         if ($venues)
         {
             $response = new JsonResponse();
