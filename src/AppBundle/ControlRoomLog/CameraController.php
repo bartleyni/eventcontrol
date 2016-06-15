@@ -56,6 +56,5 @@ class CameraController extends Controller
 
         //return $response;
     }
-}
 
 }
