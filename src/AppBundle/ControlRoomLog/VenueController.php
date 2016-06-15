@@ -29,6 +29,15 @@ class VenueController extends Controller
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
     }
     /**
+     * @Route("/venue/doors/{id}", name="venue_doors");
+     *
+     */
+    public function doots($id)
+    {
+        $this->get('session')->getFlashBag()->add('notice','Doors set for venue');
+        return $this->redirectToRoute('peoplecounting');
+    }
+    /**
      * @Route("/venue/jsondata", name="venue_json_data");
      *
      */
