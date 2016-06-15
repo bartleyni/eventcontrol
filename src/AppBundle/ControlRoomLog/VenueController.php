@@ -22,7 +22,7 @@ class VenueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
         $qb->select('u')
-            ->from('venue', 'u');
+            ->from('AppBundle\Entity\venue', 'u');
         $query = $qb->getQuery();
         $data = $query->getArrayResult();
 
