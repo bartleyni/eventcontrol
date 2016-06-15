@@ -43,7 +43,7 @@ class VenueController extends Controller
         $venue->setDoors(new \DateTime());
         $name = $venue->getName();
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice','Doors set for'.$name);
+        $this->get('session')->getFlashBag()->add('notice','Doors set for '.$name);
         return $this->redirectToRoute('peoplecounting');
     }
     /**
