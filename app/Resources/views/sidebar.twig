@@ -130,8 +130,9 @@
 
         $.getJSON('{{ path('venue_json_data') }}', function(data) {
             $.each(data, function(index, venue) {
-                alert(venue['count'].running_count_in);
-                $('#venue-'+venue.id).html(venue.name + ": "+ venue['count'].running_count_in - venue['count'].running_count_out);
+                //Calculate current occupancy
+                var count = venue['count'].running_count_in - venue['count'].running_count_out;
+                $('#venue-'+venue.id).html(venue.name + ": "+ count);
             });
         });
         setTimeout(sidebarPoll,1000);
