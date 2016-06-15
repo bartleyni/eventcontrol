@@ -27,8 +27,18 @@ class AppExtension extends \Twig_Extension
         ;
         
         $UPS = $qb->getQuery()->getResult();
-        
-        return array("GlobalTest" => "Hello Test", "UPSs" => $UPS);
+
+        $qb = $em->createQueryBuilder();
+
+        $qb
+            ->select('venue.id, venue.name')
+            ->from('AppBundle\Entity\venue', 'venue')
+        ;
+
+        $venue = $qb->getQuery()->getResult();
+
+
+        return array("GlobalTest" => "Hello Test", "UPSs" => $UPS, "venues" => $venue);
     }
     
     public function getFunctions()
@@ -69,13 +79,7 @@ class AppExtension extends \Twig_Extension
         return array('ups' => $UPS);
     }
 
-    public function getVenue()
-    {
-        $em = $this->doctrine->getManager();
-        $UPS = $em->getRepository('AppBundle\Entity\venue');
-
-        return array('venue' => $venue);
-    }
+  
     
     public function getEventName()
     {
