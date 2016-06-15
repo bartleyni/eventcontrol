@@ -40,7 +40,7 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-        $venue->setDoors(new DateTime());
+        $venue->setDoors(new \DateTime());
         $name = $venue->getName();
         $em->flush();
         $this->get('session')->getFlashBag()->add('notice','Doors set for'.$name);
