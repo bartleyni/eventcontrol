@@ -22,13 +22,14 @@
                                     <td><strong>Id</strong></td>
                                     <td><strong>Name</strong></td>
                                     <td><strong>Doors</strong></td>
+                                    <td><strong>Set doors?</strong></td>
                                 </tr>
                                 {% for venue in venues %}
                                     <tr>
                                         <td>{{ venue.id }}</td>
                                         <td>{{ venue.name }}</td>
                                         <td>{{ venue.doors|date('Y-m-d H:i:s', "Europe/London") }}</td>
-
+                                        <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-door" aria-hidden="true" aria-label="Set doors?"></span></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
