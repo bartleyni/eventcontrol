@@ -134,7 +134,7 @@
                 {
                     //Nothing
                 } else {
-                    $('#mainModalTitle').html("UPS Status Change")
+                    $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name + " Status Change")
                     $('#mainModalBody').html("UPS Status Change")
                     $('#mainModal').modal('show')
                     $('#ups-'+ups.id).html("UPS" + ups.id + ": "+ ups.status);
