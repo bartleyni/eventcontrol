@@ -50,8 +50,10 @@ class CameraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $data = $em->getRepository('AppBundle\Entity\venue')->findAll();
+        $query = $em->createQuery("SELECT v FROM AppBundle\Entity\camera v");
+        $data = $query->getArrayResult();
 
+        print_r($data);
         if ($data)
         {
             $response = new JsonResponse();
