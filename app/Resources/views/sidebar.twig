@@ -132,17 +132,20 @@
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
                 var statusString = "UPS" + ups.id + ": "+ ups.status;
-                if ($('#ups-'+ups.id).html() != statusString && i > 2)
+                if ($('#ups-'+ups.id).html() != statusString)
                 {
-                    $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
-                    $('#mainModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
-                    $('#mainModal').modal('show')
+                    if (i > 2)
+                    {
+                        $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
+                        $('#mainModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
+                        $('#mainModal').modal('show')
+                    }
                     $('#ups-'+ups.id).html(statusString);
                 }
             });
         });
         
-        i++;
+        
         
         
 
@@ -153,6 +156,7 @@
                 $('#venue-'+venue.id).html(venue.name + ": "+ count);
             });
         });
+        i++;
         setTimeout(sidebarPoll,1000);
     }
 </script>
