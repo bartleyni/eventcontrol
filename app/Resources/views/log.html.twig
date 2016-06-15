@@ -131,7 +131,7 @@ Control Room Log
         function tablePoll(){
             $.ajax({
                 type:'POST',
-                url: '{{ path('full_log_table') }}',
+                url: '{{ path('full_log_table') }}{% if app.request.get('sort') %}{{ app.request.get('sort') }}/{% endif %}{% if app.request.get('filter') %}{{ app.request.get('filter') }}/{% endif %}{% if app.request.get('filter_type') %}{{ app.request.get('filter_type') }}/{% endif %}',
                 cache: false,
                 global: false,
                 success:function(data)
