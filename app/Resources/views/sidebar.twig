@@ -58,9 +58,11 @@
     <div class="panel-heading">
         Current Occupancy
     </div>
-    <div class="panel-body">
-        NNNN
-    </div>
+    <ul class="list-group">
+        {% for venue in venues %}
+            <li class="list-group-item" id="ups-{{ venue.id }}">Venue {{ venue.id }}: Timeout</li>
+        {% endfor %}
+    </ul>
 </div>
 <div class="panel panel-warning">
     <div class="panel-heading">
