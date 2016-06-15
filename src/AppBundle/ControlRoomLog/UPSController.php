@@ -71,10 +71,8 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        $response->setContent('Hello World');
-        $response->headers->set('Content-Type', 'text/plain');
-        $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        
+        $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
+
         return $response;
     }
 }
