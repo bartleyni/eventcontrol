@@ -21,7 +21,7 @@ class venueRepository extends EntityRepository
         $output = array();
         $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $skews = $this->getEntityManager()->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-        print_r($skews);
+
         foreach ($cameras as $camera) {
             if ($camera['inverse']) {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
@@ -36,6 +36,12 @@ class venueRepository extends EntityRepository
                 $output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
             }
 
+            print_r($output);
+            foreach ($skews as $skew) {
+                $output['running_count_in'] += $skew['skew_in'];
+                $output['running_count_out'] += $skew['skew_out'];
+            }
+            print_r($output);
             //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
             //$output['running_count_out']=$current_data[running_count_out]-$doors_data[running_count_out];
         }
