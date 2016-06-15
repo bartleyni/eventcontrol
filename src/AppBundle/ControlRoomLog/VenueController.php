@@ -66,7 +66,7 @@ class VenueController extends Controller
             return $this->redirectToRoute('skew', ['id' => $id]);
         }
 
-        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue));
+        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form' => $form->createView()));
     }
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");
