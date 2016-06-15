@@ -88,7 +88,6 @@ class camera {
             ->setMaxResults(1)
             ->getQuery()
             ->getScalarResult();
-        print_r($Camera);
         //print_r($this);
 
 
