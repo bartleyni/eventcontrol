@@ -29,7 +29,7 @@
                                         <td>{{ venue.id }}</td>
                                         <td>{{ venue.name }}</td>
                                         <td>{{ venue.doors|date('Y-m-d H:i:s', "Europe/London") }}</td>
-                                        <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-door" aria-hidden="true" aria-label="Set doors?"></span></a></td>
+                                        <td><a href="{{ path('venue_doors', {'id': venue.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to set doors for the{{ venue.name }}?')"aria-hidden="true" aria-label="Set doors?"></span></a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
