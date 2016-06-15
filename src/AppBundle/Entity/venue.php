@@ -34,6 +34,10 @@ class venue {
     protected $id;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $doors;
+    /**
      * @ORM\Column(type="text")
      */
     protected $name;
