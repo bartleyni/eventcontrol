@@ -49,10 +49,10 @@ class VenueController extends Controller
         $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
         $em->flush();
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-            
+        }
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
-        }
+
        
         
         $form = $this->createForm(new SkewType(), $skew);
@@ -63,10 +63,10 @@ class VenueController extends Controller
 
             // 4) save the skew!
             $em = $this->getDoctrine()->getManager();
-            $id = $skew->getVenueId();
+            
             $em->persist($skew);
             $em->flush();
-            return $this->redirectToRoute('skew', ['id' => $id]);
+            //return $this->redirectToRoute('skew', ['id' => $id]);
         }
 
         return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue));
