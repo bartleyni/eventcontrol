@@ -1,6 +1,7 @@
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-    People Counting
+
+     People Counting
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
@@ -8,6 +9,11 @@
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="flash notice">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
                         <h4>Venue</h4>
                     </div>
                 </div>
