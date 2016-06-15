@@ -1,5 +1,12 @@
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     People Counting
 {% endblock %}
 {% block layout %}
