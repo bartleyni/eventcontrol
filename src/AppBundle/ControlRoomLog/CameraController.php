@@ -28,12 +28,11 @@ class CameraController extends Controller
 
             $venue = $em->getRepository('AppBundle\Entity\venue_camera')->getcameravenue($camera_id);
             print_r($venue);
-            echo $venue[1];
-            print_r($em->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($venue[1]));
-            //print_r($em->getRepository('AppBundle\Entity\venue')->getvenuecount($venue[1]));
+           
+            print_r($em->getRepository('AppBundle\Entity\venue')->getvenuecount($venue['venue_id']));
             //$venue = new venue();
             //$venue->setName("test")'
-            $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venue[1]));
+            $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venue['venue_id']));
             
             $camera->setVenue($venue);
 
