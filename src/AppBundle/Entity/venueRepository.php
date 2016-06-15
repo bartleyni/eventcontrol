@@ -15,7 +15,7 @@ class venueRepository extends EntityRepository
         $output = array();
         foreach ($cameras as $camera) {
 
-            $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getcameracount($camera['camera_id']);
+            $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
             print_r($camera['camera_id']);
             print_r($camera_count);
             $output['running_count_in'] += $camera_count['running_count_in'];
