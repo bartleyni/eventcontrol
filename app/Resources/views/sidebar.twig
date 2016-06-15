@@ -124,9 +124,9 @@
     function sidebarPoll(){
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
-                var timestamp = new Date(ups.timestamp);
+                var timestamp = new Moment(ups.timestampdate);
                 var now = new Date();
-                alert(timestamp);
+                alert(timestamp+"   "+now);
                 if ((now-timestamp)>300000){
                     $('#ups-'+ups.id).html("UPS" + ups.id + ": Timeout ("+ ups.status+")");
                 } else {
