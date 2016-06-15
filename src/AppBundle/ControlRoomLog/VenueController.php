@@ -20,9 +20,10 @@ class VenueController extends Controller
     public function venue_json_data(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $query = $em->createQuery("SELECT venue FROM AppBundle\Entity\venue venue");
-
+        $qb = $em->createQueryBuilder();
+        $qb->select('v')
+            ->from('venue', 'u');
+        $query = $qb->getQuery();
         $data = $query->getArrayResult();
 
         print_r($data);
