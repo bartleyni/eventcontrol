@@ -12,7 +12,7 @@ class cameraRepository extends EntityRepository
     public function getcameradoors($id, $timestamp)
     {
         //return "hi";
-        return $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, p.camera_id FROM AppBundle\Entity\camera p  WHERE p.camera_id = :id AND p.timestamp >= :timestamp ORDER BY p.timestamp ASC')->setParameter('id', $id)->setParameter('timestamp', $timestamp)->setMaxResults(1)->getOneOrNullResult();
+        return $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, p.camera_id FROM AppBundle\Entity\camera p  WHERE p.camera_id = :id AND p.timestamp <= :timestamp ORDER BY p.timestamp DESC ')->setParameter('id', $id)->setParameter('timestamp', $timestamp)->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function getcameracount($id)
