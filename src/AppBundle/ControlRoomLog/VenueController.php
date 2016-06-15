@@ -14,6 +14,21 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class VenueController extends Controller
 {
     /**
+     * @Route("/peoplecounting", name="peoplecounting");
+     *
+     */
+    public function view(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('u')
+            ->from('AppBundle\Entity\venue', 'u');
+        $query = $qb->getQuery();
+        $venues = $query->getResult();
+       
+        return $this->render('peoplecounting.html.twig', array('venues' => $venues));
+    }
+    /**
      * @Route("/venue/jsondata", name="venue_json_data");
      *
      */

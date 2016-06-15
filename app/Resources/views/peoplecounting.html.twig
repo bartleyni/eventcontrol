@@ -1,0 +1,51 @@
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+    People Counting
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Venue</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if venues is empty %}
+                            No venues
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Id</strong></td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Doors</strong></td>
+                                </tr>
+                                {% for venue in venues %}
+                                    <tr>
+                                        <td>{{ venue.id }}</td>
+                                        <td>{{ venue.name }}</td>
+                                        <td>{{ venue.doors }}</td>
+                                        {# <td>{{ attendee.time_in|date('Y-m-d H:i:s', "Europe/London") }}</td>#}
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {#<div class="col-md-12">
+                                <a href="{{ path('doors', {'id': 'all'}) }}" class="btn btn-warning btn-block">
+                                    Sign All Out
+                                </a>
+                            </div>#}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
