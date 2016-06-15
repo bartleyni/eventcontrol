@@ -130,7 +130,10 @@
 
         $.getJSON('{{ path('Venue_json_data') }}', function(data) {
             $.each(data, function(index, venue) {
-                $('#venue-'+venue.id).html(venue.name + ": "+ venue.count.running_count_in - venue.count.running_count_out);
+                alert(venue.name);
+                alert(venue.id);
+                alert(venue['count'].running_count_in)
+                $('#venue-'+venue.id).html(venue.name + ": "+ venue['count'].running_count_in - venue['count'].running_count_out);
             });
         });
         setTimeout(sidebarPoll,1000);
