@@ -112,17 +112,7 @@ class UPS_Status {
      */
     public function getStatus()
     {
-        $timeNow = new \DateTime();
-        
-        //if (($timeNow - $this->timestamp) < 10)
-        if (1==1)
-        {
-            return "Timeout";
-        }
-        else
-        {
-            return $this->status;
-        }
+        return $this->status;
     }
 
     /**
