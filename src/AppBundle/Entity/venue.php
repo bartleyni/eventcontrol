@@ -187,4 +187,38 @@ class venue {
     {
         return $this->doors;
     }
+
+    /**
+     * Add skew
+     *
+     * @param \AppBundle\Entity\skew $skew
+     *
+     * @return venue
+     */
+    public function addSkew(\AppBundle\Entity\skew $skew)
+    {
+        $this->skew[] = $skew;
+
+        return $this;
+    }
+
+    /**
+     * Remove skew
+     *
+     * @param \AppBundle\Entity\skew $skew
+     */
+    public function removeSkew(\AppBundle\Entity\skew $skew)
+    {
+        $this->skew->removeElement($skew);
+    }
+
+    /**
+     * Get skew
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkew()
+    {
+        return $this->skew;
+    }
 }
