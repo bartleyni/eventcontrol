@@ -41,14 +41,16 @@ class VenueController extends Controller
      */
     public function skew(Request $request, $id)
     {
-        $skew = new skew();
-        if($id){
         $em = $this->getDoctrine()->getManager();
-        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
-        $em->flush();
-        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-        $em->flush();
-        $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
+        
+        $skew = new skew();
+
+        if($id){
+            $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+            $em->flush();
+            $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
+            $em->flush();
+            $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
         }
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
@@ -69,7 +71,7 @@ class VenueController extends Controller
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
 
-        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue));
+        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form' => $form->createView()));
     }
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");
