@@ -69,15 +69,6 @@ class camera {
      */
     protected $doors;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="venue")
-     * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
-     */
-    protected $venue;
-
-
-
-
 
     /**
      * calculat running total
