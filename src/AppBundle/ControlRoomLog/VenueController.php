@@ -14,7 +14,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class VenueController extends Controller
 {
     /**
-     * @Route("/venue/jsondata", name="Venue json data");
+     * @Route("/venue/jsondata", name="venue_json_data");
      *
      */
     public function venue_json_data(Request $request)
