@@ -38,7 +38,11 @@ class CameraController extends Controller
             $em->persist($camera);
             $em->flush();
 
-            //return new Response('Saved new camera data with id '.$camera->getId());
+            $response->setContent('');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_OK);
+
+            return $response;
         }
     }
 }
