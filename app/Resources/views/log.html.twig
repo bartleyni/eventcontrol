@@ -134,7 +134,7 @@ Control Room Log
                 url: '{{ path('full_log_table') }}',
                 cache: false,
                 global: false,
-                success:function()
+                success:function(data)
                 {
                 $("#logTable").html(data);
                 }
