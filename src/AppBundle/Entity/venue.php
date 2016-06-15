@@ -25,7 +25,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class venue {
 
-    
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -123,5 +123,39 @@ class venue {
     public function getCameras()
     {
         return $this->cameras;
+    }
+
+    /**
+     * Add venueCamera
+     *
+     * @param \AppBundle\Entity\venue_camera $venueCamera
+     *
+     * @return venue
+     */
+    public function addVenueCamera(\AppBundle\Entity\venue_camera $venueCamera)
+    {
+        $this->venue_camera[] = $venueCamera;
+
+        return $this;
+    }
+
+    /**
+     * Remove venueCamera
+     *
+     * @param \AppBundle\Entity\venue_camera $venueCamera
+     */
+    public function removeVenueCamera(\AppBundle\Entity\venue_camera $venueCamera)
+    {
+        $this->venue_camera->removeElement($venueCamera);
+    }
+
+    /**
+     * Get venueCamera
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVenueCamera()
+    {
+        return $this->venue_camera;
     }
 }
