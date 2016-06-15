@@ -126,7 +126,7 @@
             $.each(data, function(index, ups) {
                 var timestamp = new Date(ups.timestamp);
                 var now = new Date();
-                if ((now-timestamp)>300000){
+                if ((timestamp-now)>300000){
                     $('#ups-'+ups.id).html("UPS" + ups.id + ": Timeout ("+ ups.status+")");
                 } else {
                     $('#ups-'+ups.id).html("UPS" + ups.id + ": "+ ups.status);
