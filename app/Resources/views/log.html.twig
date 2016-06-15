@@ -136,7 +136,9 @@ Control Room Log
                 global: false,
                 success:function(data)
                 {
-                    if ($("#logTable").html() !== data)
+                    var newTable = data;
+                    var oldTable = $("#logTable").html();
+                    if (oldTable != newTable)
                     {
                         $("#logTable").html(data);
                     }
