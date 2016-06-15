@@ -114,7 +114,7 @@ class UPS_Status {
     {
         $timeNow = new \DateTime();
         
-        if (($timeNow - $this->timestamp) > 300)
+        if (($timeNow - $this->timestamp) > 10)
         {
             return "Timeout";
         }
