@@ -32,10 +32,8 @@ class CameraController extends Controller
             $em->persist($camera);
             $em->flush();
 
-            $response->setContent('');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_OK);
-
+            $response = new Response('',Response::HTTP_OK, array('content-type' => 'text/html');
+            
             return $response;
         }
     }
