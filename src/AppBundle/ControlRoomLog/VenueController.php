@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
+use AppBundle\Form\Type\SkewType;
 
 class VenueController extends Controller
 {
@@ -51,7 +52,7 @@ class VenueController extends Controller
         $skew = new skew();
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
-        $form = $this->createForm(new RegisterType(), $skew);
+        $form = $this->createForm(new SkewType(), $skew);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
