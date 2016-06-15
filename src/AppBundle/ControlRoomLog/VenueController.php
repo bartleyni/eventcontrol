@@ -41,6 +41,7 @@ class VenueController extends Controller
      */
     public function skew(Request $request, $id)
     {
+        $skew = new skew();
         if($id){
         $em = $this->getDoctrine()->getManager();
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
@@ -48,10 +49,12 @@ class VenueController extends Controller
         $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
         $em->flush();
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-        }
-        $skew = new skew();
+            
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
+        }
+       
+        
         $form = $this->createForm(new SkewType(), $skew);
 
         // 2) handle the submit (will only happen on POST)
