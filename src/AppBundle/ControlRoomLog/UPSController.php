@@ -49,4 +49,32 @@ class UPSController extends Controller
         
         return $response;
     }
+    
+    /**
+     * @Route("/UPS/update/{id}/{status}", name="UPS_update");
+     * 
+     */
+    public function UPSUpdateAction($id, $status)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
+        
+        $em->flush();
+        
+        $UPSstatus = new UPS_Status();
+        
+        $UPSstatus->setUPS($ups);
+        $UPSstatus->setStatus($status);
+        $UPSstatus->setTimestamp();
+        
+        $em->persist($UPSstatus);
+        $em->flush();
+        
+        $response->setContent('Hello World');
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        
+        return $response;
+    }
 }
