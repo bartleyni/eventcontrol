@@ -50,8 +50,20 @@ class CameraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        print_r($em->getRepository('AppBundle\Entity\venue')->findAll());
+        $data = $em->getRepository('AppBundle\Entity\venue')->findAll();
 
+        if ($data)
+        {
+            $response = new JsonResponse();
+            $response->setData($data);
+
+        } else {
+            $response->setContent('Hello World');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+
+        return $response;
 
 
         //return $response;
