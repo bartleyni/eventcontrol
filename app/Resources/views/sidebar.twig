@@ -60,7 +60,7 @@
     </div>
     <ul class="list-group">
         {% for venue in venues %}
-            <li class="list-group-item" id="ups-{{ venue.id }}">Venue {{ venue.id }}: Timeout</li>
+            <li class="list-group-item" id="venue-{{ venue.id }}">{{ venue.name }}: Timeout</li>
         {% endfor %}
     </ul>
 </div>
@@ -125,6 +125,12 @@
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
                 $('#ups-'+ups.id).html("UPS" + ups.id + ": "+ ups.status);
+            });
+        });
+
+        $.getJSON('{{ path('/venue/jsondata') }}', function(data) {
+            $.each(data, function(index, venue) {
+                $('#venue-'+venue.id).html(venue.name + ": "+ venue.count.running_count_in-venue.count.running_count_out);
             });
         });
         setTimeout(sidebarPoll,1000);
