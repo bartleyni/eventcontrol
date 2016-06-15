@@ -136,9 +136,9 @@
                 {
                     if (i > 2)
                     {
-                        $('#mainModalLabel').html("UPS " + ups.id + " " + ups.name)
-                        $('#mainModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
-                        $('#mainModal').modal('show')
+                        $('#'+ups.id+'ModalLabel').html("UPS " + ups.id + " " + ups.name)
+                        $('#'+ups.id+'ModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
+                        $('#'+ups.id+'Modal').modal('show')
                     }
                     $('#ups-'+ups.id).html(statusString);
                 }
