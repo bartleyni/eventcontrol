@@ -38,6 +38,7 @@ class venue {
      */
     protected $name;
 
+
     /**
      * @ORM\OneToMany(targetEntity="venue_camera", mappedBy="venue_id")
      */

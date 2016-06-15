@@ -24,7 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 class camera {
-    
+
 
     /**
      * @ORM\Column(type="integer")
@@ -70,6 +70,9 @@ class camera {
     protected $doors;
 
 
+
+
+
     /**
      * calculat running total
      *
@@ -103,7 +106,7 @@ class camera {
         }else{
             $this->running_count_out = $Camera[0]['Camera_running_count_out'] + $diffrance_out;
         }
-        
+
 
         //$this->running_count = $Camera[0]['Camera_id'];
 
