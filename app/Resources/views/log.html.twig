@@ -5,13 +5,13 @@ Control Room Log
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-            <div class="wrapper" id="logTable">
+            <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
                         <h4>Log Entries</h4>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="logTable">
                     <div class="col-md-12">
                         {% if logs is empty %}
                             No logs available
