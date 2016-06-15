@@ -50,7 +50,7 @@ class CameraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery("SELECT venue FROM AppBundle\Entity\venue venue");
+        $query = $em->createQuery("SELECT venue FROM AppBundle:Entity:venue venue");
         
         $data = $query->getArrayResult();
 
