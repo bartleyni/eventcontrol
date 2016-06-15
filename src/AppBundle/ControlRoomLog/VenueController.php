@@ -45,13 +45,12 @@ class VenueController extends Controller
         
         $skew = new skew();
 
-        if($id){
-            $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
-            $em->flush();
-            $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-            $em->flush();
-            $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-        }
+        
+        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+        $em->flush();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
+        
+      
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
 
@@ -68,8 +67,15 @@ class VenueController extends Controller
             
             $em->persist($skew);
             $em->flush();
+            
+            $skew = new skew();
+            $skew->setVenueId($venue);
+            $form = $this->createForm(new SkewType(), $skew);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
+
+        $em->flush();
+        $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
 
         return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form' => $form->createView()));
     }
