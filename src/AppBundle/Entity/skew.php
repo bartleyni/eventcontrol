@@ -18,7 +18,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="venue_camera")
+ * @ORM\Table(name="skew")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\skewRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -47,6 +47,7 @@ class skew {
      * @ORM\Column(type="integer")
      */
     protected $skew_out;
+    
     /**
      * @ORM\ManyToOne(targetEntity="venue")
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")

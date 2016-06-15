@@ -48,6 +48,11 @@ class venue {
      */
     protected $venue_camera;
 
+    /**
+     * @ORM\OneToMany(targetEntity="skew", mappedBy="venue_id")
+     */
+    protected $skew;
+
 
     /**
      * Constructor
