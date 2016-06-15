@@ -50,7 +50,7 @@ class CameraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        print($em->getRepository('AppBundle\Entity\venue')->findAll());
+        print_r($em->getRepository('AppBundle\Entity\venue')->findAll());
 
 
 
