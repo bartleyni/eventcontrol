@@ -183,13 +183,13 @@ class Log extends Controller
     }
     
     /**
-    * @Route("/log/table/{sort}", name="sort_log_table");
-    * @Route("/log/table/{sort}/");
-    * @Route("/log/table/{sort}/{filter}", name="sort_filter_log_table"); 
-    * @Route("/log/table/{sort}/{filter}/");
-    * @Route("/log/table/{sort}/{filter}/{filter_type}", name="sort_filter_type_log_table");
-    * @Route("/log/table/{sort}/{filter}/{filter_type}/");
-    * @Route("/log/table/", name="full_log_table");
+    * @Route("/table/{sort}", name="sort_log_table");
+    * @Route("/table/{sort}/");
+    * @Route("/table/{sort}/{filter}", name="sort_filter_log_table"); 
+    * @Route("/table/{sort}/{filter}/");
+    * @Route("/table/{sort}/{filter}/{filter_type}", name="sort_filter_type_log_table");
+    * @Route("/table/{sort}/{filter}/{filter_type}/");
+    * @Route("/table/", name="full_log_table");
     */
     
     public function tableAction($sort='DESC', $filter=null, $filter_type=null)
