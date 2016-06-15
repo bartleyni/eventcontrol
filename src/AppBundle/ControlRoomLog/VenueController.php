@@ -43,16 +43,10 @@ class VenueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $em->flush();
-        $qb = $em->createQueryBuilder();
-        $qb->select('u')
-            ->from('AppBundle\Entity\skew', 'u')
-            ->where('u.timestamp = :timestamp')
-            ->setParameter("timestamp", $timestamp); 
-        $query = $qb->getQuery();
-        $skews = $query->getArrayResult();
-        $em->flush();
         $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-       
+        $em->flush();
+        $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
+        
         return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue));
     }
     /**
