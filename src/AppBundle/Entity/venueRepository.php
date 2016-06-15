@@ -45,7 +45,7 @@ class venueRepository extends EntityRepository
                 $output['running_count_in'] += $skew['skew_in'];
                 $output['running_count_out'] += $skew['skew_out'];
             }
-            echo "print after output";
+            //echo "print after output";
             //print_r($output);
             //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
             //$output['running_count_out']=$current_data[running_count_out]-$doors_data[running_count_out];
