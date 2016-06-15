@@ -128,6 +128,8 @@ Control Room Log
             tablePoll();
         });
         
+        var oldTable;
+        
         function tablePoll(){
             $.ajax({
                 type:'POST',
@@ -137,10 +139,11 @@ Control Room Log
                 success:function(data)
                 {
                     var newTable = data;
-                    var oldTable = $("#logTable").html();
+                    //var oldTable = $("#logTable").html();
                     if (oldTable != newTable)
                     {
                         $("#logTable").html(data);
+                        oldTable = data;
                     }
                 }
             });
