@@ -4,6 +4,7 @@ namespace AppBundle\ControlRoomLog;
 use AppBundle\Entity\venue;
 use AppBundle\Entity\camera;
 use AppBundle\Entity\venue_camera;
+use AppBundle\Entity\skew;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,8 +30,30 @@ class VenueController extends Controller
         foreach ($venues as $key => $value) {
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
-        print_r($venues);
+        
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
+    }
+
+    /**
+     * @Route("/venue/skew/{id}", name="skew");
+     *
+     */
+    public function skew($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+        $em->flush();
+        $qb = $em->createQueryBuilder();
+        $qb->select('u')
+            ->from('AppBundle\Entity\skew', 'u')
+            ->where('u.timestamp = ?timestamp')
+            ->setParameter("timestamp", $timestamp); 
+        $query = $qb->getQuery();
+        $skews = $query->getArrayResult();
+        $em->flush();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
+       
+        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue));
     }
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");

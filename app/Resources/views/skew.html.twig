@@ -1,0 +1,57 @@
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+
+    People Counting
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="flash notice">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        <h4>{{ venue.name }} skew</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if skews is empty %}
+                            No skews
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Id</strong></td>
+                                    <td><strong>Timestamp</strong></td>
+                                    <td><strong>Skew in</strong></td>
+                                    <td><strong>Skew out</strong></td>
+                                </tr>
+                                {% for skew in skews %}
+                                    <tr>
+                                        <td>{{ skew.id }}</td>
+                                        <td>{{ skew.timestamp|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                        <td>{{ skew.skew_in }}</td>
+                                        <td>{{ skew.skew_out }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {#<div class="col-md-12">
+                                <a href="{{ path('doors', {'id': 'all'}) }}" class="btn btn-warning btn-block">
+                                    Sign All Out
+                                </a>
+                            </div>#}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
