@@ -25,6 +25,7 @@ class VenueController extends Controller
             ->from('AppBundle\Entity\venue', 'u');
         $query = $qb->getQuery();
         $venues = $query->getResult();
+        $em->flush();
         foreach ($venues as $key => $value) {
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
