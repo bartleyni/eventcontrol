@@ -46,7 +46,7 @@ class VenueController extends Controller
         $qb = $em->createQueryBuilder();
         $qb->select('u')
             ->from('AppBundle\Entity\skew', 'u')
-            ->where('u.timestamp = ?timestamp')
+            ->where('u.timestamp = :timestamp')
             ->setParameter("timestamp", $timestamp); 
         $query = $qb->getQuery();
         $skews = $query->getArrayResult();
