@@ -19,7 +19,7 @@ class Log extends Controller
      * @Route("/log.{_format}", defaults={"_format"="html"}", name="log_pdf");
     */
     
-    public function logAction($sort='DESC', $filter=null, $filter_type=null, $_format)
+    public function logAction($sort='DESC', $filter=null, $filter_type=null, $_format="html")
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
