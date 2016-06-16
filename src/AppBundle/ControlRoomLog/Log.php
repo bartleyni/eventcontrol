@@ -16,6 +16,7 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
     * @Route("/");
+     * @Route("/log.pdf", name="log_pdf");
     */
     
     public function logAction($sort='DESC', $filter=null, $filter_type=null)
@@ -179,7 +180,23 @@ class Log extends Controller
         }
         $query = $qb->getQuery();
         $logs = $query->getResult();
-        return $this->render('log.html.twig', array('logs' => $logs));
+        
+        $format = $this->get('request')->get('_format');
+        print_r($format);
+        if ($format=="pdf") {
+            $pageUrl = $this->generateUrl('full_log', array(), true); // use absolute path!
+
+            return new Response(
+                $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+                200,
+                array(
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'attachment; filename="log.pdf"'
+                )
+            );
+        }else {
+            return $this->render('log.html.twig', array('logs' => $logs));
+        }
     }
     
     /**
