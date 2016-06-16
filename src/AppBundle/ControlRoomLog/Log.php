@@ -16,10 +16,10 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
     * @Route("/");
-     * @Route("/log.pdf", name="log_pdf");
+     * @Route("/log.{_format}", defaults={"_format"="html"}", name="log_pdf");
     */
     
-    public function logAction($sort='DESC', $filter=null, $filter_type=null)
+    public function logAction($sort='DESC', $filter=null, $filter_type=null, $_format)
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
@@ -181,9 +181,7 @@ class Log extends Controller
         $query = $qb->getQuery();
         $logs = $query->getResult();
         
-        $format = $this->get('request')->get('_format');
-        print_r($format);
-        if ($format=="pdf") {
+       if ($_format=="pdf") {
             $pageUrl = $this->generateUrl('full_log', array(), true); // use absolute path!
 
             return new Response(
