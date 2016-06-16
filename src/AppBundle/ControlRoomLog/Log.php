@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class Log extends Controller
 {
     /**
+    * @Route("/log.{_format}", name="log_pdf");
     * @Route("/log/{sort}", name="sort_log");
     * @Route("/log/{sort}/");
     * @Route("/log/{sort}/{filter}", name="sort_filter_log"); 
@@ -15,8 +16,7 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}", name="sort_filter_type_log");
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
-    * @Route("/");
-     * @Route("/log.{_format}", name="log_pdf");
+    * @Route("/"); 
     */
     
     public function logAction($sort='DESC', $filter=null, $filter_type=null, $_format="html")
