@@ -180,7 +180,7 @@ class Log extends Controller
         }
         $query = $qb->getQuery();
         $logs = $query->getResult();
-        
+        print_r($_format);
        if ($_format=="pdf") {
             $pageUrl = $this->generateUrl('full_log', array(), true); // use absolute path!
 
