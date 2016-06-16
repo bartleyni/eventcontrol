@@ -52,9 +52,8 @@ class VenueController extends Controller
         
       
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
+        
         $skew->setVenueId($venue);
-
-       
         
         $form = $this->createForm(new SkewType(), $skew);
 
