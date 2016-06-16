@@ -16,7 +16,7 @@ class Log extends Controller
     * @Route("/log/{sort}/{filter}/{filter_type}/");
     * @Route("/log/", name="full_log");
     * @Route("/");
-     * @Route("/log.{_format}", defaults={"_format"="html"}", name="log_pdf");
+     * @Route("/log.{_format}", name="log_pdf");
     */
     
     public function logAction($sort='DESC', $filter=null, $filter_type=null, $_format="html")
