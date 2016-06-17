@@ -21,35 +21,35 @@
 <a href="{{ path('full_log') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            Full Log View <span class="badge">{{ activeTotalLogs() }}</span>
+            Full Log View <span class="badge" id="logTotal-Total">{{ activeTotalLogs() }}</span>
         </div>
     </div>
 </a>
 <a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            Latest Open <span class="badge">{{ activeOpenLogs() }}</span>
+            Latest Open <span class="badge" id="logTotal-Open">{{ activeOpenLogs() }}</span>
         </div>
     </div>
 </a>
 <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "medical"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            Latest Medical <span class="badge">{{ activeMedicalLogs() }}</span>
+            Latest Medical <span class="badge" id="logTotal-Medical">{{ activeMedicalLogs() }}</span>
         </div>
     </div>
 </a>
 <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "security"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            Latest Security <span class="badge">{{ activeSecurityLogs() }}</span>
+            Latest Security <span class="badge" id="logTotal-Security">{{ activeSecurityLogs() }}</span>
         </div>
     </div>
 </a>
 <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "lost"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            Latest Lost Property <span class="badge">{{ activeLostPropertyLogs() }}</span>
+            Latest Lost Property <span class="badge" id="logTotal-Lost">{{ activeLostPropertyLogs() }}</span>
         </div>
     </div>
 </a>
@@ -134,7 +134,7 @@
                 var statusString = "UPS" + ups.id + ": "+ ups.status;
                 if ($('#ups-'+ups.id).html() != statusString)
                 {
-                    if (i > 2)
+                    if (i > 5)
                     {
                         $('#ups'+ups.id+'ModalLabel').html("UPS " + ups.id + " " + ups.name)
                         $('#ups'+ups.id+'ModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location)
@@ -146,9 +146,6 @@
         });
         
         
-        
-        
-
         $.getJSON('{{ path('venue_json_data') }}', function(data) {
             $.each(data, function(index, venue) {
                 //Calculate current occupancy
@@ -156,6 +153,13 @@
                 $('#venue-'+venue.id).html(venue.name + ": "+ count);
             });
         });
+        
+        $.getJSON('{{ path('log_json_data') }}', function(data) {
+            $.each(data, function(index, log) {
+                $('#logTotal-'+index).html(log.index);
+            });
+        });
+        
         i++;
         setTimeout(sidebarPoll,1000);
     }
