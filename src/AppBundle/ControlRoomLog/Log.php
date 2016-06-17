@@ -381,7 +381,7 @@ class Log extends Controller
      */
     public function log_json_data(Request $request)
     {
-        $em = $this->doctrine->getManager();
+        $em = $this->getDoctrine()->getManager();
         
         $qb1 = $em->createQueryBuilder(); 
         
@@ -403,7 +403,7 @@ class Log extends Controller
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
-            ->where($qb->expr()->isNotNull('med.medical_description'))
+            ->where($qb2->expr()->isNotNull('med.medical_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventId())
             ;
@@ -418,7 +418,7 @@ class Log extends Controller
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
-            ->where($qb->expr()->isNotNull('sec.security_description'))
+            ->where($qb3->expr()->isNotNull('sec.security_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventId())
             ;
@@ -434,7 +434,7 @@ class Log extends Controller
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
-            ->where($qb->expr()->isNotNull('lost.lost_property_description'))
+            ->where($qb4->expr()->isNotNull('lost.lost_property_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventId())
             ;
