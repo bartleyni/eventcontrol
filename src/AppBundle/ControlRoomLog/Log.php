@@ -485,7 +485,8 @@ class Log extends Controller
             ;
 
         //$totalOpen = $qb5->getQuery()->getSingleScalarResult();
-        $logs['Open'] = $qb5->getQuery()->getSingleScalarResult();
+        //$logs['Open'] = $qb5->getQuery()->getSingleScalarResult();
+        $logs['Open'] = 99;
         
         if ($logs)
         {
