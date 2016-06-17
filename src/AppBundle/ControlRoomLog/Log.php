@@ -405,7 +405,6 @@ class Log extends Controller
             ->setParameter('eventId', $eventId)
             ;
 
-        //$totalLogs = $qb1->getQuery()->getSingleScalarResult();
         $logs['Total'] = $qb1->getQuery()->getSingleScalarResult();
         
         $qb2 = $em->createQueryBuilder(); 
@@ -420,7 +419,6 @@ class Log extends Controller
             ->setParameter('eventId', $eventId)
             ;
 
-        //$totalMedical = $qb2->getQuery()->getSingleScalarResult();
         $logs['Medical'] = $qb2->getQuery()->getSingleScalarResult();
         
         $qb3 = $em->createQueryBuilder(); 
@@ -435,9 +433,7 @@ class Log extends Controller
             ->setParameter('eventId', $eventId)
             ;
 
-        //$totalSecurity = $qb3->getQuery()->getSingleScalarResult();
         $logs['Security'] = $qb3->getQuery()->getSingleScalarResult();
-        
         
         $qb4 = $em->createQueryBuilder(); 
         
@@ -451,9 +447,7 @@ class Log extends Controller
             ->setParameter('eventId', $eventId)
             ;
 
-        //$totalLostProperty = $qb4->getQuery()->getSingleScalarResult();
-        //$logs['Lost'] = $qb4->getQuery()->getSingleScalarResult();
-        $logs['Lost'] = 90;
+        $logs['Lost'] = $qb4->getQuery()->getSingleScalarResult();
         
         $qb5 = $em->createQueryBuilder(); 
         
@@ -485,9 +479,7 @@ class Log extends Controller
             ->setParameter('eventId', $eventId)
             ;
 
-        //$totalOpen = $qb5->getQuery()->getSingleScalarResult();
-        //$logs['Open'] = $qb5->getQuery()->getSingleScalarResult();
-        $logs['Open'] = 99;
+        $logs['Open'] = $qb5->getQuery()->getSingleScalarResult();
         
         if ($logs)
         {
