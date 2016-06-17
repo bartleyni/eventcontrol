@@ -4,6 +4,9 @@ namespace AppBundle\ControlRoomLog;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class Log extends Controller
 {
@@ -369,6 +372,114 @@ class Log extends Controller
         $query = $qb->getQuery();
         $logs = $query->getResult();
         return $this->render('logTable.html.twig', array('logs' => $logs));
+    }
+    
+    /**
+     * @Route("/logjsondata/", name="log_json_data");
+     *
+     */
+    public function log_json_data(Request $request)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb1 = $em->createQueryBuilder(); 
+        
+        $qb1
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where('event.id = :eventId')
+            ->setParameter('eventId', $this->getEventId())
+            ;
+
+        //$totalLogs = $qb1->getQuery()->getSingleScalarResult();
+        $logs['Total'] = $qb1->getQuery()->getSingleScalarResult();
+        
+        $qb2 = $em->createQueryBuilder(); 
+        
+        $qb2
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('med.medical_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $this->getEventId())
+            ;
+
+        //$totalMedical = $qb2->getQuery()->getSingleScalarResult();
+        $logs['Medical'] = $qb2->getQuery()->getSingleScalarResult();
+        
+        $qb3 = $em->createQueryBuilder(); 
+        
+        $qb3
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('sec.security_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $this->getEventId())
+            ;
+
+        //$totalSecurity = $qb3->getQuery()->getSingleScalarResult();
+        $logs['Security'] = $qb3->getQuery()->getSingleScalarResult();
+        
+        
+        $qb4 = $em->createQueryBuilder(); 
+        
+        $qb4
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('lost.lost_property_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $this->getEventId())
+            ;
+
+        //$totalLostProperty = $qb4->getQuery()->getSingleScalarResult();
+        $logs['Lost'] = $qb4->getQuery()->getSingleScalarResult();
+        
+        $qb5 = $em->createQueryBuilder(); 
+        
+        $qb5
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\general_log', 'gen', 'WITH', 'gen.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb5->expr()->andX(
+                        $qb5->expr()->isNotNull('med.medical_description'),
+                        $qb5->expr()->isNull('med.medical_entry_closed_time')
+                    ))
+            ->where($qb5->expr()->andX(
+                            $qb5->expr()->isNotNull('sec.security_description'),
+                            $qb5->expr()->isNull('sec.security_entry_closed_time')
+                    ))
+            ->where($qb5->expr()->andX(
+                            $qb5->expr()->isNotNull('gen.general_description'),
+                            $qb5->expr()->isNull('gen.general_entry_closed_time')
+                    ))
+            ->where($qb5->expr()->andX(
+                            $qb5->expr()->isNotNull('lost.lost_property_description'),
+                            $qb5->expr()->isNull('lost.lost_property_entry_closed_time')
+                    ))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $this->getEventId())
+            ;
+
+        //$totalOpen = $qb5->getQuery()->getSingleScalarResult();
+        $logs['Open'] = $qb5->getQuery()->getSingleScalarResult();
+        
+        if ($logs)
+        {
+            $response = new JsonResponse();
+            $response->setData($logs);
+        }
+        return $response;
     }
 }
 
