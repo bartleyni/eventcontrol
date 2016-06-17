@@ -383,6 +383,18 @@ class Log extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('event_active' => true));
+        
+        if ($event)
+        {
+            $eventId = $event->getId();
+        } else {
+            $eventId = 0;
+        }
+        
+        $em->flush();
+        
         $qb1 = $em->createQueryBuilder(); 
         
         $qb1
@@ -390,7 +402,7 @@ class Log extends Controller
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $eventId)
             ;
 
         //$totalLogs = $qb1->getQuery()->getSingleScalarResult();
@@ -405,7 +417,7 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb2->expr()->isNotNull('med.medical_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $eventId)
             ;
 
         //$totalMedical = $qb2->getQuery()->getSingleScalarResult();
@@ -420,7 +432,7 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb3->expr()->isNotNull('sec.security_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $eventId)
             ;
 
         //$totalSecurity = $qb3->getQuery()->getSingleScalarResult();
@@ -436,7 +448,7 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb4->expr()->isNotNull('lost.lost_property_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $eventId)
             ;
 
         //$totalLostProperty = $qb4->getQuery()->getSingleScalarResult();
@@ -469,7 +481,7 @@ class Log extends Controller
                             $qb5->expr()->isNull('lost.lost_property_entry_closed_time')
                     ))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $eventId)
             ;
 
         //$totalOpen = $qb5->getQuery()->getSingleScalarResult();
