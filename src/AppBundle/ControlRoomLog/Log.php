@@ -452,7 +452,8 @@ class Log extends Controller
             ;
 
         //$totalLostProperty = $qb4->getQuery()->getSingleScalarResult();
-        $logs['Lost'] = $qb4->getQuery()->getSingleScalarResult();
+        //$logs['Lost'] = $qb4->getQuery()->getSingleScalarResult();
+        $logs['Lost'] = 90;
         
         $qb5 = $em->createQueryBuilder(); 
         

@@ -157,6 +157,9 @@
         $.getJSON('{{ path('log_json_data') }}', function(data) {
             $('#logTotal-Total').html(data['Total']);
             $('#logTotal-Open').html(data['Open']);
+            $('#logTotal-Medical').html(data['Medical']);
+            $('#logTotal-Security').html(data['Security']);
+            $('#logTotal-Lost').html(data['Lost']);
         });
         
         i++;
