@@ -155,9 +155,8 @@
         });
         
         $.getJSON('{{ path('log_json_data') }}', function(data) {
-            $.each(data, function(index, log) {
-                $('#logTotal-'+index).html(log.index);
-            });
+            $('#logTotal-Total').html(data.Total);
+            $('#logTotal-Open').html(data.Open);
         });
         
         i++;
