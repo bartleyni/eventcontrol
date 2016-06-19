@@ -46,7 +46,7 @@ class UPSController extends Controller
             //$interval2 = intval($interval1->format('%i'));
             //if ($interval2 > 15)
             //{
-                $ups_statuses[$key]['Status'] = 'Timeout';
+                $ups_statuses[$key]['status'] = 'Timeout';
             //}
         }
         
