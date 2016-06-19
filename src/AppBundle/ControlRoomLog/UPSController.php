@@ -42,12 +42,12 @@ class UPSController extends Controller
         
         foreach ($ups_statuses as $key => $status)
         {
-            //$interval1 = date_diff($status.timestamp, $now);
-            //$interval2 = intval($interval1->format('%i'));
-            //if ($interval2 > 15)
-            //{
+            $interval1 = date_diff($status['timestamp'], $now, TRUE);
+            $interval2 = intval($interval1->format('%i'));
+            if ($interval2 > 15)
+            {
                 $ups_statuses[$key]['status'] = 'Timeout';
-            //}
+            }
         }
         
         if ($ups_statuses)
