@@ -40,7 +40,7 @@ class UPSController extends Controller
         {
             $interval1 = date_diff($status['timestamp'], $now, TRUE);
             $interval2 = intval($interval1->format('%i'));
-            if ($interval2 > 1)
+            if ($interval2 > 9)
             {
                 $ups_statuses[$key]['status'] = 'Timeout';
             }
