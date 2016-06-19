@@ -44,10 +44,10 @@ class UPSController extends Controller
         {
             //$interval1 = date_diff($status.timestamp, $now);
             //$interval2 = intval($interval1->format('%i'));
-            if ($interval2 > 15)
-            {
+            //if ($interval2 > 15)
+            //{
                 $status->setStatus('Timeout');
-            }
+            //}
         }
         
         if ($ups_statuses)
