@@ -42,8 +42,8 @@ class UPSController extends Controller
         
         foreach ($ups_statuses as $status)
         {
-            $interval1 = date_diff($status.timestamp, $now);
-            $interval2 = intval($interval1->format('%i'));
+            //$interval1 = date_diff($status.timestamp, $now);
+            //$interval2 = intval($interval1->format('%i'));
             if ($interval2 > 15)
             {
                 $status->setStatus('Timeout');
