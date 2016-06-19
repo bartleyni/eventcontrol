@@ -21,8 +21,8 @@ class UPS_StatusRepository extends EntityRepository
 {
     public function getLatestUPS()
     {
-        $statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)');
-        //$statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)')->getResult();
+        //$statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)');
+        $statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)')->getResult();
         
         //$now = new DateTime();
         

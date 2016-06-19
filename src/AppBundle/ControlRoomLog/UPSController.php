@@ -40,13 +40,13 @@ class UPSController extends Controller
         
         $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
         
-        foreach ($ups_statuses as $status)
+        foreach ($ups_statuses as $key => $status)
         {
             //$interval1 = date_diff($status.timestamp, $now);
             //$interval2 = intval($interval1->format('%i'));
             //if ($interval2 > 15)
             //{
-                $status->setStatus('Timeout');
+                $ups_statuses[$key]['Status'] = 'Timeout';
             //}
         }
         
