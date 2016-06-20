@@ -43,6 +43,7 @@ class UPSController extends Controller
             if ($interval2 > 9)
             {
                 $ups_statuses[$key]['status'] = 'Timeout';
+                $ups_statuses[$key]['timeout'] = $interval2;
             }
         }
         
