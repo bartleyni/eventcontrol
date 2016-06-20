@@ -39,13 +39,12 @@ class UPSController extends Controller
         foreach ($ups_statuses as $key => $status)
         {
             $interval1 = date_diff($status['timestamp'], $now, TRUE);
-            $interval2 = intval($interval1->format('%i'));
             
             $minutes = $interval1->days * 24 * 60;
             $minutes += $interval1->h * 60;
             $minutes += $interval1->i;
             
-            if ($interval2 > 9)
+            if ($minutes > 9)
             {
                 $ups_statuses[$key]['status'] = 'Timeout';
                 $ups_statuses[$key]['timeout'] = $minutes;
