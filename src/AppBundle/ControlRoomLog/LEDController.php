@@ -47,7 +47,6 @@ class LEDController extends Controller
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
-        
         return $response;
     }
 }
