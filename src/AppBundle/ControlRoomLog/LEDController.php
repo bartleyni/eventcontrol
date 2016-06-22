@@ -41,8 +41,8 @@ class LEDController extends Controller
         {
                 $response = new JsonResponse();
                 $response->setData($led_statuses);
-
         } else {
+            $response = new Response();
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
