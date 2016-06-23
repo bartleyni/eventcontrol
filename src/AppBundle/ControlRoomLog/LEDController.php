@@ -52,7 +52,7 @@ class LEDController extends Controller
      * @Route("/LED/mode/{mode}", name="LED_mode");
      * 
      */
-    public function LEDModeAction(Request $request)
+    public function LEDModeAction(Request $request, $mode=null)
     {
         $em = $this->getDoctrine()->getManager(); 
 
