@@ -33,8 +33,6 @@ class LEDController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $now = new \DateTime();
-        
         $led_statuses = $em->getRepository('AppBundle\Entity\ControlRoomLED')->getLatestLED();
         
         if ($led_statuses)
@@ -48,5 +46,15 @@ class LEDController extends Controller
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
         return $response;
+    }
+    
+    /**
+     * @Route("/LED/mode/{mode}", name="LED_mode");
+     * 
+     */
+    public function LEDModeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager(); 
+
     }
 }
