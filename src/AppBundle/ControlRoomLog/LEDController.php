@@ -79,5 +79,9 @@ class LEDController extends Controller
         
         $em->persist($desk_led);
         $em->flush();
+        
+        $response = new Response('LED updated',Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
     }
 }
