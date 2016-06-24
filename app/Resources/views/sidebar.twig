@@ -128,17 +128,17 @@
         <br>
     </div>
 </div>
-<div class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+<div id="LEDBtn1" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Full Working Light
     </div>
 </div>
-<div class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+<div id="LEDBtn2" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Control Mode Working Light
     </div>
 </div>
-<div class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+<div id="LEDBtn3" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Lighting Off
     </div>
@@ -148,6 +148,19 @@
     $(document).ready(function() {
         sidebarPoll();
     });
+    
+    $('#LEDBtn1').click(function(){
+        $.post( "{{ path('LED_mode', {'mode': "Working"}) }}" );
+        });
+        
+    $('#LEDBtn2').click(function(){
+        $.post( "{{ path('LED_mode', {'mode': "Control"}) }}" );
+        });
+        
+    $('#LEDBtn3').click(function(){
+        $.post( "{{ path('LED_mode', {'mode': "Off"}) }}" );
+        });
+    
     
     var i = 0;
     
