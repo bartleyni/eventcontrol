@@ -54,7 +54,30 @@ class LEDController extends Controller
      */
     public function LEDModeAction(Request $request, $mode=null)
     {
-        $em = $this->getDoctrine()->getManager(); 
-
+        $em = $this->getDoctrine()->getManager();
+        $desk_led = new ControlRoomLED();
+        $user = $this->getUser();
+        $desk_led->setOperator($user);
+        $desk_led->setTimestamp();
+        $desk_led->setledRef("Desk");
+        
+        if ($mode == "Working")
+        {
+            $desk_led->setColour("White");
+            $desk_led->setBrightness("1");
+        }
+        elseif ($mode == "Control")
+        {
+            $desk_led->setColour("White");
+            $desk_led->setBrightness("0.5");
+        }
+        elseif ($mode == "Off")
+        {
+            $desk_led->setColour("White");
+            $desk_led->setBrightness("0");
+        }
+        
+        $em->persist($desk_led);
+        $em->flush();
     }
 }
