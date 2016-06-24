@@ -68,7 +68,7 @@ class ControlRoomLED {
      *
      * @param \DateTime $timestamp
      * @ORM\PrePersist
-     * @return Example
+     * @return ControlRoomLED
      */
     public function setTimestamp()
     {
@@ -80,5 +80,53 @@ class ControlRoomLED {
         return $this;
     }
     
+    /**
+     * Set operator
+     *
+     * @param \AppBundle\Entity\User $operator
+     *
+     * @return ControlRoomLED
+     */
+    public function setOperator(\AppBundle\Entity\User $operator = null)
+    {
+        $this->operator = $operator;
+
+        return $this;
+    }
     
+    /**
+     * Set ledRef
+     * @param string $ledRef
+     * @return ControlRoomLED
+     */
+    public function setledRef($ledRef)
+    {
+        $this->ledRef = $ledRef;
+
+        return $this;
+    }
+    
+    /**
+     * Set colour
+     * @param string $colour
+     * @return ControlRoomLED
+     */
+    public function setColour($colour)
+    {
+        $this->colour = $colour;
+
+        return $this;
+    }
+    
+    /**
+     * Set brightness
+     * @param string $brightness
+     * @return ControlRoomLED
+     */
+    public function setBrightness($brightness)
+    {
+        $this->brightness = $brightness;
+
+        return $this;
+    }
 }
