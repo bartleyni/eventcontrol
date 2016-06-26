@@ -190,10 +190,12 @@
                 var offset = (new Date()).getTimezoneOffset();
                 var lastrecord = new Date(venue['doors'].date);
                 var now = new Date();
-                if((now.getTime() - lastrecord.getTime() - offset)>300000){
-
-                    alert("old!");
-                }
+               if((now.getTime() - (lastrecord.getTime() - (offset*60000)))>300000){
+                    console.log("old!")
+                   $('#venue-'+venue.id).addClass("flash");
+                }else{
+                   $('#venue-'+venue.id).removeClass("flash");
+               }
             });
         });
 

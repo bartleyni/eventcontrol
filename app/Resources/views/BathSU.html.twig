@@ -43,6 +43,32 @@
     max-height: 220px;
 }
 
+@-webkit-keyframes argh-my-eyes {
+    0%   { background-color: red; }
+    49% { background-color: red; }
+    50% { background-color: white; }
+    99% { background-color: white; }
+    100% { background-color: red; }
+}
+@-moz-keyframes argh-my-eyes {
+    0%   { background-color: red; }
+    49% { background-color: red; }
+    50% { background-color: white; }
+    99% { background-color: white; }
+    100% { background-color: red; }
+}
+@keyframes argh-my-eyes {
+    0%   { background-color: red; }
+    49% { background-color: red; }
+    50% { background-color: white; }
+    99% { background-color: white; }
+    100% { background-color: red; }
+}
+.flash {
+    -webkit-animation: argh-my-eyes 1s infinite;
+    -moz-animation:    argh-my-eyes 1s infinite;
+    animation:         argh-my-eyes 1s infinite;
+}
 </style>
 {% endblock %}
 
