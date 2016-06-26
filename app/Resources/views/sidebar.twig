@@ -187,6 +187,10 @@
                 //Calculate current occupancy
                 var count = venue['count'].running_count_in - venue['count'].running_count_out;
                 $('#venue-'+venue.id).html(venue.name + ": "+ count);
+                var offset = (new Date()).getTimezoneOffset();
+                var lastrecord = new Date(venue['doors'].date - offset);
+                alert(lastrecord);
+
             });
         });
         
