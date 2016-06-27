@@ -47,11 +47,41 @@ class LEDController extends Controller
             $led_statuses['Alert'] = 'None';
         }
         
+        $max_UPS = 0;
+        $tempUPSstatus = [0,0,0,0];
+        
         if($UPS_statuses)
         {
-            
+            foreach ($UPS_statuses as $key => $ups)
+            {
+                if ($ups['status'] == 'Timeout')
+                {
+                    $tempUPSstatus[$key] = 1;
+                } elseif ($ups['status'] == 'Battery')
+                {
+                    $tempUPSstatus[$key] = 2;
+                } elseif ($ups['status'] == 'Fault')
+                {
+                    $tempUPSstatus[$key] = 3;
+                }
+            }
         }
         
+        $max_UPS = max($tempUPSstatus);
+        
+        if($max_UPS == 1)
+        {
+            $led_statuses['Alert']['Type'] = 'Flash';
+            $led_statuses['Alert']['Colour'] = 'Green';
+        } elseif ($max_UPS == 2) 
+        {
+            $led_statuses['Alert']['Type'] = 'Flash';
+            $led_statuses['Alert']['Colour'] = 'Yellow';
+        } elseif ($max_UPS == 3) 
+        {
+            $led_statuses['Alert']['Type'] = 'Flash';
+            $led_statuses['Alert']['Colour'] = 'Red';
+        }
         
         if ($led_statuses)
         {
