@@ -26,6 +26,7 @@ class venueRepository extends EntityRepository
             if ($camera['inverse']) {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
                  $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
+                $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->iscamerauptodate($camera['camera_id']);
                 $output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
                 $output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
             } else {

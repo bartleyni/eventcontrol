@@ -25,6 +25,17 @@ class cameraRepository extends EntityRepository
         return $output;
 
     }
+    public function iscamerauptodate($id)
+    {
+        $current_data = $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, p.camera_id FROM AppBundle\Entity\camera p  WHERE p.timestamp >= DATE_SUB(NOW(),INTERVAL 5 MINUTE) ORDER BY p.timestamp DESC')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
+        
+        print_r($current_data);
+        //$output['running_count_in']=$current_data[running_count_in];
+        //$output['running_count_out']=$current_data[running_count_out];
+
+        //return $output;
+
+    }
     
     
 }
