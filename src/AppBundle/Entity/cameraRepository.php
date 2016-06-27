@@ -30,7 +30,7 @@ class cameraRepository extends EntityRepository
         $date = new \DateTime();
         $date->modify('-5 minutes');
         $current_data = $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, p.camera_id FROM AppBundle\Entity\camera p  WHERE p.camera_id = :id AND p.timestamp >= :date  ORDER BY p.timestamp DESC')->setParameter('id', $id)->setParameter('date', $date)->setMaxResults(1)->getResult();
-        if((count($current_data)>0){
+        if(count($current_data)>0){
             return true;
         }else{
             return false;
