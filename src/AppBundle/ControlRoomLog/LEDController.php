@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\ControlRoomLED;
+use AppBundle\Entity\venue;
 use AppBundle\Entity\UPS_Status;
 use AppBundle\Entity\UPS;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,7 +34,16 @@ class LEDController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $led_statuses = $em->getRepository('AppBundle\Entity\ControlRoomLED')->getLatestLED();
+        $led_statuses['Constant'] = $em->getRepository('AppBundle\Entity\ControlRoomLED')->getLatestLED();
+        $people_counter_status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
+        
+        if($people_counter_status == False)
+        {
+            $led_statuses['Alert']['Type'] = 'Flash-Sting';
+            $led_statuses['Alert']['Colour'] = 'Red';
+        } else {
+            $led_statuses['Alert'] = 'None';
+        }      
         
         if ($led_statuses)
         {
