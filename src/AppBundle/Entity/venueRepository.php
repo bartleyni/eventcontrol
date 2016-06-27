@@ -29,6 +29,22 @@ class venueRepository extends EntityRepository
             return $output;
         }
     }
+    public function getpeoplecountingstatus()
+    {
+        $venues = $this->getEntityManager()->createQuery('SELECT p.id FROM AppBundle\Entity\venue p')->getResult();
+       
+        $output = ture;
+        foreach ($venues as $venue) {
+
+            $status=$this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuestatus($venue['id']);
+            if(!$status){
+                $output = false;
+            }
+
+            return $output;
+        }
+    }
+    
     public function getvenuecount($id)
     {
 
