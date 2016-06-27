@@ -40,9 +40,8 @@ class LEDController extends Controller
         
         if($people_counter_status == False)
         {
-            #$led_statuses['Alert']['Type'] = 'Flash';
-            #$led_statuses['Alert']['Colour'] = 'Red';
-            $led_statuses['Alert']['Type'] = 'None';
+            $led_statuses['Alert']['Type'] = 'Flash';
+            $led_statuses['Alert']['Colour'] = 'Red';
         } else {
             $led_statuses['Alert']['Type'] = 'None';
         }
