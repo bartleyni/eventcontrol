@@ -107,7 +107,9 @@ class VenueController extends Controller
 
         $output = array();
         foreach ($venues as $key => $value) {
-              $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
+            $status = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuestatus($id);
+            if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
         }
         
         if ($venues)

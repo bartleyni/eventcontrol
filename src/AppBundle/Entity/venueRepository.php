@@ -61,8 +61,7 @@ class venueRepository extends EntityRepository
                 $output['running_count_out'] += $skew['skew_out'];
             }
 
-            $status = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuestatus($id);
-            if ($status) {  $output['status'] = "true"; }else{ $output['status'] = "false"; }
+            
             //echo "print after output";
             //print_r($output);
             //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
