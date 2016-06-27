@@ -26,6 +26,21 @@ class UPS_StatusRepository extends EntityRepository
         
         //$now = new DateTime();
         
+        foreach ($statuses as $key => $status)
+        {
+            $interval1 = date_diff($status['timestamp'], $now, TRUE);
+            
+            $minutes = $interval1->days * 24 * 60;
+            $minutes += $interval1->h * 60;
+            $minutes += $interval1->i;
+            
+            if ($minutes > 9)
+            {
+                $statuses[$key]['status'] = 'Timeout';
+                $statuses[$key]['timeout'] = $minutes;
+            }
+        }
+        
         return $statuses;
     }
 }

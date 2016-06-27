@@ -46,8 +46,8 @@ class UPSController extends Controller
             
             if ($minutes > 9)
             {
-                $ups_statuses[$key]['status'] = 'Timeout';
-                $ups_statuses[$key]['timeout'] = $minutes;
+                #$ups_statuses[$key]['status'] = 'Timeout';
+                #$ups_statuses[$key]['timeout'] = $minutes;
             }
         }
         

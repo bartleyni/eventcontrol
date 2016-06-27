@@ -36,6 +36,7 @@ class LEDController extends Controller
         
         $led_statuses['Constant'] = $em->getRepository('AppBundle\Entity\ControlRoomLED')->getLatestLED();
         $people_counter_status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
+        $UPS_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
         
         if($people_counter_status == False)
         {
@@ -44,7 +45,13 @@ class LEDController extends Controller
             $led_statuses['Alert'] = 'None';
         } else {
             $led_statuses['Alert'] = 'None';
-        }      
+        }
+        
+        if($UPS_statuses)
+        {
+            
+        }
+        
         
         if ($led_statuses)
         {
