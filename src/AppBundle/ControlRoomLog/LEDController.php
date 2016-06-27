@@ -42,9 +42,9 @@ class LEDController extends Controller
         {
             #$led_statuses['Alert']['Type'] = 'Flash';
             #$led_statuses['Alert']['Colour'] = 'Red';
-            $led_statuses['Alert'] = 'None';
+            $led_statuses['Alert']['Type'] = 'None';
         } else {
-            $led_statuses['Alert'] = 'None';
+            $led_statuses['Alert']['Type'] = 'None';
         }
         
         $max_UPS = 0;
