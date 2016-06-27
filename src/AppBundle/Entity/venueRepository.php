@@ -14,6 +14,21 @@ class venueRepository extends EntityRepository
         $doors = $this->getEntityManager()->createQuery('SELECT p.doors FROM AppBundle\Entity\venue p  WHERE p.id = :id')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
         return $doors['doors'];
     }
+    public function getvenuestatus($id)
+    {
+        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
+
+        $output = ture;
+        foreach ($cameras as $camera) {
+
+            $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera')->iscamerauptodate($camera['camera_id']);
+            if(!$status){
+                $output = false;
+            }
+
+            return $output;
+        }
+    }
     public function getvenuecount($id)
     {
 
@@ -32,12 +47,6 @@ class venueRepository extends EntityRepository
 
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
-                $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera')->iscamerauptodate($camera['camera_id']);
-                if($status){
-                    echo "true";
-                }else{
-                    echo "false";
-                }
                 //echo "print camre doors";
                 //print_r($camera_doors);
                 //echo "print camera count";
@@ -51,6 +60,9 @@ class venueRepository extends EntityRepository
                 $output['running_count_in'] += $skew['skew_in'];
                 $output['running_count_out'] += $skew['skew_out'];
             }
+
+            $status = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuestatus($id);
+            if ($status) {  $output['status'] = "true"; }else{ $output['status'] = "false"; }
             //echo "print after output";
             //print_r($output);
             //$output['running_count_in']=$current_data[running_count_in]-$doors_data[running_count_in];
