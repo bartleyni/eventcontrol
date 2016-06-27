@@ -111,7 +111,7 @@ class VenueController extends Controller
             $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['id']);
             if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
             $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
-            if ($status) {   $venues[$key]['people_counting_status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
+            if ($status) {   $venues['people_counting_status'] = "true"; }else{  $venues['people_counting_status'] = "false"; }
         }
         
         if ($venues)
