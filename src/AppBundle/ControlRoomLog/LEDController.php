@@ -103,28 +103,53 @@ class LEDController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $desk_led = new ControlRoomLED();
+        $underDesk_led = new ControlRoomLED();
+        $room_led = new ControlRoomLED();
         $user = $this->getUser();
+        
         $desk_led->setOperator($user);
         $desk_led->setTimestamp();
         $desk_led->setledRef("Desk");
+        
+        $underDesk_led->setOperator($user);
+        $underDesk_led->setTimestamp();
+        $underDesk_led->setledRef("Under");
+        
+        $room_led->setOperator($user);
+        $room_led->setTimestamp();
+        $room_led->setledRef("Room");
         
         if ($mode == "Working")
         {
             $desk_led->setColour("White");
             $desk_led->setBrightness("1");
+            $underDesk_led->setColour("White");
+            $underDesk_led->setBrightness("1");
+            $room_led->setColour("White");
+            $room_led->setBrightness("1");
         }
         elseif ($mode == "Control")
         {
             $desk_led->setColour("White");
             $desk_led->setBrightness("0.5");
+            $underDesk_led->setColour("Blue");
+            $underDesk_led->setBrightness("0.5");
+            $room_led->setColour("White");
+            $room_led->setBrightness("0.5");
         }
         elseif ($mode == "Off")
         {
             $desk_led->setColour("White");
             $desk_led->setBrightness("0");
+            $underDesk_led->setColour("White");
+            $underDesk_led->setBrightness("0");
+            $room_led->setColour("White");
+            $room_led->setBrightness("0");
         }
         
         $em->persist($desk_led);
+        $em->persist($underDesk_led);
+        $em->persist($room_led);
         $em->flush();
         
         $response = new Response('LED updated',Response::HTTP_OK, array('content-type' => 'text/html'));
