@@ -178,7 +178,7 @@ class UPS_Status {
         return $this->lineVoltage;
     }
     
-        /**
+    /**
      * Set load
      *
      * @param string $load
