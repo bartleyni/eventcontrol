@@ -50,19 +50,19 @@ class UPS_Status {
      * @ORM\Column(type="string", length=50, nullable=true)
      * 
      */
-    protected $line;
+    protected $lineVoltage;
     
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * 
      */
-    protected $load;
+    protected $loadPercentage;
     
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * 
      */
-    protected $battery;
+    protected $batteryVoltage;
     
     public function __toString()
     {
@@ -155,74 +155,74 @@ class UPS_Status {
     }
     
     /**
-     * Set line
+     * Set lineVoltage
      *
-     * @param string $line
+     * @param string $lineVoltage
      *
      * @return UPS_Status
      */
-    public function setLine($line)
+    public function setLineVoltage($lineVoltage)
     {
-        $this->line = $line;
+        $this->lineVoltage = $lineVoltage;
 
         return $this;
     }
 
     /**
-     * Get line
+     * Get lineVoltage
      *
      * @return string
      */
-    public function getLine()
+    public function getLineVoltage()
     {
-        return $this->line;
+        return $this->lineVoltage;
     }
     
     /**
-     * Set load
+     * Set Percentage
      *
-     * @param string $load
+     * @param string $loadPercentage
      *
      * @return UPS_Status
      */
-    public function setLoad($load)
+    public function setLoadPercentage($loadPercentage)
     {
-        $this->load = $load;
+        $this->loadPercentage = $loadPercentage;
 
         return $this;
     }
 
     /**
-     * Get load
+     * Get loadPercentage
      *
      * @return string
      */
-    public function getLoad()
+    public function getLoadPercentage()
     {
-        return $this->load;
+        return $this->loadPercentage;
     }
     
     /**
-     * Set battery
+     * Set batteryVoltage
      *
-     * @param string $battery
+     * @param string $batteryVoltage
      *
      * @return UPS_Status
      */
-    public function setBattery($battery)
+    public function setBatteryVoltage($batteryVoltage)
     {
-        $this->battery = $battery;
+        $this->batteryVoltage = $batteryVoltage;
 
         return $this;
     }
 
     /**
-     * Get battery
+     * Get batteryVoltage
      *
      * @return string
      */
-    public function getBattery()
+    public function getBatteryVoltage()
     {
-        return $this->battery;
+        return $this->batteryVoltage;
     }
 }

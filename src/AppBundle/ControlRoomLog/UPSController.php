@@ -95,9 +95,9 @@ class UPSController extends Controller
         
         $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
-        $UPSstatus->setLine($line);
-        $UPSstatus->setLoad($load);
-        $UPSstatus->setBattery($battery);
+        $UPSstatus->setLineVoltage($line);
+        $UPSstatus->setLoadPercentage($load);
+        $UPSstatus->setBatteryVoltage($battery);
         $UPSstatus->setTimestamp();
         
         $em->persist($UPSstatus);
