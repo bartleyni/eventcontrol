@@ -155,9 +155,9 @@ class UPS_Status {
     }
     
     /**
-     * Set lineVoltage
+     * Set line
      *
-     * @param string $lineVoltage
+     * @param string $line
      *
      * @return UPS_Status
      */
@@ -169,7 +169,7 @@ class UPS_Status {
     }
 
     /**
-     * Get lineVoltage
+     * Get line
      *
      * @return string
      */
@@ -203,7 +203,7 @@ class UPS_Status {
     }
     
     /**
-     * Set batteryVoltage
+     * Set battery
      *
      * @param string $battery
      *
@@ -217,7 +217,7 @@ class UPS_Status {
     }
 
     /**
-     * Get batteryVoltage
+     * Get battery
      *
      * @return string
      */
