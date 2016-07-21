@@ -50,7 +50,7 @@ class UPS_Status {
      * @ORM\Column(type="string", length=50, nullable=true)
      * 
      */
-    protected $lineVoltage;
+    protected $line;
     
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -62,7 +62,7 @@ class UPS_Status {
      * @ORM\Column(type="string", length=50, nullable=true)
      * 
      */
-    protected $batteryVoltage;
+    protected $battery;
     
     public function __toString()
     {
@@ -161,9 +161,9 @@ class UPS_Status {
      *
      * @return UPS_Status
      */
-    public function setLineVoltage($lineVoltage)
+    public function setLine($line)
     {
-        $this->lineVoltage = $lineVoltage;
+        $this->line = $line;
 
         return $this;
     }
@@ -173,9 +173,9 @@ class UPS_Status {
      *
      * @return string
      */
-    public function getLineVoltage()
+    public function getLine()
     {
-        return $this->lineVoltage;
+        return $this->line;
     }
     
     /**
@@ -205,13 +205,13 @@ class UPS_Status {
     /**
      * Set batteryVoltage
      *
-     * @param string $batteryVoltage
+     * @param string $battery
      *
      * @return UPS_Status
      */
-    public function setBatteryVoltage($batteryVoltage)
+    public function setBattery($battery)
     {
-        $this->batteryVoltage = $batteryVoltage;
+        $this->battery = $battery;
 
         return $this;
     }
@@ -221,8 +221,8 @@ class UPS_Status {
      *
      * @return string
      */
-    public function getBatteryVoltage()
+    public function getBattery()
     {
-        return $this->batteryVoltage;
+        return $this->battery;
     }
 }

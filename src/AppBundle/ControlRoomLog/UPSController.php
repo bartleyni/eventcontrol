@@ -66,9 +66,9 @@ class UPSController extends Controller
         
         $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
-        $UPSstatus->setLineVoltage("0");
+        $UPSstatus->setLine("0");
         $UPSstatus->setLoad("0");
-        $UPSstatus->setBatteryVoltage("0");  
+        $UPSstatus->setBattery("0");  
         $UPSstatus->setTimestamp();
         
         $em->persist($UPSstatus);
@@ -95,9 +95,9 @@ class UPSController extends Controller
         
         $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
-        $UPSstatus->setLineVoltage($line);
+        $UPSstatus->setLine($line);
         $UPSstatus->setLoad($load);
-        $UPSstatus->setBatteryVoltage($battery);        
+        $UPSstatus->setBattery($battery);        
         $UPSstatus->setTimestamp();
         
         $em->persist($UPSstatus);
