@@ -169,11 +169,11 @@
             $.each(data, function(index, ups) {
                 if (ups.loadPercentage !== null && ups.status == "Mains")
                 {
-                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Load:"+ups.loadPercentage + "%)";
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Load: "+ups.loadPercentage + "%)";
                 }
                 else if (ups.batteryVoltage !== null && ups.status == "Battery")
                 {
-                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (BattV:"+ups.batteryVoltage + "V)";
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Batt: "+ups.batteryVoltage + "V)";
                 }
                 else
                 {
@@ -190,7 +190,7 @@
                     //$('#ups-'+ups.id).html(statusString);
                 }
                 
-                if ($('#ups-'+ups.id).html() != statusString)
+                if ($('#ups-'+ups.id).html() !== statusString)
                 {
                     $('#ups-'+ups.id).html(statusString);
                 }
