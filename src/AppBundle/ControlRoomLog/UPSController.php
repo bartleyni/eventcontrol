@@ -75,4 +75,34 @@ class UPSController extends Controller
 
         return $response;
     }
+    
+    /**
+     * @Route("/UPS/update/{id}/{status}/{line}/{load}/{battery}", name="UPS__detailed_update");
+     * 
+     */
+    public function UPSDetailedUpdateAction($id, $status, $line, $load, $battery)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
+        
+        $em->flush();
+        
+        $UPSstatus = new UPS_Status();
+        
+        $UPSstatus->setUPS($ups);
+        $UPSstatus->setStatus($status);
+        $UPSstatus->setLineVoltage($line);
+        $UPSstatus->setLoad($load);
+        $UPSstatus->setBatteryVoltage($battery);        
+        $UPSstatus->setTimestamp();
+        
+        $em->persist($UPSstatus);
+        $em->flush();
+        
+        $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
+    }
+    
 }

@@ -46,6 +46,24 @@ class UPS_Status {
      */
     protected $timestamp;
     
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * 
+     */
+    protected $lineVoltage;
+    
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * 
+     */
+    protected $load;
+    
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * 
+     */
+    protected $batteryVoltage;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -134,5 +152,77 @@ class UPS_Status {
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+    
+    /**
+     * Set lineVoltage
+     *
+     * @param string $lineVoltage
+     *
+     * @return UPS_Line_Voltage
+     */
+    public function setLineVoltage($lineVoltage)
+    {
+        $this->lineVoltage = $lineVoltage;
+
+        return $this;
+    }
+
+    /**
+     * Get lineVoltage
+     *
+     * @return string
+     */
+    public function getLineVoltage()
+    {
+        return $this->lineVoltage;
+    }
+    
+        /**
+     * Set load
+     *
+     * @param string $load
+     *
+     * @return UPS_Load
+     */
+    public function setLoad($load)
+    {
+        $this->load = $load;
+
+        return $this;
+    }
+
+    /**
+     * Get load
+     *
+     * @return string
+     */
+    public function getLoad()
+    {
+        return $this->load;
+    }
+    
+    /**
+     * Set batteryVoltage
+     *
+     * @param string $batteryVoltage
+     *
+     * @return UPS_Battery_Voltage
+     */
+    public function setBatteryVoltage($batteryVoltage)
+    {
+        $this->batteryVoltage = $batteryVoltage;
+
+        return $this;
+    }
+
+    /**
+     * Get batteryVoltage
+     *
+     * @return string
+     */
+    public function getBatteryVoltage()
+    {
+        return $this->batteryVoltage;
     }
 }
