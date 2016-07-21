@@ -169,17 +169,17 @@
             $.each(data, function(index, ups) {
                 if (ups.loadPercentage !== null && ups.status == "Mains")
                 {
-                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Load="+ups.loadPercentage + ")";
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Load:"+ups.loadPercentage + "%)";
                 }
                 else if (ups.batteryVoltage !== null && ups.status == "Battery")
                 {
-                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (BattV="+ups.batteryVoltage + ")";
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (BattV:"+ups.batteryVoltage + "V)";
                 }
                 else
                 {
                     var statusString = "UPS" + ups.id + ": "+ ups.status;
                 }
-                if ($('#ups-'+ups.id).html() != statusString)
+                if ($('#ups-'+ups.id).html().split('(')[0] != statusString.split('(')[0])
                 {
                     if (i > 5)
                     {
