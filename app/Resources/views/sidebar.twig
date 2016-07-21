@@ -167,7 +167,18 @@
     function sidebarPoll(){
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
-                var statusString = "UPS" + ups.id + ": "+ ups.status;
+                if (ups.load != null && ups.status == "Mains")
+                {
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (Load="+ups.load + ")";
+                }
+                else if (ups.batteryVoltage != null && ups.status == "Battery")
+                {
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+" (BattV="+ups.batteryVoltage + ")";
+                }
+                else
+                {
+                    var statusString = "UPS" + ups.id + ": "+ ups.status;
+                }
                 if ($('#ups-'+ups.id).html() != statusString)
                 {
                     if (i > 5)
