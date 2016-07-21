@@ -80,7 +80,7 @@ class UPSController extends Controller
     }
     
     /**
-     * @Route("/UPS/update/{id}/{status}/{line}/{load}/{battery}", name="UPS__detailed_update");
+     * @Route("/UPS/update/{id}/{status}/{line}/{load}/{battery}", name="UPS_detailed_update");
      * 
      */
     public function UPSDetailedUpdateAction($id, $status, $line, $load, $battery)
