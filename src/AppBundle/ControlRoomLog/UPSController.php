@@ -51,7 +51,7 @@ class UPSController extends Controller
     }
     
     /**
-     * @Route("/UPS/update/{id}/{status}", name="UPS_update");
+     * @Route("/UPS/update/{id}/{status}/", name="UPS_update");
      * 
      */
     public function UPSUpdateAction($id, $status)
