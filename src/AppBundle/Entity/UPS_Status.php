@@ -159,7 +159,7 @@ class UPS_Status {
      *
      * @param string $lineVoltage
      *
-     * @return UPS_Line_Voltage
+     * @return UPS_Status
      */
     public function setLineVoltage($lineVoltage)
     {
@@ -183,7 +183,7 @@ class UPS_Status {
      *
      * @param string $load
      *
-     * @return UPS_Load
+     * @return UPS_Status
      */
     public function setLoad($load)
     {
@@ -207,7 +207,7 @@ class UPS_Status {
      *
      * @param string $batteryVoltage
      *
-     * @return UPS_Battery_Voltage
+     * @return UPS_Status
      */
     public function setBatteryVoltage($batteryVoltage)
     {
