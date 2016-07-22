@@ -158,6 +158,7 @@
     
     
     var i = 0;
+    var lastStatus = ["","","",""];
     
     function sidebarPoll(){
         $.getJSON('{{ path('UPS_status') }}', function(data) {
@@ -174,7 +175,8 @@
                 {
                     var statusString = "UPS" + ups.id + ": "+ ups.status;
                 }
-                if ($('#ups-'+ups.id).html().split(' (')[0] !== statusString.split(' (')[0])
+                //if ($('#ups-'+ups.id).html().split(' (')[0] !== statusString.split(' (')[0])
+                if (lastStatus[ups.id] != ups.status)
                 {
                     if (i > 5)
                     {
@@ -185,11 +187,12 @@
                     //$('#ups-'+ups.id).html(statusString);
                 }
                 
-                if ($('#ups-'+ups.id).html() !== statusString)
+                if ($('#ups-'+ups.id).html() != statusString)
                 {
                     $('#ups-'+ups.id).html(statusString);
                 }
                 
+                lastStatus[ups.id] = ups.status;
                 
             });
         });
