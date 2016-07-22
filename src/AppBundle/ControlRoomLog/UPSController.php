@@ -68,7 +68,8 @@ class UPSController extends Controller
         $UPSstatus->setStatus($status);
         $UPSstatus->setLineVoltage(NULL);
         $UPSstatus->setLoadPercentage(NULL);
-        $UPSstatus->setBatteryVoltage(NULL);  
+        $UPSstatus->setBatteryVoltage(NULL); 
+        $UPSstatus->setTimeLeft(NULL);
         $UPSstatus->setTimestamp();
         
         $em->persist($UPSstatus);
@@ -80,10 +81,10 @@ class UPSController extends Controller
     }
     
     /**
-     * @Route("/UPS/update/{id}/{status}/{line}/{load}/{battery}", name="UPS_detailed_update");
+     * @Route("/UPS/update/{id}/{status}/{line}/{load}/{battery}/{time}", name="UPS_detailed_update");
      * 
      */
-    public function UPSDetailedUpdateAction($id, $status, $line, $load, $battery)
+    public function UPSDetailedUpdateAction($id, $status, $line, $load, $battery, $time)
     {
         $em = $this->getDoctrine()->getManager();
         
@@ -98,6 +99,7 @@ class UPSController extends Controller
         $UPSstatus->setLineVoltage($line);
         $UPSstatus->setLoadPercentage($load);
         $UPSstatus->setBatteryVoltage($battery);
+        $UPSstatus->setTimeLeft($time);
         $UPSstatus->setTimestamp();
         
         $em->persist($UPSstatus);

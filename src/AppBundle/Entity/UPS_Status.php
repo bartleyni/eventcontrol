@@ -64,6 +64,12 @@ class UPS_Status {
      */
     protected $batteryVoltage;
     
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * 
+     */
+    protected $timeLeft;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -224,5 +230,29 @@ class UPS_Status {
     public function getBatteryVoltage()
     {
         return $this->batteryVoltage;
+    }
+    
+    /**
+     * Set timeLeft
+     *
+     * @param string $timeLeft
+     *
+     * @return UPS_Status
+     */
+    public function setTimeLeft($timeLeft)
+    {
+        $this->timeLeft = $timeLeft;
+
+        return $this;
+    }
+
+    /**
+     * Get timeLeft
+     *
+     * @return string
+     */
+    public function getTimeLeft()
+    {
+        return $this->timeLeft;
     }
 }

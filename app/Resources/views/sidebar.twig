@@ -167,9 +167,9 @@
                 {
                     var statusString = "UPS" + ups.id + ": "+ ups.status+"<br>(Load: "+ups.loadPercentage + "%)";
                 }
-                else if (ups.batteryVoltage !== null && ups.status == "Battery")
+                else if (ups.timeLeft !== null && ups.status == "Battery")
                 {
-                    var statusString = "UPS" + ups.id + ": "+ ups.status+"<br>(Battery: "+ups.batteryVoltage + "V)";
+                    var statusString = "UPS" + ups.id + ": "+ ups.status+"<br>(Battery Time: "+ups.timeLeft + " mins)";
                 }
                 else
                 {
