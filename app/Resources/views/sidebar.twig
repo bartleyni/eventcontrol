@@ -70,7 +70,9 @@
     </div>
     <ul class="list-group">
         {% for ups in UPSs %}
-            <li class="list-group-item" id="ups-{{ ups.id }}">UPS{{ ups.id }}: Timeout</li>
+            <div class="row" data-toggle="tooltip" data-placement="right" title="{{ ups.name }} - {{ ups.location }}">
+                <li class="list-group-item" id="ups-{{ ups.id }}">UPS{{ ups.id }}: Timeout</li>
+            </div>
         {% endfor %}
     </ul>
 </div>
