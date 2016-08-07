@@ -148,13 +148,10 @@ class LogPDF extends Controller
         }
         
         if ($event){
-            $begin = $event->getEventLogStartDate();
-            $end = $event->getEventLogStopDate();
+            $eventId = $event->getId();
             
-            $qb->andWhere('entry.log_entry_open_time <= :begin')
-                ->andWhere('entry.log_entry_open_time >= :end')
-                ->setParameter('begin', $begin)
-                ->setParameter('end', $end);
+            $qb->andWhere('entry.event = :eventId')
+                ->setParameter('eventId', $eventId);
         }else{
             $qb->andWhere('entry.log_entry_open_time <= :begin')
                 ->andWhere('entry.log_entry_open_time >= :end')
@@ -179,17 +176,6 @@ class LogPDF extends Controller
             ),
             '../media/PDFlogs/pdf_test2.pdf'
         );
-        
-        
-        
-        //return new Response(
-            //$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            //200,
-                //array(
-                    //'Content-Type'          => 'application/pdf',
-                    //'Content-Disposition'   => 'attachment; filename="~/file.pdf"'
-                //)
-       //);
     }
 }
 
