@@ -1,7 +1,9 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h1>Log Entry</h1>
+            <h1>Log Entry(ID: {{ entry.id }})</h1>
+            Event: {{ activeEventName() }}
+            Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
         </div>
     </div>
     <div class="row">
