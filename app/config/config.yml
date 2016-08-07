@@ -88,3 +88,8 @@ knp_snappy:
         options:
             - { name: 'viewport-size', value: ‘1024x768’ }
             - { name: 'page-size', value: 'A4' }
+            - { name: 'header-left', value: 'Confidential Information' }
+            - { name: 'header-center', value: 'Event Control]' }
+            - { name: 'header-line', value: 'true' }
+            - { name: 'footer-center', value: '[page]/[topage]' }
+            - { name: 'footer-line', value: 'true' }
