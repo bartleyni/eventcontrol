@@ -68,7 +68,7 @@ class pdfEntry extends Controller
                     'lost' => $lostProperty,
                 )
             ),
-            '../media/PDFlogs/'.$dateDIR.$filename
+            '../media/PDFlogs/'.$dateDIR.'/'.$filename
         );
         
         
