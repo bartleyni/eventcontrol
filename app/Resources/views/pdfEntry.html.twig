@@ -40,7 +40,8 @@
                         No General Info
                     {% else %}
                         Description:<br>
-                        {{ general.general_description }}
+                        {{ general.generalDescription }}
+                        <br>
                         Closed:<br>
                         {{ general.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
                         <br>
