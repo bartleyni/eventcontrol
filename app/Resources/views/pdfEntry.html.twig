@@ -1,0 +1,89 @@
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Log Entry</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(log_entry) }}
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(log_entry.operator) }} 
+                            {{ form_errors(log_entry.operator) }}
+                            {{ form_widget(log_entry.operator) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">    
+                        <div class="form-group">
+                            {{ form_label(log_entry.log_entry_open_time) }}
+                            {{ form_errors(log_entry.log_entry_open_time) }}
+                            <div class='input-group date' id='datetimepicker1'>
+                                {{ form_widget(log_entry.log_entry_open_time) }}
+                            </div>
+                        </div>         
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">  
+                        <div class="form-group">
+                            {{ form_label(log_entry.log_blurb) }}
+                            {{ form_errors(log_entry.log_blurb) }}
+                            {{ form_widget(log_entry.log_blurb) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">  
+                        <div class="form-group">
+                        {{ form_label(log_entry.location) }}
+                        {{ form_errors(log_entry.location) }}
+                        {{ form_widget(log_entry.location) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">  
+                        <div class="form-group">
+                            {{ form_label(log_entry.reported_by) }}
+                            {{ form_errors(log_entry.reported_by) }}
+                            {{ form_widget(log_entry.reported_by) }}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row" id="General">
+                    General
+                    <div class="col-md-12">
+                        {% block general %}
+                            {% include 'generalForm.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row" id="Medical">
+                    Medical
+                    <div class="col-md-12">
+                        {% block medical %}
+                            {% include 'medicalForm.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row" id="Security">
+                    Security
+                    <div class="col-md-12">
+                        {% block security %}
+                            {% include 'securityForm.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row" id="Lost">
+                    Lost Property
+                    <div class="col-md-12">
+                        {% block lostProperty %}
+                            {% include 'lostPropertyForm.twig' %}
+                        {% endblock %}
+                    </div>
+                </div>                                
+        </div>
+    </div>
+</div>
