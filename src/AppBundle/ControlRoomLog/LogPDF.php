@@ -168,16 +168,28 @@ class LogPDF extends Controller
         
         $dir = $this->get('kernel')->getRootDir();
         
-        $this->get('knp_snappy.pdf')->generate('http://www.google.com', '../media/PDFlogs/pdf_test.pdf');
+        //$this->get('knp_snappy.pdf')->generate('http://www.google.com', '../media/PDFlogs/pdf_test.pdf');
         
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView(
+                'log.html.twig',
                 array(
-                    'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="~/file.pdf"'
+                    'logs' => $logs
                 )
+            ),
+            '../media/PDFlogs/pdf_test2.pdf'
         );
+        
+        
+        
+        //return new Response(
+            //$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            //200,
+                //array(
+                    //'Content-Type'          => 'application/pdf',
+                    //'Content-Disposition'   => 'attachment; filename="~/file.pdf"'
+                //)
+       //);
     }
 }
 
