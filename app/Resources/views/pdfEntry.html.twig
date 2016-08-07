@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h2>Entry Information (ID: {{ entry.id }})</h2>
+            <h2>Entry Information</h2>
             <br>
             <div class="row">
                 <div class="col-md-6">
@@ -53,18 +53,18 @@
                     {% else %}
                         <strong>Injury Type:</strong> {{ medical.medical_reported_injury_type }}
                         <br>
-                        <strong>Description:</strong>
+                        <strong>Description:</strong><br>
                         {{ medical.medicalDescription }}
                         <br>
                         <strong>Medical Response:</strong> {{ medical.medicalResponse }}
                         <br>
-                        <strong>999 Required?:</strong> {{ medical.nine_nine_nine_required }}
+                        <strong>999 Required?:</strong> {{ medical.nine_nine_nine_required ? 'Yes':'No' }}
                         <br>
                         <strong>Medical Treatment:</strong> {{ medical.medicalTreatment }}
                         <br>
                         <strong>Medical Resolution:</strong> {{ medical.medicalResolution }}
                         <br>
-                        <strong>Notes:</strong>
+                        <strong>Notes:</strong><br>
                         {{ medical.medicalNotes }}
                         <br>
                         <strong>Closed:</strong> {{ medical.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
