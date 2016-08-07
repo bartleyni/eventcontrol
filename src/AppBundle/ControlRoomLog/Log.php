@@ -169,13 +169,17 @@ class Log extends Controller
         }
         
         if ($event){
-            $begin = $event->getEventLogStartDate();
-            $end = $event->getEventLogStopDate();
+            //$begin = $event->getEventLogStartDate();
+            //$end = $event->getEventLogStopDate();
+            $eventId = $event->getId();
             
-            $qb->andWhere('entry.log_entry_open_time <= :begin')
-                ->andWhere('entry.log_entry_open_time >= :end')
-                ->setParameter('begin', $begin)
-                ->setParameter('end', $end);
+            $qb->andWhere('entry.event = :eventId')
+                ->setParameter('eventId', $eventId);
+            
+            //$qb->andWhere('entry.log_entry_open_time <= :begin')
+                //->andWhere('entry.log_entry_open_time >= :end')
+                //->setParameter('begin', $begin)
+                //->setParameter('end', $end);
         }else{
             $qb->andWhere('entry.log_entry_open_time <= :begin')
                 ->andWhere('entry.log_entry_open_time >= :end')
@@ -357,13 +361,18 @@ class Log extends Controller
         }
         
         if ($event){
-            $begin = $event->getEventLogStartDate();
-            $end = $event->getEventLogStopDate();
+            //$begin = $event->getEventLogStartDate();
+            //$end = $event->getEventLogStopDate();
             
-            $qb->andWhere('entry.log_entry_open_time <= :begin')
-                ->andWhere('entry.log_entry_open_time >= :end')
-                ->setParameter('begin', $begin)
-                ->setParameter('end', $end);
+            //$qb->andWhere('entry.log_entry_open_time <= :begin')
+                //->andWhere('entry.log_entry_open_time >= :end')
+                //->setParameter('begin', $begin)
+                //->setParameter('end', $end);
+            
+            $eventId = $event->getId();
+            
+            $qb->andWhere('entry.event = :eventId')
+                ->setParameter('eventId', $eventId);
         }else{
             $qb->andWhere('entry.log_entry_open_time <= :begin')
                 ->andWhere('entry.log_entry_open_time >= :end')
