@@ -102,7 +102,7 @@ class pdfEntry extends Controller
             $this->renderView(
                 'pdfEntry.html.twig',
                 array(
-                    'entyr' => $entry,
+                    'entry' => $entry,
                     'medical' => $medical,
                     'security' => $security,
                     'general' => $general,
