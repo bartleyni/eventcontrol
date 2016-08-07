@@ -49,41 +49,23 @@ class pdfEntry extends Controller
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
-                $medical = new medical_log();
-                $medical->setLogEntryId($entry);
-                $medicalTab = null;
-            } else {
-                $medicalTab = $medical;
-                $medicalClosed = $medical->getMedicalEntryClosedTime();
-            }
+            $medical = null;
+        }
+        
         $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $id));
         if (!$security){
-                $security = new security_log();
-                $security->setLogEntryId($entry);
-                $securityTab = null;
-            } else {
-                $securityTab = $security;
-                $securityClosed = $security->getSecurityEntryClosedTime();
-            }
+            $security = null;
+        }
+        
         $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $id));
         if (!$general){
-                $general = new general_log();
-                $general->setLogEntryId($entry);
-                $general->setGeneralOpen(true);
-                $generalTab = null;
-            } else {
-                $generalTab = $general;
-                $generalClosed = $general->getGeneralEntryClosedTime();
-            }
+            $general = null;
+        }
+        
         $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $id));
         if (!$lostProperty){
-                $lostProperty = new lost_property();
-                $lostProperty->setLogEntryId($entry);
-                $lostTab = null;
-            } else {
-                $lostTab = $lostProperty;
-                $lostClosed = $lostProperty->getLostPropertyEntryClosedTime();
-            }
+                $lostProperty = null;
+        }
         
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView(
@@ -94,21 +76,13 @@ class pdfEntry extends Controller
                     'security' => $security,
                     'general' => $general,
                     'lost' => $lostProperty,
-                    'medicalTab' => $medicalTab,
-                    'securityTab' => $securityTab,
-                    'generalTab' => $generalTab,
-                    'lostTab' => $lostTab,
-                    'medicalClosed' => $medicalClosed,
-                    'securityClosed' => $securityClosed,
-                    'lostClosed' => $lostClosed,
-                    'generalClosed' => $generalClosed,
                 )
             ),
             '../media/PDFlogs/pdf_test3.pdf'
         );
         
         
-        return $this->render('pdfEntry.html.twig', array('medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed,));
+        return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
     }
 }
 
