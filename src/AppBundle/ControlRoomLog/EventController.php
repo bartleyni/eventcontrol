@@ -106,7 +106,9 @@ class EventController extends Controller
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $deleteId));
             $em->remove($event);
             $em->flush();
-        }    
+        }
+        
+        return $this->redirectToRoute('event_list');
     }
 
     /**
