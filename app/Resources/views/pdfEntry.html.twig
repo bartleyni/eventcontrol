@@ -1,55 +1,49 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h2>Log Entry</h2>
+            <h1>Log Entry</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            {{ form_start(log_entry) }}
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{ form_label(log_entry.operator) }}
-                            <br>
-                            {{ entry.operator }}
-                        </div>
-                    </div>
-                    <div class="col-md-6">    
-                        <div class="form-group">
-                            {{ form_label(log_entry.log_entry_open_time) }}
-                            <br>
-                            {{ entry.log_entry_open_time}}
-                        </div>         
+            <h2>Entry Information</h2>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    Operator:
+                    <br>
+                    {{ entry.operator }}
+                </div>
+                <div class="col-md-6">    
+                    Log Open Time:
+                    <br>
+                    {{ entry.log_entry_open_time }}    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">  
+                    Short Description:
+                    <br>
+                    {{ entry.log_blurb }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">  
+                    <div class="form-group">
+                    {{ form_label(log_entry.location) }}
+                    {{ form_errors(log_entry.location) }}
+                    {{ form_widget(log_entry.location) }}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">  
-                        <div class="form-group">
-                            {{ form_label(log_entry.log_blurb) }}
-                            <br>
-                            {{ entry.log_blurb }}
-                        </div>
+                <div class="col-md-6">  
+                    <div class="form-group">
+                        {{ form_label(log_entry.reported_by) }}
+                        {{ form_errors(log_entry.reported_by) }}
+                        {{ form_widget(log_entry.reported_by) }}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">  
-                        <div class="form-group">
-                        {{ form_label(log_entry.location) }}
-                        {{ form_errors(log_entry.location) }}
-                        {{ form_widget(log_entry.location) }}
-                        </div>
-                    </div>
-                    <div class="col-md-6">  
-                        <div class="form-group">
-                            {{ form_label(log_entry.reported_by) }}
-                            {{ form_errors(log_entry.reported_by) }}
-                            {{ form_widget(log_entry.reported_by) }}
-                        </div>
-                    </div>
-                </div>
-                <br>
+            </div>
+            <br>
                 <div class="row" id="General">
                     General
                     <div class="col-md-12">

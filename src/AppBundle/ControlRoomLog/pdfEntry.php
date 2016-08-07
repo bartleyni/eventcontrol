@@ -38,7 +38,6 @@ class pdfEntry extends Controller
         //find the entry
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
-        $form = $this->createForm(new LogType(), $entry);
         $medicalTab = null;
         $securityTab = null;
         $generalTab = null;
@@ -85,18 +84,6 @@ class pdfEntry extends Controller
                 $lostTab = $lostProperty;
                 $lostClosed = $lostProperty->getLostPropertyEntryClosedTime();
             }
-        $generalForm = $this->createForm(new GeneralType(), $general, array(
-            'method' => 'POST',
-        ));
-        $lostPropertyForm = $this->createForm(new LostPropertyType(), $lostProperty, array(
-            'method' => 'POST',
-        ));
-        $medicalForm = $this->createForm(new MedicalType(), $medical, array(
-            'method' => 'POST',
-        ));
-        $securityForm = $this->createForm(new SecurityType(), $security, array(
-            'method' => 'POST',
-        ));
         
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView(
@@ -115,11 +102,6 @@ class pdfEntry extends Controller
                     'securityClosed' => $securityClosed,
                     'lostClosed' => $lostClosed,
                     'generalClosed' => $generalClosed,
-                    'log_entry' => $form->createView(),
-                    'general_entry' => $generalForm->createView(),
-                    'medical_entry' => $medicalForm->createView(),
-                    'security_entry' => $securityForm->createView(),
-                    'lost_entry' => $lostPropertyForm->createView(),
                 )
             ),
             '../media/PDFlogs/pdf_test3.pdf'
