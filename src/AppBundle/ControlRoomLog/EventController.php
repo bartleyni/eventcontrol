@@ -47,10 +47,12 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $event = new event();
+        $event->setEventActive(0);
         $form = $this->createForm(new EventType(), $event);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $em->persist($event);
             $em->flush();
 
