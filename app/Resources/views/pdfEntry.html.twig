@@ -1,15 +1,14 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h1>Log Entry(ID: {{ entry.id }})</h1>
-            Event: {{ activeEventName() }} <br>
-            Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
+            <h1>Log Entry (ID: {{ entry.id }})</h1>
+            <strong>Event:</strong> {{ activeEventName() }}<br>
+            <strong>Report Produced:</strong> {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h2>Entry Information</h2>
-            <br>
             <div class="row">
                 <div class="col-md-6">
                     <strong>Operator:</strong> {{ entry.operator }}
@@ -33,7 +32,6 @@
                     <strong>Reported By:</strong> {{ entry.reportedBy }}
                 </div>
             </div>
-            <br>
                 <div class="row" id="General">
                     <h2>General</h2>
                     {% if general is null %}
@@ -43,7 +41,6 @@
                         {{ general.generalDescription }}
                         <br>
                         <strong>Closed:</strong> {{ general.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
-                        <br>
                     {% endif %}
                 </div>
                 <div class="row" id="Medical">
@@ -68,11 +65,28 @@
                         {{ medical.medicalNotes }}
                         <br>
                         <strong>Closed:</strong> {{ medical.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
-                        <br>
                     {% endif %}
                 </div>
                 <div class="row" id="Security">
                     <h2>Security</h2>
+                    {% if security is null %}
+                        No Security Info
+                    {% else %}
+                        <strong>Security Log Type:</strong> {{ security.security_log_type }}
+                        <br>
+                        <strong>Security Incident Type:</strong> {{ security.security_incident_type }}
+                        <br>
+                        <strong>Description:</strong><br>
+                        {{ security.securityDescription }}
+                        <br>
+                        <strong>Security Dispatched?:</strong> {{ security.securityDispatched ? 'Yes':'No' }}
+                        <br>
+                        <strong>Security Responded?:</strong> {{ security.securityResponded ? 'Yes':'No' }}
+                        <br>
+                        <strong>Security Resolution:</strong> {{ security.securityResolution }}
+                        <br>
+                        <strong>Closed:</strong> {{ security.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
+                    {% endif %}
                 </div>
                 <div class="row" id="Lost">
                     <h2>Lost Property</h2>
