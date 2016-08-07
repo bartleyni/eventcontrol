@@ -1,8 +1,8 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h1>Log Entry (ID: {{ entry.id }})</h1>
-            <strong>Event:</strong> {{ activeEventName() }}<br>
+            <h1>{{ activeEventName() }} Event Control</h1>
+            <h2>Log Entry (ID: {{ entry.id }})</h2>
             <strong>Report Produced:</strong> {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
         </div>
     </div>
@@ -90,6 +90,26 @@
                 </div>
                 <div class="row" id="Lost">
                     <h2>Lost Property</h2>
+                    {% if security is null %}
+                        No Lost Property Info
+                    {% else %}
+                        <strong>Item Lost?</strong> {{ lost.lost_property_item_lost ? 'Yes':'No' }}
+                        <br>
+                        <strong>Item Found?</strong> {{ lost.lost_property_item_found ? 'Yes':'No' }}
+                        <br>
+                        <strong>Description:</strong><br>
+                        {{ lost.lostPropertyDescription }}
+                        <br>
+                        <strong>Contact Details:</strong><br>
+                        {{ lost.lost_property_contact_details }}
+                        <br>
+                        <strong>Lost Property Resolution:</strong> {{ lost.lostPropertyResolution }}
+                        <br>
+                        <strong>Resolution Description:</strong><br>
+                        {{ lost.lost_property_resolution_description }}
+                        <br>
+                        <strong>Closed:</strong> {{ lost.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}
+                    {% endif %}
                 </div>                                
         </div>
     </div>
