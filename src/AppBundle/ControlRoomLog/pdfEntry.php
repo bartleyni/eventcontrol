@@ -92,6 +92,9 @@ class pdfEntry extends Controller
         //timestamp for directory
         $dateDIR = date("Ymd-His");
         
+        //Setup array for the combined report
+        $reports = array();
+        
         //find all entries that are active
         $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
         foreach($entries as $entry)
@@ -118,7 +121,18 @@ class pdfEntry extends Controller
 
 
             $filename = "Entry ".$entry->getId().".pdf";
-
+            
+            $reports[] = $this->renderView(
+                    'pdfEntry.html.twig',
+                    array(
+                        'entry' => $entry,
+                        'medical' => $medical,
+                        'security' => $security,
+                        'general' => $general,
+                        'lost' => $lostProperty,
+                    )
+                );
+            
             $this->get('knp_snappy.pdf')->generateFromHtml(
                 $this->renderView(
                     'pdfEntry.html.twig',
@@ -133,6 +147,12 @@ class pdfEntry extends Controller
                 '../media/PDFlogs/'.$dateDIR.'/'.$filename
             );
         }
+        //Generate full report
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $reports
+            ,
+            '../media/PDFlogs/'.$dateDIR.'/All Active.pdf'
+        );
         return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
     }
 }
