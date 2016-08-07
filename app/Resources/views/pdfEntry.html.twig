@@ -29,52 +29,22 @@
             </div>
             <div class="row">
                 <div class="col-md-6">  
-                    <div class="form-group">
-                    {{ form_label(log_entry.location) }}
-                    {{ form_errors(log_entry.location) }}
-                    {{ form_widget(log_entry.location) }}
-                    </div>
                 </div>
                 <div class="col-md-6">  
-                    <div class="form-group">
-                        {{ form_label(log_entry.reported_by) }}
-                        {{ form_errors(log_entry.reported_by) }}
-                        {{ form_widget(log_entry.reported_by) }}
-                    </div>
                 </div>
             </div>
             <br>
                 <div class="row" id="General">
-                    General
-                    <div class="col-md-12">
-                        {% block general %}
-                            {% include 'generalForm.twig' %}
-                        {% endblock %}
-                    </div>
+                    <h2>General</h2>
                 </div>
                 <div class="row" id="Medical">
-                    Medical
-                    <div class="col-md-12">
-                        {% block medical %}
-                            {% include 'medicalForm.twig' %}
-                        {% endblock %}
-                    </div>
+                    <h2>Medical</h2>
                 </div>
                 <div class="row" id="Security">
-                    Security
-                    <div class="col-md-12">
-                        {% block security %}
-                            {% include 'securityForm.twig' %}
-                        {% endblock %}
-                    </div>
+                    <h2>Security</h2>
                 </div>
                 <div class="row" id="Lost">
-                    Lost Property
-                    <div class="col-md-12">
-                        {% block lostProperty %}
-                            {% include 'lostPropertyForm.twig' %}
-                        {% endblock %}
-                    </div>
+                    <h2>Lost Property</h2>
                 </div>                                
         </div>
     </div>
