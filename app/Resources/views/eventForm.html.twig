@@ -1,0 +1,83 @@
+{# app/Resources/views/eventForm.html.twig #}
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+Event Entry Form
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(form) }}
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.name) }} 
+                                    {{ form_errors(form.name) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.name) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.client) }} 
+                                    {{ form_errors(form.client) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.client) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">                                
+                                <div class="col-md-2">
+                                    {{ form_label(form.event_date) }} 
+                                    {{ form_errors(form.event_date) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.event_date) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">                                                        
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.event_log_start_date) }} 
+                                    {{ form_errors(form.event_log_start_date) }}
+                                </div>
+                                <div class="col-md-2"> 
+                                    {{ form_widget(form.event_log_start_date) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.event_log_stop_date) }} 
+                                    {{ form_errors(form.event_log_stop_date) }}
+                                </div>
+                                <div class="col-md-2">                                     
+                                    {{ form_widget(form.event_log_stop_date) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">  
+                            <div class="col-md-4">  
+                                <button class="btn btn-success btn-block" type="submit">Submit</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}              

@@ -11,14 +11,89 @@ use AppBundle\Entity\event;
 class EventController extends Controller
 {
     /**
-    * @Route("/event/edit/{editId}", name="edit_event");
-    * @Route("/event/activate/{activateId}", name="activate_event");
-    * @Route("/event/delete/{deleteId}", name="delete_event");
     * @Route("/event/{filter}", name="filter_event_list");
     * @Route("/event/", name="event_list");
     */
     
-    public function eventAction(Request $request, $editId=null, $deleteId=null, $filter=null, $activateId=null)
+    public function listEventAction(Request $request, $filter=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($filter){
+            //filter
+        } else {
+            //Do the display thing
+        }
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_active')
+            ->from('AppBundle\Entity\event', 'event')
+            ->orderBy('event.event_date', 'DESC')
+            ;
+        
+        $query = $qb->getQuery();
+        $events = $query->getResult();
+        return $this->render('eventList.html.twig', array('events' => $events));
+    }
+
+    /**
+    * @Route("/event/new/, name="new_event");
+    */    
+    
+    public function newEventAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $event = new event();
+        $form = $this->createForm(new EventType(), $event);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($event);
+            $em->flush();
+
+            return $this->redirectToRoute('event_list');
+        }
+        
+        return $this->render(
+            'eventForm.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+ 
+    /**
+    * @Route("/event/edit/{editId}", name="edit_event");
+    */
+    
+    public function editEventAction(Request $request, $editId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($editId){
+            //Do the edit thing
+        }
+    }
+    
+    /**
+    * @Route("/event/delete/{deleteId}", name="delete_event");
+    */
+    
+    public function deletEventAction(Request $request, $deleteId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+                
+        if ($deleteId){
+            //Do the delete thing
+        }    
+    }
+
+    /**
+    * @Route("/event/activate/{activateId}", name="activate_event");
+    */
+    
+    public function activateEventAction(Request $request, $activateId=null)
     {
         $em = $this->getDoctrine()->getManager();
         
@@ -39,36 +114,6 @@ class EventController extends Controller
             $em->flush();
             return $this->redirectToRoute('event_list');
         }
-        
-        if ($editId){
-            //Do the edit thing
-        }
-        
-        if ($deleteId){
-            //Do the delete thing
-        }
-        
-        if ($filter){
-            if ($filter == "new"){
-                //Do the new thing
-            } else {
-                //Do the filter thing
-            }
-        } else {
-            //Do the display thing
-        }
-        
-        $qb = $em->createQueryBuilder(); 
-        
-        $qb
-            ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_active')
-            ->from('AppBundle\Entity\event', 'event')
-            ->orderBy('event.event_date', 'DESC')
-            ;
-        
-        $query = $qb->getQuery();
-        $events = $query->getResult();
-        return $this->render('eventList.html.twig', array('events' => $events));
     }
 }
 
