@@ -178,7 +178,7 @@
                 //if ($('#ups-'+ups.id).html().split(' (')[0] !== statusString.split(' (')[0])
                 if (lastStatus[ups.id] != ups.status)
                 {
-                    if (i > 5)
+                    if (i > 10)
                     {
                         $('#ups'+ups.id+'ModalLabel').html("UPS " + ups.id + " " + ups.name);
                         $('#ups'+ups.id+'ModalBody').html("Status: " + ups.status + "<br>Location: " + ups.location);
