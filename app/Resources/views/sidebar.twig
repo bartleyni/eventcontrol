@@ -204,7 +204,7 @@
                 //var count = venue['count'].running_count_in - venue['count'].running_count_out;
                 //$('#venue-'+venue.id).html(venue.name + ": "+ count);
                 if(venue.status === "false"){
-                    console.log("old!");
+                    //console.log("old!");
                    $('#venue-'+venue.id).addClass("flash");
                 }else{
                    $('#venue-'+venue.id).removeClass("flash");
@@ -221,6 +221,6 @@
         });
         
         i++;
-        setTimeout(sidebarPoll,1000);
+        setTimeout(sidebarPoll,2000);
     }
 </script>
