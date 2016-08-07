@@ -27,14 +27,12 @@ class RegisterDisplay extends Controller
             ->from('AppBundle\Entity\event_control_register', 'attendee')
             ->orderBy('attendee.time_in', 'ASC')
             ;
+        
         if ($event){
-            $begin = $event->getEventLogStartDate();
-            $end = $event->getEventLogStopDate();
+            $eventId = $event->getId();
             
-            $qb->andWhere('attendee.time_in <= :begin')
-                ->andWhere('attendee.time_in >= :end')
-                ->setParameter('begin', $begin)
-                ->setParameter('end', $end);
+            $qb->andWhere('attendee.event <= :eventId')
+                ->setParameter('eventId', $eventId);
         }else{
             $qb->andWhere('attendee.time_in <= :begin')
                 ->andWhere('attendee.time_in >= :end')

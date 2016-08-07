@@ -51,10 +51,16 @@ class event_control_register {
      */
     protected $time_in;
     
-     /**
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $time_out;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="event_control_register")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
     
     public function __toString()
     {
@@ -189,5 +195,29 @@ class event_control_register {
     public function getTimeOut()
     {
         return $this->time_out;
+    }
+    
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return event_control_register
+     */
+    public function setEvent(\AppBundle\Entity\event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

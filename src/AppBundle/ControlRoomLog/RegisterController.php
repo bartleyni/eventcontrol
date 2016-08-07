@@ -46,11 +46,23 @@ class RegisterController extends Controller
             // 2) handle the submit (will only happen on POST)
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-
+                    
                 $attendee->setTimeIn(new \DateTime());
-
+                
+                    $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+                        array('event_active' => true));
+        
+                    if ($event)
+                    {
+                        $eventId = $event->getId();
+                    } else {
+                        $eventId = 0;
+                    }
+                    
+                $attendee->setEvent($eventId);
                 // 4) save the User!
                 $em = $this->getDoctrine()->getManager();
+                
                 $em->persist($attendee);
                 $em->flush();
 
