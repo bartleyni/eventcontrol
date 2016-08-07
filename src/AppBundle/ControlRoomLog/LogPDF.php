@@ -4,6 +4,8 @@ namespace AppBundle\ControlRoomLog;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManager;
 
 class LogPDF extends Controller
 {
