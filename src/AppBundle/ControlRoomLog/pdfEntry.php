@@ -38,14 +38,6 @@ class pdfEntry extends Controller
         //find the entry
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
-        $medicalTab = null;
-        $securityTab = null;
-        $generalTab = null;
-        $lostTab = null;
-        $medicalClosed = null;
-        $securityClosed = null;
-        $generalClosed = null;
-        $lostClosed = null;
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
@@ -64,7 +56,7 @@ class pdfEntry extends Controller
         
         $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $id));
         if (!$lostProperty){
-                $lostProperty = null;
+            $lostProperty = null;
         }
         
         $this->get('knp_snappy.pdf')->generateFromHtml(
