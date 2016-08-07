@@ -40,7 +40,12 @@ Event Entry Form
                                     {{ form_errors(form.event_date) }}
                                 </div>
                                 <div class="col-md-6">                                     
-                                    {{ form_widget(form.event_date) }}
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        {{ form_widget(form.event_date) }}
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div><br>
@@ -51,7 +56,12 @@ Event Entry Form
                                     {{ form_errors(form.event_log_start_date) }}
                                 </div>
                                 <div class="col-md-6"> 
-                                    {{ form_widget(form.event_log_start_date) }}
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        {{ form_widget(form.event_log_start_date) }}
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div><br>
@@ -62,7 +72,12 @@ Event Entry Form
                                     {{ form_errors(form.event_log_stop_date) }}
                                 </div>
                                 <div class="col-md-6">                                     
-                                    {{ form_widget(form.event_log_stop_date) }}
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        {{ form_widget(form.event_log_stop_date) }}
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div><br>
