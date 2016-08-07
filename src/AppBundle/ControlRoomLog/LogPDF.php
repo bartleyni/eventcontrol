@@ -10,6 +10,12 @@ use Doctrine\ORM\EntityManager;
 class LogPDF extends Controller
 {
     /**
+    * @Route("/logPDF/{sort}");
+    * @Route("/logPDF/{sort}/");
+    * @Route("/logPDF/{sort}/{filter}", name="PDF_sort_filter_log"); 
+    * @Route("/logPDF/{sort}/{filter}/");
+    * @Route("/logPDF/{sort}/{filter}/{filter_type}", name="PDF_sort_filter_type_log");
+    * @Route("/logPDF/{sort}/{filter}/{filter_type}/");
     * @Route("/logPDF/", name="full_log_pdf");
     */
     
@@ -161,7 +167,7 @@ class LogPDF extends Controller
         $query = $qb->getQuery();
         $logs = $query->getResult();
         
-        $html = $this->renderView('log.html.twig', array('logs' => $logs));
+        $html = $this->renderView('logTable.html.twig', array('logs' => $logs));
         
         $dir = $this->get('kernel')->getRootDir();
         
