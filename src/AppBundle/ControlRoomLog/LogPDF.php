@@ -175,7 +175,7 @@ class LogPDF extends Controller
         
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView(
-                'log.html.twig',
+                'logTable.html.twig',
                 array(
                     'logs' => $logs
                 )
