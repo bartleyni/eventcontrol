@@ -74,8 +74,24 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if ($editId){
-            //Do the edit thing
+            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $activateId));
+            $form = $this->createForm(new EventType(), $event);
+            $form->handleRequest($request);
         }
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $em->persist($event);
+            $em->flush();
+
+            return $this->redirectToRoute('event_list');
+        }
+        
+        return $this->render(
+            'eventForm.html.twig',
+            array('form' => $form->createView())
+        );
+        
     }
     
     /**
