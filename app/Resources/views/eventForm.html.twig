@@ -84,7 +84,7 @@ Event Entry Form
                         <div class="row">  
                             <div class="col-md-8">
                                 {{ form_end(form) }}
-                                <a href="{{ path('delete_event', {'deleteId': event.id}) }}"><button type="button" id="delete_button" class="btn btn-warning btn-block">Delete Event {{ event.id }}</button></a>
+                                <button type="button" id="delete_button" class="btn btn-warning btn-block" onClick="location.href='{{ path('delete_event', {'deleteId': event.id}) }}'">Delete Event {{ event.id }}</button>
                             </div>
                         </div>
                     </div>

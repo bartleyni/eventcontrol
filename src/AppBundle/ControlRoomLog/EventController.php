@@ -89,7 +89,7 @@ class EventController extends Controller
         
         return $this->render(
             'eventForm.html.twig',
-            array('form' => $form->createView())
+            array('form' => $form->createView(), 'event' => $event)
         );
         
     }
