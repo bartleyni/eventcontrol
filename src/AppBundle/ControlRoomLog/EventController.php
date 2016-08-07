@@ -74,7 +74,7 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         if ($editId){
-            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $activateId));
+            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
             $form = $this->createForm(new EventType(), $event);
             $form->handleRequest($request);
         }
