@@ -168,7 +168,7 @@ class LogPDF extends Controller
         
         $dir = $this->get('kernel')->getRootDir();
         
-        $this->get('knp_snappy.pdf')->generate('http://www.google.com', '~/pdf/pdf_test.pdf');
+        $this->get('knp_snappy.pdf')->generate('http://www.google.com', 'assets/pdf/pdf_test.pdf');
         
         return new Response(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
