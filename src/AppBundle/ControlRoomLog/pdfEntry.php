@@ -70,8 +70,69 @@ class pdfEntry extends Controller
             ),
             '../media/PDFlogs/'.$dateDIR.'/'.$filename
         );
+        return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
+    }
+    
+    /**
+    * @Route("/PDFentry/active/", name="active_entries");
+    * 
+    */
+    
+    public function PDFActiveEntriesAction()
+    {
+        $request = $this->getRequest();
         
+        $em = $this->getDoctrine()->getManager();
         
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('event_active' => true));
+        
+        $em->flush();
+        
+        //timestamp for directory
+        $dateDIR = date("Ymd-His");
+        
+        //find all entries that are active
+        $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+        foreach($entries as $entry)
+        {
+            $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneByLogEntryId($entry);
+            if (!$medical){
+                $medical = null;
+            }
+
+            $security = $em->getRepository('AppBundle\Entity\security_log')->findOneByLogEntryId($entry);
+            if (!$security){
+                $security = null;
+            }
+
+            $general = $em->getRepository('AppBundle\Entity\general_log')->findOneByLogEntryId($entry);
+            if (!$general){
+                $general = null;
+            }
+
+            $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneByLogEntryId($entry);
+            if (!$lostProperty){
+                $lostProperty = null;
+            }
+
+
+            $filename = "Entry ".$entry->getId().".pdf";
+
+            $this->get('knp_snappy.pdf')->generateFromHtml(
+                $this->renderView(
+                    'pdfEntry.html.twig',
+                    array(
+                        'entry' => $entry,
+                        'medical' => $medical,
+                        'security' => $security,
+                        'general' => $general,
+                        'lost' => $lostProperty,
+                    )
+                ),
+                '../media/PDFlogs/'.$dateDIR.'/'.$filename
+            );
+        }
         return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
     }
 }
