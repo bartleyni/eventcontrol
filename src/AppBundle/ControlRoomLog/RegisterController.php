@@ -49,17 +49,12 @@ class RegisterController extends Controller
                     
                 $attendee->setTimeIn(new \DateTime());
                 
-                    $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-                        array('event_active' => true));
+                $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+                    array('event_active' => true));
         
-                    if ($event)
-                    {
-                        $eventId = $event->getId();
-                    } else {
-                        $eventId = 0;
-                    }
-                    
-                $attendee->setEvent($eventId);
+                if ($event){
+                    $attendee->setEvent($event);
+                }
                 // 4) save the User!
                 $em = $this->getDoctrine()->getManager();
                 
