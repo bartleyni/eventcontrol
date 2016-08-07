@@ -96,22 +96,22 @@ class pdfEntry extends Controller
         $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
         foreach($entries as $entry)
         {
-            $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneByLogEntryId($entry);
+            $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
             if (!$medical){
                 $medical = null;
             }
 
-            $security = $em->getRepository('AppBundle\Entity\security_log')->findOneByLogEntryId($entry);
+            $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
             if (!$security){
                 $security = null;
             }
 
-            $general = $em->getRepository('AppBundle\Entity\general_log')->findOneByLogEntryId($entry);
+            $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
             if (!$general){
                 $general = null;
             }
 
-            $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneByLogEntryId($entry);
+            $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
             if (!$lostProperty){
                 $lostProperty = null;
             }
