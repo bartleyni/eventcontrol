@@ -56,7 +56,7 @@ Event Entry Form
                                     {{ form_errors(form.event_log_start_date) }}
                                 </div>
                                 <div class="col-md-6"> 
-                                    <div class='input-group date' id='datetimepicker1'>
+                                    <div class='input-group date' id='datetimepicker2'>
                                         {{ form_widget(form.event_log_start_date) }}
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -72,7 +72,7 @@ Event Entry Form
                                     {{ form_errors(form.event_log_stop_date) }}
                                 </div>
                                 <div class="col-md-6">                                     
-                                    <div class='input-group date' id='datetimepicker1'>
+                                    <div class='input-group date' id='datetimepicker3'>
                                         {{ form_widget(form.event_log_stop_date) }}
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -99,6 +99,22 @@ Event Entry Form
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
+                useCurrent: false,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+        
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                useCurrent: false,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+        
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
                 useCurrent: false,
                 format: 'YYYY-MM-DD HH:mm:ss',
                 showTodayButton: true

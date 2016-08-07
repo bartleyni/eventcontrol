@@ -48,7 +48,7 @@ class EventType extends AbstractType
                 'view_timezone' => 'Europe/London',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
-                    'data-provide' => 'datetimepicker1',
+                    'data-provide' => 'datetimepicker2',
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))
@@ -59,7 +59,7 @@ class EventType extends AbstractType
                 'view_timezone' => 'Europe/London',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
-                    'data-provide' => 'datetimepicker1',
+                    'data-provide' => 'datetimepicker3',
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))
