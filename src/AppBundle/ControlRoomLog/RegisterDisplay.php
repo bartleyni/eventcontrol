@@ -31,7 +31,7 @@ class RegisterDisplay extends Controller
         if ($event){
             $eventId = $event->getId();
             
-            $qb->andWhere('attendee.event <= :eventId')
+            $qb->andWhere('attendee.event == :eventId')
                 ->setParameter('eventId', $eventId);
         }else{
             $qb->andWhere('attendee.time_in <= :begin')
