@@ -91,5 +91,5 @@ knp_snappy:
             - { name: 'header-left', value: 'Confidential Information' }
             - { name: 'header-right', value: 'Event Control' }
             - { name: 'header-line', value: true }
-            #- { name: 'footer-center', value: '[page]/[topage]' }
-            #- { name: 'footer-line', value: 'true' }
+            - { name: 'footer-center', value: '[page]/[topage]' }
+            - { name: 'footer-line', value: true }
