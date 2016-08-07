@@ -90,7 +90,7 @@
                 </div>
                 <div class="row" id="Lost">
                     <h2>Lost Property</h2>
-                    {% if security is null %}
+                    {% if lost is null %}
                         No Lost Property Info
                     {% else %}
                         <strong>Item Lost?</strong> {{ lost.lost_property_item_lost ? 'Yes':'No' }}
