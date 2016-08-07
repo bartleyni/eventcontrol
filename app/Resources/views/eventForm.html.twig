@@ -67,7 +67,7 @@ Event Entry Form
                             </div>
                         </div><br>
                         <div class="row">  
-                            <div class="col-md-6">  
+                            <div class="col-md-8">  
                                 {{ form_end(form) }}
                             </div>
                         </div>
@@ -79,4 +79,15 @@ Event Entry Form
             {% include 'sidebar.twig' %}
         {% endblock %}
     {% endembed %}
-{% endblock %}              
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                useCurrent: true,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+    </script>        
+{% endblock %}        
