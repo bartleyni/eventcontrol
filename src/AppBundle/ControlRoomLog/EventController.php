@@ -39,7 +39,7 @@ class EventController extends Controller
     }
 
     /**
-    * @Route("/event/new/, name="new_event");
+    * @Route("/event/new/", name="new_event");
     */    
     
     public function newEventAction(Request $request)
