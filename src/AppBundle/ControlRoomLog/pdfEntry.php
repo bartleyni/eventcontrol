@@ -54,6 +54,9 @@ class pdfEntry extends Controller
             $lostProperty = null;
         }
         
+        $dateDIR = date("Ymd-His");
+        $filename = "Entry ".$entry->getId().".pdf";
+        
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $this->renderView(
                 'pdfEntry.html.twig',
@@ -65,7 +68,7 @@ class pdfEntry extends Controller
                     'lost' => $lostProperty,
                 )
             ),
-            '../media/PDFlogs/pdf_test3.pdf'
+            '../media/PDFlogs/'.$dateDIR.$filename
         );
         
         
