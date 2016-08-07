@@ -6,32 +6,29 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h2>Entry Information ({{ entry.id }})</h2>
+            <h2>Entry Information (ID: {{ entry.id }})</h2>
             <br>
             <div class="row">
                 <div class="col-md-6">
-                    Operator:
-                    <br>
-                    {{ entry.operator }}
+                    Operator: {{ entry.operator }}
                 </div>
                 <div class="col-md-6">
-                    Log Open Time:
-                    <br>
-                    {{ entry.log_entry_open_time }}
+                    Log Open Time (Timestamp): {{ entry.log_entry_open_time }} ({{ entry.log_timestamp }})
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    Short Description:
-                    <br>
-                    {{ entry.log_blurb }}
+                    Short Description: {{ entry.log_blurb }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    Location:
-                    <br>
-                    {{ entry.location }}
+                    Location: {{ entry.location }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    Reported By: {{ entry.reported_by }}
                 </div>
             </div>
             <div class="row">
