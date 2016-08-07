@@ -103,7 +103,9 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
                 
         if ($deleteId){
-            //Do the delete thing
+            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $deleteId));
+            $em->remove($event);
+            $em->flush();
         }    
     }
 
