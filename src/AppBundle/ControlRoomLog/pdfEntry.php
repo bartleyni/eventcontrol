@@ -8,11 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Form\Type\LogType;
-use AppBundle\Form\Type\MedicalType;
-use AppBundle\Form\Type\GeneralType;
-use AppBundle\Form\Type\SecurityType;
-use AppBundle\Form\Type\LostPropertyType;
 use AppBundle\Entity\log_entries;
 use AppBundle\Entity\general_log;
 use AppBundle\Entity\medical_log;
@@ -37,7 +32,7 @@ class pdfEntry extends Controller
         
         //find the entry
         $em = $this->getDoctrine()->getManager();
-        $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
+        $entry = $em->getRepository('AppBundle\Entity\log_entries')->findOneBy(array('log_entry_id' => $id));
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
