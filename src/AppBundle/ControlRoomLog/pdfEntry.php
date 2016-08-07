@@ -32,7 +32,7 @@ class pdfEntry extends Controller
         
         //find the entry
         $em = $this->getDoctrine()->getManager();
-        $entry = $em->getRepository('AppBundle\Entity\log_entries')->findOneBy(array('log_entry_id' => $id));
+        $entry = $em->getRepository('AppBundle\Entity\log_entries')->findOneBy(array('id' => $id));
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
