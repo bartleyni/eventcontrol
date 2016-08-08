@@ -79,9 +79,7 @@ class pdfEntry extends Controller
     */
     
     public function PDFEventEntriesAction($eventId=null)
-    {
-        $request = $this->getRequest();
-        
+    {   
         $em = $this->getDoctrine()->getManager();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
@@ -90,13 +88,10 @@ class pdfEntry extends Controller
         
         if($event)
         {
-            
             //timestamp for file
             $dateDIR = date("Ymd-His");
-
             //Event Directory
             $eventDIR = $event->getId().'-'.$event->getName();
-            
             //Filename
             $ReportFilename = 'Full Report '.$dateDIR.'.pdf';
 
@@ -136,21 +131,20 @@ class pdfEntry extends Controller
                     $em->flush();
                     
                     $reports[] = $this->renderView(
-                            'pdfEntry.html.twig',
-                            array(
-                                'entry' => $entry,
-                                'medical' => $medical,
-                                'security' => $security,
-                                'general' => $general,
-                                'lost' => $lostProperty,
-                                //'event' => $event,
-                            )
-                        );
+                        'pdfEntry.html.twig',
+                        array(
+                            'entry' => $entry,
+                            'medical' => $medical,
+                            'security' => $security,
+                            'general' => $general,
+                            'lost' => $lostProperty,
+                            //'event' => $event,
+                        )
+                    );
                 }
                 //Generate full report
                 $this->get('knp_snappy.pdf')->generateFromHtml(
-                    $reports
-                    ,
+                    $reports,
                     '../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
                 );
                 
