@@ -177,7 +177,7 @@ class pdfEntry extends Controller
         $dateDIR = date("Ymd-His");
                 
         //Event Directory
-        $eventDIR = $event->getName();
+        $eventDIR = $event->getId().'-'.$event->getName();
         
         //Setup array for the combined report
         $reports = array();
