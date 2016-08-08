@@ -47,13 +47,13 @@ Events Settings
                                             <td><a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                             <td>
                                                 <a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a>
-                                                {% if event.eventReportRunDate %}
-                                                    {{ event.eventReportRunDate|date('Y-m-d H:i:s', "Europe/London") }}
+                                                {% if event.event_report_run_date %}
+                                                    {{ event.event_report_run_date|date('Y-m-d H:i:s', "Europe/London") }}
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% if event.eventReportFilename %}
-                                                    <a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report">{{ event.eventReportFilename }}</span></a>
+                                                {% if event.event_report_filename %}
+                                                    <a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report">{{ event.event_report_filename }}</span></a>
                                                 {% else %}
                                                     No report available
                                                 {% endif %}   
