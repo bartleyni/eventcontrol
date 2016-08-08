@@ -157,9 +157,9 @@ class pdfEntry extends Controller
                 $em->persist($event);
                 $em->flush();
             }
-            return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
+            //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
         }
-        //return $this->redirectToRoute('event_list');
+        return $this->redirectToRoute('event_list');
     }
 }
 
