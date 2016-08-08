@@ -182,8 +182,8 @@ class pdfEntry extends Controller
         {
             $creationDate = new \DateTime();
             
-            //timestamp for directory
-            $dateDIR = date("Ymd-His", $creationDate);
+            //timestamp for file
+            $dateDIR = date("Ymd-His");
 
             //Event Directory
             $eventDIR = $event->getId().'-'.$event->getName();
