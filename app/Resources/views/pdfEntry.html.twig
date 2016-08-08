@@ -48,7 +48,7 @@
                     {% if medical is null %}
                         No Medical Info
                     {% else %}
-                        <strong>Injury Type:</strong> {{ medical.medical_reported_injury_type }}
+                        <strong>Injury Type:</strong> {{ medical.medical_reported_injury_type }} - {{ medical.medicalReportedInjuryType }}
                         <br>
                         <strong>Description:</strong><br>
                         {{ medical.medicalDescription }}
