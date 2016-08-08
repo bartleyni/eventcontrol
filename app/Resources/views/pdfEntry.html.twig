@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <h1>{{ event.name }} Event Control</h1>
             {{ event.client }}
+            Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
             <h2>Log Entry (ID: {{ entry.id }})</h2>
-            <strong>Report Produced:</strong> {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
         </div>
     </div>
     <div class="row">
@@ -33,22 +33,20 @@
                     <strong>Reported By:</strong> {{ entry.reportedBy }}
                 </div>
             </div>
-                <div class="row" id="General">
-                    <h2>General</h2>
-                    {% if general is null %}
-                        No General Info
-                    {% else %}
+                {% if general is null %}                      
+                {% else %}
+                    <div class="row" id="General">
+                        <h2>General</h2>
                         <strong>Description:</strong><br>
                         {{ general.generalDescription }}
                         <br>
-                        <strong>Closed:</strong> {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
-                    {% endif %}
-                </div>
-                <div class="row" id="Medical">
-                    <h2>Medical</h2>
-                    {% if medical is null %}
-                        No Medical Info
-                    {% else %}
+                        <strong>Closed:</strong> {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}                    
+                    </div>
+                {% endif %}
+                {% if medical is null %}
+                {% else %}
+                    <div class="row" id="Medical">
+                    <h2>Medical</h2>                    
                         <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
                         <br>
                         <strong>Description:</strong><br>
@@ -66,13 +64,13 @@
                         {{ medical.medicalNotes }}
                         <br>
                         <strong>Closed:</strong> {{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
-                    {% endif %}
-                </div>
-                <div class="row" id="Security">
+                    
+                    </div>
+                {% endif %}
+                {% if security is null %}
+                {% else %}
+                    <div class="row" id="Security">
                     <h2>Security</h2>
-                    {% if security is null %}
-                        No Security Info
-                    {% else %}
                         <strong>Security Log Type:</strong> {{ security.securityLogType }}
                         <br>
                         <strong>Security Incident Type:</strong> {{ security.securityIncidentType }}
@@ -86,14 +84,13 @@
                         <br>
                         <strong>Security Resolution:</strong> {{ security.securityResolution }}
                         <br>
-                        <strong>Closed:</strong> {{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
-                    {% endif %}
-                </div>
-                <div class="row" id="Lost">
-                    <h2>Lost Property</h2>
-                    {% if lost is null %}
-                        No Lost Property Info
-                    {% else %}
+                        <strong>Closed:</strong> {{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}                
+                    </div>
+                {% endif %}
+                {% if lost is null %}
+                {% else %}
+                    <div class="row" id="Lost">
+                        <h2>Lost Property</h2>
                         <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
                         <br>
                         <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
@@ -110,8 +107,8 @@
                         {{ lost.lostPropertyResolutionDescription }}
                         <br>
                         <strong>Closed:</strong> {{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
-                    {% endif %}
-                </div>                                
+                    </div>
+                {% endif %}
         </div>
     </div>
 </div>
