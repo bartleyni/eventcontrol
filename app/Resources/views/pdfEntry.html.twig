@@ -15,7 +15,7 @@
                     <strong>Operator:</strong> {{ entry.operator }}
                 </div>
                 <div class="col-md-6">
-                    <strong>Log Open Time (Timestamp):</strong> {{ entry.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") }} ({{ entry.log_timestamp|date('Y-m-d H:i:s', "Europe/London") }})
+                    <strong>Log Open Time (Timestamp):</strong> {{ entry.log_entry_open_time|raw }} ({{ entry.log_timestamp|date('Y-m-d H:i:s', "Europe/London") }})
                 </div>
             </div>
             <div class="row">
