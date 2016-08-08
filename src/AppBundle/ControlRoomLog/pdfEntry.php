@@ -74,96 +74,6 @@ class pdfEntry extends Controller
     }
     
     /**
-    * @Route("/PDFentry/active/", name="active_entries");
-    * 
-    */
-    
-    public function PDFActiveEntriesAction()
-    {
-        $request = $this->getRequest();
-        
-        $em = $this->getDoctrine()->getManager();
-        
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
-        
-        if($event)
-        {
-            $em->flush();
-
-            //timestamp for directory
-            $dateDIR = date("Ymd-His");
-
-            //Setup array for the combined report
-            $reports = array();
-
-            //find all entries that are active
-            $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
-            foreach($entries as $entry)
-            {
-                $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$medical){
-                    $medical = null;
-                }
-
-                $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$security){
-                    $security = null;
-                }
-
-                $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$general){
-                    $general = null;
-                }
-
-                $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
-                if (!$lostProperty){
-                    $lostProperty = null;
-                }
-
-
-                $filename = "Entry ".$entry->getId().".pdf";
-
-                $reports[] = $this->renderView(
-                        'pdfEntry.html.twig',
-                        array(
-                            'entry' => $entry,
-                            'medical' => $medical,
-                            'security' => $security,
-                            'general' => $general,
-                            'lost' => $lostProperty,
-                            'event' => $event,
-                        )
-                    );
-
-                //$this->get('knp_snappy.pdf')->generateFromHtml(
-                //    $this->renderView(
-                //        'pdfEntry.html.twig',
-                //        array(
-                //            'entry' => $entry,
-                //            'medical' => $medical,
-                //            'security' => $security,
-                //            'general' => $general,
-                //            'lost' => $lostProperty,
-                //        )
-                //    ),
-                //    '../media/PDFlogs/'.$dateDIR.'/'.$filename
-                //);
-            }
-            //Generate full report
-            $this->get('knp_snappy.pdf')->generateFromHtml(
-                $reports
-                ,
-                '../media/PDFlogs/'.$dateDIR.'/All Active.pdf'
-            );
-
-            //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
-        }
-        return $this->redirectToRoute('event_list');
-        
-    }
-    
-    /**
     * @Route("/PDFentry/{eventId}", name="event_entries");
     * 
     */
@@ -176,11 +86,11 @@ class pdfEntry extends Controller
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('id' => $eventId));
-        
+        $em->flush();
         
         if($event)
         {
-            $creationDate = new \DateTime();
+            $ReportDate = new \DateTime();
             
             //timestamp for file
             $dateDIR = date("Ymd-His");
@@ -189,13 +99,14 @@ class pdfEntry extends Controller
             $eventDIR = $event->getId().'-'.$event->getName();
             
             //Filename
-            $filename = 'Full Report '.$dateDIR.'.pdf';
+            $ReportFilename = 'Full Report '.$dateDIR.'.pdf';
 
             //Setup array for the combined report
             $reports = array();
             
             //find all entries that are active
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+            $em->flush();
             
             if($entries)
             {
@@ -205,22 +116,24 @@ class pdfEntry extends Controller
                     if (!$medical){
                         $medical = null;
                     }
-
+                    $em->flush();
+                    
                     $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
                     if (!$security){
                         $security = null;
                     }
-
+                    $em->flush();
+                    
                     $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
                     if (!$general){
                         $general = null;
                     }
-
+                    $em->flush();
                     $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
                     if (!$lostProperty){
                         $lostProperty = null;
                     }
-
+                    $em->flush();
                     $reports[] = $this->renderView(
                             'pdfEntry.html.twig',
                             array(
@@ -237,14 +150,14 @@ class pdfEntry extends Controller
                 $this->get('knp_snappy.pdf')->generateFromHtml(
                     $reports
                     ,
-                    '../media/PDFReports/'.$eventDIR.'/'.$filename
+                    '../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
                 );
                 //log file in event system
                 $em->flush();
                 $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
                     array('id' => $eventId));
-                $event->setEventReportFilename($filename);
-                $event->setEventReportRunDate($creationDate);
+                $event->setEventReportFilename($ReportFilename);
+                $event->setEventReportRunDate($ReportDate);
                 $em->persist($event);
                 $em->flush();
             }
