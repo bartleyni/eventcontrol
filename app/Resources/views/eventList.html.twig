@@ -46,17 +46,17 @@ Events Settings
                                             </td>
                                             <td><a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                             <td>
-                                                <a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a></td>
-                                                
+                                                <a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a>
+                                                {% if event.eventReportRunDate %}
+                                                    {{ event.eventReportRunDate|date('Y-m-d H:i:s', "Europe/London") }}
+                                                {% endif %}
+                                            </td>
                                             <td>
-                                                {% if event.event_report_filename %}
-                                                    <a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span></a>
+                                                {% if event.eventReportFilename %}
+                                                    <a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report">{{ event.eventReportFilename }}</span></a>
                                                 {% else %}
                                                     No report available
                                                 {% endif %}   
-                                            </td>
-                                            <td>
-                                                No report Available
                                             </td>
                                         </tr>
                                     {% endfor %}                           
