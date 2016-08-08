@@ -199,7 +199,6 @@ class pdfEntry extends Controller
             
             if($entries)
             {
-
                 foreach($entries as $entry)
                 {
                     $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
@@ -244,7 +243,7 @@ class pdfEntry extends Controller
                     '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
                 );
                 //log file in event system
-                $em->flsuh();
+                $em->flush();
                 $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
                     array('id' => $eventId));
                 $event->setEventReportFilename($filename);
