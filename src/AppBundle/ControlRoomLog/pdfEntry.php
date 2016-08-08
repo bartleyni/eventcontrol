@@ -221,9 +221,6 @@ class pdfEntry extends Controller
                         $lostProperty = null;
                     }
 
-
-                    $filename = "Entry ".$entry->getId().".pdf";
-
                     $reports[] = $this->renderView(
                             'pdfEntry.html.twig',
                             array(
@@ -240,7 +237,7 @@ class pdfEntry extends Controller
                 $this->get('knp_snappy.pdf')->generateFromHtml(
                     $reports
                     ,
-                    '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
+                    '../media/PDFReports/'.$eventDIR.'/'.$filename
                 );
                 //log file in event system
                 $em->flush();
