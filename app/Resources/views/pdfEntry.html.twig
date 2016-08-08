@@ -56,7 +56,7 @@
                         <br>
                         <strong>Medical Response:</strong> {{ medical.medicalResponse }}
                         <br>
-                        <strong>999 Required?:</strong> {{ medical.nine_nine_nine_required ? 'Yes':'No' }}
+                        <strong>999 Required?:</strong> {{ medical.nineNineNineRequired ? 'Yes':'No' }}
                         <br>
                         <strong>Medical Treatment:</strong> {{ medical.medicalTreatment }}
                         <br>
@@ -94,20 +94,20 @@
                     {% if lost is null %}
                         No Lost Property Info
                     {% else %}
-                        <strong>Item Lost?</strong> {{ lost.lost_property_item_lost ? 'Yes':'No' }}
+                        <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
                         <br>
-                        <strong>Item Found?</strong> {{ lost.lost_property_item_found ? 'Yes':'No' }}
+                        <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
                         <br>
                         <strong>Description:</strong><br>
                         {{ lost.lostPropertyDescription }}
                         <br>
                         <strong>Contact Details:</strong><br>
-                        {{ lost.lost_property_contact_details }}
+                        {{ lost.lostPropertyContactDetails }}
                         <br>
                         <strong>Lost Property Resolution:</strong> {{ lost.lostPropertyResolution }}
                         <br>
                         <strong>Resolution Description:</strong><br>
-                        {{ lost.lost_property_resolution_description }}
+                        {{ lost.lostPropertyResolutionDescription }}
                         <br>
                         <strong>Closed:</strong> {{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
                     {% endif %}
