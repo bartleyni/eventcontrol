@@ -90,7 +90,6 @@ class pdfEntry extends Controller
         
         if($event)
         {
-            $ReportDate = new \DateTime();
             
             //timestamp for file
             $dateDIR = date("Ymd-His");
@@ -159,7 +158,7 @@ class pdfEntry extends Controller
                 $em->flush();
                 $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
                 $event->setEventReportFilename($ReportFilename);
-                $event->setEventReportRunDate($ReportDate);
+                $event->setEventReportRunDate(new \DateTime());
                 $em->persist($event);
                 $em->flush();
             }
