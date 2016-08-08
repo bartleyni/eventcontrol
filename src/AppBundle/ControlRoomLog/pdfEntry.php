@@ -194,12 +194,6 @@ class pdfEntry extends Controller
             //Setup array for the combined report
             $reports = array();
             
-            //log file in event system
-            $event->setEventReportFilename($filename);
-            $event->setEventReportRunDate($creationDate);
-            $em->persist($event);
-            $em->flush();
-            
             //find all entries that are active
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
             
@@ -249,6 +243,14 @@ class pdfEntry extends Controller
                     ,
                     '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
                 );
+                //log file in event system
+                $em->flsuh();
+                $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+                    array('id' => $eventId));
+                $event->setEventReportFilename($filename);
+                $event->setEventReportRunDate($creationDate);
+                $em->persist($event);
+                $em->flush();
             }
             //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
         }
