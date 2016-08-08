@@ -254,7 +254,7 @@ class event {
      *
      * @return string
      */
-    public function getEventRrportFilename()
+    public function getEventReportFilename()
     {
         return $this->event_report_filename;
     }
