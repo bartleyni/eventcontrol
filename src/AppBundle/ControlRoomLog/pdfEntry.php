@@ -129,11 +129,13 @@ class pdfEntry extends Controller
                         $general = null;
                     }
                     $em->flush();
+                    
                     $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
                     if (!$lostProperty){
                         $lostProperty = null;
                     }
                     $em->flush();
+                    
                     $reports[] = $this->renderView(
                             'pdfEntry.html.twig',
                             array(
@@ -152,18 +154,18 @@ class pdfEntry extends Controller
                     ,
                     '../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
                 );
+                
                 //log file in event system
                 $em->flush();
-                $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-                    array('id' => $eventId));
+                $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
                 $event->setEventReportFilename($ReportFilename);
                 $event->setEventReportRunDate($ReportDate);
                 $em->persist($event);
                 $em->flush();
             }
-            //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
+            return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
         }
-        return $this->redirectToRoute('event_list');
+        //return $this->redirectToRoute('event_list');
     }
 }
 
