@@ -181,12 +181,16 @@ class pdfEntry extends Controller
         
         if($event)
         {
-
+            $creationDate = new \DateTime();
+            
             //timestamp for directory
-            $dateDIR = date("Ymd-His");
+            $dateDIR = date("Ymd-His", $creationDate);
 
             //Event Directory
             $eventDIR = $event->getId().'-'.$event->getName();
+            
+            //Filename
+            $filename = 'Full Report '.$dateDIR.'.pdf';
 
             //Setup array for the combined report
             $reports = array();
@@ -195,6 +199,11 @@ class pdfEntry extends Controller
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
             if($entries)
             {
+                //log file in event system
+                $event->setEventReportFilename($filename);
+                $event->setEventReportRunDate($creationDate);
+                
+                
                 foreach($entries as $entry)
                 {
                     $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));

@@ -66,6 +66,16 @@ class event {
      */
     private $log_entries;
     
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_report_run_date;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $event_report_filename;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -201,6 +211,54 @@ class event {
         return $this->event_log_stop_date;
     }
 
+        /**
+     * Set eventReportRunDate
+     *
+     * @param \DateTime $eventReportRunDate
+     *
+     * @return event
+     */
+    public function setEventReportRunDate($eventReportRunDate)
+    {
+        $this->event_report_run_date = $eventReportRunDate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventReportRunDate
+     *
+     * @return \DateTime
+     */
+    public function getEventReportRunDate()
+    {
+        return $this->event_report_run_date;
+    }
+    
+        /**
+     * Set event_report_filename
+     *
+     * @param string $event_report_filename
+     *
+     * @return event
+     */
+    public function setEventReportFilename($event_report_filename)
+    {
+        $this->event_report_filename = $event_report_filename;
+
+        return $this;
+    }
+
+    /**
+     * Get event_report_filename
+     *
+     * @return string
+     */
+    public function getEventRrportFilename()
+    {
+        return $this->event_report_filename;
+    }
+    
     /**
      * Set eventActive
      *
