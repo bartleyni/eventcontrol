@@ -177,7 +177,6 @@ class pdfEntry extends Controller
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('id' => $eventId));
         
-        $em->flush();
         
         if($event)
         {
@@ -194,16 +193,19 @@ class pdfEntry extends Controller
 
             //Setup array for the combined report
             $reports = array();
-
+            
+            //log file in event system
+            $event->setEventReportFilename($filename);
+            $event->setEventReportRunDate($creationDate);
+            $em->persist($event);
+            $em->flush();
+            
             //find all entries that are active
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+            
             if($entries)
             {
-                //log file in event system
-                $event->setEventReportFilename($filename);
-                $event->setEventReportRunDate($creationDate);
-                
-                
+
                 foreach($entries as $entry)
                 {
                     $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
