@@ -33,7 +33,7 @@ Events Settings
                                 <tbody>
                                     {% for event in events %}
                                         <tr>
-                                            <td>{{ event.event_date|raw }}</td>
+                                            <td>{{ event.event_date|date('Y-m-d H:i', "Europe/London") }}</td>
                                             <td>{{ event.name }}</td>
                                             <td>{{ event.client }}</td>
                                             <td>{{ event.event_log_start_date|date('Y-m-d H:i', "Europe/London") }}</td>

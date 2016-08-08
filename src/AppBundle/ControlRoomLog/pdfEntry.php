@@ -100,7 +100,7 @@ class pdfEntry extends Controller
             
             //find all entries that are active
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
-            $em->flush();
+            //$em->flush();
             
             if($entries)
             {
@@ -110,25 +110,25 @@ class pdfEntry extends Controller
                     if (!$medical){
                         $medical = null;
                     }
-                    $em->flush();
+                    //$em->flush();
                     
                     $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
                     if (!$security){
                         $security = null;
                     }
-                    $em->flush();
+                    //$em->flush();
                     
                     $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
                     if (!$general){
                         $general = null;
                     }
-                    $em->flush();
+                    //$em->flush();
                     
                     $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
                     if (!$lostProperty){
                         $lostProperty = null;
                     }
-                    $em->flush();
+                    //$em->flush();
                     
                     $reports[] = $this->renderView(
                         'pdfEntry.html.twig',
