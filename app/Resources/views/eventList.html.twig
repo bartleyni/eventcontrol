@@ -53,7 +53,7 @@ Events Settings
                                             </td>
                                             <td>
                                                 {% if event.event_report_filename %}
-                                                    <a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span>{{ event.event_report_filename }}</a>
+                                                    <a href="{{ path('event_report_view', {'eventId': event.id}) }}"  target="_blank"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span>{{ event.event_report_filename }}</a>
                                                 {% else %}
                                                     No report available
                                                 {% endif %}   

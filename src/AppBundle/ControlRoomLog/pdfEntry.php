@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use AppBundle\Entity\log_entries;
 use AppBundle\Entity\general_log;
@@ -161,6 +162,31 @@ class pdfEntry extends Controller
         }
         return $this->redirectToRoute('event_list');
     }
+    
+        
+    /**
+    * @Route("/PDFview/{eventId}", name="event_report_view");
+    * 
+    */
+    
+    public function PDFEventViewAction($eventId=null)
+    {  
+        $em = $this->getDoctrine()->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('id' => $eventId));
+        $em->flush();
+        
+        if($event)
+        {
+            $eventDIR = $event->getId().'-'.$event->getName();
+            $eventFile = $event->getEventReportFilename();
+            
+            return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$eventFile);
+        }
+    
+    }
+    
 }
 
 
