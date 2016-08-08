@@ -193,49 +193,52 @@ class pdfEntry extends Controller
 
             //find all entries that are active
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
-            foreach($entries as $entry)
+            if($entries)
             {
-                $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$medical){
-                    $medical = null;
+                foreach($entries as $entry)
+                {
+                    $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
+                    if (!$medical){
+                        $medical = null;
+                    }
+
+                    $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
+                    if (!$security){
+                        $security = null;
+                    }
+
+                    $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
+                    if (!$general){
+                        $general = null;
+                    }
+
+                    $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
+                    if (!$lostProperty){
+                        $lostProperty = null;
+                    }
+
+
+                    $filename = "Entry ".$entry->getId().".pdf";
+
+                    $reports[] = $this->renderView(
+                            'pdfEntry.html.twig',
+                            array(
+                                'entry' => $entry,
+                                'medical' => $medical,
+                                'security' => $security,
+                                'general' => $general,
+                                'lost' => $lostProperty,
+                                'event' => $event,
+                            )
+                        );
                 }
-
-                $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$security){
-                    $security = null;
-                }
-
-                $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
-                if (!$general){
-                    $general = null;
-                }
-
-                $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
-                if (!$lostProperty){
-                    $lostProperty = null;
-                }
-
-
-                $filename = "Entry ".$entry->getId().".pdf";
-
-                $reports[] = $this->renderView(
-                        'pdfEntry.html.twig',
-                        array(
-                            'entry' => $entry,
-                            'medical' => $medical,
-                            'security' => $security,
-                            'general' => $general,
-                            'lost' => $lostProperty,
-                            'event' => $event,
-                        )
-                    );
+                //Generate full report
+                $this->get('knp_snappy.pdf')->generateFromHtml(
+                    $reports
+                    ,
+                    '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
+                );
             }
-            //Generate full report
-            $this->get('knp_snappy.pdf')->generateFromHtml(
-                $reports
-                ,
-                '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
-            );
             //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
         }
         return $this->redirectToRoute('event_list');
