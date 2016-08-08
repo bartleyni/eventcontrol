@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 use AppBundle\Entity\log_entries;
 use AppBundle\Entity\general_log;
@@ -87,6 +89,8 @@ class pdfEntry extends Controller
             array('id' => $eventId));
         $em->flush();
         
+        $oldFilename = $event->getEventReportFilename();
+        
         if($event)
         {
             //timestamp for file
@@ -157,7 +161,19 @@ class pdfEntry extends Controller
                 $event->setEventReportRunDate(new \DateTime());
                 $em->persist($event);
                 $em->flush();
+                
+                $fs = new Filesystem();
+                
+                try{
+                    $OldFileExists = $fs->exists('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                    if($OldFileExists){
+                        $fs->remove('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                    }
+                } catch (IOExceptionInterface $e) {
+                    
+                }
             }
+            
             //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
         }
         return $this->redirectToRoute('event_list');
