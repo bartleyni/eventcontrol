@@ -88,7 +88,7 @@ class pdfEntry extends Controller
             array('event_active' => true));
         
         $em->flush();
-        
+                
         //timestamp for directory
         $dateDIR = date("Ymd-His");
         
@@ -133,8 +133,82 @@ class pdfEntry extends Controller
                     )
                 );
             
-            $this->get('knp_snappy.pdf')->generateFromHtml(
-                $this->renderView(
+            //$this->get('knp_snappy.pdf')->generateFromHtml(
+            //    $this->renderView(
+            //        'pdfEntry.html.twig',
+            //        array(
+            //            'entry' => $entry,
+            //            'medical' => $medical,
+            //            'security' => $security,
+            //            'general' => $general,
+            //            'lost' => $lostProperty,
+            //        )
+            //    ),
+            //    '../media/PDFlogs/'.$dateDIR.'/'.$filename
+            //);
+        }
+        //Generate full report
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $reports
+            ,
+            '../media/PDFlogs/'.$dateDIR.'/All Active.pdf'
+        );
+        return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
+    }
+    
+    /**
+    * @Route("/PDFentry/{eventId}", name="event_entries");
+    * 
+    */
+    
+    public function PDFEventEntriesAction($eventId=null)
+    {
+        $request = $this->getRequest();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('id' => $eventId));
+        
+        $em->flush();
+        
+        //timestamp for directory
+        $dateDIR = date("Ymd-His");
+                
+        //Event Directory
+        $eventDIR = $event->getName();
+        
+        //Setup array for the combined report
+        $reports = array();
+        
+        //find all entries that are active
+        $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+        foreach($entries as $entry)
+        {
+            $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
+            if (!$medical){
+                $medical = null;
+            }
+
+            $security = $em->getRepository('AppBundle\Entity\security_log')->findOneBy(array('log_entry_id' => $entry));
+            if (!$security){
+                $security = null;
+            }
+
+            $general = $em->getRepository('AppBundle\Entity\general_log')->findOneBy(array('log_entry_id' => $entry));
+            if (!$general){
+                $general = null;
+            }
+
+            $lostProperty = $em->getRepository('AppBundle\Entity\lost_property')->findOneBy(array('log_entry_id' => $entry));
+            if (!$lostProperty){
+                $lostProperty = null;
+            }
+
+
+            $filename = "Entry ".$entry->getId().".pdf";
+            
+            $reports[] = $this->renderView(
                     'pdfEntry.html.twig',
                     array(
                         'entry' => $entry,
@@ -143,15 +217,13 @@ class pdfEntry extends Controller
                         'general' => $general,
                         'lost' => $lostProperty,
                     )
-                ),
-                '../media/PDFlogs/'.$dateDIR.'/'.$filename
-            );
+                );
         }
         //Generate full report
         $this->get('knp_snappy.pdf')->generateFromHtml(
             $reports
             ,
-            '../media/PDFlogs/'.$dateDIR.'/All Active.pdf'
+            '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
         );
         return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
     }
