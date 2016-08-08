@@ -1,7 +1,8 @@
 <div class="wrapper">
     <div class="row">
         <div class="col-md-12">
-            <h1>{{ activeEventName() }} Event Control</h1>
+            <h1>{{ event.name }} Event Control</h1>
+            {{ event.client }}
             <h2>Log Entry (ID: {{ entry.id }})</h2>
             <strong>Report Produced:</strong> {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
         </div>
