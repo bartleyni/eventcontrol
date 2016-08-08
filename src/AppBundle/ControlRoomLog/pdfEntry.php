@@ -144,7 +144,7 @@ class pdfEntry extends Controller
                                 'security' => $security,
                                 'general' => $general,
                                 'lost' => $lostProperty,
-                                'event' => $event,
+                                //'event' => $event,
                             )
                         );
                 }
