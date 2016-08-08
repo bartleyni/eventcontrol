@@ -138,6 +138,7 @@ class pdfEntry extends Controller
                             'security' => $security,
                             'general' => $general,
                             'lost' => $lostProperty,
+                            'event' => $event,
                             
                         )
                     );
@@ -152,7 +153,7 @@ class pdfEntry extends Controller
                 $em->flush();
                 $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
                 $event->setEventReportFilename($ReportFilename);
-                $event->setEventReportRunDate(new \DateTime());
+                //$event->setEventReportRunDate(new \DateTime());
                 $em->persist($event);
                 $em->flush();
             }
