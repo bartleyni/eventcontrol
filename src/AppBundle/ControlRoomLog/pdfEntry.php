@@ -17,7 +17,7 @@ use AppBundle\Entity\lost_property;
 class pdfEntry extends Controller
 {
     /**
-    * @Route("/PDFentry/{id}", name="PDF_entry");
+    * @Route("/PDFentry/log/{id}", name="PDF_entry");
     * 
     */
     
