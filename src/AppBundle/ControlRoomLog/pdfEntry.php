@@ -154,7 +154,10 @@ class pdfEntry extends Controller
             ,
             '../media/PDFlogs/'.$dateDIR.'/All Active.pdf'
         );
-        return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
+        
+        //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty,));
+        return $this->redirectToRoute('event_list');
+        
     }
     
     /**
@@ -227,7 +230,8 @@ class pdfEntry extends Controller
             ,
             '../media/PDFReports/'.$eventDIR.'/Full Report '.$dateDIR.'.pdf'
         );
-        return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
+        //return $this->render('pdfEntry.html.twig', array('entry' => $entry, 'medical' => $medical, 'security' => $security, 'general' => $general, 'lost' => $lostProperty, 'event' => $event,));
+        return $this->redirectToRoute('event_list');
     }
 }
 

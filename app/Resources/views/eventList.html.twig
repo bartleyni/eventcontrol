@@ -45,7 +45,7 @@ Events Settings
                                                 {% endif %}
                                             </td>
                                             <td><a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
-                                            <td><a href="{{ path('event_entires', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a></td>
+                                            <td><a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a></td>
                                             <td><a href="{{ path('edit_event', {'editId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span></a></td>
                                         </tr>
                                     {% endfor %}                           
