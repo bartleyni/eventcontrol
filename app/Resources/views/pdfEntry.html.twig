@@ -4,12 +4,12 @@
             <h1>{{ event.name }} Event Control</h1>
             {{ event.client }}<br>
             Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
-            <h2>Log Entry (ID: {{ entry.id }})</h2>
+            <h2>Log Entry ID: {{ entry.id }}</h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h2>Entry Information</h2>
+            <h3>Log Information</h3>
             <div class="row">
                 <div class="col-md-6">
                     <strong>Operator:</strong> {{ entry.operator }}
@@ -36,7 +36,7 @@
                 {% if general is null %}                      
                 {% else %}
                     <div class="row" id="General">
-                        <h2>General</h2>
+                        <h3>General</h3>
                         <strong>Description:</strong><br>
                         {{ general.generalDescription }}
                         <br>
@@ -46,7 +46,7 @@
                 {% if medical is null %}
                 {% else %}
                     <div class="row" id="Medical">
-                    <h2>Medical</h2>                    
+                    <h3>Medical</h3>                    
                         <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
                         <br>
                         <strong>Description:</strong><br>
@@ -70,7 +70,7 @@
                 {% if security is null %}
                 {% else %}
                     <div class="row" id="Security">
-                    <h2>Security</h2>
+                    <h3>Security</h3>
                         <strong>Security Log Type:</strong> {{ security.securityLogType }}
                         <br>
                         <strong>Security Incident Type:</strong> {{ security.securityIncidentType }}
@@ -90,7 +90,7 @@
                 {% if lost is null %}
                 {% else %}
                     <div class="row" id="Lost">
-                        <h2>Lost Property</h2>
+                        <h3>Lost Property</h3>
                         <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
                         <br>
                         <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
