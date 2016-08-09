@@ -57,7 +57,7 @@ class event_control_register {
     protected $time_out;
     
     /**
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="event_control_register")
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="event_control_register", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;

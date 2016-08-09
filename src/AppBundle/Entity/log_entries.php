@@ -45,13 +45,13 @@ class log_entries {
     protected $log_blurb;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="log_entries")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="log_entries", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      */
     private $operator;
     
     /**
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;
