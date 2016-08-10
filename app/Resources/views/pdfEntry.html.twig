@@ -87,7 +87,8 @@
                         <br>
                         <strong>Security Responded?:</strong> {{ security.securityResponded ? 'Yes':'No' }}
                         <br>
-                        <strong>Security Resolution:</strong> {{ security.securityResolution }}
+                        <strong>Security Resolution:</strong><br>
+                        {{ security.securityResolution }}
                         <br>
                         <strong>Closed:</strong> {{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}                
                     </div>
