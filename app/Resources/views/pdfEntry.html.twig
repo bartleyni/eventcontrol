@@ -12,25 +12,30 @@
             <h3>Log Information</h3>
             <div class="row">
                 <div class="col-md-6">
-                    <strong>Operator:</strong> {{ entry.operator }}
+                    <strong>Operator:</strong><br>
+                    {{ entry.operator }}
                 </div>
                 <div class="col-md-6">
-                    <strong>Log Open Time (Timestamp):</strong> {{ entry.logEntryOpenTime|date('Y-m-d H:i:s', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s', "Europe/London") }})
+                    <strong>Log Open Time (Submit Timestamp):</strong><br>
+                    {{ entry.logEntryOpenTime|date('Y-m-d H:i:s', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s', "Europe/London") }})
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Short Description:</strong> {{ entry.logBlurb }}
+                    <strong>Short Description:</strong><br>
+                    {{ entry.logBlurb }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Location:</strong> {{ entry.location }}
+                    <strong>Location:</strong><br>
+                    {{ entry.location }}
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Reported By:</strong> {{ entry.reportedBy }}
+                    <strong>Reported By:</strong><br>
+                    {{ entry.reportedBy }}
                 </div>
             </div>
                 {% if general is null %}                      
