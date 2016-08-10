@@ -30,8 +30,8 @@ class medical_log {
     protected $id;
     
     /**
-     * @ORM\OneToOne(targetEntity="log_entries", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="log_entry_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="log_entries")
+     * @ORM\JoinColumn(name="log_entry_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $log_entry_id;
     
