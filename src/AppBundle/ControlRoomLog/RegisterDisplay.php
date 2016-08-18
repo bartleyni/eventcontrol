@@ -131,11 +131,11 @@ class RegisterDisplay extends Controller
 
         //log file in event system
         $em->flush();
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
-        $event->setEventReportFilename($ReportFilename);
-        $event->setEventReportRunDate(new \DateTime());
-        $em->persist($event);
-        $em->flush();
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
+        //$event->setEventReportFilename($ReportFilename);
+        //$event->setEventReportRunDate(new \DateTime());
+        //$em->persist($event);
+        //$em->flush();
 
         //return $this->render('fireRegister.html.twig', array('attendees' => $attendees));
         return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
