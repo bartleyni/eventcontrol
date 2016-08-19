@@ -45,7 +45,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
-            new \Twig_SimpleFunction('activeEventId', array($this, 'getEventId')),
+            new \Twig_SimpleFunction('activeEventId', array($this, 'getEventById')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
             new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
@@ -55,7 +55,7 @@ class AppExtension extends \Twig_Extension
         );
     }
     
-    public function getEventId($operatorId = null)
+    public function getEventById($operatorId = null)
     {
         $em = $this->doctrine->getManager();
         
