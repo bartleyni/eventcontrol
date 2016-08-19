@@ -401,7 +401,7 @@ class Log extends Controller
         $eId = $user_event->getEventId();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('id' => $eid));
+            array('id' => $eId));
         
         
         
