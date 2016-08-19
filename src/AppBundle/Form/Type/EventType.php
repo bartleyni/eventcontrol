@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EventType extends AbstractType
 {
@@ -62,15 +63,15 @@ class EventType extends AbstractType
                     'data-provide' => 'datetimepicker3',
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
-            ))
-            
+            ))            
             ->add('event_operators', 'choice', array(
                 'label' => 'Event Operator Assignment',
-                'choices' => [
+                'choices' => array(
                     'Yes' => 'stock_yes',
                     'No' => 'stock_no',
-                ],
-                'multiple' => 'true',
+                ),
+                'multiple' => true,
+                'required' => false,
             ))
             ->add('submit', 'submit', array(
                 'attr' => array(
