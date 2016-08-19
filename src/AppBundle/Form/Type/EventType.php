@@ -16,9 +16,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EventType extends AbstractType
 {
+    protected $em;
+
+    // Injecting EntityManager into YourType
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $em = $this->getDoctrine()->getEntityManager();
         
         $builder
             ->add('name', 'text', array(
@@ -70,7 +77,7 @@ class EventType extends AbstractType
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
-                'data' => $em->getReference('AppBundle\Entity\User',1),   
+                'data' => $this->em->getReference('AppBundle\Entity\User',1),   
                 //'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
