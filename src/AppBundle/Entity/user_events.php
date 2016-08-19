@@ -73,6 +73,44 @@ class user_events {
     }
     
     /**
+     * Set event_id
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return user_events
+     */
+    public function setEventId(\AppBundle\Entity\event $event = null)
+    {
+        $this->event_id = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get User_id
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->User_id;
+    }
+    
+    /**
+     * Set User_id
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return user_events
+     */
+    public function setEventId(\AppBundle\Entity\User $user = null)
+    {
+        $this->User_id = $user;
+
+        return $this;
+    }
+    
+    /**
      * Set active
      *
      * @param boolean $active
