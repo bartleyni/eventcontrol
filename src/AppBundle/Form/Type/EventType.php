@@ -26,7 +26,8 @@ class EventType extends AbstractType
         $qb = $this->em->createQueryBuilder(); 
         
             $qb
-                ->select('User.username, User.id')
+                //->select('User.username, User.id')
+                ->select('User')
                 ->from('AppBundle\Entity\User', 'User')
                 ;
             
