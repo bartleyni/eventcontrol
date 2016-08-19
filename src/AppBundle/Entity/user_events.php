@@ -103,7 +103,7 @@ class user_events {
      *
      * @return user_events
      */
-    public function setEventId(\AppBundle\Entity\User $user = null)
+    public function setUserId(\AppBundle\Entity\User $user = null)
     {
         $this->User_id = $user;
 
