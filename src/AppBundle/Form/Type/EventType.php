@@ -68,7 +68,7 @@ class EventType extends AbstractType
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
-                'choices' => $operators,
+                //'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
                 'attr' => array(
