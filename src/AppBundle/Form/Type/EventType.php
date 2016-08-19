@@ -73,6 +73,9 @@ class EventType extends AbstractType
                 ),
                 'multiple' => true,
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                )
             ))
             ->add('submit', 'submit', array(
                 'attr' => array(
