@@ -27,14 +27,23 @@ class entry_form extends Controller
     public function entryAction()
     {
         $new_entry = new log_entries();
-        $em = $this->getDoctrine()->getManager();
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
-        $em->flush();
-        
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
+        $em = $this->getDoctrine()->getManager();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $em->flush();
+        
+        $eId = $user_event->getEventId();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('id' => $eId));
+        $em->flush();
+        
+
 
         $user = $this->getUser();
         
