@@ -43,7 +43,7 @@ class user_events {
     protected $event_id;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $active;
     
