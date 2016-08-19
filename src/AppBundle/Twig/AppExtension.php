@@ -114,7 +114,7 @@ class AppExtension extends \Twig_Extension
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $this->getEventById())
             ;
 
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
@@ -135,7 +135,7 @@ class AppExtension extends \Twig_Extension
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb->expr()->isNotNull('med.medical_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $this->getEventById())
             ;
 
         $totalMedical = $qb->getQuery()->getSingleScalarResult();
@@ -156,7 +156,7 @@ class AppExtension extends \Twig_Extension
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb->expr()->isNotNull('sec.security_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $this->getEventById())
             ;
 
         $totalSecurity = $qb->getQuery()->getSingleScalarResult();
@@ -177,7 +177,7 @@ class AppExtension extends \Twig_Extension
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb->expr()->isNotNull('lost.lost_property_description'))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $this->getEventById())
             ;
 
         $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
@@ -216,7 +216,7 @@ class AppExtension extends \Twig_Extension
                             $qb->expr()->isNull('lost.lost_property_entry_closed_time')
                     ))
             ->andWhere('event.id = :eventId')
-            ->setParameter('eventId', $this->getEventId())
+            ->setParameter('eventId', $this->getEventById())
             ;
 
         $totalOpen = $qb->getQuery()->getSingleScalarResult();
