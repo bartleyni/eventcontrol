@@ -64,10 +64,11 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))            
-            ->add('event_operators', 'choice', array(
+            ->add('event_operators', 'entity', array(
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
-                'choices' => array($operators,),
+                'class' => 'AppBundle\Entity\User',
+                'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
                 'attr' => array(
