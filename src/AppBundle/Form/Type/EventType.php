@@ -32,8 +32,9 @@ class EventType extends AbstractType
                 //;
             
             $qb
-                ->select('UserEvent.User_id')
-                ->from('AppBundle\Entity\user_events', 'UserEvent')
+                ->select('User')
+                ->from('AppBundle\Entity\User', 'User')
+                ->leftJoin('AppBundle\Entity\user_events', 'UserEvent', 'WITH', 'UserEvent.User_id = User.id')
                 ->where('UserEvent.event_id = :eventId')
                 ->setParameter('eventId', 6)
                 ;
