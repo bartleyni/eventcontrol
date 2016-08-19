@@ -63,6 +63,15 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))
+            
+            ->add('event_operators', 'choice', array(
+                'label' => 'Event Operator Assignment',
+                'choices' => [
+                    'Yes' => 'stock_yes',
+                    'No' => 'stock_no',
+                ],
+                'multiple' => 'true',
+            ))
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',

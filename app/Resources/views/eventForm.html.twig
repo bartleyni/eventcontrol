@@ -81,6 +81,17 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
+                        <div class="row">   
+                            <div class="form-group">                                
+                                <div class="col-md-2">
+                                    {{ form_label(form.event_operators) }} 
+                                    {{ form_errors(form.event_operators) }}
+                                </div>
+                                <div class="col-md-6">                                     
+                                        {{ form_widget(form.event_operators) }}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">  
                             <div class="col-md-8">
                                 {{ form_end(form) }}
