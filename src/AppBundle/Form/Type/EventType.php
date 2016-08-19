@@ -84,13 +84,12 @@ class EventType extends AbstractType
             ->add('event_operators', 'entity', array(
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
-                'widget' => 'selectpicker',
                 'class' => 'AppBundle\Entity\User',
                 'multiple' => true,
                 'required' => false,
                 'data' => $operators,
                 'attr' => array(
-                    'class' => 'form-control',
+                    'class' => 'form-control selectpicker',
                 )
             ))
             ->add('submit', 'submit', array(
