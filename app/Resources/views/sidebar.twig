@@ -200,7 +200,7 @@
 
         $.getJSON('{{ path('venue_json_data') }}', function(data) {
             $.each(data, function(index, venue) {
-                if(venue['count'].running_count_in) {
+                if(venue['count']) {
                     //Calculate current occupancy
                     var count_in = venue['count'].running_count_in;
                     var count_out = venue['count'].running_count_out;
