@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
+use AppBundle\Entity\user_events;
 
 class EventController extends Controller
 {
@@ -96,20 +97,24 @@ class EventController extends Controller
             
             if($event_operators)
             {
-                foreach ($event_operators as $key => $operator)
+                foreach ($event_operators as $key => $operatorId)
                 {
-                    $qb2 = $em->createQueryBuilder();
-                    $qb2
-                        ->update('AppBundle\Entity\user_events', 'UserEvents')
-                        ->set('UserEvents', ':user')
-                        ->where('UserEvent.event_id = :eventId')
-                        ->setParameter('user', $operator)
-                        ->setParameter('eventId', $editId)
-                    ;
+                    
+                    $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+                    
+                    $user = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId));
+                    
+                    if(!$user_event)
+                    {
+                        $user_event = new user_events();
+                    }
+                    $user_event->setUserId($user);
+                    $user_event->setEventId($event);
+                    $em->persist($user_event);
+                    $em->flush();
                 }
             }
-            
-            
+                      
             $em->persist($event);
             $em->flush();
 
