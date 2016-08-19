@@ -31,7 +31,7 @@ class Log extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
         
         $eId = $user_event->getEventId();
@@ -231,7 +231,7 @@ class Log extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
         
         $eId = $user_event->getEventId();
@@ -411,7 +411,7 @@ class Log extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
         
         $eId = $user_event->getEventId();
