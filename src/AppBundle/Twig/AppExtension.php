@@ -72,10 +72,10 @@ class AppExtension extends \Twig_Extension
             {
                 $eventId=$event->getId();
             } else {
-                $eventId = 6;
+                $eventId = 0;
             }
         } else {
-            $eventId = 6;
+            $eventId = 0;
         }
         
         return $eventId;
