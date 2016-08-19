@@ -28,8 +28,16 @@ class Log extends Controller
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
         
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $em->flush();
+        
+        $eId = $user_event->getEventId();
+        
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
+            array('id' => $eId));
         
         if ($event)
         {
@@ -220,8 +228,16 @@ class Log extends Controller
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
         
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+        $em->flush();
+        
+        $eId = $user_event->getEventId();
+        
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
+            array('id' => $eId));
         
         if ($event)
         {
