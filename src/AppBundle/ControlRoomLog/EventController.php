@@ -95,19 +95,26 @@ class EventController extends Controller
             
             $event_operators = $form['event_operators']->getData();
             
+            $all_users = $em->getRepository('AppBundle\Entity\User');
+            
             if($event_operators)
             {
+                foreach($all_users as $each_user)
+                {
+                    
+                }
+                
                 foreach ($event_operators as $key => $operatorId)
                 {
                     
                     $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
-                    
                     $user = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId));
                     
                     if(!$user_event)
                     {
                         $user_event = new user_events();
                     }
+                    
                     $user_event->setUserId($user);
                     $user_event->setEventId($event);
                     $em->persist($user_event);
