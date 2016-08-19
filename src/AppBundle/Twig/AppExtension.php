@@ -55,7 +55,7 @@ class AppExtension extends \Twig_Extension
         );
     }
     
-    public function getEventById($operatorId = null)
+    public function getEventById($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
         
