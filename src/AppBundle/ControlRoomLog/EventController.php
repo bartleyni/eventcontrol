@@ -92,6 +92,24 @@ class EventController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+            $event_operators = $form['event_operators']->getData();
+            
+            if($event_operators)
+            {
+                foreach ($event_operators as $key => $operator)
+                {
+                    $qb2 = $em->createQueryBuilder();
+                    $qb2
+                        ->update('AppBundle\Entity\user_events', 'UserEvents')
+                        ->set('UserEvents', ':user')
+                        ->where('UserEvent.event_id = :eventId')
+                        ->setParameter('user', $operator)
+                        ->setParameter('eventId', $editId)
+                    ;
+                }
+            }
+            
+            
             $em->persist($event);
             $em->flush();
 
