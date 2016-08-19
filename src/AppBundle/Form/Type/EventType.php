@@ -18,6 +18,8 @@ class EventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        
         $builder
             ->add('name', 'text', array(
                 'label' => 'Event Name',
@@ -68,7 +70,7 @@ class EventType extends AbstractType
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
-                'data' => 1,   
+                'data' => $em->getReference('AppBundle\Entity\User',1),   
                 //'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
