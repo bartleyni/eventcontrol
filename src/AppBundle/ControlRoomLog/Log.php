@@ -38,8 +38,8 @@ class Log extends Controller
         {
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('id' => $eId));
+            $eId = $user_event->getEventId();
         }
-        $eId = $user_event->getEventId();
         
         if ($event)
         {
@@ -236,7 +236,12 @@ class Log extends Controller
         $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
         
-        $eId = $user_event->getEventId();
+        if($user_event)
+        {
+            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('id' => $eId));
+            $eId = $user_event->getEventId();
+        }
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             array('id' => $eId));
