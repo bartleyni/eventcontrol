@@ -3,7 +3,7 @@
         Event Info
     </div>
     <div class="panel-body">
-        <strong>{{ activeEventName() }}</strong>
+        <strong>{{ activeEventName(app.user.id) }}</strong>
         <br>
         User: {{ app.user.username }}
     </div>

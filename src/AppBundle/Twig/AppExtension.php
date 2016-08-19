@@ -55,15 +55,17 @@ class AppExtension extends \Twig_Extension
         );
     }
     
-    public function getEventId()
+    public function getEventId($operatorId = null)
     {
         $em = $this->doctrine->getManager();
         
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
         
-        if($event)
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+        
+        if($user_event)
         {
-            $eventId = $event->getId();
+            $eventId = $user_event->getEventId();
         } else {
             $eventId = 0;
         }

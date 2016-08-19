@@ -42,4 +42,28 @@ class user_events {
      */
     protected $event_id;
     
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+        
+    /**
+     * Get event_id
+     *
+     * @return integer
+     */
+    public function getEventId()
+    {
+        return $this->event_id;
+    }
 }
