@@ -67,7 +67,6 @@ class AppExtension extends \Twig_Extension
         {
         $eId = $user_event->getEventId();
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
-            
             if($event)
             {
                 $eventId=$event->getId();
