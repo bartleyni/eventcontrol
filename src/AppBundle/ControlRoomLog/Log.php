@@ -392,7 +392,7 @@ class Log extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr= $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
@@ -401,7 +401,7 @@ class Log extends Controller
         $eId = $user_event->getEventId();
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => $eid));
+            array('id' => $eid));
         
         
         
