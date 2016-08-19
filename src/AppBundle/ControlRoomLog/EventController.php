@@ -77,7 +77,6 @@ class EventController extends Controller
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
             $em->flush();
             $qb = $em->createQueryBuilder(); 
-        
             $qb
                 ->select('User.username, User.id')
                 ->from('AppBundle\Entity\User', 'User')
@@ -103,7 +102,6 @@ class EventController extends Controller
             'eventForm.html.twig',
             array('form' => $form->createView(), 'event' => $event)
         );
-        
     }
     
     /**

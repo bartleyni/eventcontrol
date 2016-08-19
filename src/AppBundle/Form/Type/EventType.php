@@ -90,6 +90,7 @@ class EventType extends AbstractType
                 'data' => $operators,
                 'attr' => array(
                     'class' => 'form-control',
+                    'rows' => '8',
                 )
             ))
             ->add('submit', 'submit', array(
