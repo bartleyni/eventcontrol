@@ -22,27 +22,18 @@ class EventType extends AbstractType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
-        $qb = $this->em->createQueryBuilder(); 
-        
-            //$qb
-                //->select('User.username, User.id')
-                //->select('User')
-                //->from('AppBundle\Entity\User', 'User')
-                //;
-            
+        $eId = $$this->traitChoices = $options['event_id'];
+        $qb = $this->em->createQueryBuilder();
             $qb
                 ->select('User')
                 ->from('AppBundle\Entity\User', 'User')
                 ->leftJoin('AppBundle\Entity\user_events', 'UserEvent', 'WITH', 'UserEvent.User_id = User.id')
                 ->where('UserEvent.event_id = :eventId')
-                ->setParameter('eventId', 6)
+                ->setParameter('eventId', $eId)
                 ;
-            
-            
+                        
             $query = $qb->getQuery();
             $operators = $query->getResult();
-        
         
         $builder
             ->add('name', 'text', array(
@@ -126,6 +117,7 @@ class EventType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\event',
+            'event_id' => null,
         ));
     }
 }

@@ -48,7 +48,7 @@ class EventController extends Controller
 
         $event = new event();
         $event->setEventActive(0);
-        $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event);
+        $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => null,));
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -87,7 +87,7 @@ class EventController extends Controller
             $operators = $query->getResult();
             
             $em->flush();
-            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event);
+            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId,));
             $form->handleRequest($request);
         }
         
