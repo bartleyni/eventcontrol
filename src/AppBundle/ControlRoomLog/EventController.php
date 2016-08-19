@@ -87,7 +87,7 @@ class EventController extends Controller
             $operators = $query->getResult();
             
             $em->flush();
-            $form = $this->createForm(new EventType(), $event, $operators);
+            $form = $this->createForm(new EventType(), $event);
             $form->handleRequest($request);
         }
         
