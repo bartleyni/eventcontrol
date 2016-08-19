@@ -75,7 +75,7 @@ class EventType extends AbstractType
                 'class' => 'AppBundle\Entity\User',
                 'multiple' => true,
                 'required' => false,
-                'data' => $this->em->getRepository('AppBundle\Entity\User'),
+                //'data' => $this->em->getRepository('AppBundle\Entity\User'),
                 'attr' => array(
                     'class' => 'form-control',
                 )
