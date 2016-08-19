@@ -75,7 +75,19 @@ class EventController extends Controller
         
         if ($editId){
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
-            $form = $this->createForm(new EventType(), $event);
+            $em->flush();
+            $qb = $em->createQueryBuilder(); 
+        
+            $qb
+                ->select('User.username, User.id')
+                ->from('AppBundle\Entity\User', 'User')
+                ;
+            
+            $query = $qb->getQuery();
+            $operators = $query->getResult();
+            
+            $em->flush();
+            $form = $this->createForm(new EventType(), $event, $operators);
             $form->handleRequest($request);
         }
         

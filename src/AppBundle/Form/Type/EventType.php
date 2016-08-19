@@ -67,10 +67,7 @@ class EventType extends AbstractType
             ->add('event_operators', 'choice', array(
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
-                'choices' => array(
-                    'Yes' => 'stock_yes',
-                    'No' => 'stock_no',
-                ),
+                'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
                 'attr' => array(
