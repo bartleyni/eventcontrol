@@ -72,10 +72,10 @@ class AppExtension extends \Twig_Extension
             {
                 $eventId=$event->getId();
             } else {
-                $eventId = 0;
+                $eventId = 6;
             }
         } else {
-            $eventId = 0;
+            $eventId = 6;
         }
         
         return $eventId;
@@ -91,7 +91,7 @@ class AppExtension extends \Twig_Extension
 
   
     
-    public function getEventName($operatorId = null)
+    public function getEventName($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
         
