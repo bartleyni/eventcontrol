@@ -65,7 +65,15 @@ class AppExtension extends \Twig_Extension
         
         if($user_event)
         {
-            $eventId = $user_event->getEventId();
+        $eId = $user_event->getEventId();
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
+            
+            if($event)
+            {
+                $eventId=$event->getId();
+            } else {
+                $eventId = 0;
+            }
         } else {
             $eventId = 0;
         }
@@ -91,18 +99,14 @@ class AppExtension extends \Twig_Extension
         
         if($user_event)
         {
-            
-        
         $eId = $user_event->getEventId();
-        
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
-        
-        if($event)
-        {
-            $eventName = $event->getName();
-        } else {
-            $eventName = "";
-        }
+            if($event)
+            {
+                $eventName = $event->getName();
+            } else {
+                $eventName = "";
+            }
         } else {
             $eventName = "";
         }
