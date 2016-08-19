@@ -45,7 +45,7 @@ class user_events {
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $Active;
+    protected $active;
     
     public function __toString()
     {

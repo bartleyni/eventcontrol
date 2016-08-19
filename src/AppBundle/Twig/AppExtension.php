@@ -59,7 +59,7 @@ class AppExtension extends \Twig_Extension
     {
         $em = $this->doctrine->getManager();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'Active' => true));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
         
@@ -94,7 +94,7 @@ class AppExtension extends \Twig_Extension
     {
         $em = $this->doctrine->getManager();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'Active' => true));
+        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         
         if($user_event)
         {
