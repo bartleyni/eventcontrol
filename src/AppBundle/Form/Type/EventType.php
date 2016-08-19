@@ -16,6 +16,10 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EventType extends AbstractType
 {
+    public function __construct($em) {
+        $this->em = $em;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
@@ -69,10 +73,9 @@ class EventType extends AbstractType
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
-                'preferred_choices' => array(1),   
-                //'choices' => $operators,
                 'multiple' => true,
                 'required' => false,
+                'data' => $this->em->getReference('AppBundle\Entity\User', 1),
                 'attr' => array(
                     'class' => 'form-control',
                 )
