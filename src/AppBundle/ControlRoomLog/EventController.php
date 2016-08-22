@@ -193,7 +193,7 @@ class EventController extends Controller
         #$now = new \DateTime();
         
         //$statuses = $em->getRepository('AppBundle\Entity\user_events')->getEventUsers(2);
-        $statuses = $em->getRepository('AppBundle\Entity\user_events')->getgetEventUsersNotInList(2,array(2,));
+        $statuses = $em->getRepository('AppBundle\Entity\user_events')->getEventUsersNotInList(2,array(2,));
         
         if ($statuses)
         {
