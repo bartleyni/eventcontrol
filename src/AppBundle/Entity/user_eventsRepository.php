@@ -9,7 +9,7 @@ class user_eventsRepository extends EntityRepository
 {
     public function getEventUsers($eventId)
     {
-        return $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.User_id) FROM AppBundle\Entity\user_events user_event WHERE user_event.event_id = :id')->setParameter('id', $eventId)->getResult();
+        return $this->getEntityManager()->createQuery('SELECT user_event FROM AppBundle\Entity\user_events user_event WHERE user_event.event_id = :id')->setParameter('id', $eventId)->getResult();
     }
     
     public function getEventUsersNotInList($userIdList)
