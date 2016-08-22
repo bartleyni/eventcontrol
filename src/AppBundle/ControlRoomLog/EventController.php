@@ -179,6 +179,32 @@ class EventController extends Controller
             return $this->redirectToRoute('event_list');
         }
     }
+    
+    /**
+     * @Route("/event/status", name="event_status");
+     * 
+     */
+    public function EventTestStatusAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        #$now = new \DateTime();
+        
+        $statuses = $em->getRepository('AppBundle\Entity\user_events')->getEventUsers(2);
+        
+        if ($statuses)
+        {
+                $response = new JsonResponse();
+                $response->setData($statuses);
+
+        } else {
+            $response->setContent('Hello World');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        
+        return $response;
+    }
 }
 
 

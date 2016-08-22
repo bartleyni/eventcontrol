@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user_events")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\user_eventsRepository")
  */
 
 class user_events {
