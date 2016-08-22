@@ -5,6 +5,8 @@ namespace AppBundle\ControlRoomLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
 use AppBundle\Entity\user_events;
