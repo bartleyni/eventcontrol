@@ -123,12 +123,12 @@ class EventController extends Controller
             
             if($not_operators)
             {                
-                foreach ($not_operators as $key => $operatorId)
+                foreach ($not_operators as $not_operator)
                 {
                     
-                    $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'event_id' => $editId,));
+                    //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'event_id' => $editId,));
                     
-                    $em->remove($user_event);
+                    $em->remove($not_operator);
                     $em->flush();
                 }
             }
