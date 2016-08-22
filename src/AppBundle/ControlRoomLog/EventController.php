@@ -183,7 +183,7 @@ class EventController extends Controller
     }
     
     /**
-     * @Route("/event/status", name="event_status");
+     * @Route("/event/status/", name="event_status");
      * 
      */
     public function EventTestStatusAction(Request $request)
