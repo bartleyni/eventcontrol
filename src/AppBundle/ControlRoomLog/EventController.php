@@ -100,16 +100,11 @@ class EventController extends Controller
             $all_users = $em->getRepository('AppBundle\Entity\User');
             
             if($event_operators)
-            {
-                foreach($all_users as $each_user)
-                {
-                    
-                }
-                
+            {                
                 foreach ($event_operators as $key => $operatorId)
                 {
                     
-                    $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId));
+                    $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'event_id' => $editId));
                     $user = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId));
                     
                     if(!$user_event)
@@ -123,7 +118,21 @@ class EventController extends Controller
                     $em->flush();
                 }
             }
-                      
+            
+            $not_operators = $em->getRepository('AppBundle\Entity\user_events')->getEventUsersNotInList($editId,$event_operators);
+            
+            if($not_operators)
+            {                
+                foreach ($not_operators as $key => $operatorId)
+                {
+                    
+                    $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'event_id' => $editId,));
+                    
+                    $em->remove($user_event);
+                    $em->flush();
+                }
+            }
+            
             $em->persist($event);
             $em->flush();
 
