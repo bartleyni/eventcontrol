@@ -1,10 +1,8 @@
 <?php
 
-namespace AppBundle\ControlRoomLog;
+namespace AppBundle\Entity;
 
-use AppBundle\Entity\event;
-use AppBundle\Entity\user_events;
-use AppBundle\Entity\User;
+use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 
 class user_eventsRepository extends EntityRepository
