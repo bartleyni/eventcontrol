@@ -31,7 +31,7 @@ class EventController extends Controller
         $qb = $em->createQueryBuilder(); 
         
         $qb
-            ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_report_filename, event.event_report_run_date, event.event_active')
+            ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_report_filename, event.event_report_run_date')
             ->from('AppBundle\Entity\event', 'event')
             ->orderBy('event.event_date', 'DESC')
             ;
@@ -50,7 +50,6 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $event = new event();
-        $event->setEventActive(0);
         $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => null,));
         $form->handleRequest($request);
         
@@ -186,33 +185,6 @@ class EventController extends Controller
         }
         
         return $this->redirectToRoute('event_list');
-    }
-
-    /**
-    * @Route("/event/activate/{activateId}", name="activate_event");
-    */
-    
-    public function activateEventAction(Request $request, $activateId=null)
-    {
-        $em = $this->getDoctrine()->getManager();
-        
-        if ($activateId){
-            //Do the activate thing
-            $qb = $em->createQueryBuilder(); 
-            
-            $qb->update('AppBundle\Entity\event', 'event')
-                ->set('event.event_active', 0)
-                ->getQuery()
-                ->execute();
-            
-            $em->flush();
-            
-            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $activateId));
-            $event->setEventActive(1);
-            $em->persist($event);
-            $em->flush();
-            return $this->redirectToRoute('event_list');
-        }
     }
     
     /**
