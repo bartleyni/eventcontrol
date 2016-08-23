@@ -31,11 +31,13 @@ class UserType extends AbstractType
                 )))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-                'attr' => array(
+                'first_options'  => array('label' => 'Password', 'attr' => array(
                     'class' => 'form-control'
-                )
+                )),
+                'second_options' => array('label' => 'Repeat Password', 'attr' => array(
+                    'class' => 'form-control'
+                )),
+                
             )
         );
     }

@@ -47,11 +47,12 @@ class EditUserType extends AbstractType
                     'type' => 'password',
                     'invalid_message' => 'The password fields must match.',
                     'required' => false,
-                    'first_options'  => array('label' => 'Password'),
-                    'second_options' => array('label' => 'Repeat Password'),
-                    'attr' => array(
+                    'first_options'  => array('label' => 'Password', 'attr' => array(
                     'class' => 'form-control'
-                )
+                )),
+                    'second_options' => array('label' => 'Repeat Password', 'attr' => array(
+                    'class' => 'form-control'
+                )),
         ));
     }
 
