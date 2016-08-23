@@ -16,9 +16,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="app_users")
@@ -27,7 +29,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields="username", message="Username already taken")
  */
 
-class User implements UserInterface, \Serializable {
+class User implements AdvancedUserInterface, \Serializable {
 /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -85,11 +87,18 @@ class User implements UserInterface, \Serializable {
      */
     private $log_entries;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     *
+     */
+    private $groups;    
+    
     public function __construct()
     {
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
+        $this->groups = new ArrayCollection();
     }
 
     public function getEmail()
@@ -251,5 +260,10 @@ class User implements UserInterface, \Serializable {
     public function getLogEntries()
     {
         return $this->log_entries;
+    }
+    
+    public function getRoles()
+    {
+        return $this->groups->toArray();
     }
 }
