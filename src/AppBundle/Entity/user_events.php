@@ -33,13 +33,13 @@ class user_events {
     
     /**
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="User_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $User_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="event")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $event_id;
     
