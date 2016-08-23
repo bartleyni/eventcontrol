@@ -24,6 +24,6 @@ class user_eventsRepository extends EntityRepository
         //$active_event = $this->getEntityManager()->createQuery('SELECT event.id FROM AppBundle\Entity\event event WHERE event.date1 = :date2 AND event.date2 = :date1')->setParameter('date1', $date)->setParameter('date2', $date)->getResult();
     
         
-        return $this->getEntityManager()->createQuery('SELECT user_event.event_id FROM AppBundle\Entity\user_events user_event WHERE user_event.User_id = :id AND :nowdate BETWEEN user_event.event_id.event_log_start_date AND user_event.event_id.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        return $this->getEntityManager()->createQuery('SELECT user_event FROM AppBundle\Entity\user_events user_event WHERE user_event.User_id = :id AND :nowdate BETWEEN user_event.event_id.event_log_start_date AND user_event.event_id.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
     }
 }
