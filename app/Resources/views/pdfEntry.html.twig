@@ -45,7 +45,7 @@
                         <strong>Description:</strong><br>
                         {{ general.generalDescription }}
                         <br>
-                        <strong>Closed:</strong> {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}                    
+                        <strong>Closed:</strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}                   
                     </div>
                 {% endif %}
                 {% if medical is null %}
@@ -69,7 +69,7 @@
                         <strong>Notes:</strong><br>
                         {{ medical.medicalNotes }}
                         <br>
-                        <strong>Closed:</strong> {{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
+                        <strong>Closed:</strong> {% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}
                     
                     </div>
                 {% endif %}
@@ -91,7 +91,7 @@
                         <strong>Security Resolution:</strong><br>
                         {{ security.securityResolution }}
                         <br>
-                        <strong>Closed:</strong> {{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}                
+                        <strong>Closed:</strong> {% if lost.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
                     </div>
                 {% endif %}
                 {% if lost is null %}
@@ -113,7 +113,7 @@
                         <strong>Resolution Description:</strong><br>
                         {{ lost.lostPropertyResolutionDescription }}
                         <br>
-                        <strong>Closed:</strong> {{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}
+                        <strong>Closed:</strong> {% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}
                     </div>
                 {% endif %}
         </div>
