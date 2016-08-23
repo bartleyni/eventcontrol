@@ -261,4 +261,24 @@ class User implements AdvancedUserInterface, \Serializable {
     {
         return $this->groups->toArray();
     }
+    
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
 }
