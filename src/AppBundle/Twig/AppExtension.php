@@ -52,6 +52,10 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('activeLostPropertyLogs', array($this, 'getLostPropertyLogs')),
             new \Twig_SimpleFunction('activeOpenLogs', array($this, 'getOpenLogs')),
             new \Twig_SimpleFunction('getUPS', array($this, 'getUPS')),
+            new \Twig_SimpleFunction('eventTotalLogs', array($this, 'getTotalLogsByEvent')),
+            new \Twig_SimpleFunction('eventMedicalLogs', array($this, 'getMedicalLogsByEvent')),
+            new \Twig_SimpleFunction('eventSecurityLogs', array($this, 'getSecurityLogsByEvent')),
+            new \Twig_SimpleFunction('eventLostPropertyLogs', array($this, 'getLostPropertyLogsByEvent')),
         );
     }
     
@@ -233,6 +237,88 @@ class AppExtension extends \Twig_Extension
 
         return $totalOpen;
     }
+    
+    public function getTotalLogsByEvent($eventId = 0)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where('event.id = :eventId')
+            ->setParameter('eventId', $eventId)
+            ;
+
+        $totalLogs = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalLogs;
+    }
+    
+    public function getMedicalLogsByEvent($eventId = 0)
+    {
+        $em = $this->doctrine->getManager();
+
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('med.medical_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $eventId)
+            ;
+
+        $totalMedical = $qb->getQuery()->getSingleScalarResult();
+        //$totalLogs = 25;
+        return $totalMedical;
+    }
+    
+    public function getSecurityLogsByEvent($eventId = 0)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\security_log', 'sec', 'WITH', 'sec.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('sec.security_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $eventId)
+            ;
+
+        $totalSecurity = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalSecurity;
+    }
+    
+    public function getLostPropertyLogsByEvent($eventId = 0)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('count(entry.id)')
+            ->from('AppBundle\Entity\log_entries', 'entry')
+            ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
+            ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
+            ->where($qb->expr()->isNotNull('lost.lost_property_description'))
+            ->andWhere('event.id = :eventId')
+            ->setParameter('eventId', $eventId)
+            ;
+
+        $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
+
+        return $totalLostProperty;
+    }    
     
     public function getName()
     {

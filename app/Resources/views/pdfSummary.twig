@@ -1,0 +1,27 @@
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ event.name }} Event Control</h1>
+            {{ event.client }}<br>
+            Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
+            <h2>Event Summary Sheet</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Logs recorded between {{ event.event_log_start_date|date('Y-m-d H:i:s', "Europe/London") }} and {{ event.event_log_stop_date|date('Y-m-d H:i:s', "Europe/London") }}</h3>
+            <div class="row">
+                <strong>Total Recorded Individual Logs: </strong>{{ eventTotalLogs(event.id) }}
+            </div>
+            <div class="row">
+                <strong>Medical Related Logs: </strong> {{ eventMedicalLogs(event.id) }}
+            </div>
+            <div class="row">
+                <strong>Security Related Logs: </strong> {{ eventSecurityLogs(event.id) }}
+            </div>
+            <div class="row">
+                <strong>Lost Property Related Logs: </strong>{{ eventLostPropertyLogs(event.id) }}
+            </div>
+        </div>
+    </div>
+</div>

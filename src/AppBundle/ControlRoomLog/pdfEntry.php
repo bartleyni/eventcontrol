@@ -107,6 +107,13 @@ class pdfEntry extends Controller
             $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
             //$em->flush();
             
+            $reports[] = $this->renderView(
+                        'pdfSummary.html.twig',
+                        array(
+                            'event' => $event,
+                        )
+                    );
+            
             if($entries)
             {
                 foreach($entries as $entry)
