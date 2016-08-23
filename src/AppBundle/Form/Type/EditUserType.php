@@ -28,11 +28,20 @@ class EditUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('username', 'text', array(
-                    'required' => false,))
+                    'required' => false,
+                    'attr' => array(
+                    'class' => 'form-control'
+                )))
                 ->add('name', 'text', array(
-                    'required' => false,))
+                    'required' => false,
+                    'attr' => array(
+                    'class' => 'form-control'
+                )))
                 ->add('email', 'email', array(
-                    'required' => false,))
+                    'required' => false,
+                    'attr' => array(
+                    'class' => 'form-control'
+                )))
                 //->add('oldPassword', 'password')
                 ->add('plainPassword', 'repeated', array(
                     'type' => 'password',
@@ -40,6 +49,9 @@ class EditUserType extends AbstractType
                     'required' => false,
                     'first_options'  => array('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
+                    'attr' => array(
+                    'class' => 'form-control'
+                )
         ));
     }
 

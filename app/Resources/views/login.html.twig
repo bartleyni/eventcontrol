@@ -10,11 +10,13 @@ Control Room Login
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
+                        <br>
                         {% if error %}
-                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div><br>
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
                     </div>
                 </div>
+                <br>
                 <form action="{{ path('login') }}" method="post">    
                 <div class="row">
                     <div class="form-group">
