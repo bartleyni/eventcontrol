@@ -43,11 +43,6 @@ class user_events {
      */
     protected $event_id;
     
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    protected $active;
-    
     public function __toString()
     {
         return (string) $this->getName();
@@ -109,29 +104,5 @@ class user_events {
         $this->User_id = $user;
 
         return $this;
-    }
-    
-    /**
-     * Set active
-     *
-     * @param boolean $active
-     *
-     * @return user_events
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return boolean
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 }

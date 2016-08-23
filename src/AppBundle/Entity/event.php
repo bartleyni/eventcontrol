@@ -57,11 +57,6 @@ class event {
     protected $event_log_stop_date;
     
     /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $event_active;
-    
-    /**
      * @ORM\OneToMany(targetEntity="log_entries", mappedBy="event")
      */
     private $log_entries;
@@ -257,30 +252,6 @@ class event {
     public function getEventReportFilename()
     {
         return $this->event_report_filename;
-    }
-    
-    /**
-     * Set eventActive
-     *
-     * @param boolean $eventActive
-     *
-     * @return event
-     */
-    public function setEventActive($eventActive)
-    {
-        $this->event_active = $eventActive;
-
-        return $this;
-    }
-
-    /**
-     * Get eventActive
-     *
-     * @return boolean
-     */
-    public function getEventActive()
-    {
-        return $this->event_active;
     }
     
     /**
