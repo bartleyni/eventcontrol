@@ -16,9 +16,9 @@ class RegisterController extends Controller
      */
     public function registerAction(Request $request, $id=null)
     {
+        $em = $this->getDoctrine()->getManager();
         if ($id){
             if ($id == "all"){
-                $em = $this->getDoctrine()->getManager();
                 $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(
                     array('time_out' => null));
                 if ($attendees){
@@ -31,7 +31,6 @@ class RegisterController extends Controller
                 return $this->redirectToRoute('fire_register');
             }else{
             
-            $em = $this->getDoctrine()->getManager();
             $attendee = $em->getRepository('AppBundle\Entity\event_control_register')->find($id);
             $attendee->setTimeOut(new \DateTime());
             $em->persist($attendee);
@@ -40,19 +39,23 @@ class RegisterController extends Controller
             }
         }else{
             // 1) build the form
+            
+            $usr = $this->get('security.context')->getToken()->getUser();
+            $operatorId = $usr->getId();
+            
             $attendee = new event_control_register();
             $form = $this->createForm(new RegisterType(), $attendee);
-
+            $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+            $em->flush();
             // 2) handle the submit (will only happen on POST)
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
                 
                 $attendee->setTimeIn(new \DateTime());
                 
-                $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-                    array('event_active' => true));
-                $em->flush();
+                //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+                    //array('event_active' => true));
+
         
                 if ($event){
                     $attendee->setEvent($event);
