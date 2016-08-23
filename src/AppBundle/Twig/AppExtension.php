@@ -105,7 +105,7 @@ class AppExtension extends \Twig_Extension
             {
                 $eventName = $event->getName();
             } else {
-                $eventName = "Not Found";
+                $eventName = "Not Assigned";
             }
         //} else {
             //$eventName = "Not Assigned";
