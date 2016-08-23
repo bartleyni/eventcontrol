@@ -17,16 +17,20 @@
                     <h4>Logs recorded between {{ event.eventLogStartDate|date('Y-m-d H:i:s', "Europe/London") }} and {{ event.eventLogStopDate|date('Y-m-d H:i:s', "Europe/London") }}</h4>
                 </div>
                 <div class="row">
-                    <strong>Total Recorded Individual Logs: </strong>{{ eventTotalLogs(event.id) }}
-                </div>
-                <div class="row">
-                    <strong>Medical Related Logs: </strong> {{ eventMedicalLogs(event.id) }}
-                </div>
-                <div class="row">
-                    <strong>Security Related Logs: </strong> {{ eventSecurityLogs(event.id) }}
-                </div>
-                <div class="row">
-                    <strong>Lost Property Related Logs: </strong>{{ eventLostPropertyLogs(event.id) }}
+                    <ul class="list-group">
+                        <li class="list-group-item-acive">
+                            <strong>Total Recorded Individual Logs: </strong>{{ eventTotalLogs(event.id) }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Medical Related Logs: </strong> {{ eventMedicalLogs(event.id) }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Security Related Logs: </strong> {{ eventSecurityLogs(event.id) }}
+                        </li>
+                        <li class="list-group-item">
+                        <strong>Lost Property Related Logs: </strong>{{ eventLostPropertyLogs(event.id) }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
