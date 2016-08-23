@@ -17,7 +17,7 @@ Control Room User Registration Form
                                     {{ form_label(form.username) }} 
                                     {{ form_errors(form.username) }}
                                 </div>
-                                <div class="col-md-2"> 
+                                <div class="col-md-3"> 
                                     {{ form_widget(form.username) }}
                                 </div>
                             </div>
@@ -28,7 +28,7 @@ Control Room User Registration Form
                                     {{ form_label(form.name) }} 
                                     {{ form_errors(form.name) }}
                                 </div>
-                                <div class="col-md-2">                                     
+                                <div class="col-md-3">                                     
                                     {{ form_widget(form.name) }}
                                 </div>
                             </div>
@@ -39,7 +39,7 @@ Control Room User Registration Form
                                     {{ form_label(form.email) }} 
                                     {{ form_errors(form.email) }}
                                 </div>
-                                <div class="col-md-2">                                     
+                                <div class="col-md-3">                                     
                                     {{ form_widget(form.email) }}
                                 </div>
                             </div>
@@ -50,7 +50,7 @@ Control Room User Registration Form
                                     {{ form_label(form.plainPassword.first) }} 
                                     {{ form_errors(form.plainPassword.first) }}
                                 </div>
-                                <div class="col-md-2"> 
+                                <div class="col-md-3"> 
                                     {{ form_widget(form.plainPassword.first) }}
                                 </div>
                             </div>
@@ -61,13 +61,13 @@ Control Room User Registration Form
                                     {{ form_label(form.plainPassword.second) }} 
                                     {{ form_errors(form.plainPassword.second) }}
                                 </div>
-                                <div class="col-md-2">                                     
+                                <div class="col-md-3">                                     
                                     {{ form_widget(form.plainPassword.second) }}
                                 </div>
                             </div>
                         </div><br>
                         <div class="row">  
-                            <div class="col-md-4">  
+                            <div class="col-md-5">  
                                 <button class="btn btn-success btn-block" type="submit">Register Operator</button>
                             </div>
                             {{ form_end(form) }}
