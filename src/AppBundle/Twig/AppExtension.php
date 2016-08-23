@@ -59,23 +59,24 @@ class AppExtension extends \Twig_Extension
     {
         $em = $this->doctrine->getManager();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
+        //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
-        if($user_event)
-        {
-        $eId = $user_event->getEventId();
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
+        //if($user_event)
+        //{
+        //$eId = $user_event->getEventId();
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
             if($event)
             {
                 $eventId=$event->getId();
             } else {
                 $eventId = 0;
             }
-        } else {
-            $eventId = 0;
-        }
+        //} else {
+            //$eventId = 0;
+        //}
         
         return $eventId;
     }
@@ -94,21 +95,21 @@ class AppExtension extends \Twig_Extension
     {
         $em = $this->doctrine->getManager();
         
-        $user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
-        
-        if($user_event)
-        {
-        $eId = $user_event->getEventId();
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
+        //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //if($user_event)
+        //{
+        //$eId = $user_event->getEventId();
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
             if($event)
             {
                 $eventName = $event->getName();
             } else {
                 $eventName = "Not Found";
             }
-        } else {
-            $eventName = "Not Assigned";
-        }
+        //} else {
+            //$eventName = "Not Assigned";
+        //}
         return $eventName;
     }
     
