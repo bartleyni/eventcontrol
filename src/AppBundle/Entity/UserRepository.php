@@ -9,6 +9,9 @@ namespace AppBundle\Entity;
  * repository methods below.
  */
 
+use AppBundle\Entity;
+use Doctrine\ORM\EntityRepository;
+
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
     public function loadUserByUsername($username)
