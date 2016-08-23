@@ -98,6 +98,7 @@
         Logout
     </div>
 </a>
+{% if activeEventId(app.user.id) != 0 %}
 <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Fire Register Sign-in
@@ -108,7 +109,8 @@
         Fire Register
     </div>
 </a>
-    <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+{% endif %}
+<a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Event System
     </div>
