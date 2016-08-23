@@ -91,7 +91,7 @@
                         <strong>Security Resolution:</strong><br>
                         {{ security.securityResolution }}
                         <br>
-                        <strong>Closed:</strong> {% if lost.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
+                        <strong>Closed:</strong> {% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
                     </div>
                 {% endif %}
                 {% if lost is null %}
