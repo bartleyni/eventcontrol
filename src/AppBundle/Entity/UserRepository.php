@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
