@@ -20,9 +20,11 @@ class RegisterDisplay extends Controller
     public function fireRegisterAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            //array('event_active' => true));
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
         $em->flush();
         
@@ -60,10 +62,11 @@ class RegisterDisplay extends Controller
     public function pdfFireRegisterAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('event_active' => true));
-        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            //array('event_active' => true));
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $em->flush();
         
         $qb = $em->createQueryBuilder(); 
