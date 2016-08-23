@@ -5,7 +5,7 @@
     <body>
         <div class="wrapper">
             <div class="row">
-                <div class="col-md-11 col-md-offset-1">
+                <div class="col-md-12">
                     <h1>{{ event.name }} Event Control</h1>
                     {{ event.client }}<br>
                     Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
@@ -48,79 +48,86 @@
                         {% if general is null %}                      
                         {% else %}
                             <div class="row" id="General">
-                                <h3>General</h3>
-                                <strong>Description:</strong><br>
-                                {{ general.generalDescription }}
-                                <br>
-                                <strong>Closed:</strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}                   
+                                <div class="col-md-12">
+                                    <h3>General</h3>
+                                    <strong>Description:</strong><br>
+                                    {{ general.generalDescription }}
+                                    <br>
+                                    <strong>Closed:</strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}                   
+                                </div>
                             </div>
                         {% endif %}
                         {% if medical is null %}
                         {% else %}
                             <div class="row" id="Medical">
-                            <h3>Medical</h3>                    
-                                <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
-                                <br>
-                                <strong>Description:</strong><br>
-                                {{ medical.medicalDescription }}
-                                <br>
-                                <strong>Medical Response:</strong> {{ medical.medicalResponse }}
-                                <br>
-                                <strong>999 Required?:</strong> {{ medical.nineNineNineRequired ? 'Yes':'No' }}
-                                <br>
-                                <strong>Medical Treatment:</strong> {{ medical.medicalTreatment }}
-                                <br>
-                                <strong>Medical Resolution:</strong><br>
-                                {{ medical.medicalResolution }}
-                                <br>
-                                <strong>Notes:</strong><br>
-                                {{ medical.medicalNotes }}
-                                <br>
-                                <strong>Closed:</strong> {% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}
-
+                                <div class="col-md-12">
+                                    <h3>Medical</h3>                    
+                                    <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
+                                    <br>
+                                    <strong>Description:</strong><br>
+                                    {{ medical.medicalDescription }}
+                                    <br>
+                                    <strong>Medical Response:</strong> {{ medical.medicalResponse }}
+                                    <br>
+                                    <strong>999 Required?:</strong> {{ medical.nineNineNineRequired ? 'Yes':'No' }}
+                                    <br>
+                                    <strong>Medical Treatment:</strong> {{ medical.medicalTreatment }}
+                                    <br>
+                                    <strong>Medical Resolution:</strong><br>
+                                    {{ medical.medicalResolution }}
+                                    <br>
+                                    <strong>Notes:</strong><br>
+                                    {{ medical.medicalNotes }}
+                                    <br>
+                                    <strong>Closed:</strong> {% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}
+                                </div>
                             </div>
                         {% endif %}
                         {% if security is null %}
                         {% else %}
                             <div class="row" id="Security">
-                            <h3>Security</h3>
-                                <strong>Security Log Type:</strong> {{ security.securityLogType }}
-                                <br>
-                                <strong>Security Incident Type:</strong> {{ security.securityIncidentType }}
-                                <br>
-                                <strong>Description:</strong><br>
-                                {{ security.securityDescription }}
-                                <br>
-                                <strong>Security Dispatched?:</strong> {{ security.securityDispatched ? 'Yes':'No' }}
-                                <br>
-                                <strong>Security Responded?:</strong> {{ security.securityResponded ? 'Yes':'No' }}
-                                <br>
-                                <strong>Security Resolution:</strong><br>
-                                {{ security.securityResolution }}
-                                <br>
-                                <strong>Closed:</strong> {% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
+                                <div class="col-md-12">
+                                    <h3>Security</h3>
+                                    <strong>Security Log Type:</strong> {{ security.securityLogType }}
+                                    <br>
+                                    <strong>Security Incident Type:</strong> {{ security.securityIncidentType }}
+                                    <br>
+                                    <strong>Description:</strong><br>
+                                    {{ security.securityDescription }}
+                                    <br>
+                                    <strong>Security Dispatched?:</strong> {{ security.securityDispatched ? 'Yes':'No' }}
+                                    <br>
+                                    <strong>Security Responded?:</strong> {{ security.securityResponded ? 'Yes':'No' }}
+                                    <br>
+                                    <strong>Security Resolution:</strong><br>
+                                    {{ security.securityResolution }}
+                                    <br>
+                                    <strong>Closed:</strong> {% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
+                                </div>
                             </div>
                         {% endif %}
                         {% if lost is null %}
                         {% else %}
                             <div class="row" id="Lost">
-                                <h3>Lost Property</h3>
-                                <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
-                                <br>
-                                <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
-                                <br>
-                                <strong>Description:</strong><br>
-                                {{ lost.lostPropertyDescription }}
-                                <br>
-                                <strong>Contact Details:</strong><br>
-                                {{ lost.lostPropertyContactDetails }}
-                                <br>
-                                <strong>Lost Property Resolution:</strong> {{ lost.lostPropertyResolution }}
-                                <br>
-                                <strong>Resolution Description:</strong><br>
-                                {{ lost.lostPropertyResolutionDescription }}
-                                <br>
-                                <strong>Closed:</strong> {% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}
+                                <div class="col-md-12">
+                                    <h3>Lost Property</h3>
+                                    <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
+                                    <br>
+                                    <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
+                                    <br>
+                                    <strong>Description:</strong><br>
+                                    {{ lost.lostPropertyDescription }}
+                                    <br>
+                                    <strong>Contact Details:</strong><br>
+                                    {{ lost.lostPropertyContactDetails }}
+                                    <br>
+                                    <strong>Lost Property Resolution:</strong> {{ lost.lostPropertyResolution }}
+                                    <br>
+                                    <strong>Resolution Description:</strong><br>
+                                    {{ lost.lostPropertyResolutionDescription }}
+                                    <br>
+                                    <strong>Closed:</strong> {% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}
+                                </div>
                             </div>
                         {% endif %}
                 </div>
