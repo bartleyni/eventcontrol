@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use AppBundle\Form\Type\LogType;
 use AppBundle\Form\Type\MedicalType;
@@ -35,7 +36,9 @@ class edit_entry_form extends Controller
             $id = $postData['id'];
         }
         
-
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                throw $this->createAccessDeniedException();
+            }
         
         //find the entry
         $em = $this->getDoctrine()->getManager();
