@@ -505,22 +505,23 @@ class Log extends Controller
             ->leftJoin('AppBundle\Entity\medical_log', 'med', 'WITH', 'med.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
-            ->where($qb5->expr()->andX(
-                        $qb5->expr()->isNotNull('med.medical_description'),
-                        $qb5->expr()->isNull('med.medical_entry_closed_time')
-                    ))
-            ->where($qb5->expr()->andX(
-                            $qb5->expr()->isNotNull('sec.security_description'),
-                            $qb5->expr()->isNull('sec.security_entry_closed_time')
-                    ))
-            ->where($qb5->expr()->andX(
-                            $qb5->expr()->isNotNull('gen.general_description'),
-                            $qb5->expr()->isNull('gen.general_entry_closed_time')
-                    ))
-            ->where($qb5->expr()->andX(
-                            $qb5->expr()->isNotNull('lost.lost_property_description'),
-                            $qb5->expr()->isNull('lost.lost_property_entry_closed_time')
-                    ))
+            ->where($qb->expr()->orX(
+                        $qb->expr()->andX(
+                            $qb->expr()->isNotNull('gen.general_description'),
+                            $qb->expr()->isNull('gen.general_entry_closed_time')
+                             ),                            
+                        $qb->expr()->andX(
+                            $qb->expr()->isNotNull('sec.security_description'),
+                            $qb->expr()->isNull('sec.security_entry_closed_time')
+                             ),
+                        $qb->expr()->andX(
+                            $qb->expr()->isNotNull('med.medical_description'),
+                            $qb->expr()->isNull('med.medical_entry_closed_time')
+                            ),
+                        $qb->expr()->andX(
+                            $qb->expr()->isNotNull('lost.lost_property_description'),
+                            $qb->expr()->isNull('lost.lost_property_entry_closed_time')
+                            )))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $eventId)
             ;
