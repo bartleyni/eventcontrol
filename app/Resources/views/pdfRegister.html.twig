@@ -15,30 +15,32 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td><strong>Name</strong></td>
-                            <td><strong>Phone</strong></td>
-                            <td><strong>Email</strong></td>
-                            <td><strong>Time In</strong></td>
-                            <td><strong>Time Out</strong></td>
-                        </tr>
-                        {% for attendee in attendees %}
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <tbody>
                             <tr>
-                                <td>{{ attendee.name }}</td>
-                                <td>{{ attendee.phone }}</td>
-                                <td>{{ attendee.email }}</td>
-                                <td>{{ attendee.time_in|date('Y-m-d H:i:s', "Europe/London") }}</td>
-                                {% if attendee.time_out is null %}
-                                    <td>Not signed out</td>
-                                {% else %}
-                                <td>{{ attendee.time_out|date('Y-m-d H:i:s', "Europe/London") }}</td>
-                                {% endif %}
+                                <td><strong>Name</strong></td>
+                                <td><strong>Phone</strong></td>
+                                <td><strong>Email</strong></td>
+                                <td><strong>Time In</strong></td>
+                                <td><strong>Time Out</strong></td>
                             </tr>
-                        {% endfor %}                           
-                    </tbody>
-                </table>
+                            {% for attendee in attendees %}
+                                <tr>
+                                    <td>{{ attendee.name }}</td>
+                                    <td>{{ attendee.phone }}</td>
+                                    <td>{{ attendee.email }}</td>
+                                    <td>{{ attendee.time_in|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                    {% if attendee.time_out is null %}
+                                        <td>Not signed out</td>
+                                    {% else %}
+                                    <td>{{ attendee.time_out|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}                           
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
