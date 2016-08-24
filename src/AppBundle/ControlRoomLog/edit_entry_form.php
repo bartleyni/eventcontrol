@@ -35,6 +35,8 @@ class edit_entry_form extends Controller
             $id = $postData['id'];
         }
         
+
+        
         //find the entry
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
@@ -47,6 +49,18 @@ class edit_entry_form extends Controller
         $securityClosed = null;
         $generalClosed = null;
         $lostClosed = null;
+        
+        $em->flush();
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        if($activeEvent != $entry->getEvent())
+        {
+            throw $this->createAccessDeniedException();
+        }
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
