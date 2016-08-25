@@ -20,16 +20,16 @@
                 <div class="row">
                     <ul class="list-group">
                         <li class="list-group-item active">
-                            <strong>Total Recorded Individual Logs: </strong>{{ eventTotalLogs(event.id) }}
+                            <strong>Total Recorded Individual Logs: </strong> <span class="badge">{{ eventTotalLogs(event.id) }}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Medical Related Logs: </strong> {{ eventMedicalLogs(event.id) }}
+                            <strong>Medical Related Logs: </strong> <span class="badge">{{ eventMedicalLogs(event.id) }}</span>
                         </li>
                         <li class="list-group-item">
-                        <strong>Security Related Logs: </strong> {{ eventSecurityLogs(event.id) }}
+                        <strong>Security Related Logs: </strong> <span class="badge">{{ eventSecurityLogs(event.id) }}</span>
                         </li>
                         <li class="list-group-item">
-                        <strong>Lost Property Related Logs: </strong>{{ eventLostPropertyLogs(event.id) }}
+                        <strong>Lost Property Related Logs: </strong> <span class="badge">{{ eventLostPropertyLogs(event.id) }}</span>
                         </li>
                     </ul>
                 </div>
