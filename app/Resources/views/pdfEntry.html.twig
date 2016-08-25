@@ -63,54 +63,49 @@
                                 <strong>Closed: </strong>{% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}<br>
                             </div>
                         </div>
-                        {% endif %}
-                        {% if security is null %}
-                        {% else %}
-                            <div class="row" id="Security">
-                                <div class="col-md-12">
-                                    <h3>Security</h3>
-                                    <strong>Security Log Type:</strong> {{ security.securityLogType }}
-                                    <br>
-                                    <strong>Security Incident Type:</strong> {{ security.securityIncidentType }}
-                                    <br>
-                                    <strong>Description:</strong><br>
-                                    {{ security.securityDescription }}
-                                    <br>
-                                    <strong>Security Dispatched?:</strong> {{ security.securityDispatched ? 'Yes':'No' }}
-                                    <br>
-                                    <strong>Security Responded?:</strong> {{ security.securityResponded ? 'Yes':'No' }}
-                                    <br>
-                                    <strong>Security Resolution:</strong><br>
-                                    {{ security.securityResolution }}
-                                    <br>
-                                    <strong>Closed:</strong> {% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}              
-                                </div>
+                    {% endif %}
+                    {% if security is null %}
+                    {% else %}
+                        <div class="panel panel-info" id="Security">
+                            <div class="panel-heading"><strong>Security</strong></div>
+                            <div class="panel-body">    
+                                <strong>Security Log Type: </strong>
+                                {{ security.securityLogType }}<br>
+                                <strong>Security Incident Type: </strong>
+                                {{ security.securityIncidentType }}<br>
+                                <strong>Description:</strong><br>
+                                {{ security.securityDescription }}<br>
+                                <strong>Security Dispatched?: </strong>
+                                {{ security.securityDispatched ? 'Yes':'No' }}<br>
+                                <strong>Security Responded?: </strong>
+                                {{ security.securityResponded ? 'Yes':'No' }}<br>
+                                <strong>Security Resolution:</strong><br>
+                                {{ security.securityResolution }}<br>
+                                <strong>Closed: </strong>{% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}<br>          
                             </div>
-                        {% endif %}
-                        {% if lost is null %}
-                        {% else %}
-                            <div class="row" id="Lost">
-                                <div class="col-md-12">
-                                    <h3>Lost Property</h3>
-                                    <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
-                                    <br>
-                                    <strong>Item Found?</strong> {{ lost.lostPropertyItemFound ? 'Yes':'No' }}
-                                    <br>
-                                    <strong>Description:</strong><br>
-                                    {{ lost.lostPropertyDescription }}
-                                    <br>
-                                    <strong>Contact Details:</strong><br>
-                                    {{ lost.lostPropertyContactDetails }}
-                                    <br>
-                                    <strong>Lost Property Resolution:</strong> {{ lost.lostPropertyResolution }}
-                                    <br>
-                                    <strong>Resolution Description:</strong><br>
-                                    {{ lost.lostPropertyResolutionDescription }}
-                                    <br>
-                                    <strong>Closed:</strong> {% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}
-                                </div>
+                        </div>
+                    {% endif %}
+                    {% if lost is null %}
+                    {% else %}
+                        <div class="panel panel-info" id="Lost">
+                            <div class="panel-heading"><strong>Lost Property</strong></div>
+                            <div class="panel-body"> 
+                                <strong>Item Lost? </strong>
+                                {{ lost.lostPropertyItemLost ? 'Yes':'No' }}<br>
+                                <strong>Item Found? </strong>
+                                {{ lost.lostPropertyItemFound ? 'Yes':'No' }}<br>
+                                <strong>Description:</strong><br>
+                                {{ lost.lostPropertyDescription }}<br>
+                                <strong>Contact Details:</strong><br>
+                                {{ lost.lostPropertyContactDetails }}<br>
+                                <strong>Lost Property Resolution: </strong>
+                                {{ lost.lostPropertyResolution }}<br>
+                                <strong>Resolution Description:</strong><br>
+                                {{ lost.lostPropertyResolutionDescription }}<br>
+                                <strong>Closed: </strong>{% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}<br>
                             </div>
-                        {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
