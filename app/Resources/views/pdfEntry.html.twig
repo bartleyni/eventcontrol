@@ -18,36 +18,16 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Log Information</div>
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Operator:</strong><br>
-                                    {{ entry.operator }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Log Open Time (Submit Timestamp):</strong><br>
-                                    {{ entry.logEntryOpenTime|date('Y-m-d H:i:s', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s', "Europe/London") }})
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Short Description:</strong><br>
-                                    {{ entry.logBlurb }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Location:</strong><br>
-                                    {{ entry.location }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Reported By:</strong><br>
-                                    {{ entry.reportedBy }}
-                                </div>
-                            </div>
+                            <strong>Operator:</strong><br>
+                            {{ entry.operator }}<br>
+                            <strong>Log Open Time (Submit Timestamp):</strong><br>
+                            {{ entry.logEntryOpenTime|date('Y-m-d H:i:s', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s', "Europe/London") }})<br>
+                            <strong>Short Description:</strong><br>
+                            {{ entry.logBlurb }}<br>
+                            <strong>Location:</strong><br>
+                            {{ entry.location }}<br>
+                            <strong>Reported By:</strong><br>
+                            {{ entry.reportedBy }}<br>
                         </div>
                     </div>
                         {% if general is null %}                      
