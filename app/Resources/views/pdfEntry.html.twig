@@ -18,55 +18,51 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading"><strong>Log Information</strong></div>
                         <div class="panel-body">
-                            <strong>Operator:</strong><br>
+                            <strong>Operator: </strong>
                             {{ entry.operator }}<br>
-                            <strong>Log Open Time (Submit Timestamp):</strong><br>
+                            <strong>Log Open Time (Submit Timestamp): </strong>
                             {{ entry.logEntryOpenTime|date('Y-m-d H:i:s', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s', "Europe/London") }})<br>
                             <strong>Short Description:</strong><br>
                             {{ entry.logBlurb }}<br>
-                            <strong>Location:</strong><br>
+                            <strong>Location: </strong>
                             {{ entry.location }}<br>
-                            <strong>Reported By:</strong><br>
+                            <strong>Reported By: </strong>
                             {{ entry.reportedBy }}<br>
                         </div>
                     </div>
-                        {% if general is null %}                      
-                        {% else %}
-                            <div class="row" id="General">
-                                <div class="col-md-12">
-                                    <h3>General</h3>
-                                    <strong>Description:</strong><br>
-                                    {{ general.generalDescription }}
-                                    <br>
-                                    <strong>Closed:</strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}                   
-                                </div>
+                    {% if general is null %}                      
+                    {% else %}
+                        <div class="panel panel-info" id="General">
+                            <div class="panel-heading"><strong>General</strong></div>
+                            <div class="panel-body">
+                                <strong>Description:</strong><br>
+                                {{ general.generalDescription }}<br>
+                                <strong>Closed: </strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}
                             </div>
-                        {% endif %}
-                        {% if medical is null %}
-                        {% else %}
-                            <div class="row" id="Medical">
-                                <div class="col-md-12">
-                                    <h3>Medical</h3>                    
-                                    <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
-                                    <br>
-                                    <strong>Description:</strong><br>
-                                    {{ medical.medicalDescription }}
-                                    <br>
-                                    <strong>Medical Response:</strong> {{ medical.medicalResponse }}
-                                    <br>
-                                    <strong>999 Required?:</strong> {{ medical.nineNineNineRequired ? 'Yes':'No' }}
-                                    <br>
-                                    <strong>Medical Treatment:</strong> {{ medical.medicalTreatment }}
-                                    <br>
-                                    <strong>Medical Resolution:</strong><br>
-                                    {{ medical.medicalResolution }}
-                                    <br>
-                                    <strong>Notes:</strong><br>
-                                    {{ medical.medicalNotes }}
-                                    <br>
-                                    <strong>Closed:</strong> {% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }} {% endif %}
-                                </div>
+                        </div>
+                    {% endif %}
+                    {% if medical is null %}
+                    {% else %}
+                        <div class="row" id="Medical">
+                            <div class="panel-heading"><strong>Medical</strong></div>
+                            <div class="panel-body">
+                                <strong>Injury Type: </strong>
+                                {{ medical.medicalReportedInjuryType }}<br>
+                                <strong>Description:</strong><br>
+                                {{ medical.medicalDescription }}<br>
+                                <strong>Medical Response: </strong>
+                                {{ medical.medicalResponse }}<br>
+                                <strong>999 Required?: </strong>
+                                {{ medical.nineNineNineRequired ? 'Yes':'No' }}<br>
+                                <strong>Medical Treatment: </strong>
+                                {{ medical.medicalTreatment }}<br>
+                                <strong>Medical Resolution:</strong><br>
+                                {{ medical.medicalResolution }}<br>
+                                <strong>Notes:</strong><br>
+                                {{ medical.medicalNotes }}<br>
+                                <strong>Closed: </strong>{% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s', "Europe/London") }}{% endif %}<br>
                             </div>
+                        </div>
                         {% endif %}
                         {% if security is null %}
                         {% else %}
