@@ -52,7 +52,7 @@
                     </div>
                         {% if general is null %}                      
                         {% else %}
-                            <div class="row well" id="General">
+                            <div class="row" id="General">
                                 <div class="col-md-12">
                                     <h3>General</h3>
                                     <strong>Description:</strong><br>
@@ -64,7 +64,7 @@
                         {% endif %}
                         {% if medical is null %}
                         {% else %}
-                            <div class="row  well" id="Medical">
+                            <div class="row" id="Medical">
                                 <div class="col-md-12">
                                     <h3>Medical</h3>                    
                                     <strong>Injury Type:</strong> {{ medical.medicalReportedInjuryType }}
@@ -90,7 +90,7 @@
                         {% endif %}
                         {% if security is null %}
                         {% else %}
-                            <div class="row  well" id="Security">
+                            <div class="row" id="Security">
                                 <div class="col-md-12">
                                     <h3>Security</h3>
                                     <strong>Security Log Type:</strong> {{ security.securityLogType }}
@@ -113,7 +113,7 @@
                         {% endif %}
                         {% if lost is null %}
                         {% else %}
-                            <div class="row  well" id="Lost">
+                            <div class="row" id="Lost">
                                 <div class="col-md-12">
                                     <h3>Lost Property</h3>
                                     <strong>Item Lost?</strong> {{ lost.lostPropertyItemLost ? 'Yes':'No' }}
