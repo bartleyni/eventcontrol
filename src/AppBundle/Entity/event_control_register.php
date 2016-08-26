@@ -269,7 +269,7 @@ class event_control_register {
     {
 
         if(!$this->sign_out_hash_expire){
-            $this->sign_out_hash_expire = (new \DateTime())->modify('+24 hours');;
+            $this->sign_out_hash_expire = (new \DateTime())->modify('+20 hours');;
         }
 
         return $this;

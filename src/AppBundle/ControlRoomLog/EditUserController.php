@@ -25,14 +25,73 @@ use AppBundle\Entity\User;
 class EditUserController extends Controller
 {
     /**
-     * @Route("/user/", name="user_update")
+     * @Route("/mySettings/", name="user_update")
      */
-    public function editUserAction(Request $request)
+    public function updateMyUserAction(Request $request)
     {
-        //$user = new User();
         $em = $this->getDoctrine()->getManager();
         
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $form = $this->createForm(new EditUserType(), $user, array(
+            'method' => 'POST',
+        ));
+        
+        $request = $this->getRequest();
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($user, $user->getPlainPassword());
+            
+            if ($user->getPlainPassword() != NULL){
+                $user->setPassword($password);
+            }
+            // 4) save the User!
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('user_update');
+        }
+
+
+        return $this->render('userEdit.html.twig', array('form' => $form->createView(),));      
+    }
+    
+    /**
+    * @Route("/user/list/", name="user_list");
+    */
+    
+    public function listUserAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+//        $qb = $em->createQueryBuilder(); 
+//        
+//        $qb
+//            ->select('user.id, user.username, user.email, user.name, user.active')
+//            ->from('AppBundle\Entity\User', 'user')
+//            ;
+//        
+//        $query = $qb->getQuery();
+//        $events = $query->getResult();
+        
+        $users = $em->getRepository('AppBundle\Entity\User');
+        return $this->render('userList.html.twig', array('users' => $users));
+    }
+    
+    /**
+     * @Route("/user/edit/{id}", name="user_edit")
+     */
+    public function editUserAction(Request $request, $id = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $id));
         
         $form = $this->createForm(new EditUserType(), $user, array(
             'method' => 'POST',
