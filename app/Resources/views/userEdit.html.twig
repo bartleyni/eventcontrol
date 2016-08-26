@@ -72,8 +72,10 @@ Control Room Edit User Details
                                     {{ form_label(form.groups) }} 
                                     {{ form_errors(form.groups) }}
                                 </div>
-                                <div class="col-md-4">                                     
-                                    {{ form_widget(form.groups) }}
+                                <div class="col-md-4">
+                                    {% for group in form.groups %}
+                                        {{ form_widget(group) }}<br>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div><br>
