@@ -68,15 +68,22 @@ class RegisterController extends Controller
                 $attendee_name = $attendee->getName();
                 $attendee_time_in = $attendee->getTimeIn()->format('H:i:s d-m-Y');
                 $email_address = $attendee->getEmail();
-                
-                $message_body = $attendee_name.', you have been signed in to the Event Control site register at '.$attendee_time_in.'. \n Please remember to sign-out before leaving site, this can be done by visiting the control room or calling 01225 580811 or visiting the control room in person. \n';
-                
+                $heading = "Event Control Site Sign-in";
                 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Control Room Sign-in')
                     ->setFrom('event.control@nb221.com')
                     ->setTo($email_address)
-                    ->setBody($message_body)
+                    ->setBody(
+                        $this->renderView(
+                            'emailFireRegister.html.twig',
+                                array('heading' => $heading,
+                                    'name' => $attendee_name,
+                                    'time_in' => $attendee_time_in
+                                )
+                            ),
+                        'text/html'
+                        )
                 ;
                 $this->get('mailer')->send($message);
 
