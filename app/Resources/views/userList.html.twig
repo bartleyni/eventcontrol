@@ -30,7 +30,7 @@ Control Room Users
                                             <td>{{ user.email }}</td>
                                             <td>
                                                 {% for group in user.groups %}
-                                                    <span class="badge">{ group.name }}</span> 
+                                                    <span class="badge">{{ group.name }}</span> 
                                                 {% endfor %}
                                             </td>
                                             <td>{% if user.isActive == 1 %} True {% else %} False {% endif %}</td>
