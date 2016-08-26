@@ -26,6 +26,29 @@ class RegisterController extends Controller
                         $attendee->setTimeOut(new \DateTime());
                         $em->persist($attendee);
                         $em->flush();
+                        
+                        $attendee_name = $attendee->getName();
+                        $attendee_time_out = $attendee->getTimeOut();
+                        $email_address = $attendee->getEmail();
+                        $heading = "Event Control Site Sign-out";
+
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject('Control Room Sign-out')
+                            ->setFrom('event.control@nb221.com')
+                            ->setTo($email_address)
+                            ->setBody(
+                                $this->renderView(
+                                    'emailFireRegister.html.twig',
+                                        array('heading' => $heading,
+                                            'name' => $attendee_name,
+                                            'time_out' => $attendee_time_out
+                                        )
+                                    ),
+                                'text/html'
+                                )
+                        ;
+                $this->get('mailer')->send($message);
+                        
                     }
                 }
                 return $this->redirectToRoute('fire_register');
@@ -35,6 +58,29 @@ class RegisterController extends Controller
             $attendee->setTimeOut(new \DateTime());
             $em->persist($attendee);
             $em->flush();
+            
+                $attendee_name = $attendee->getName();
+                $attendee_time_out = $attendee->getTimeOut();
+                $email_address = $attendee->getEmail();
+                $heading = "Event Control Site Sign-out";
+                
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Control Room Sign-out')
+                    ->setFrom('event.control@nb221.com')
+                    ->setTo($email_address)
+                    ->setBody(
+                        $this->renderView(
+                            'emailFireRegister.html.twig',
+                                array('heading' => $heading,
+                                    'name' => $attendee_name,
+                                    'time_out' => $attendee_time_out
+                                )
+                            ),
+                        'text/html'
+                        )
+                ;
+                $this->get('mailer')->send($message);
+            
             return $this->redirectToRoute('fire_register');
             }
         }else{
@@ -66,7 +112,7 @@ class RegisterController extends Controller
                 $em->flush();
                 
                 $attendee_name = $attendee->getName();
-                $attendee_time_in = $attendee->getTimeIn()->format('H:i:s d-m-Y');
+                $attendee_time_in = $attendee->getTimeIn();
                 $email_address = $attendee->getEmail();
                 $heading = "Event Control Site Sign-in";
                 
