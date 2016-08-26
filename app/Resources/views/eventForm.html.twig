@@ -87,8 +87,10 @@ Event Entry Form
                                     {{ form_label(form.event_operators) }} 
                                     {{ form_errors(form.event_operators) }}
                                 </div>
-                                <div class="col-md-6">                                     
-                                        {{ form_widget(form.event_operators) }}
+                                <div class="col-md-6">
+                                    {% for operator in form.event_operators %}
+                                        {{ form_widget(operator) }} {{ form_label(operator) }}<br>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div><br>
