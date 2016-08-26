@@ -7,7 +7,9 @@
     <br>
     Please remember to sign-out before leaving site, this can be done by visiting the control room, calling 01225 580811 or by clicking the link below.
     
-    {{ link }}
+    <a href="{{ path('hash_signout', {'hash': hash}) }}">{{ path('hash_signout', {'hash': hash}) }}</a>
+    
+    This will expire at {{ expire|date('H:i:s d-m-Y' , "Europe/London") }}
     
 {% endif %}
 

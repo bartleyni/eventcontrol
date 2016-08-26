@@ -67,6 +67,11 @@ class event_control_register {
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $sign_out_hash;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $sign_out_hash_expire;
    
     
     public function __toString()
@@ -252,5 +257,31 @@ class event_control_register {
     public function getSignOutHash()
     {
         return $this->sign_out_hash;
+    }
+    
+        /**
+     * Set signOutHashExpire
+     *
+     * @ORM\PrePersist
+     * @return event_control_register
+     */
+    public function setSignOutHashExpire()
+    {
+
+        if(!$this->sign_out_hash_expire){
+            $this->sign_out_hash_expire = (new \DateTime())->modify('+24 hours');;
+        }
+
+        return $this;
+    }
+    
+    /**
+     * Get signOutHashExpire
+     *
+     * @return \DateTime
+     */
+    public function getSignOutHashExpire()
+    {
+        return $this->sign_out_hash_expire;
     }
 }

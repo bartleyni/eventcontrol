@@ -7,6 +7,7 @@ use AppBundle\Entity\event_control_register;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends Controller
 {
@@ -115,7 +116,8 @@ class RegisterController extends Controller
                 $attendee_time_in = $attendee->getTimeIn();
                 $email_address = $attendee->getEmail();
                 $heading = "Event Control Site Sign-in";
-                $link = $attendee->getSignOutHash();
+                $hash = $attendee->getSignOutHash();
+                $expire = $attendee->getSignOutHashExpire();
                 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Control Room Sign-in')
@@ -127,7 +129,8 @@ class RegisterController extends Controller
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_in' => $attendee_time_in,
-                                    'link' => $link
+                                    'hash' => $hash,
+                                    'expire' => $expire
                                 )
                             ),
                         'text/html'
@@ -143,6 +146,63 @@ class RegisterController extends Controller
                 'signin.html.twig',
                 array('form' => $form->createView())
             );
+        }
+    }
+    
+    /**
+     * @Route("/so/{hash}", name="hash_signout")
+     */
+    public function hashSignOutAction(Request $request, $hash=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if ($hash){
+            $attendee = $em->getRepository('AppBundle\Entity\event_control_register')->findOneBy(array('sign_out_hash' => $hash));
+            if ($attendee){ 
+                $expire = $attendee->getSignOutHashExpire();
+                $now = new \DateTime();
+                if ($expire > $now){
+                    $sign_out = $attendee->getTimeOut();
+                    if ($sign_out == NULL){
+                        $attendee->setTimeOut(new \DateTime());
+                        $em->persist($attendee);
+                        $em->flush();
+
+                        $attendee_name = $attendee->getName();
+                        $attendee_time_out = $attendee->getTimeOut();
+                        $email_address = $attendee->getEmail();
+                        $heading = "Event Control Site Sign-out";
+
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject('Control Room Sign-out')
+                            ->setFrom('event.control@nb221.com')
+                            ->setTo($email_address)
+                            ->setBody(
+                                $this->renderView(
+                                    'emailFireRegister.html.twig',
+                                        array('heading' => $heading,
+                                            'name' => $attendee_name,
+                                            'time_out' => $attendee_time_out
+                                        )
+                                    ),
+                                'text/html'
+                                )
+                        ;
+                        $this->get('mailer')->send($message);
+                        $status = "Successfully signed-out";
+                        
+                    } else{
+                        $status = "You have already been signed-out.";
+                    }
+                } else{
+                    $status = "This sign-out link has expired";
+                }
+            } else{
+                $status = "This sign-out link is not valid";
+            }
+        
+        $response = new Response($status,Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
         }
     }
 }

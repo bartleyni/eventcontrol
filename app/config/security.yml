@@ -52,6 +52,7 @@ security:
         - { path: ^/LED/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/status/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: ROLE_USER }
         - { path: ^/fireregister, role: ROLE_USER }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
