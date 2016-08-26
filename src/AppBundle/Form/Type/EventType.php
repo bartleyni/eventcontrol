@@ -90,7 +90,7 @@ class EventType extends AbstractType
                 'required' => false,
                 'data' => $operators,
                 'attr' => array(
-                    'class' => 'form-control selectpicker',
+                    'class' => 'form-control checkbox',
                 )
             ))
             ->add('submit', 'submit', array(

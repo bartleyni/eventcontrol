@@ -59,7 +59,7 @@ class EditUserType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => array(
-                    'class' => 'form-control selectpicker'
+                    'class' => 'form-control checkbox'
                 )
         ));
     }
