@@ -69,9 +69,7 @@ class RegisterController extends Controller
                     ->setSubject('Control Room Hello Email')
                     ->setFrom('event.control@nb221.com')
                     ->setTo('nick@nb221.com')
-                    ->setBody("Hello",
-                        'text/html'
-                    )
+                    ->setBody('This is a test message')
                 ;
                 $this->get('mailer')->send($message);
 
