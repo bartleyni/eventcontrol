@@ -1,16 +1,11 @@
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-System Users
+Control Room Users
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4>System Users</h4>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         {% if users is empty %}
