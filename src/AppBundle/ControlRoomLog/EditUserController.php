@@ -63,7 +63,8 @@ class EditUserController extends Controller
     }
     
     /**
-    * @Route("/user/list/", name="user_list");
+    * @Route("/user");
+    * @Route("/user/", name="user_list");
     */
     
     public function listUserAction(Request $request)
