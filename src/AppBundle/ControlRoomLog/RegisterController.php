@@ -66,7 +66,7 @@ class RegisterController extends Controller
                 $em->flush();
                 
                 $attendee_name = $attendee->getName();
-                $attendee_time_in = $attendee->getTimeIn();
+                $attendee_time_in = $attendee->getTimeIn()->format('H:i:s d-m-Y');
                 $email_address = $attendee->getEmail();
                 
                 $message_body = $attendee_name.', you have been signed in to the Event Control site register at '.$attendee_time_in.'. \n Please remember to sign-out before leaving site, this can be done by visiting the control room or calling 01225 580811 or visiting the control room in person. \n';
