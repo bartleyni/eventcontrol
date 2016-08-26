@@ -107,7 +107,7 @@ class EditUserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user_update');
+            return $this->redirectToRoute('user_edit');
         }
 
 
