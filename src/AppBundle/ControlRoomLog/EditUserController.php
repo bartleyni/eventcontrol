@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\Type\EditUserType;
+use AppBundle\Form\Type\UpdateUserType;
 use AppBundle\Entity\User;
 
 class EditUserController extends Controller
@@ -33,7 +34,7 @@ class EditUserController extends Controller
         
         $user = $this->get('security.token_storage')->getToken()->getUser();
         
-        $form = $this->createForm(new EditUserType(), $user, array(
+        $form = $this->createForm(new UpdateUserType(), $user, array(
             'method' => 'POST',
         ));
         
@@ -67,19 +68,9 @@ class EditUserController extends Controller
     * @Route("/user/", name="user_list");
     */
     
-    public function listUserAction(Request $request)
+    public function listUserAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
-//        $qb = $em->createQueryBuilder(); 
-//        
-//        $qb
-//            ->select('user.id, user.username, user.email, user.name, user.active')
-//            ->from('AppBundle\Entity\User', 'user')
-//            ;
-//        
-//        $query = $qb->getQuery();
-//        $events = $query->getResult();
         
         $users = $em->getRepository('AppBundle\Entity\User')->findAll();
         return $this->render('userList.html.twig', array('users' => $users));

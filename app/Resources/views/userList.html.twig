@@ -27,7 +27,7 @@ Control Room Users
                                             <td>{{ user.Username }}</td>
                                             <td>{{ user.name }}</td>
                                             <td>{{ user.email }}</td>
-                                            <td>{{ user.isActive }}</td>
+                                            <td>{% if user.isActive == 1 %} True {% else %} False {% endif %}</td>
                                             <td><a href="{{ path('user_edit', {'id': user.Id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                         </tr>
                                     {% endfor %}                           

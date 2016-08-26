@@ -9,7 +9,7 @@
 namespace AppBundle\Form\Type;
 
 /**
- * Description of EditUserType
+ * Description of UpdateUserType
  *
  * @author Nick
  */
@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class EditUserType extends AbstractType
+class UpdateUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -52,13 +52,7 @@ class EditUserType extends AbstractType
                 )),
                     'second_options' => array('label' => 'Repeat Password', 'attr' => array(
                     'class' => 'form-control'
-                ))))
-                ->add('groups', 'entity', array(
-                'class' => 'AppBundle:Group',
-                'label' => 'Groups',
-                'attr' => array(
-                    'class' => 'form-control col-sm-10'
-                )
+                )),
         ));
     }
 
@@ -72,6 +66,6 @@ class EditUserType extends AbstractType
 
     public function getName()
     {
-        return 'edit_user_form';
+        return 'update_user_form';
     }
 }

@@ -85,15 +85,15 @@
         <h4>Operator Functions</h4>
 </div>
 {% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('user_registration') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+<a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
-        New Operator
+        Event Control Users 
     </div>
 </a>
 {% endif %}
 <a href="{{ path('user_update') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
-        Update User Details
+        Update Your Settings
     </div>
 </a>
 <a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
