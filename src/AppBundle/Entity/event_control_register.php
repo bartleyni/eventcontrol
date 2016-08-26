@@ -69,7 +69,7 @@ class event_control_register {
     protected $sign_out_hash;
     
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $sign_out_hash_expire;
    
