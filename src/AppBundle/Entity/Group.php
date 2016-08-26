@@ -32,12 +32,21 @@ class Group implements RoleInterface
     {
         $this->users = new ArrayCollection();
     }
-
+    
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
     // ... getters and setters for each property
 
     /** @see RoleInterface */
     public function getRole()
     {
         return $this->role;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
     }
 }
