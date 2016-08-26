@@ -91,7 +91,7 @@ class User implements AdvancedUserInterface, \Serializable {
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
      *
      */
-    private $groups;    
+    protected $groups;    
     
     public function __construct()
     {
