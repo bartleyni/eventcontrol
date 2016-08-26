@@ -57,6 +57,7 @@ class EditUserType extends AbstractType
                 'class' => 'AppBundle:Group',
                 'label' => 'Groups',
                 'multiple' => true,
+                'expanded' => true,
                 'attr' => array(
                     'class' => 'form-control selectpicker'
                 )

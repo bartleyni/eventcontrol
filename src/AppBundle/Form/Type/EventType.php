@@ -86,6 +86,7 @@ class EventType extends AbstractType
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
                 'multiple' => true,
+                'expanded' => true,
                 'required' => false,
                 'data' => $operators,
                 'attr' => array(
