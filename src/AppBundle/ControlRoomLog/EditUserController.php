@@ -60,7 +60,7 @@ class EditUserController extends Controller
         }
 
 
-        return $this->render('userEdit.html.twig', array('form' => $form->createView(),));      
+        return $this->render('userUpdate.html.twig', array('form' => $form->createView(),));      
     }
     
     /**

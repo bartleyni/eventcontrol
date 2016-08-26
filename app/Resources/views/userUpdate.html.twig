@@ -1,7 +1,7 @@
-{# app/Resources/views/userEdit.html.twig #}
+{# app/Resources/views/userUpdate.html.twig #}
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-Control Room Edit User Details
+Control Room Update User Details
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
@@ -63,17 +63,6 @@ Control Room Edit User Details
                                 </div>
                                 <div class="col-md-2">                                     
                                     {{ form_widget(form.plainPassword.second) }}
-                                </div>
-                            </div>
-                        </div><br>
-                        <div class="row">   
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    {{ form_label(form.groups) }} 
-                                    {{ form_errors(form.groups) }}
-                                </div>
-                                <div class="col-md-2">                                     
-                                    {{ form_widget(form.groups) }}
                                 </div>
                             </div>
                         </div><br>

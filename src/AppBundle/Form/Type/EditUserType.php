@@ -56,8 +56,9 @@ class EditUserType extends AbstractType
                 ->add('groups', 'entity', array(
                 'class' => 'AppBundle:Group',
                 'label' => 'Groups',
+                'multiple' => true,
                 'attr' => array(
-                    'class' => 'form-control col-sm-10'
+                    'class' => 'form-control selectpicker'
                 )
         ));
     }
