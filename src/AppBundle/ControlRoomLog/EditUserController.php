@@ -81,7 +81,7 @@ class EditUserController extends Controller
 //        $query = $qb->getQuery();
 //        $events = $query->getResult();
         
-        $users = $em->getRepository('AppBundle\Entity\User');
+        $users = $em->getRepository('AppBundle\Entity\User')->findAll();
         return $this->render('userList.html.twig', array('users' => $users));
     }
     
