@@ -65,11 +65,18 @@ class RegisterController extends Controller
                 $em->persist($attendee);
                 $em->flush();
                 
+                $attendee_name = $attendee->getName();
+                $attendee_time_in = $attendee->getTimeIn();
+                $email_address = $attendee->getEmail();
+                
+                $message_body = $attendee_name.', you have been signed in to the Event Control site register at '.$attendee_time_in.'. \n Please remember to sign-out before leaving site, this can be done by visiting the control room or calling 01225 580811 or visiting the control room in person. \n';
+                
+                
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('Control Room Hello Email')
+                    ->setSubject('Control Room Sign-in')
                     ->setFrom('event.control@nb221.com')
-                    ->setTo('nick@nb221.com')
-                    ->setBody('This is a test message')
+                    ->setTo($email_address)
+                    ->setBody($message_body)
                 ;
                 $this->get('mailer')->send($message);
 
