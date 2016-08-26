@@ -115,6 +115,7 @@ class RegisterController extends Controller
                 $attendee_time_in = $attendee->getTimeIn();
                 $email_address = $attendee->getEmail();
                 $heading = "Event Control Site Sign-in";
+                $link = $attendee->getSignOutHash();
                 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Control Room Sign-in')
@@ -125,7 +126,8 @@ class RegisterController extends Controller
                             'emailFireRegister.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
-                                    'time_in' => $attendee_time_in
+                                    'time_in' => $attendee_time_in,
+                                    'link' => $link
                                 )
                             ),
                         'text/html'

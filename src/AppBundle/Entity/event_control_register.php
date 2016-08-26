@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="event_control_register")
+ * @ORM\HasLifecycleCallbacks
  */
 
 class event_control_register {
@@ -61,6 +62,12 @@ class event_control_register {
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $event;
+    
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $sign_out_hash;
+   
     
     public function __toString()
     {
@@ -219,5 +226,31 @@ class event_control_register {
     public function getEvent()
     {
         return $this->event;
+    }
+    
+    /**
+     * Set signOutHash
+     *
+     * @ORM\PrePersist
+     * @return event_control_register
+     */
+    public function setSignOutHash()
+    {
+
+        if(!$this->sign_out_hash){
+            $this->sign_out_hash = random_bytes(15);
+        }
+
+        return $this;
+    }
+    
+    /**
+     * Get signOutHash
+     *
+     * @return string
+     */
+    public function getSignOutHash()
+    {
+        return $this->sign_out_hash;
     }
 }
