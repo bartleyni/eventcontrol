@@ -23,17 +23,17 @@ System Users
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Active?</td>
-                                        <th>Edit</td>>
+                                        <th>Edit</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for user in users %}
                                         <tr>
-                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.Username }}</td>
                                             <td>{{ user.name }}</td>
                                             <td>{{ user.email }}</td>
                                             <td>{{ user.active }}</td>
-                                            <td><a href="{{ path('user_edit', {'id': user.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
+                                            <td><a href="{{ path('user_edit', {'id': user.Id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                         </tr>
                                     {% endfor %}                           
                                 </tbody>
