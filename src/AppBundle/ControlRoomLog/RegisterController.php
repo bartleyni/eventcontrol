@@ -64,6 +64,17 @@ class RegisterController extends Controller
                 
                 $em->persist($attendee);
                 $em->flush();
+                
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Control Room Hello Email')
+                    ->setFrom('event.control@nb221.com')
+                    ->setTo('nick@nb221.com')
+                    ->setBody("Hello",
+                        'text/html'
+                    )
+                ;
+                $this->get('mailer')->send($message);
+
 
                 return $this->redirectToRoute('full_log');
             }
