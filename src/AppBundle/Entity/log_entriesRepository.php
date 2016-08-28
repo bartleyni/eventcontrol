@@ -31,9 +31,9 @@ class log_entriesRepository extends EntityRepository
     public function getReportedByLookup($event, $reported=null)
     {
         if ($reported){
-            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by DISTINCT(log_entry.reported_by) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.reported_by) as log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
         } else {
-            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by DISTINCT(log_entry.reported_by) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.reported_by) as log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
         }
         
     }
