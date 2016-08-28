@@ -218,6 +218,9 @@ class edit_entry_form extends Controller
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
         
+        $response = new JsonResponse();
+        $response->setData($lookup);
+        
         return $response;
     }
     
@@ -246,6 +249,9 @@ class edit_entry_form extends Controller
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
+        
+        $response = new JsonResponse();
+        $response->setData($lookup);
         
         return $response;
     }
