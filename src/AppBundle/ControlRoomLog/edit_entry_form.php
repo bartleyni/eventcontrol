@@ -207,7 +207,7 @@ class edit_entry_form extends Controller
         
         $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
         
-        if ($lookup)
+        if (false)
         {
                 $response = new JsonResponse();
                 $response->setData($lookup);
@@ -239,7 +239,7 @@ class edit_entry_form extends Controller
         
         $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getReportedByLookup($activeEvent, $reported);
         
-        if ($lookup)
+        if (false)
         {
                 $response = new JsonResponse();
                 $response->setData($lookup);
