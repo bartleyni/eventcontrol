@@ -239,7 +239,8 @@ Control Room Log Edit
         
         var locationOptions = {
             url: function(phrase) {
-                    return "{{ path('location_lookup', {'location': phrase}) }}"+ phrase;
+                    //return "{{ path('location_lookup', {'location': phrase}) }}"+ phrase;
+                    return "/entry/lookup/location/test";
             },
 
             getValue: "location"
@@ -247,7 +248,8 @@ Control Room Log Edit
         
         var reportedOptions = {
             url: function(phrase) {
-                    return "{{ path('reported_by_lookup', {'reported': phrase}) }}"+ phrase;
+                    //return "{{ path('reported_by_lookup', {'reported': phrase}) }}"+ phrase;
+                    return "/entry/lookup/reported_by/test";
             },
 
             getValue: "reported_by"
