@@ -22,18 +22,18 @@ class log_entriesRepository extends EntityRepository
     public function getLocationLookup($event, $location=null)
     {
         if ($location){
-            return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.location) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
         } else {
-            return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.location) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
         }
     }
     
     public function getReportedByLookup($event, $reported=null)
     {
         if ($reported){
-            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.reported_by) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
         } else {
-            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
+            return $this->getEntityManager()->createQuery('SELECT DISTINCT(log_entry.reported_by) FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
         }
         
     }
