@@ -196,7 +196,7 @@ class edit_entry_form extends Controller
      * @Route("/entry/lookup/location/{location}", name="location_lookup");
      * 
      */
-    public function LocationLookupAction($location)
+    public function LocationLookupAction($location=null)
     {
         $em = $this->getDoctrine()->getManager();
         
@@ -217,7 +217,7 @@ class edit_entry_form extends Controller
      * @Route("/entry/lookup/reportedBy/{reported}", name="reported_by_lookup");
      * 
      */
-    public function ReportedByLookupAction($reported)
+    public function ReportedByLookupAction($reported=null)
     {
         $em = $this->getDoctrine()->getManager();
         
