@@ -84,23 +84,23 @@
 <div class="row">
         <h4>Operator Functions</h4>
 </div>
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Event Control Users 
-    </div>
-</a>
-{% endif %}
-<a href="{{ path('user_update') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Update Your Settings
-    </div>
-</a>
 <a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Logout
     </div>
 </a>
+<a href="{{ path('user_update') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+    <div class="row">
+        Update Your Settings
+    </div>
+</a>
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+    <div class="row">
+        Event Control User Settings
+    </div>
+</a>
+{% endif %}
 {% if activeEventId(app.user.id) != 0 %}
 <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
@@ -116,7 +116,7 @@
 {% if is_granted('ROLE_ADMIN') %}
 <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
-        Event System
+        Event System Settings
     </div>
 </a>
 {% endif %}
