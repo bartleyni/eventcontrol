@@ -1,0 +1,19 @@
+{# app/Resources/views/status.html.twig #}
+{# ... you will probably extends your base template, like base.html.twig #}
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+{{ Heading }}
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                    {{ Message }}<br>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

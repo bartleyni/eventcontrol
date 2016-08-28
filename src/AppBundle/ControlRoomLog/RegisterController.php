@@ -200,9 +200,11 @@ class RegisterController extends Controller
                 $status = "This sign-out link is not valid";
             }
         
-        $response = new Response($status,Response::HTTP_OK, array('content-type' => 'text/html'));
+        $heading = "Fire Register";
+        //$response = new Response($status,Response::HTTP_OK, array('content-type' => 'text/html'));
 
-        return $response;
+        //return $response;
+        return $this->render('status.html.twig', array('Heading' => $heading, 'Message' => $status));
         }
     }
 }
