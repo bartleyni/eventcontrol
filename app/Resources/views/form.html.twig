@@ -97,12 +97,24 @@ Control Room Log New Entry
         });
         var locationOptions = {
             url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
-            getValue: "location"
+            getValue: "location",
+            list: {
+		maxNumberOfElements: 5,
+		match: {
+			enabled: true
+		}
+            }
         };
 
         var reportedOptions = {
             url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
-            getValue: "reported_by"
+            getValue: "reported_by",
+            list: {
+		maxNumberOfElements: 5,
+		match: {
+			enabled: true
+		}
+            }
         };
 
         $("#new_entry_form_location").easyAutocomplete(locationOptions);
