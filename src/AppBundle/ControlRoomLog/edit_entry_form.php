@@ -207,17 +207,6 @@ class edit_entry_form extends Controller
         
         $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
         
-        if (false)
-        {
-                $response = new JsonResponse();
-                $response->setData($lookup);
-
-        } else {
-            $response->setContent('No lookup results found');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-        
         $response = new JsonResponse();
         $response->setData($lookup);
         
@@ -238,17 +227,6 @@ class edit_entry_form extends Controller
         $em->flush();
         
         $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getReportedByLookup($activeEvent, $reported);
-        
-        if (false)
-        {
-                $response = new JsonResponse();
-                $response->setData($lookup);
-
-        } else {
-            $response->setContent('No lookup results found');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
         
         $response = new JsonResponse();
         $response->setData($lookup);
