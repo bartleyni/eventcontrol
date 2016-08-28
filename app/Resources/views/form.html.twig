@@ -98,7 +98,7 @@ Control Room Log New Entry
         
         var locationOptions = {
             url: function(phrase) {
-                    return "{{ path('location_lookup', {'location': phrase}) }}";
+                    return "{{ path('location_lookup')}}/" + phrase;
             },
 
             getValue: "location"
@@ -106,7 +106,7 @@ Control Room Log New Entry
         
         var reportedOptions = {
             url: function(phrase) {
-                    return "{{ path('reported_by_lookup', {'reported': phrase}) }}";
+                    return "{{ path('reported_by_lookup')}}/"+phrase;
             },
 
             getValue: "reported_by"
