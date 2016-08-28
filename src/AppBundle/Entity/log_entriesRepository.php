@@ -21,11 +21,11 @@ class log_entriesRepository extends EntityRepository
 {
     public function getLocationLookup($event, $location)
     {
-        return $this->getEntityManager()->createQuery('SELECT log_entry FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
+        return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
     }
     
     public function getReportedByLookup($event, $reported)
     {
-        return $this->getEntityManager()->createQuery('SELECT log_entry FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
+        return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
     }
 }
