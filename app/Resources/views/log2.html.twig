@@ -41,7 +41,7 @@ Control Room Log
                                             <td><a href="{{ path('edit_entry', {'id': log.id}) }}">{{ log.log_blurb }}</a></td>
                                             <td>{{ log.location }}</td>
                                             <td>{{ log.reported_by }}</td>
-                                            <td><h6>
+                                            <td><h3>
                                             {% if log.general_description is null %}
                                             {% else %}
                                                 {% if log.general_entry_closed_time is not null %}
@@ -82,7 +82,7 @@ Control Room Log
                                                 {{ log.lost_property_description[:20]|striptags ~ '...' }}
                                                 </span> &nbsp;
                                             {% endif %}
-                                            </h6></td> 
+                                            </h3></td> 
                                         </tr>
                                     {% endfor %}                           
                                 </tbody>
