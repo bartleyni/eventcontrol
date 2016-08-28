@@ -213,7 +213,7 @@ class Log extends Controller
                 )
             );
         }else {
-            return $this->render('log.html.twig', array('logs' => $logs));
+            return $this->render('log2.html.twig', array('logs' => $logs));
         }
     }
     
@@ -407,7 +407,7 @@ class Log extends Controller
         }
         $query = $qb->getQuery();
         $logs = $query->getResult();
-        return $this->render('logTable.html.twig', array('logs' => $logs));
+        return $this->render('logTable2.html.twig', array('logs' => $logs));
     }
     
     /**

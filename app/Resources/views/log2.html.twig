@@ -23,10 +23,7 @@ Control Room Log
                                         <th>Log Title</th>
                                         <th>Location</th>
                                         <th>Reported By</th>
-                                        <th>General</th>
-                                        <th>Medical</th>
-                                        <th>Security</th>
-                                        <th>Lost Property</th>
+                                        <th><br></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,61 +45,35 @@ Control Room Log
                                             {% if log.general_entry_closed_time is not null %}
                                                 <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.general_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
-                                                {% if log.general_description is null %}
-                                                    <br>
-                                                {% else %}
-                                                    {{ log.general_description[:12]|striptags ~ ' ...'  }}
-                                                    <br>
-                                                    {% if log.general_entry_closed_time is not null %}
-                                                        Closed
-                                                    </div>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </td>
-                                            <td {% if log.medical_entry_closed_time is null %} class="severity{{ log.medical_severity }}" {% endif %}>
+                                            {% if log.general_description is null %}
+                                            {% else %}
+                                                <span class="badge">{{ log.general_description[:12]|striptags ~ ' ...'  }}</span>
+                                                </div>
+                                            {% endif %}
                                             {% if log.medical_entry_closed_time is not null %}
                                                 <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.medical_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
-                                                {% if log.medical_injury_description is null %}
-                                                    <br>
-                                                {% else %}
-                                                    {{ log.medical_injury_description }}
-                                                        <br> 
-                                                    {% if log.medical_entry_closed_time is not null %}
-                                                        Closed
-                                                    </div>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </td>
-                                            <td {% if log.security_entry_closed_time is null %} class="severity{{ log.severity }}" {% endif %}>
+                                            {% if log.medical_injury_description is null %}
+                                            {% else %}
+                                                <span class="badge severity{{ log.medical_severity }}" >{{ log.medical_injury_description }}</span>
+                                                </div>
+                                            {% endif %}
                                             {% if log.security_entry_closed_time is not null %}
                                                 <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                             {% endif %}
-                                                {% if log.security_description is null %}
-                                                    <br>
-                                                {% else %}
-                                                    {{ log.security_incident_description }}
-                                                    <br> 
-                                                    {% if log.security_entry_closed_time is not null %}
-                                                        Closed
-                                                    </div>
-                                                    {% endif %}
+                                            {% if log.security_description is null %}
+                                            {% else %}
+                                                <span class="badge severity{{ log.severity }}" >{{ log.security_incident_description }}</span>
+                                                </div>
+                                            {% endif %}
+                                            {% if log.lost_property_description is null %}
+                                            {% else %}
+                                                {% if log.lost_property_entry_closed_time is not null %}
+                                                    <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
                                                 {% endif %}
-                                            </td> 
-                                            <td>
-                                                {% if log.lost_property_description is null %}
-                                                    <br>
-                                                {% else %}
-                                                    {% if log.lost_property_entry_closed_time is not null %}
-                                                        <div data-toggle="tooltip" data-placement="left" title="Closed: {{ log.lost_property_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
-                                                    {% endif %}
-                                                    {{ log.lost_property_description[:12]|striptags ~ ' ...' }}
-                                                    <br>
-                                                    {% if log.lost_property_entry_closed_time is not null %}
-                                                        Closed
-                                                    </div>                                                            
-                                                    {% endif %}
-                                                {% endif %}
+                                                <span class="badge" >{{ log.lost_property_description[:12]|striptags ~ ' ...' }}</span>
+                                                </div>
+                                            {% endif %}
                                             </td> 
                                         </tr>
                                     {% endfor %}                           
