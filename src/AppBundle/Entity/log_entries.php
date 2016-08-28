@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="log_entries")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
  */
 
 class log_entries {

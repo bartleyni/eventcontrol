@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Form\Type\LogType;
 use AppBundle\Form\Type\MedicalType;
@@ -190,6 +191,62 @@ class edit_entry_form extends Controller
         }
         return $this->render('editForm.html.twig', array('medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed, 'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
     }
+    
+    /**
+     * @Route("/entry/lookup/location/{location}", name="location_lookup");
+     * 
+     */
+    public function LocationLookupAction($location)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $em->flush();
+        
+        $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
+        
+        if ($lookup)
+        {
+                $response = new JsonResponse();
+                $response->setData($lookup);
+
+        } else {
+            $response->setContent('No lookup results found');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        
+        return $response;
+    }
+    
+    /**
+     * @Route("/entry/lookup/reportedBy/{reported}", name="reported_by_lookup");
+     * 
+     */
+    public function ReportedByLookupAction($reported)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $em->flush();
+        
+        $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getReportedByLookup($activeEvent, $reported);
+        
+        if ($lookup)
+        {
+                $response = new JsonResponse();
+                $response->setData($lookup);
+
+        } else {
+            $response->setContent('No lookup results found');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        
+        return $response;
+    }
 }
-
-
