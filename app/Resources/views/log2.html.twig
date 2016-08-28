@@ -50,7 +50,7 @@ Control Room Log
                                                     <span class="label label-primary">
                                                 {% endif %}
                                                 {{ log.general_description[:20]|striptags ~ '...'  }}
-                                                </span>
+                                                </span> 
                                             {% endif %}
                                             {% if log.medical_injury_description is null %}
                                             {% else %}
@@ -60,7 +60,7 @@ Control Room Log
                                                     <span class="label severity{{ log.medical_severity }}">
                                                 {% endif %}
                                                 {{ log.medical_injury_description }}
-                                                </span>
+                                                </span> 
                                             {% endif %}
                                             {% if log.security_description is null %}
                                             {% else %}
@@ -70,7 +70,7 @@ Control Room Log
                                                     <span class="label severity{{ log.severity }}">
                                                 {% endif %}
                                                 {{ log.security_incident_description }}
-                                                </span>
+                                                </span> 
                                             {% endif %}
                                             {% if log.lost_property_description is null %}
                                             {% else %}
@@ -80,7 +80,7 @@ Control Room Log
                                                     <span class="label label-info">
                                                 {% endif %}
                                                 {{ log.lost_property_description[:20]|striptags ~ '...' }}
-                                                </span>
+                                                </span> 
                                             {% endif %}
                                             </td> 
                                         </tr>
