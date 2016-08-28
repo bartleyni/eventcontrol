@@ -21,11 +21,20 @@ class log_entriesRepository extends EntityRepository
 {
     public function getLocationLookup($event, $location=null)
     {
-        return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
+        if ($location){
+            return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.location LIKE :location')->setParameter('event', $event)->setParameter('location', '%'.$location.'%')->getResult();
+        } else {
+            return $this->getEntityManager()->createQuery('SELECT log_entry.location FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
+        }
     }
     
     public function getReportedByLookup($event, $reported=null)
     {
-        return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
+        if ($reported){
+            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event AND log_entry.reported_by LIKE :reported')->setParameter('event', $event)->setParameter('reported', '%'.$reported.'%')->getResult();
+        } else {
+            return $this->getEntityManager()->createQuery('SELECT log_entry.reported_by FROM AppBundle\Entity\log_entries log_entry WHERE log_entry.event = :event')->setParameter('event', $event)->getResult();
+        }
+        
     }
 }
