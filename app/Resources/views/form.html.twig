@@ -95,19 +95,17 @@ Control Room Log New Entry
             var nowTime = moment(d).format("YYYY-MM-DD HH:mm:ss");
             $('.datetimepicker1').val(nowTime);
         });
-        $(document).ready(function(){
-            var locationOptions = {
-                url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
-                getValue: "location"
-            };
+        var locationOptions = {
+            url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
+            getValue: "location"
+        };
 
-            var reportedOptions = {
-                url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
-                getValue: "reported_by"
-            };
+        var reportedOptions = {
+            url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
+            getValue: "reported_by"
+        };
 
-            $("#new_entry_form_location").easyAutocomplete(locationOptions);
-            $("#new_entry_form_reported_by").easyAutocomplete(reportedOptions);
-            });
+        $("#new_entry_form_location").easyAutocomplete(locationOptions);
+        $("#new_entry_form_reported_by").easyAutocomplete(reportedOptions);
     </script>        
 {% endblock %}
