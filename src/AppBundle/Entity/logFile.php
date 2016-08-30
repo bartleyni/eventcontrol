@@ -15,6 +15,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class logFile
 {
     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+         
+         
+    /**
      * Image path
      *
      * @var string
@@ -27,7 +35,6 @@ class logFile
      * Image file
      *
      * @var File
-     * @ORM\Id
      * @Assert\File(
      *     maxSize = "50M",
      *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf"},
