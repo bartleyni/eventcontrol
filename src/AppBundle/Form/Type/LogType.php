@@ -55,12 +55,12 @@ class LogType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('log_files', 'file', array(
-                'label' => 'Associated Files',
-                'attr' => array(
-                    'class' => 'form-control'
-                )
-            ))
+//            ->add('log_files', 'file', array(
+//                'label' => 'Associated Files',
+//                'attr' => array(
+//                    'class' => 'form-control'
+//                )
+//            ))
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',

@@ -58,7 +58,7 @@ class log_entries {
     private $event;
     
     /**
-     * @ORM\OneToMany(targetEntity="logFile", mappedBy="log_entry")
+     * @ORM\OneToMany(targetEntity="logFile", mappedBy="log_entry", nullable=true)
      */
     private $log_files;
     
