@@ -58,11 +58,6 @@ class log_entries {
     private $event;
     
     /**
-     * @ORM\OneToMany(targetEntity="logFile", mappedBy="log_entry", nullable=true)
-     */
-    private $log_files;
-    
-    /**
      * @ORM\Column(type="datetime")
      */
     protected $log_entry_open_time;
