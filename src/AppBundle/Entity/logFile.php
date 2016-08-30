@@ -27,7 +27,7 @@ class logFile
      * Image file
      *
      * @var File
-     *
+     * @ORM\Id
      * @Assert\File(
      *     maxSize = "50M",
      *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf"},
