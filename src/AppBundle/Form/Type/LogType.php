@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class LogType extends AbstractType
 {
@@ -50,6 +51,12 @@ class LogType extends AbstractType
                 )
             ))
             ->add('reported_by', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('log_files', 'file', array(
+                'label' => 'Associated Files',
                 'attr' => array(
                     'class' => 'form-control'
                 )
