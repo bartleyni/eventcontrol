@@ -215,6 +215,29 @@ class EventController extends Controller
         
         return $response;
     }
+    
+    /**
+    * @Route("/event/weather/", name="event_weather");
+    */
+    
+    public function eventWeatherAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        $parametersAsArray = [];
+        $content = $this->get("https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717")->getContent();
+        
+        if ($content){
+            $parametersAsArray = json_decode($content, true);
+        }
+        
+        $response = new Response('BANANAS',Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
+        
+    }
 }
 
 
