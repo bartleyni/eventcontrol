@@ -79,10 +79,18 @@
 
 {% block hiddenheadertop %}
     <div class="container-fluid">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <h1> Event Control</h1>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
+            {% if app.user %}
+                <h1>
+                    <div id="HeaderWeather">
+                    </div>
+                </h1>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
             {% if app.user %}
                 <h1>
                     <div id="HeaderClock">
@@ -129,12 +137,17 @@
             $("#HeaderClock").html(currentTimeString);
 
         }
+        
+        function updateWeather ( )
+            {
+                $("#HeaderClock").html("WEATHER");
+            }
         $(document).ready(function()
         {
             updateClock();
+            updateWeather();
             setInterval('updateClock()', 1000);
-            
-           
+            setInterval('updateWeather()', 300000);
         });
         
         function resizeHeader() {
