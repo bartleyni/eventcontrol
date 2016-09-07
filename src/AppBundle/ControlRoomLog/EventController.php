@@ -240,7 +240,7 @@ class EventController extends Controller
             $data = json_decode($content, true);
         }
         
-        $response = new Response($data,Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response($content,Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
