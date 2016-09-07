@@ -140,8 +140,19 @@
         
         function updateWeather ( )
             {
-                $("#HeaderWeather").html("WEATHER text would go heere, not sure how it wraps though");
+                //$("#HeaderWeather").html("Weather update");
+                $.ajax({
+                type:'POST',
+                url: '{{ path('event_weather') }}',
+                cache: false,
+                global: false,
+                success:function(data)
+                    {
+                        $("#HeaderWeather").html(data);
+                    }
+                });
             }
+            
         $(document).ready(function()
         {
             updateClock();

@@ -226,9 +226,6 @@ class EventController extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        //$parametersAsArray = [];
-        //$content = http_get("https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717");
-        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
