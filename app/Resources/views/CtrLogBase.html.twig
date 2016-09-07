@@ -15,16 +15,16 @@
                     {% block headerbottom %}{% endblock %}
                 </small>
         </h1>
-            {% if app.user %}
-                    <h4>
-                        <div id="HeaderWeather">
-                        </div>
-                    </h4>
-                    <h1 class="pull-right"> 
-                        <div id="HeaderClock">
-                        </div>
-                    </h1>
-            {% endif %}
+        {% if app.user %}
+            <h4 class="pull-left">
+                <div id="HeaderWeather">
+                </div>
+            </h4>
+            <h1 class="pull-right"> 
+                <div id="HeaderClock">
+                </div>
+            </h1>
+        {% endif %}
         <div class="clearfix" style="background-color: #FFFFFF;"></div>
     </div>
     {% block layout %}{% endblock %}
