@@ -10,17 +10,17 @@
 <body class="{% block theme %}default{% endblock %}">
     <div class="page-header">
         <div class="row">
-            <h1 class="col-md-6">
+            <h1 class="col-md-5 text-no-wrap">
                 {% block headertop %}{% endblock %}
                 <small>
                     {% block headerbottom %}{% endblock %}
                 </small>
             </h1>
             {% if app.user %}
-                <h5 class="col-md-2 text-center"><br>
+                <h4 class="col-md-3 text-center"><br>
                     <div id="HeaderWeather">
                     </div>
-                </h5>
+                </h4>
                 <h1 class="col-md-4 text-right"">
                     <div id="HeaderClock">
                     </div>
