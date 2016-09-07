@@ -97,38 +97,37 @@
     </div>
 </a>
 {% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Event Control User Settings
-    </div>
-</a>
+    <a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Event Control User Settings
+        </div>
+    </a>
 {% endif %}
-{% if activeEventId(app.user.id) != 0 %}
 {% if is_granted('ROLE_USER') %}
-<a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Fire Register Sign-in
-    </div>
-</a>
-<a href="{{ path('fire_register') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Fire Register
-    </div>
-</a>
+    {% if activeEventId(app.user.id) != 0 %}
+        <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row">
+                Fire Register Sign-in
+            </div>
+        </a>
+        <a href="{{ path('fire_register') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row">
+                Fire Register
+            </div>
+        </a>
+    {% endif %}
+    <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            People Counting
+        </div>
+    </a>
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
-<a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Event System Settings
-    </div>
-</a>
-{% endif %}
-<a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-    People Counting
-    </div>
-</a>
-{% endif %}
+    <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Event System Settings
+        </div>
+    </a>
 {% endif %}
 <div class="row">
         <h4>Files & Information</h4>
