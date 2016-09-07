@@ -12,79 +12,80 @@
     <h4>Log Functions</h4>
 </div>
 {% if activeEventId(app.user.id) != 0 %}
-{% if is_granted('ROLE_USER') %}
-<a href="{{ path('new_entry') }}" class="btn btn-primary btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row" data-toggle="tooltip" data-placement="right" title="ctrl-e">
-        <div class="col-md-12 col-xs-12">
-            <strong>Log Entry</strong>
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('new_entry') }}" class="btn btn-primary btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row" data-toggle="tooltip" data-placement="right" title="ctrl-e">
+                <div class="col-md-12 col-xs-12">
+                    <strong>Log Entry</strong>
+                </div>
+            </div>
+        </a>
+    {% endif %}
+    <a href="{{ path('full_log') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Full Log View <span class="badge" id="logTotal-Total">{{ activeTotalLogs(app.user.id) }}</span>
+            </div>
         </div>
-    </div>
-</a>
-{% endif %}
-<a href="{{ path('full_log') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            Full Log View <span class="badge" id="logTotal-Total">{{ activeTotalLogs(app.user.id) }}</span>
+    </a>
+    <a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Latest Open <span class="badge" id="logTotal-Open">{{ activeOpenLogs(app.user.id) }}</span>
+            </div>
         </div>
-    </div>
-</a>
-<a href="{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            Latest Open <span class="badge" id="logTotal-Open">{{ activeOpenLogs(app.user.id) }}</span>
+    </a>
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "medical"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Latest Medical <span class="badge" id="logTotal-Medical">{{ activeMedicalLogs(app.user.id) }}</span>
+            </div>
         </div>
-    </div>
-</a>
-<a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "medical"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            Latest Medical <span class="badge" id="logTotal-Medical">{{ activeMedicalLogs(app.user.id) }}</span>
+    </a>
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "security"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Latest Security <span class="badge" id="logTotal-Security">{{ activeSecurityLogs(app.user.id) }}</span>
+            </div>
         </div>
-    </div>
-</a>
-<a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "security"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            Latest Security <span class="badge" id="logTotal-Security">{{ activeSecurityLogs(app.user.id) }}</span>
+    </a>
+    <a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "lost"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Latest Lost Property <span class="badge" id="logTotal-Lost">{{ activeLostPropertyLogs(app.user.id) }}</span>
+            </div>
         </div>
-    </div>
-</a>
-<a href="{{ path('sort_filter_type_log', {'sort': "desc", 'filter': "all", 'filter_type': "lost"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-            Latest Lost Property <span class="badge" id="logTotal-Lost">{{ activeLostPropertyLogs(app.user.id) }}</span>
-        </div>
-    </div>
-</a>
+    </a>
 {% else %}
-<strong>Not assigned to an active event</strong>
+    <strong>Not assigned to an active event</strong>
 {% endif %}
 {% if is_granted('ROLE_VIEW') %}
-<div class="row">
-    <h4>Status</h4>
-</div>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        Current Occupancy
+    <div class="row">
+        <h4>Status</h4>
     </div>
-    <ul class="list-group">
-        {% for venue in venues %}
-            <li class="list-group-item" id="venue-{{ venue.id }}">{{ venue.name }}: 0</li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="panel panel-warning">
-    <div class="panel-heading">
-        UPS Status
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Current Occupancy
+        </div>
+        <ul class="list-group">
+            {% for venue in venues %}
+                <li class="list-group-item" id="venue-{{ venue.id }}">{{ venue.name }}: 0</li>
+            {% endfor %}
+        </ul>
     </div>
-    <ul class="list-group">
-        {% for ups in UPSs %}
-            <li class="list-group-item" id="ups-{{ ups.id }}" data-toggle="tooltip" data-placement="right" title="{{ ups.name }} - {{ ups.location }}">UPS{{ ups.id }}: Timeout</li>
-        {% endfor %}
-    </ul>
-</div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            UPS Status
+        </div>
+        <ul class="list-group">
+            {% for ups in UPSs %}
+                <li class="list-group-item" id="ups-{{ ups.id }}" data-toggle="tooltip" data-placement="right" title="{{ ups.name }} - {{ ups.location }}">UPS{{ ups.id }}: Timeout</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 <div class="row">
-        <h4>Operator Functions</h4>
+    <h4>Operator Functions</h4>
 </div>
 <a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
@@ -138,24 +139,24 @@
     </div>
 </a>
 {% if is_granted('ROLE_USER') %}
-<div class="row">
-        <h4>Control Room Functions</h4>
-</div>
-<div id="LEDBtn1" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
-        Full Working Light
+            <h4>Control Room Functions</h4>
     </div>
-</div>
-<div id="LEDBtn2" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Control Mode Working Light
+    <div id="LEDBtn1" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Full Working Light
+        </div>
     </div>
-</div>
-<div id="LEDBtn3" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Lighting Off
+    <div id="LEDBtn2" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Control Mode Working Light
+        </div>
     </div>
-</div>
+    <div id="LEDBtn3" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            Lighting Off
+        </div>
+    </div>
 {% endif %}
 <br>
 <script type="text/javascript">
