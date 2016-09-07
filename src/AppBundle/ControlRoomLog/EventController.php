@@ -226,14 +226,21 @@ class EventController extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        $parametersAsArray = [];
-        $content = http_get("https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717");
+        //$parametersAsArray = [];
+        //$content = http_get("https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717");
         
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $content = curl_exec($ch);
+
         if ($content){
-            $parametersAsArray = json_decode($content, true);
+            $data = json_decode($content, true);
         }
         
-        $response = new Response($parametersAsArray,Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response($data,Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
