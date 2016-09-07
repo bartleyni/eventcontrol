@@ -109,70 +109,72 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/easy-autocomplete/jquery.easy-autocomplete.min.js') }}"></script>
-    <script type="text/javascript">
-        function updateClock ( )
-            {
-            var currentTime = new Date ( );
-            var currentHours = currentTime.getHours ( );
-            var currentMinutes = currentTime.getMinutes ( );
-            var currentSeconds = currentTime.getSeconds ( );
+    {% if app.user %}
+        <script type="text/javascript">
+            function updateClock ( )
+                {
+                var currentTime = new Date ( );
+                var currentHours = currentTime.getHours ( );
+                var currentMinutes = currentTime.getMinutes ( );
+                var currentSeconds = currentTime.getSeconds ( );
 
-            // Pad the minutes and seconds with leading zeros, if required
-            currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-            currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+                // Pad the minutes and seconds with leading zeros, if required
+                currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+                currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
 
-            // Choose either "AM" or "PM" as appropriate
-            var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+                // Choose either "AM" or "PM" as appropriate
+                var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
 
-            // Convert the hours component to 12-hour format if needed
-            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+                // Convert the hours component to 12-hour format if needed
+                currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
 
-            // Convert an hours component of "0" to "12"
-            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+                // Convert an hours component of "0" to "12"
+                currentHours = ( currentHours == 0 ) ? 12 : currentHours;
 
-            // Compose the string for display
-            //var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-            var currentTimeString = currentTime.toLocaleString('en-GB');
+                // Compose the string for display
+                //var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+                var currentTimeString = currentTime.toLocaleString('en-GB');
 
-            $("#HeaderClock").html(currentTimeString);
+                $("#HeaderClock").html(currentTimeString);
 
-        }
-        
-        function updateWeather ( )
-            {
-                //$("#HeaderWeather").html("Weather update");
-                $.ajax({
-                type:'POST',
-                url: '{{ path('event_weather') }}',
-                cache: false,
-                global: false,
-                success:function(data)
-                    {
-                        $("#HeaderWeather").html(data);
-                    }
-                });
             }
-            
-        $(document).ready(function()
-        {
-            updateClock();
-            updateWeather();
-            setInterval('updateClock()', 1000);
-            setInterval('updateWeather()', 300000);
-        });
-        
-        function resizeHeader() {
-            $(".page-header-push").height($(".page-header").height()+5);
-        }
-        $(document).ready(resizeHeader);
-        $(window).resize(resizeHeader);
-        
-        $(document).ready(function()
-        {
-            Mousetrap.bind('ctrl+e', function(e) {
-                   e.preventDefault();
-                   window.location.href = "{{ path('new_entry') }}";
+
+            function updateWeather ( )
+                {
+                    //$("#HeaderWeather").html("Weather update");
+                    $.ajax({
+                    type:'POST',
+                    url: '{{ path('event_weather') }}',
+                    cache: false,
+                    global: false,
+                    success:function(data)
+                        {
+                            $("#HeaderWeather").html(data);
+                        }
+                    });
+                }
+
+            $(document).ready(function()
+            {
+                updateClock();
+                updateWeather();
+                setInterval('updateClock()', 1000);
+                setInterval('updateWeather()', 300000);
             });
-        });
-    </script>
+
+            function resizeHeader() {
+                $(".page-header-push").height($(".page-header").height()+5);
+            }
+            $(document).ready(resizeHeader);
+            $(window).resize(resizeHeader);
+
+            $(document).ready(function()
+            {
+                Mousetrap.bind('ctrl+e', function(e) {
+                       e.preventDefault();
+                       window.location.href = "{{ path('new_entry') }}";
+                });
+            });
+        </script>
+    {% endif %}
 {% endblock %}
