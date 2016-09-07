@@ -227,7 +227,7 @@ class EventController extends Controller
         }
         
         $parametersAsArray = [];
-        //$content = $this->get("https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717")->getContent();
+        $content = "https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717";
         
         if ($content){
             $parametersAsArray = json_decode($content, true);
