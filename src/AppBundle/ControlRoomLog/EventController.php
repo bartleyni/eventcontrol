@@ -233,7 +233,7 @@ class EventController extends Controller
             $parametersAsArray = json_decode($content, true);
         }
         
-        $response = new Response('BANANAS',Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response($parametersAsArray,Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
