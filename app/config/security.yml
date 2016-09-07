@@ -8,6 +8,7 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
+        ROLE_USER:      ROLE_VIEW
         #ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 
@@ -60,6 +61,6 @@ security:
         - { path: ^/user/*, roles: ROLE_ADMIN}
         - { path: ^/event, roles: ROLE_ADMIN}
         - { path: ^/event/*, roles: ROLE_ADMIN}
-        - { path: ^/, roles: ROLE_USER}
-        - { path: ^/$, roles: ROLE_USER}
-        - { path: ^/*, roles: ROLE_USER}
+        - { path: ^/, roles: ROLE_VIEW}
+        - { path: ^/$, roles: ROLE_VIEW}
+        - { path: ^/*, roles: ROLE_VIEW}
