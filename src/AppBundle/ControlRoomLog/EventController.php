@@ -238,7 +238,7 @@ class EventController extends Controller
 
         if ($content){
             $data = json_decode($content, true);
-            $summary = ['minutely']['summary'];
+            $summary = ['hourly']['summary'];
         }
         
         $response = new Response($summary,Response::HTTP_OK, array('content-type' => 'text/html'));
