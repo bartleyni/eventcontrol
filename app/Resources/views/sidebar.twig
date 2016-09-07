@@ -12,6 +12,7 @@
     <h4>Log Functions</h4>
 </div>
 {% if activeEventId(app.user.id) != 0 %}
+{% if is_granted('ROLE_USER') %}
 <a href="{{ path('new_entry') }}" class="btn btn-primary btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row" data-toggle="tooltip" data-placement="right" title="ctrl-e">
         <div class="col-md-12 col-xs-12">
@@ -19,6 +20,7 @@
         </div>
     </div>
 </a>
+{% endif %}
 <a href="{{ path('full_log') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         <div class="col-md-12 col-xs-12">
@@ -102,6 +104,7 @@
 </a>
 {% endif %}
 {% if activeEventId(app.user.id) != 0 %}
+{% if is_granted('ROLE_USER') %}
 <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
     <div class="row">
         Fire Register Sign-in
@@ -125,6 +128,7 @@
     People Counting
     </div>
 </a>
+{% endif %}
 {% endif %}
 <div class="row">
         <h4>Files & Information</h4>
