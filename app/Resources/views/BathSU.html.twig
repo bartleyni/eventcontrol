@@ -109,8 +109,15 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/easy-autocomplete/jquery.easy-autocomplete.min.js') }}"></script>
-    {% if app.user %}
-        <script type="text/javascript">
+    <script type="text/javascript">
+            
+        function resizeHeader() {
+            $(".page-header-push").height($(".page-header").height()+3);
+        }
+        $(document).ready(resizeHeader);
+        $(window).resize(resizeHeader);
+        
+        {% if app.user %}
             function updateClock ( )
                 {
                 var currentTime = new Date ( );
@@ -162,12 +169,6 @@
                 setInterval('updateWeather()', 30000);
             });
 
-            function resizeHeader() {
-                $(".page-header-push").height($(".page-header").height()+5);
-            }
-            $(document).ready(resizeHeader);
-            $(window).resize(resizeHeader);
-
             $(document).ready(function()
             {
                 Mousetrap.bind('ctrl+e', function(e) {
@@ -175,6 +176,7 @@
                        window.location.href = "{{ path('new_entry') }}";
                 });
             });
-        </script>
-    {% endif %}
+        {% endif %}
+    </script>
+    
 {% endblock %}
