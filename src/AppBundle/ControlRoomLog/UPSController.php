@@ -32,8 +32,6 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        #$now = new \DateTime();
-        
         $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
         
         if ($ups_statuses)

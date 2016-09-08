@@ -237,7 +237,13 @@ class EventController extends Controller
         
         $last_weather_update = $event->getEventLastWeatherUpdate();
         
-        if($last_weather_update && true){
+        $interval1 = date_diff($last_weather_update, $now, TRUE);
+            
+        $minutes = $interval1->days * 24 * 60;
+        $minutes += $interval1->h * 60;
+        $minutes += $interval1->i;
+        
+        if($last_weather_update && $minutes < 5){
             $summary = $event->getEventLastWeather();
             
         } else {
