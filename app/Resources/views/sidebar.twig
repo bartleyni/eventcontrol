@@ -6,6 +6,8 @@
         <strong>{{ activeEventName(app.user.id) }}</strong>
         <br>
         User: {{ app.user.username }}
+        <br>
+        <p id="SidebarWeather"></p>
     </div>
 </div>
 <div class="row">
@@ -162,6 +164,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         sidebarPoll();
+        updateWeatherWarning();
+        setInterval('updateWeather', 30000);
     });
     
     $('#LEDBtn1').click(function(){
@@ -247,4 +251,18 @@
         i++;
         setTimeout(sidebarPoll,2000);
     }
+    
+    function updateWeather ( )
+        {
+            $.ajax({
+            type:'POST',
+            url: '{{ path('event_weather') }}',
+            cache: false,
+            global: false,
+            success:function(data)
+                {
+                    $("#SidebarWeather").html(data);
+                }
+            });
+        }
 </script>

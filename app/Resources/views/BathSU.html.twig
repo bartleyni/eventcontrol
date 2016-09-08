@@ -146,9 +146,8 @@
 
             }
 
-            function updateWeather ( )
+            function updateWeatherWarning ( )
                 {
-                    //$("#HeaderWeather").html("Weather update");
                     $.ajax({
                     type:'POST',
                     url: '{{ path('event_weather') }}',
@@ -164,9 +163,9 @@
             $(document).ready(function()
             {
                 updateClock();
-                updateWeather();
+                updateWeatherWarning();
                 setInterval('updateClock()', 1000);
-                setInterval('updateWeather()', 30000);
+                setInterval('updateWeatherWarning()', 30000);
             });
 
             $(document).ready(function()
