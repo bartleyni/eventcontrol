@@ -164,8 +164,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         sidebarPoll();
-        updateWeatherWarning();
-        setInterval('updateWeather', 30000);
+        updateWeather();
+        setInterval('updateWeather()', 30000);
     });
     
     $('#LEDBtn1').click(function(){
