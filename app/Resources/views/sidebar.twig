@@ -2,14 +2,11 @@
     <div class="panel-heading">
         {{ activeEventName(app.user.id) }}
     </div>
-    <div class="panel-body"></div>
-        <dl class="dl-horizontal">
-            <dt>User:</dt> 
-            <dd>{{ app.user.username }}</dd>
-            <dt>Weather:</dt>
-            <dd id="SidebarWeather"></dd>
-        </dl>
-    
+    <div class="panel-body">
+            <strong>User:</strong> {{ app.user.username }}
+            <br>
+            <p id="SidebarWeather"></p>
+    </div>
 </div>
 <div class="row">
     <h4>Log Functions</h4>
