@@ -267,11 +267,13 @@ class EventController extends Controller
                 }
                 $warning = '';
                 
-                foreach ($data['alerts'] as $key => $alert)
-                {
-                //$warning = $data['alerts'][1]['title'];
-                
-                    $warning = $warning.$alert['title'].'<br>';
+                if ($data['alerts']){
+                    foreach ($data['alerts'] as $key => $alert)
+                    {
+                    //$warning = $data['alerts'][1]['title'];
+
+                        $warning = $warning.$alert['title'].'<br>';
+                    }
                 }
                 
                 if($summary){
