@@ -226,20 +226,47 @@ class EventController extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717?units=uk2&exclude=hourly,daily');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $em = $this->getDoctrine()->getManager();
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        $now = new \DateTime();
+        
+        $last_weather_update = $event->getLastWeatherUpdate();
+        
+        if($last_weather_update && true){
+            $summary = $event->getLastWeather();
+            
+        } else {
 
-        $content = curl_exec($ch);
+            $url = 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/51.379551,-2.325717?units=uk2&exclude=hourly,daily';
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        if ($content){
-            $data = json_decode($content, true);
-            $summary = $data['minutely']['summary'];
-            if (!$summary){
-                $summary = $data['hourly']['summary'];
+            $content = curl_exec($ch);
+
+            if ($content){
+                $data = json_decode($content, true);
+                $summary = $data['minutely']['summary'];
+                if (!$summary){
+                    $summary = $data['hourly']['summary'];
+                }
+                
+                if($summary){
+                    $event->setLastWeather($summary);
+                    $event->setLastWeatherUpdate($now);
+                    $em->persist($event);
+                }
             }
         }
+        
+        $em->flush();
         
         $response = new Response($summary,Response::HTTP_OK, array('content-type' => 'text/html'));
 

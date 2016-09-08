@@ -71,6 +71,21 @@ class event {
      */
     protected $event_report_filename;
     
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $event_lat_long;
+    
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    protected $event_last_weather;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_last_weather_update;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -206,7 +221,7 @@ class event {
         return $this->event_log_stop_date;
     }
 
-        /**
+    /**
      * Set eventReportRunDate
      *
      * @param \DateTime $eventReportRunDate
@@ -230,7 +245,7 @@ class event {
         return $this->event_report_run_date;
     }
     
-        /**
+    /**
      * Set event_report_filename
      *
      * @param string $event_report_filename
@@ -263,4 +278,77 @@ class event {
     {
         return $this->log_entries;
     }
+    
+    /**
+     * Set event_lat_long
+     *
+     * @param string $event_lat_long
+     *
+     * @return event
+     */
+    public function setEventLatLong($event_lat_long)
+    {
+        $this->event_lat_long = $event_lat_long;
+
+        return $this;
+    }
+
+    /**
+     * Get event_lat_long
+     *
+     * @return string
+     */
+    public function getEventLatLong()
+    {
+        return $this->event_lat_long;
+    }
+    
+    /**
+     * Set event_last_weather
+     *
+     * @param string $event_last_weather
+     *
+     * @return event
+     */
+    public function setEventLastWeather($event_last_weather)
+    {
+        $this->event_last_weather = $event_last_weather;
+
+        return $this;
+    }
+    
+    /**
+     * Get event_last_weather
+     *
+     * @return string
+     */
+    public function getEventLastWeather()
+    {
+        return $this->event_last_weather;
+    }
+    
+    /**
+     * Set eventLastWeatherUpdate
+     *
+     * @param \DateTime $eventLastWeatherUpdate
+     *
+     * @return event
+     */
+    public function setEventLastWeatherUpdate($eventLastWeatherUpdate)
+    {
+        $this->event_last_weather_update = $eventLastWeatherUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventLastWeatherUpdate
+     *
+     * @return \DateTime
+     */
+    public function getEventLastWeatherUpdate()
+    {
+        return $this->event_last_weather_update;
+    }
+    
 }

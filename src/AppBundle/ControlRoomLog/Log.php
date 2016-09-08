@@ -31,17 +31,9 @@ class Log extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
         $em->flush();
-        
-        if($user_event)
-        {
-            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('id' => $eId));
-            $eId = $user_event->getEventId();
-        }
         
         if ($event)
         {
