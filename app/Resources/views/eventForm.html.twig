@@ -33,6 +33,17 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.latlong) }} 
+                                    {{ form_errors(form.latlong) }}
+                                </div>
+                                <div class="col-md-6">                                     
+                                    {{ form_widget(form.latlong) }}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">   
                             <div class="form-group">                                
                                 <div class="col-md-2">
