@@ -265,10 +265,13 @@ class EventController extends Controller
                 if (!$summary){
                     $summary = $data['hourly']['summary'];
                 }
+                $warning = null;
+                $warning = $date['alerts']['title'];
                 
                 if($summary){
                     $event->setEventLastWeather($summary);
                     $event->setEventLastWeatherUpdate($now);
+                    $event->setEventLastWeatherWarning($warning);
                     $em->persist($event);
                 }
             }
@@ -280,6 +283,30 @@ class EventController extends Controller
 
         return $response;
         
+    }
+    
+    /**
+    * @Route("/event/weather/warning", name="event_weather_warning");
+    */
+    
+    public function eventWeatherWarningAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        $warning = '';
+        $warning = $event->getEventLastWeatherWarning();
+        
+        $response = new Response($warning,Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
     }
 }
 
