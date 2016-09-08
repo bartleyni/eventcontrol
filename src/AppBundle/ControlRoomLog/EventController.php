@@ -265,8 +265,14 @@ class EventController extends Controller
                 if (!$summary){
                     $summary = $data['hourly']['summary'];
                 }
-                $warning = null;
-                $warning = $date['alerts']['title'];
+                $warning = '';
+                
+                foreach ($data['alerts'] as $key => $alert)
+                {
+                //$warning = $data['alerts'][1]['title'];
+                
+                    $warning = $warning.$alert['title'].'/n';
+                }
                 
                 if($summary){
                     $event->setEventLastWeather($summary);
