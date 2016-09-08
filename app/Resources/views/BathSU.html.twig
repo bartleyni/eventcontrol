@@ -156,12 +156,18 @@
                     success:function(data)
                         {
                             $("#HeaderWeather").html(data);
+                            if(data == '') {
+                                $('#HeaderWeather').hide(500);
+                            } else {
+                                $('#HeaderWeather').show(500);
+                            }
                         }
                     });
                 }
 
             $(document).ready(function()
             {
+                $('#HeaderWeather').hide();
                 updateClock();
                 updateWeatherWarning();
                 setInterval('updateClock()', 1000);

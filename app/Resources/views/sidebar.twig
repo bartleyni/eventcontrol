@@ -3,10 +3,12 @@
         {{ activeEventName(app.user.id) }}
     </div>
     <div class="panel-body">
-        <strong>User:</strong> {{ app.user.username }}
-        <br>
-        <strong>Weather:</strong>
-        <p id="SidebarWeather"></p>
+        <dl class="dl-horizontal">
+            <dt>User:</dt> 
+            <dd>{{ app.user.username }}</dd>
+            <dt>Weather:</dt>
+            <dd id="SidebarWeather"></dd>
+        </dl>
     </div>
 </div>
 <div class="row">
