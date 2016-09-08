@@ -271,7 +271,7 @@ class EventController extends Controller
                 {
                 //$warning = $data['alerts'][1]['title'];
                 
-                    $warning = $warning.$alert['title'].'/n';
+                    $warning = $warning.$alert['title'].'<br>';
                 }
                 
                 if($summary){
