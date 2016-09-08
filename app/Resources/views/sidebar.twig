@@ -1,13 +1,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Event Info
+        {{ activeEventName(app.user.id) }}
     </div>
     <div class="panel-body">
-        <strong>{{ activeEventName(app.user.id) }}</strong>
+        <strong>User:</strong> {{ app.user.username }}
         <br>
-        User: {{ app.user.username }}
-        <br>
-        Weather: <p id="SidebarWeather"></p>
+        <strong>Weather:</strong>
+        <p id="SidebarWeather"></p>
     </div>
 </div>
 <div class="row">
