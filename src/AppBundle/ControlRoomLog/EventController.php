@@ -235,10 +235,10 @@ class EventController extends Controller
         
         $now = new \DateTime();
         
-        $last_weather_update = $event->getLastWeatherUpdate();
+        $last_weather_update = $event->getEventLastWeatherUpdate();
         
         if($last_weather_update && true){
-            $summary = $event->getLastWeather();
+            $summary = $event->getEventLastWeather();
             
         } else {
 
@@ -259,8 +259,8 @@ class EventController extends Controller
                 }
                 
                 if($summary){
-                    $event->setLastWeather($summary);
-                    $event->setLastWeatherUpdate($now);
+                    $event->setEventLastWeather($summary);
+                    $event->setEventLastWeatherUpdate($now);
                     $em->persist($event);
                 }
             }
