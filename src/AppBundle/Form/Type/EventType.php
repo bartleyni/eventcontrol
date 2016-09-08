@@ -48,7 +48,7 @@ class EventType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('latlong', 'text', array(
+            ->add('event_lat_long', 'text', array(
                 'label' => 'Latitude,Longitude',
                 'attr' => array(
                     'class' => 'form-control'
