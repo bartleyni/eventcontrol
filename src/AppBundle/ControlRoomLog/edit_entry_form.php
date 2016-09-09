@@ -41,10 +41,22 @@ class edit_entry_form extends Controller
                 throw $this->createAccessDeniedException();
             }
         
+        $editable = false;
+        
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            $editable = true;
+        }
+        
         //find the entry
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
-        $form = $this->createForm(new LogType(), $entry);
+        if ($editable){
+            $form = $this->createForm(new LogType(), $entry);
+        } else {
+            $form = $this->createForm(new LogType(), $entry, array(
+                'disabled' => true,
+            ));
+        }
         $medicalTab = null;
         $securityTab = null;
         $generalTab = null;
@@ -60,12 +72,6 @@ class edit_entry_form extends Controller
         $operatorId = $usr->getId();
         
         $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        
-        $editable = false;
-        
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            $editable = true;
-        }
         
         if($activeEvent != $entry->getEvent())
         {
