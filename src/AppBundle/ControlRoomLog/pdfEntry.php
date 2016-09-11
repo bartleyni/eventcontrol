@@ -227,7 +227,7 @@ class pdfEntry extends Controller
         
         if($event)
         {
-            $iframe = '<iframe src="http://http://eventcontrol.nb221.com/PDFview/'.$event->getId().'" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+            $iframe = '<iframe src="http://eventcontrol.nb221.com/PDFview/'.$event->getId().'" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
             
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
         }
