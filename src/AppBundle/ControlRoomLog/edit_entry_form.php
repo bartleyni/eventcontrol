@@ -41,10 +41,22 @@ class edit_entry_form extends Controller
                 throw $this->createAccessDeniedException();
             }
         
+        $editable = false;
+        
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            $editable = true;
+        }
+        
         //find the entry
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AppBundle\Entity\log_entries')->find($id);
-        $form = $this->createForm(new LogType(), $entry);
+        if ($editable){
+            $form = $this->createForm(new LogType(), $entry);
+        } else {
+            $form = $this->createForm(new LogType(), $entry, array(
+                'disabled' => true,
+            ));
+        }
         $medicalTab = null;
         $securityTab = null;
         $generalTab = null;
@@ -103,18 +115,39 @@ class edit_entry_form extends Controller
                 $lostTab = $lostProperty;
                 $lostClosed = $lostProperty->getLostPropertyEntryClosedTime();
             }
-        $generalForm = $this->createForm(new GeneralType(), $general, array(
-            'method' => 'POST',
-        ));
-        $lostPropertyForm = $this->createForm(new LostPropertyType(), $lostProperty, array(
-            'method' => 'POST',
-        ));
-        $medicalForm = $this->createForm(new MedicalType(), $medical, array(
-            'method' => 'POST',
-        ));
-        $securityForm = $this->createForm(new SecurityType(), $security, array(
-            'method' => 'POST',
-        ));
+            
+        //Check to see if use can edit this entry!
+        if($editable){
+            $generalForm = $this->createForm(new GeneralType(), $general, array(
+                'method' => 'POST',
+            ));
+            $lostPropertyForm = $this->createForm(new LostPropertyType(), $lostProperty, array(
+                'method' => 'POST',
+            ));
+            $medicalForm = $this->createForm(new MedicalType(), $medical, array(
+                'method' => 'POST',
+            ));
+            $securityForm = $this->createForm(new SecurityType(), $security, array(
+                'method' => 'POST',
+            ));
+        } else {
+            $generalForm = $this->createForm(new GeneralType(), $general, array(
+                'method' => 'POST',
+                'disabled' => true,
+            ));
+            $lostPropertyForm = $this->createForm(new LostPropertyType(), $lostProperty, array(
+                'method' => 'POST',
+                'disabled' => true,
+            ));
+            $medicalForm = $this->createForm(new MedicalType(), $medical, array(
+                'method' => 'POST',
+                'disabled' => true,
+            ));
+            $securityForm = $this->createForm(new SecurityType(), $security, array(
+                'method' => 'POST',
+                'disabled' => true,
+            ));
+        }
         
         if ($request->getMethod() == 'POST') {
             

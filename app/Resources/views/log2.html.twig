@@ -49,7 +49,7 @@ Control Room Log
                                                 {% else %}
                                                     <span class="label label-primary">
                                                 {% endif %}
-                                                {{ log.general_description[:20]|striptags ~ '...'  }}
+                                                {{ log.general_description[:30]|striptags ~ '...'  }}
                                                 </span> &nbsp;
                                             {% endif %}
                                             {% if log.medical_injury_description is null %}
