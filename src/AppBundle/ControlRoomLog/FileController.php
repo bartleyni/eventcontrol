@@ -32,4 +32,21 @@ class FileController extends Controller
                 return $this->redirectToRoute('full_log');
         }
     }
+    
+    /**
+    * @Route("/media/iframe/{type}/{filename}", name="media_iframe");
+    * 
+    */
+    
+    public function fileIframeAction($filename=null, $type=null)
+    {  
+        if($filename)
+        {
+            $iframe = '<iframe src="http://eventcontrol.nb221.com/media/'.$type.'/'.$filename.'" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            
+            return $this->render('iframe.html.twig', array('iframe' => $iframe));
+        }
+    
+    }
+    
 }
