@@ -333,7 +333,7 @@ class EventController extends Controller
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
-        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no></iframe>';
+        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no class="col-md-12 embed-responsive-item" ></iframe>';
 
         return $this->render('iframe.html.twig', array('iframe' => $iframe));
     }
