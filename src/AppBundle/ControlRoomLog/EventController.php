@@ -321,7 +321,7 @@ class EventController extends Controller
     * @Route("/event/weather/radar", name="event_weather_radar");
     */
     
-    public function eventWeatherRadargAction(Request $request)
+    public function eventWeatherRadargAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -331,9 +331,9 @@ class EventController extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
-        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="100%" class="col-md-12 embed-responsive-item" ></iframe>';
+        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="800px" class="col-md-12 embed-responsive-item" ></iframe>';
 
         return $this->render('iframe.html.twig', array('iframe' => $iframe));
     }
