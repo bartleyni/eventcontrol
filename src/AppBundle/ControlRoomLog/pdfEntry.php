@@ -205,7 +205,9 @@ class pdfEntry extends Controller
             $eventDIR = $event->getId().'-'.$event->getName();
             $eventFile = $event->getEventReportFilename();
             
-            return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$eventFile);
+            //return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$eventFile);
+            
+            return $this->render('iframe.html.twig', array('pdfFile' => $eventFile, 'pdfPath' => $eventDIR));
         }
     
     }

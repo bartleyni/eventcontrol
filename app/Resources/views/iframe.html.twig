@@ -5,7 +5,11 @@ Event Control Fire Register
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-            {{ iframe|raw }}
+            {% if iframe %}
+                {{ iframe|raw }}
+            {% elseif pdfFile %}
+                <iframe src='{{ path("pdfPath", {"filename": "pdfFile", "type": "pdf"}) }}' frameborder=0 scrolling=yes height="600px" class="col-md-12 embed-responsive-item" ></iframe>'
+            {% endif %}
         {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}
