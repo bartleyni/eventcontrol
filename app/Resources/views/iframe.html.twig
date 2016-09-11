@@ -8,7 +8,7 @@ Event Control Fire Register
             {% if iframe %}
                 {{ iframe|raw }}
             {% elseif pdfFile %}
-                <iframe src='{{ path("pdfPath", {"filename": "pdfFile", "type": "pdf"}) }}' frameborder=0 scrolling=yes height="600px" class="col-md-12 embed-responsive-item" ></iframe>'
+                <iframe src='{{ path("media", {"filename": "pdfFile", "type": "pdf"}) }}' frameborder=0 scrolling=yes height="600px" class="col-md-12 embed-responsive-item" ></iframe>'
             {% endif %}
         {% endblock %}
         {% block sidebar %}
