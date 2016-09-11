@@ -316,6 +316,27 @@ class EventController extends Controller
 
         return $response;
     }
+    
+    /**
+    * @Route("/event/weather/radar", name="event_weather_radar");
+    */
+    
+    public function eventWeatherRadargAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no></iframe>';
+
+        return $this->render('iframe.html.twig', array('iframe' => $iframe));
+    }
 }
 
 

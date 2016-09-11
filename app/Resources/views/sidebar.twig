@@ -5,7 +5,9 @@
     <div class="panel-body">
             <strong>User:</strong> {{ app.user.username }}
             <br>
-            <p id="SidebarWeather"></p>
+            <a href="{{ path('event_weather_radar') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                <p id="SidebarWeather"></p>
+            </a>
     </div>
 </div>
 <div class="row">
