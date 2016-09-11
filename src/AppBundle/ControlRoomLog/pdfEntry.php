@@ -212,6 +212,28 @@ class pdfEntry extends Controller
     
     }
     
+    /**
+    * @Route("/PDFiframe/{eventId}", name="event_report_iframe");
+    * 
+    */
+    
+    public function PDFEventIframeAction($eventId=null)
+    {  
+        $em = $this->getDoctrine()->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
+            array('id' => $eventId));
+        $em->flush();
+        
+        if($event)
+        {
+            $iframe = '<iframe src="http://http://eventcontrol.nb221.com/PDFview/'.$event->getId().'" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+            
+            return $this->render('iframe.html.twig', array('iframe' => $iframe));
+        }
+    
+    }
+    
 }
 
 
