@@ -7,8 +7,9 @@ Event Control
         {% block content %}
             {% if iframe %}
                 {{ iframe|raw }}
-            {% elseif pdfFile %}
-                <iframe src='{{ path("media", {"filename": "pdfFile", "type": "pdf"}) }}' frameborder=0 scrolling=yes height="600px" class="col-md-12 embed-responsive-item" ></iframe>'
+            {% endif %}
+            {% if data %}
+                {{ data }}
             {% endif %}
         {% endblock %}
         {% block sidebar %}
