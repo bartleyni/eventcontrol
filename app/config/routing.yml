@@ -1,5 +1,5 @@
 app:
-    resource: "@AppBundle/ControlRoomLog/"
+    resource: "AppBundle/ControlRoomLog/"
     type:     annotation
   
 logout:
