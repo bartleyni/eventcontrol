@@ -129,7 +129,7 @@ class RegisterDisplay extends Controller
                             'event' => $event, 
                         )
                     ),
-            '%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
+            '../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
         );
 
         //log file in event system
@@ -141,7 +141,7 @@ class RegisterDisplay extends Controller
         //$em->flush();
 
         //return $this->render('fireRegister.html.twig', array('attendees' => $attendees));
-        return new BinaryFileResponse('%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
+        return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
     }
 }
 
