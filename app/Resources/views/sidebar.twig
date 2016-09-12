@@ -5,7 +5,9 @@
     <div class="panel-body">
             <strong>User:</strong> {{ app.user.username }}
             <br>
-            <a href="{{ path('event_weather_radar') }}">
+            {% if is_full_view() %}
+                <a href="{{ path('event_weather_radar') }}">
+            {% endif %}
                 <p id="SidebarWeather"></p>
             </a>
     </div>
