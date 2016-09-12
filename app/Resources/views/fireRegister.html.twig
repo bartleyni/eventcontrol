@@ -45,7 +45,11 @@ Event Control Fire Register
                                            Sign All Out
                                         </a>
                                         <br>
-                                        <a href="{{ path('pdf_fire_register') }}" target="_blank" class="btn btn-info btn-block">
+                                        {% if is_full_view() %}
+                                            <a href="{{ path('iframe_pdf_fire_register') }}" class="btn btn-info btn-block">
+                                        {% else %}
+                                            <a href="{{ path('pdf_fire_register') }}" target="_blank" class="btn btn-info btn-block">
+                                        {% endif %}
                                            Generate PDF Fire Register
                                         </a>
                                     </div> 
