@@ -96,7 +96,7 @@ class pdfEntry extends Controller
             //timestamp for file
             $dateDIR = date("Ymd-His");
             //Event Directory
-            $eventDIR = $event->getId().'-'.$event->getName();
+            $eventDIR = $event->getId();
             //Filename
             $ReportFilename = 'Full Report '.$dateDIR.'.pdf';
 
@@ -202,7 +202,7 @@ class pdfEntry extends Controller
         
         if($event)
         {
-            $eventDIR = $event->getId().'-'.$event->getName();
+            $eventDIR = $event->getId();
             $eventFile = $event->getEventReportFilename();
             
             return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$eventFile);
