@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
             //new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             //new FOS\UserBundle\FOSUserBundle(),
+            new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new AppBundle\AppBundle()
         );
 
