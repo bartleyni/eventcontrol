@@ -8,7 +8,7 @@
             {% if is_full_view() %}
                 <a href="{{ path('event_weather_radar') }}">
             {% endif %}
-                <p id="SidebarWeather"></p>
+                <p id="SidebarWeather">{{ activeEventWeather(app.user.id) }}</p>
             </a>
     </div>
 </div>
