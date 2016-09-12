@@ -137,9 +137,9 @@
 </div>
 {% if is_mobile_view() %}
     <a href="{{ path('media', {'filename': "ECCoP", 'type': "pdf"}) }}"  target="_blank" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% elseif %}
+{% else %}
     <a href="{{ path('media_iframe', {'filename': "ECCoP", 'type': "pdf"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{ %endif %}
+{% endif %}
     <div class="row">
         Code of Practice
     </div>
