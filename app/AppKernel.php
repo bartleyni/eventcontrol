@@ -15,10 +15,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            //new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle(),
-            //new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+            new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             //new FOS\UserBundle\FOSUserBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new AppBundle\AppBundle()
