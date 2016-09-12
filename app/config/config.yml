@@ -94,3 +94,8 @@ knp_snappy:
             - { name: 'header-line', value: true }
             - { name: 'footer-center', value: '[page]/[topage]' }
             - { name: 'footer-line', value: true }
+mobile_detect:
+    redirect:
+        mobile: ~
+        tablet: ~
+    switch_device_view: ~
