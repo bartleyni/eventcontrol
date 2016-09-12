@@ -100,7 +100,7 @@ class RegisterDisplay extends Controller
 
         //See if an old fire register can be found
         $finder = new Finder();
-        $finder->in('../media/PDFReports/'.$eventDIR);
+        $finder->in('%kernel.root_dir%/../media/PDFReports/'.$eventDIR);
         $finder->files()->name('Fire Register *.pdf');
         
         $fs = new Filesystem();
@@ -108,9 +108,9 @@ class RegisterDisplay extends Controller
         foreach ($finder as $file) {
             try{
                 $oldFilename = $file->getFilename();
-                $OldFileExists = $fs->exists('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                $OldFileExists = $fs->exists('%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
                 if($OldFileExists){
-                    $fs->remove('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                    $fs->remove('%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
                 }
             } catch (IOExceptionInterface $e) {
 
@@ -129,7 +129,7 @@ class RegisterDisplay extends Controller
                             'event' => $event, 
                         )
                     ),
-            '../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
+            '%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$ReportFilename
         );
 
         //log file in event system
@@ -141,7 +141,7 @@ class RegisterDisplay extends Controller
         //$em->flush();
 
         //return $this->render('fireRegister.html.twig', array('attendees' => $attendees));
-        return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
+        return new BinaryFileResponse('%kernel.root_dir%/../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
     }
 }
 
