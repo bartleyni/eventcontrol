@@ -45,7 +45,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
-            new \Twig_SimpleFunction('activeEventName', array($this, 'getEventWeather')),
+            new \Twig_SimpleFunction('activeEventWeather', array($this, 'getEventWeather')),
             new \Twig_SimpleFunction('activeEventId', array($this, 'getEventById')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
