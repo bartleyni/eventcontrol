@@ -19,8 +19,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "ircmaxell/password-compat": "^1.0",
-        "knplabs/knp-snappy-bundle": "~1.4",
-        "suncat/mobile-detect-bundle": "1.0.*"
+        "knplabs/knp-snappy-bundle": "~1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
