@@ -51,7 +51,11 @@ Events Settings
                                             </td>
                                             <td>
                                                 {% if event.event_report_filename %}
-                                                    <a href="{{ path('event_report_iframe', {'eventId': event.id}) }}" target="_blank"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span>{{ event.event_report_filename }}</a>
+                                                    {% if is_full_view() %}
+                                                        <a href="{{ path('event_report_iframe', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span>{{ event.event_report_filename }}</a>
+                                                    {% else %}
+                                                        <a href="{{ path('event_report', {'eventId': event.id}) }}" target="_blank"><span class="glyphicon glyphicon-open-file" aria-hidden="true" aria-label="Open Last Report"></span>{{ event.event_report_filename }}</a>
+                                                    {% endif %}
                                                 {% else %}
                                                     No report available
                                                 {% endif %}   
