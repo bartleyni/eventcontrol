@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             //new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             //new FOS\UserBundle\FOSUserBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
-            new AppBundle\AppBundle()
+            //new AppBundle\AppBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
