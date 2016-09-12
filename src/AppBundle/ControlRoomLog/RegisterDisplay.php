@@ -96,7 +96,7 @@ class RegisterDisplay extends Controller
         //timestamp for file
         $dateDIR = date("Ymd-His");
         //Event Directory
-        $eventDIR = $event->getId().'-'.$event->getName();
+        $eventDIR = $event->getId();
 
         //See if an old fire register can be found
         $finder = new Finder();
