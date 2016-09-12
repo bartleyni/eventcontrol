@@ -144,5 +144,3 @@ class RegisterDisplay extends Controller
         return new BinaryFileResponse('../media/PDFReports/'.$eventDIR.'/'.$ReportFilename);
     }
 }
-
-
