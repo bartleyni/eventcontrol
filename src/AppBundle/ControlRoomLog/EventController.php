@@ -321,7 +321,7 @@ class EventController extends Controller
     * @Route("/event/weather/radar", name="event_weather_radar");
     */
     
-    public function eventWeatherRadargAction()
+    public function eventWeatherRadarAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -330,8 +330,6 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
-        
-        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
         $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
         $data = "u: weather@nb221.com p: uM7qflPqD91W";
