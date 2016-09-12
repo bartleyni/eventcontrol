@@ -45,6 +45,7 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
+            new \Twig_SimpleFunction('activeEventName', array($this, 'getEventWeather')),
             new \Twig_SimpleFunction('activeEventId', array($this, 'getEventById')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
@@ -93,7 +94,21 @@ class AppExtension extends \Twig_Extension
         return array('ups' => $UPS);
     }
 
-  
+    public function getEventWeather($operatorId = 0)
+    {
+        $em = $this->doctrine->getManager();
+        
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        if($event)
+        {
+            $eventWeather = $event->getEventLastWeather();
+        } else {
+            $eventWeather = "Not Weather Information";
+        }
+
+        return $eventWeather;
+    }  
     
     public function getEventName($operatorId = 0)
     {
