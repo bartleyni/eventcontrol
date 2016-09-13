@@ -69,28 +69,8 @@
     <div class="row">
         <h4>Status</h4>
     </div>
-    {% include 'PeopleCountingModule.twig' %}
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            Current Occupancy
-        </div>
-        <ul class="list-group">
-            {% for venue in venues %}
-                <li class="list-group-item" id="venue-{{ venue.id }}">{{ venue.name }}: 0</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% include 'UPSModule.twig' %}
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            UPS Status
-        </div>
-        <ul class="list-group">
-            {% for ups in UPSs %}
-                <li class="list-group-item" id="ups-{{ ups.id }}" data-toggle="tooltip" data-placement="right" title="{{ ups.name }} - {{ ups.location }}">UPS{{ ups.id }}: Timeout</li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% include 'PeopleCountingModule.html.twig' %}
+    {% include 'UPSModule.html.twig' %}
 {% endif %}
 <div class="row">
     <h4>Operator Functions</h4>
