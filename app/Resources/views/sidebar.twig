@@ -69,7 +69,7 @@
     <div class="row">
         <h4>Status</h4>
     </div>
-    {% include 'PeopleCountingModule.html.twig' %}
+    //{% include 'PeopleCountingModule.html.twig' %}
     {% include 'UPSModule.html.twig' %}
 {% endif %}
 <div class="row">
@@ -181,7 +181,7 @@
     function sidebarPoll()
     {
         UPSUpdate();
-        PeopleCounterUpdate();
+        //PeopleCounterUpdate();
     
         {% if activeEventId(app.user.id) != 0 %}
             $.getJSON('{{ path('log_json_data') }}', function(data) {
