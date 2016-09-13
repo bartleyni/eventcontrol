@@ -55,7 +55,7 @@ class EventController extends Controller
         
         $query2 = $qb2->getQuery();
         $events2= $query2->getResult();
-        $events[] = $events2;
+        //$events[] = $events2;
         return $this->render('eventList.html.twig', array('events' => $events));
     }
 
