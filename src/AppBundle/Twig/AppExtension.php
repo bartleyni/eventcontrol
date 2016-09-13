@@ -104,7 +104,7 @@ class AppExtension extends \Twig_Extension
         {
             $eventWeather = $event->getEventLastWeather();
         } else {
-            $eventWeather = "Not Weather Information";
+            $eventWeather = No event weather information.;
         }
 
         return $eventWeather;
