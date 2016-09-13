@@ -1,7 +1,7 @@
 {# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-<h2>Page not found</h2>
+Ooops! - {{ status_code }}
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
@@ -11,7 +11,8 @@
             {# if is_granted('IS_AUTHENTICATED_FULLY') #}
                 {# ... #}
             {# endif #}
-
+            <h1> This page could not be found!</h1>
+            <br>
             <p>
                 The requested page couldn't be located. Checkout for any URL
                 misspelling or <a href="{{ path('full_log') }}">return to the homepage</a>.
