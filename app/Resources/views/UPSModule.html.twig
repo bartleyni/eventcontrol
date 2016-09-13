@@ -1,0 +1,10 @@
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            UPS Status
+        </div>
+        <ul class="list-group">
+            {% for ups in UPSs %}
+                <li class="list-group-item" id="ups-{{ ups.id }}" data-toggle="tooltip" data-placement="right" title="{{ ups.name }} - {{ ups.location }}">UPS{{ ups.id }}: Timeout</li>
+            {% endfor %}
+        </ul>
+    </div>
