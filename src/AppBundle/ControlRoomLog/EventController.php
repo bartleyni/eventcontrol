@@ -48,13 +48,14 @@ class EventController extends Controller
         $qb2
             ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_report_filename, event.event_report_run_date')
             ->from('AppBundle\Entity\event', 'event')
-            ->where('event.event_date <= :nowDate')
+            ->where('event.event_date < :nowDate')
             ->setParameter('nowDate', $now)
             ->orderBy('event.event_date', 'DESC')
             ;
         
         $query2 = $qb2->getQuery();
-        $events[] = $query2->getResult();
+        $events2= $query2->getResult();
+        $events[] = $events2;
         return $this->render('eventList.html.twig', array('events' => $events));
     }
 
