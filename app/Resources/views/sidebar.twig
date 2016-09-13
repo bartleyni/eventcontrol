@@ -102,11 +102,13 @@
             </div>
         </a>
     {% endif %}
-    <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-        <div class="row">
-            People Counting
-        </div>
-    </a>
+    {#
+        <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row">
+                People Counting
+            </div>
+        </a>
+    #}
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
