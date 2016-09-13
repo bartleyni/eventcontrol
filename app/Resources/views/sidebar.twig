@@ -178,7 +178,40 @@
     var i = 0;
     var lastStatus = ["","","",""];
     
-    function sidebarPoll(){
+    function sidebarPoll()
+    {
+        UPSUpdate();
+        PeopleCounterUpdate();
+    
+        {% if activeEventId(app.user.id) != 0 %}
+            $.getJSON('{{ path('log_json_data') }}', function(data) {
+                $('#logTotal-Total').html(data['Total']);
+                $('#logTotal-Open').html(data['Open']);
+                $('#logTotal-Medical').html(data['Medical']);
+                $('#logTotal-Security').html(data['Security']);
+                $('#logTotal-Lost').html(data['Lost']);
+            });
+        {% endif %}    
+            i++;
+            setTimeout(sidebarPoll,2000);
+    }
+    
+    function updateWeather ( )
+        {
+            $.ajax({
+            type:'POST',
+            url: '{{ path('event_weather') }}',
+            cache: false,
+            global: false,
+            success:function(data)
+                {
+                    $("#SidebarWeather").html("<strong>Weather:</strong> "+data);
+                }
+            });
+        }
+        
+    function UPSUpdate()
+    {
         $.getJSON('{{ path('UPS_status') }}', function(data) {
             $.each(data, function(index, ups) {
                 if (ups.loadPercentage !== null && ups.status == "Mains")
@@ -214,8 +247,10 @@
                 
             });
         });
-
-
+    }
+    
+    function PeopleCounterUpdate()
+    {
         $.getJSON('{{ path('venue_json_data') }}', function(data) {
             $.each(data, function(index, venue) {
                 if(venue['count']) {
@@ -233,30 +268,6 @@
                 }
             });
         });
-    {% if activeEventId(app.user.id) != 0 %}
-        $.getJSON('{{ path('log_json_data') }}', function(data) {
-            $('#logTotal-Total').html(data['Total']);
-            $('#logTotal-Open').html(data['Open']);
-            $('#logTotal-Medical').html(data['Medical']);
-            $('#logTotal-Security').html(data['Security']);
-            $('#logTotal-Lost').html(data['Lost']);
-        });
-    {% endif %}    
-        i++;
-        setTimeout(sidebarPoll,2000);
     }
-    
-    function updateWeather ( )
-        {
-            $.ajax({
-            type:'POST',
-            url: '{{ path('event_weather') }}',
-            cache: false,
-            global: false,
-            success:function(data)
-                {
-                    $("#SidebarWeather").html("<strong>Weather:</strong> "+data);
-                }
-            });
-        }
+        
 </script>
