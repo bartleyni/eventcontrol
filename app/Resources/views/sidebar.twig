@@ -3,7 +3,9 @@
         {{ activeEventName(app.user.id) }}
     </div>
     <div class="panel-body">
-            <strong>User:</strong> {{ app.user.username }}
+            <a href="{{ path('user_update') }}">
+                <strong>User:</strong> {{ app.user.username }}
+            </a>
             <br>
             {% if is_full_view() %}
                 <a href="{{ path('event_weather_radar') }}">
