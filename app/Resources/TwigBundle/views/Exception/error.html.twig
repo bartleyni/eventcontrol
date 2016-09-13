@@ -22,7 +22,9 @@ Ooops! - {{ status_code }}
             
         {% endblock %}
         {% block sidebar %}
-            {% include 'sidebar.twig' %}
+            {% if app.user %}
+                {% include 'sidebar.twig' %}
+            {% endif %}
         {% endblock %}
     {% endembed %}
 {% endblock %}
