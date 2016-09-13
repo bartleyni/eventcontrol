@@ -35,7 +35,7 @@ class EventController extends Controller
         $qb1
             ->select('event.id, event.client, event.name, event.event_date, event.event_log_start_date, event.event_log_stop_date, event.event_report_filename, event.event_report_run_date')
             ->from('AppBundle\Entity\event', 'event')
-            ->where('event.event_date => :nowDate')
+            ->where('event.event_date >= :nowDate')
             ->setParameter('nowDate', $now)
             ->orderBy('event.event_date', 'ASC')
             ;
