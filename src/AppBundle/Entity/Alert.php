@@ -32,7 +32,7 @@ class Alert
     private $type;
     
     /**
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="Alert)
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="Alert")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $event;
