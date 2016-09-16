@@ -39,8 +39,8 @@ class AlertController extends Controller
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $em->flush();
         
-        $Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
-                    array('event' => $event));
+        //$Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
+         //           array('event' => $event));
         
         $qb = $em->createQueryBuilder(); 
         
