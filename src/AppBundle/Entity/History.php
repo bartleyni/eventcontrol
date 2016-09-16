@@ -28,7 +28,7 @@ class History
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $dismissed;
+    protected $acknowledged;
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="Queue")
@@ -52,30 +52,30 @@ class History
     }
     
     /**
-     * Set Dismissed
+     * Set Acknowledged
      *
-     * @param \DateTime $dismissed
+     * @param \DateTime $acknowledged
      * @ORM\PrePersist
      * @return Queue
      */
-    public function setDismissed()
+    public function setAcknowledged()
     {
 
-        if(!$this->dismissed){
-            $this->dismissed = new \DateTime();
+        if(!$this->acknowledged){
+            $this->acknowledged = new \DateTime();
         }
 
         return $this;
     }
     
     /**
-     * Get Dismissed
+     * Get Acknowledged
      *
      * @return \DateTime
      */
-    public function getDismissed()
+    public function getAcknowledged()
     {
-        return $this->dismissed;
+        return $this->acknowledged;
     }
     
     /**
