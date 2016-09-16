@@ -26,7 +26,7 @@ class Queue
     private $Alert;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $viewed;
     

@@ -37,6 +37,7 @@ class AlertController extends Controller
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $em->flush();
         
         $Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
                     array('event' => $event));
@@ -44,13 +45,11 @@ class AlertController extends Controller
         {
                 $response = new JsonResponse();
                 $response->setData($Queue);
-
         } else {
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
-        
         return $response;
     }
     
@@ -62,24 +61,12 @@ class AlertController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
-        
+        $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy($id);
+        $alert_queue->setViewed();
+        $em->persist($alert_queue);
         $em->flush();
         
-        $UPSstatus = new UPS_Status();
-        
-        $UPSstatus->setUPS($ups);
-        $UPSstatus->setStatus($status);
-        $UPSstatus->setLineVoltage(NULL);
-        $UPSstatus->setLoadPercentage(NULL);
-        $UPSstatus->setBatteryVoltage(NULL); 
-        $UPSstatus->setTimeLeft(NULL);
-        $UPSstatus->setTimestamp();
-        
-        $em->persist($UPSstatus);
-        $em->flush();
-        
-        $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response('Alert Dimissed',Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
     }
@@ -89,27 +76,25 @@ class AlertController extends Controller
      * 
      */
     public function AlertAckAction($id = null)
-    {
+    {   
+        
+        $usr = $this->get('security.context')->getToken()->getUser();
+        
         $em = $this->getDoctrine()->getManager();
         
-        $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
-        
+        $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy($id);
+        $alert = $alert_queue->getAlert();
+        $em->remove($alert_queue);
         $em->flush();
         
-        $UPSstatus = new UPS_Status();
+        $alert_history = new History();
+        $alert_history->setAlert($alert);
+        $alert_history->setOperator($usr);
         
-        $UPSstatus->setUPS($ups);
-        $UPSstatus->setStatus($status);
-        $UPSstatus->setLineVoltage($line);
-        $UPSstatus->setLoadPercentage($load);
-        $UPSstatus->setBatteryVoltage($battery);
-        $UPSstatus->setTimeLeft($time);
-        $UPSstatus->setTimestamp();
-        
-        $em->persist($UPSstatus);
+        $em->persist($alert_history);
         $em->flush();
         
-        $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response('Alert Acknowledged',Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
     }

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
 use AppBundle\Entity\user_events;
+use AppBundle\Entity\Alert;
+use AppBundle\Entity\Queue;
 
 class EventController extends Controller
 {
@@ -288,9 +290,22 @@ class EventController extends Controller
                 if ($data['alerts']){
                     foreach ($data['alerts'] as $key => $alert)
                     {
-                    //$warning = $data['alerts'][1]['title'];
-
                         $warning = $warning.$alert['title'].'<br>';
+                        
+                        //Add Alert to Alert Queue System
+                        $alert = new Alert();
+                        $alert->setTitle($alert['title']);
+                        $alert->setMessage("Message");
+                        $alert->setURL("http://www.metoffice.gov.uk/");
+                        $alert->setType("warning");
+                        $alert->setEvent($event);
+                        $em->persist($alert);
+                        $em->flush();
+                        
+                        $alert_queue = new Queue();
+                        $alert_queue->setAlert($alert);                  
+                        $em->persist($alert_queue);
+                        $em->flush();                        
                     }
                 }
                 
