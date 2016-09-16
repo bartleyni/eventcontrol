@@ -37,6 +37,7 @@ class AlertController extends Controller
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $eventId = $event->getId();
         $em->flush();
         
         //$Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
@@ -49,7 +50,7 @@ class AlertController extends Controller
             ->from('AppBundle\Entity\Queue', 'queue')
             ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'queue.Alert = Alert')
             ->where('Alert.event = :event')
-            ->setParameter('event', $event)
+            ->setParameter('event', $eventId)
             ;
         
         $query = $qb->getQuery();
