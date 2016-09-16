@@ -41,6 +41,20 @@ class AlertController extends Controller
         
         $Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
                     array('event' => $event));
+        
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('queue.id, queue.Alert, Alert.id, Alert.title, Alert.message, Alert.url, Alert.type, Alert.event')
+            ->from('AppBundle\Entity\Queue', 'queue')
+            ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'queue.Alert = Alert.id')
+            ->where('Alert.event = :event')
+            ->setParameter('event', $event)
+            ;
+        
+        $query = $qb->getQuery();
+        $Queue = $query->getResult();
+        
         if ($Queue)
         {
                 $response = new JsonResponse();

@@ -175,6 +175,15 @@
                         }
                     });
                 }
+                
+            function AlertUpdate()
+                {
+                $.getJSON('{{ path('Alert_Queue') }}', function(data) {
+                    $.each(data, function(index, alert) {
+
+                    });
+                });
+            }
 
             $(document).ready(function()
             {
