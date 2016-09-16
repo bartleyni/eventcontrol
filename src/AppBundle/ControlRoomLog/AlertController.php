@@ -50,7 +50,7 @@ class AlertController extends Controller
             ->from('AppBundle\Entity\Queue', 'queue')
             ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'queue.Alert = Alert')
             ->where('Alert.event = :event')
-            ->setParameter('event', $eventId)
+            ->setParameter('event', $event)
             ;
         
         $query = $qb->getQuery();
