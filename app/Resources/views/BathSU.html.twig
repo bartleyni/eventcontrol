@@ -242,6 +242,7 @@
             {
                 var url = "{{ path('Alert_Ack') }}/"+alertID;
                 $.post(url);
+                AlertUpdate()
                 if(alertnumber > 0){
                     alertNumber = alertNumber-1;
                 }
