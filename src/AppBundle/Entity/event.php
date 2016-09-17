@@ -101,6 +101,11 @@ class event {
     {
         return (string) $this->getName();
     }
+    
+    public function __construct()
+    {
+        $this->UPSs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -384,6 +389,11 @@ class event {
     public function getEventLastWeatherUpdate()
     {
         return $this->event_last_weather_update;
+    }
+    
+    public function getUPSs()
+    {
+        return $this->UPSs;
     }
     
 }
