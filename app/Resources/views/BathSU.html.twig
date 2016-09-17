@@ -121,6 +121,8 @@
         var alertData = null;
         var display = false;
         var alertNumber = 0;
+        var alertCurrent = 0;
+        var alertCurrentLength = 0;
         
         function resizeHeader() {
             $(".page-header-push").height($(".page-header").height()+3);
@@ -193,10 +195,11 @@
                 {
                     loadAlertModal(alertData, 0);
                     alertNumber=0;
-                } else{
+                } else if(alertData && alertCurrent !== alertNumber){
+                    loadAlertModal(alertData, alertNumber);
+                } else if(alertData && alertCurrentLength !== alertData.length){
                     loadAlertModal(alertData, alertNumber);
                 }
-                    
             }
             
             function loadAlertModal(alerts, i)
@@ -205,20 +208,30 @@
                 $('#mainModalBody').html(alerts[i].message);           
                 if(alerts.length < 2)
                 {
-                    $('#mainModalFooter').html('<button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                    $('#mainModalFooter').html('<button type="button" class="btn btn-primary">Acknowledge</button>');
                 } else {
                     if(i-1 < 0)
                     {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else if(i+1 > alerts.length) {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous">Previous</button><button type="button" class="btn btn-default" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
                     }
                 }
                 $('#mainModal').modal('show');
                 display = true;
             }
+            
+            $('#alerts-previous').click(function(){
+                alertNumber-1;
+                AlertCheck();
+            });
+            
+            $('#alerts-next').click(function(){
+                alertNumber+1;
+                AlertCheck();
+            });
 
             $(document).ready(function()
             {
