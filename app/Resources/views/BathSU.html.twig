@@ -204,8 +204,7 @@
             
             function loadAlertModal(alerts, i)
             {
-                $('#mainModalLabel').html(alerts[i].title);
-                $('#mainModalBody').html(alerts[i].message);           
+                          
                 if(alerts.length < 2)
                 {
                     $('#mainModalFooter').html('<button type="button" class="btn btn-primary">Acknowledge</button>');
@@ -213,12 +212,14 @@
                     if(i-1 < 0)
                     {
                         $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');
-                    } else if(i+1 > alerts.length) {
+                    } else if(i+1 >= alerts.length) {
                         $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else {
                         $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
                     }
                 }
+                $('#mainModalLabel').html(alerts[i].title);
+                $('#mainModalBody').html(alerts[i].message);
                 $('#mainModal').modal('show');
                 display = true;
             }
