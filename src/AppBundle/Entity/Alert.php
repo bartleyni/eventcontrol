@@ -33,7 +33,7 @@ class Alert
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="Alert")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      */
     private $event;
     
