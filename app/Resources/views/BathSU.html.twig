@@ -225,11 +225,13 @@
             
             $('#alerts-previous').click(function(){
                 alertNumber = alertNumber-1;
+                previous = true;
                 AlertCheck();
             });
             
             $('#alerts-next').click(function(){
                 alertNumber = alertNumber+1;
+                next = true;
                 AlertCheck();
             });
 
