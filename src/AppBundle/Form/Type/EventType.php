@@ -110,7 +110,16 @@ class EventType extends AbstractType
                 'attr' => array(
                     'class' => 'btn btn-danger btn-block'
                 )
-            ))
+            )) 
+            ->add('UPSs', 'entity', array(
+                'class' => 'AppBundle:UPS',
+                'label' => 'UPS',
+                'multiple' => true,
+                'expanded' => true,
+                'attr' => array(
+                    'class' => 'form-control checkbox'
+                )
+        ))
             ->setMethod('POST')
         ;
     }

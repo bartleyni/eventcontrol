@@ -105,6 +105,19 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.UPSs) }} 
+                                    {{ form_errors(form.UPSs) }}
+                                </div>
+                                <div class="col-md-4">
+                                    {% for UPS in form.UPSs %}
+                                        {{ form_widget(UPS) }} {{ form_label(UPS) }}<br>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">  
                             <div class="col-md-8">
                                 {{ form_end(form) }}
