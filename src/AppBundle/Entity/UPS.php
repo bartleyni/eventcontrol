@@ -94,4 +94,14 @@ class UPS {
     {
         $this->name = $name;
     }
+    
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
 }

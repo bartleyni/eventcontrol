@@ -179,18 +179,46 @@
             function AlertUpdate()
                 {
                 $.getJSON('{{ path('Alert_Queue') }}', function(data) {
-                    $.each(data, function(index, alert) {
-
+                    alertData = (data)
+                    //$.each(data, function(index, alert) {
+                        //$('#mainModalLabel').html(alert.title);
+                        //$('#mainModalBody').html(alert.message);
+                        //$('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
+                        //$('#mainModal').modal('show');
                     });
                 });
+            }
+            
+            function AlertCheck()
+                {
+                if(alertData)
+                {
+                    if(alertData.length < 2
+                    {
+                        $('#mainModalLabel').html(alertData[1].title);
+                        $('#mainModalBody').html(alertData[1].message);
+                        $('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
+                        $('#mainModal').modal('show');
+                    } else {
+                        //$.each(data, function(index, alert) {
+                            //$('#mainModalLabel').html(alert.title);
+                            //$('#mainModalBody').html(alert.message);
+                            //$('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
+                            //$('#mainModal').modal('show');
+                        });
+                    }
+                }
             }
 
             $(document).ready(function()
             {
                 $('#HeaderWeather').hide();
+                var alertData= null;
                 updateClock();
                 updateWeatherWarning();
                 setInterval('updateClock()', 1000);
+                setInterval('AlertUpdate()', 5000);
+                setInterval('AlertCheck()', 2000);
                 setInterval('updateWeatherWarning()', 30000);
             });
 
