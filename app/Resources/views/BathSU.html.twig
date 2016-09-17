@@ -119,6 +119,7 @@
     <script type="text/javascript">
     
         var alertData = null;
+        var oldAlertData = null;
         var display = false;
         var alertNumber = 0;
         var alertCurrent = 0;
@@ -197,7 +198,7 @@
                     alertNumber=0;
                 } else if(alertData && alertCurrent !== alertNumber){
                     loadAlertModal(alertData, alertNumber);
-                } else if(alertData && alertCurrentLength !== alertData.length){
+                } else if(alertData && alertCurrentLength != alertData.length){
                     loadAlertModal(alertData, alertNumber);
                 }
             }
@@ -221,6 +222,7 @@
                 $('#mainModalLabel').html(alerts[i].title);
                 $('#mainModalBody').html(alerts[i].message);
                 $('#mainModal').modal('show');
+                alertCurrentLength = alerts.length
                 display = true;
             }
     
@@ -239,10 +241,10 @@
             function Acknowledge(alertID)
             {
                 var url = "{{ path('Alert_Ack') }}/"+alertID;
-                //route.replace("ALERT_ID_PLACEHOLDER", alertID);
                 $.post(url);
-                
-                alertNumber = 0;
+                if(alertnumber > 0){
+                    alertNumber = alertNumber-1;
+                }
                 AlertCheck();
             }
 
