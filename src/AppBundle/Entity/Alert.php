@@ -25,7 +25,7 @@ class Alert
     /** @ORM\Column(type="string", length=600) */
     private $message;
     
-    /** @ORM\Column(type="string", length=200) */
+    /** @ORM\Column(type="string", length=200, nullable=true) */
     private $url;
     
     /** @ORM\Column(type="string", length=50) */
@@ -185,7 +185,7 @@ class Alert
      *
      * @param \AppBundle\Entity\event $event
      *
-     * @return log_entries
+     * @return Alert
      */
     public function setEvent(\AppBundle\Entity\event $event = null)
     {

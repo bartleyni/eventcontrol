@@ -37,11 +37,7 @@ class AlertController extends Controller
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $eventId = $event->getId();
         $em->flush();
-        
-        //$Queue = $em->getRepository('AppBundle\Entity\Queue')->findBy(
-         //           array('event' => $event));
         
         $qb = $em->createQueryBuilder(); 
         
@@ -63,7 +59,7 @@ class AlertController extends Controller
                 $response->setData($Queue);
         } else {
             $response = new Response();
-            $response->setContent('Hello World');
+            $response->setContent('');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }

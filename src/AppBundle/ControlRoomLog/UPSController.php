@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\UPS;
 use AppBundle\Entity\UPS_Status;
+use AppBundle\Entity\Alert;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
 
@@ -73,6 +74,22 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
+        if($status!="Mains"){
+            $alert = new Alert();
+            $alert->setTitle($ups.' '.$status);
+            $alert->setMessage($ups.' '.$status);
+            $alert->setURL(null);
+            $alert->setType("warning");
+            $alert->setEvent($ups->getEvent());
+            $em->persist($alert);
+            $em->flush();
+        
+
+            $alert_queue = new Queue();
+            $alert_queue->setAlert($alert);                  
+            $em->persist($alert_queue);
+            $em->flush();
+        }
         $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
@@ -102,6 +119,23 @@ class UPSController extends Controller
         
         $em->persist($UPSstatus);
         $em->flush();
+        
+        if($status!="Mains"){
+            $alert = new Alert();
+            $alert->setTitle($ups.' '.$status);
+            $alert->setMessage('Line Voltage: '.$line.'<br>Load: '.$load.'%<br>Battery Voltage: '.$battery.'Time Remaining: '.$time);
+            $alert->setURL(null);
+            $alert->setType("warning");
+            $alert->setEvent($ups->getEvent());
+            $em->persist($alert);
+            $em->flush();
+        
+
+            $alert_queue = new Queue();
+            $alert_queue->setAlert($alert);                  
+            $em->persist($alert_queue);
+            $em->flush();
+        }
         
         $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
 

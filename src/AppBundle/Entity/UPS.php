@@ -50,8 +50,38 @@ class UPS {
      */
     private $UPS_Status;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="UPS")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $event;
+    
     public function __toString()
     {
         return (string) $this->getName();
+    }
+    
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return UPS
+     */
+    public function setEvent(\AppBundle\Entity\event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }
