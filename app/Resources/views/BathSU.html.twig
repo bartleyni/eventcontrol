@@ -181,7 +181,7 @@
             function AlertUpdate()
                 {
                 $.getJSON('{{ path('Alert_Queue') }}', function(data) {
-                    alertData = (data)
+                    alertData = data;
                     //$.each(data, function(index, alert) {
                         //$('#mainModalLabel').html(alert.title);
                         //$('#mainModalBody').html(alert.message);
