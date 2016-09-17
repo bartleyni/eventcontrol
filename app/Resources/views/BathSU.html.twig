@@ -215,7 +215,7 @@
                     } else if(i+1 >= alerts.length) {
                         $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');    
                     }
                 }
                 $('#mainModalLabel').html(alerts[i].title);
@@ -233,6 +233,17 @@
             function previousAlert()
             {
                 alertNumber = alertNumber-1;
+                AlertCheck();
+            }
+            
+            function Acknowledge(alertID)
+            {
+                var url = "{{ path('Alert_Ack', {'id': "ALERT_ID_PLACEHOLDER"}) }}";
+                route.replace("ALERT_ID_PLACEHOLDER", alertID);
+                $.post(url);
+                });
+                
+                alertNumber = 0;
                 AlertCheck();
             }
 
