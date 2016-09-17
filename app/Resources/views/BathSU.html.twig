@@ -238,8 +238,8 @@
             
             function Acknowledge(alertID)
             {
-                var url = "{{ path('Alert_Ack', {'id': "ALERT_ID_PLACEHOLDER"}) }}";
-                route.replace("ALERT_ID_PLACEHOLDER", alertID);
+                var url = "{{ path('Alert_Ack') }}"+alertID;
+                //route.replace("ALERT_ID_PLACEHOLDER", alertID);
                 $.post(url);
                 
                 alertNumber = 0;
