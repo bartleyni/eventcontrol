@@ -95,7 +95,7 @@ class AlertController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         
-        $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy($id);
+        $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy((array('id' => $id)));
         $alert = $alert_queue->getAlert();
         $em->remove($alert_queue);
         $em->flush();
