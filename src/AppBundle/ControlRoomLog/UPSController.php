@@ -80,7 +80,11 @@ class UPSController extends Controller
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation());
             $alert->setURL(null);
-            $alert->setType("warning");
+            if($status=="Fault"){
+                $alert->setType("danger");
+            } else {
+                $alert->setType("warning");
+            }
             //$alert->setEvent($ups->getEvent());
             $em->persist($alert);
             $em->flush();
@@ -125,7 +129,7 @@ class UPSController extends Controller
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation().'<br>Line Voltage: '.$line.' Volts AC<br>Load: '.$load.'%<br>Battery Voltage: '.$battery.' Volts DC<br>Time Remaining: '.$time.'minutes');
             $alert->setURL(null);
-            $alert->setType("warning");
+            $alert->setType("danger");
             //$alert->setEvent($ups->getEvent());
             $em->persist($alert);
             $em->flush();

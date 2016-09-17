@@ -291,21 +291,23 @@ class EventController extends Controller
                     foreach ($data['alerts'] as $key => $alert)
                     {
                         $warning = $warning.$alert['title'].'<br>';
-                        
+                        $lastWarning = $event->getEventLastWeatherWarning();
                         //Add Alert to Alert Queue System
-                        $alert = new Alert();
-                        $alert->setTitle($alert['title']);
-                        $alert->setMessage("Message");
-                        $alert->setURL("http://www.metoffice.gov.uk/");
-                        $alert->setType("warning");
-                        $alert->setEvent($event);
-                        $em->persist($alert);
-                        $em->flush();
-                        
-                        $alert_queue = new Queue();
-                        $alert_queue->setAlert($alert);                  
-                        $em->persist($alert_queue);
-                        $em->flush();                        
+                        if($lastWarning != $warning){
+                            $alert = new Alert();
+                            $alert->setTitle($alert['title']);
+                            $alert->setMessage("Message");
+                            $alert->setURL("http://www.metoffice.gov.uk/");
+                            $alert->setType("warning");
+                            $alert->setEvent($event);
+                            $em->persist($alert);
+                            $em->flush();
+
+                            $alert_queue = new Queue();
+                            $alert_queue->setAlert($alert);                  
+                            $em->persist($alert_queue);
+                            $em->flush();  
+                        }
                     }
                 }
                 
