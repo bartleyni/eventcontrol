@@ -243,8 +243,8 @@
                 var url = "{{ path('Alert_Ack') }}/"+alertID;
                 $.post(url);
                 AlertUpdate()
-                if(alertNumber > 0){
-                    alertNumber = alertNumber-1
+                if(alertData.length -1 > alertNumber)
+                {
                     loadAlertModal(alertData, alertNumber);
                 } else {
                     $('#mainModal').modal('hide');
