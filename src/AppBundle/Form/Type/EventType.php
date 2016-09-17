@@ -111,7 +111,7 @@ class EventType extends AbstractType
                     'class' => 'btn btn-danger btn-block'
                 )
             )) 
-            ->add('UPSs', 'entity', array(
+            ->add('UPS', 'entity', array(
                 'class' => 'AppBundle:UPS',
                 'label' => 'UPS',
                 'multiple' => true,

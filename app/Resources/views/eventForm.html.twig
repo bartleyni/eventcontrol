@@ -108,12 +108,12 @@ Event Entry Form
                         <div class="row">   
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    {{ form_label(form.UPSs) }} 
-                                    {{ form_errors(form.UPSs) }}
+                                    {{ form_label(form.UPS) }} 
+                                    {{ form_errors(form.UPS) }}
                                 </div>
                                 <div class="col-md-4">
-                                    {% for UPS in form.UPSs %}
-                                        {{ form_widget(UPS) }} {{ form_label(UPS) }}<br>
+                                    {% for U in form.UPS %}
+                                        {{ form_widget(U) }} {{ form_label(U) }}<br>
                                     {% endfor %}
                                 </div>
                             </div>
