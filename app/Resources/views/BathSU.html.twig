@@ -212,28 +212,28 @@
                 } else {
                     if(i-1 < 0)
                     {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else if(i+1 > alerts.length) {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else {
-                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous">Previous</button><button type="button" class="btn btn-default" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
                     }
                 }
                 $('#mainModal').modal('show');
                 display = true;
             }
-            
-            $('#alerts-previous').click(function(){
-                alertNumber = alertNumber-1;
-                previous = true;
-                AlertCheck();
-            });
-            
-            $('#alerts-next').click(function(){
+    
+            function nextAlert()
+            {
                 alertNumber = alertNumber+1;
-                next = true;
                 AlertCheck();
-            });
+            }
+
+            function previousAlert()
+            {
+                alertNumber = alertNumber-1;
+                AlertCheck();
+            }
 
             $(document).ready(function()
             {
