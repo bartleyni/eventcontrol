@@ -218,10 +218,10 @@
                         $('#mainModalFooter').html('<button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');    
                     }
                 }
-                $('#mainModalContent').removeClass();
-                $('#mainModalContent').addClass('modal-content');
-                var NewClass = 'panel-'+alerts[i].type;
-                $('#mainModalContent').addClass(NewClass);
+                $('#mainModalHeader').removeClass();
+                $('#mainModalHeader').addClass('modal-header');
+                var NewClass = 'btn-'+alerts[i].type;
+                $('#mainModalHeader').addClass(NewClass);
                 $('#mainModalLabel').html(alerts[i].title);
                 $('#mainModalBody').html(alerts[i].message);
                 $('#mainModal').modal('show');
