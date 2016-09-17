@@ -49,8 +49,8 @@ class AlertController extends Controller
             ->select('queue.id, (queue.Alert), Alert.id, Alert.title, Alert.message, Alert.url, Alert.type, Alert.event')
             ->from('AppBundle\Entity\Queue', 'queue')
             ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'Alert = queue.Alert')
-            ->where('Alert.event = :event')
-            ->setParameter('event', $eventId)
+            ->where('(Alert.event) = :event')
+            ->setParameter('event', $event)
             ;
         
         $query = $qb->getQuery();
