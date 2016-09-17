@@ -46,9 +46,10 @@ class AlertController extends Controller
         $qb = $em->createQueryBuilder(); 
         
         $qb
-            ->select('queue.id, (queue.Alert), Alert.id, Alert.title, Alert.message, Alert.url, Alert.type, Alert.event')
+            ->select('queue.id, (queue.Alert), Alert.id, Alert.title, Alert.message, Alert.url, Alert.type, (Alert.event)')
             ->from('AppBundle\Entity\Queue', 'queue')
             ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'Alert = queue.Alert')
+            ->leftJoin('AppBundle\Entity\Event', 'Event', 'WITH', 'Event = Alert.event')
             ->where('(Alert.event) = :event')
             ->setParameter('event', $event)
             ;
