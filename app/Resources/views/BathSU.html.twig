@@ -244,7 +244,9 @@
                 $.post(url);
                 AlertUpdate()
                 if(alertnumber > 0){
-                    alertNumber = alertNumber-1;
+                    loadAlertModal(alertData, alertNumber-1);
+                } else {
+                    $('#mainModal').modal('hide');
                 }
                 AlertCheck();
             }
