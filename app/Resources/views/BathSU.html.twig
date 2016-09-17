@@ -197,8 +197,8 @@
                 {
                     if(alertData.length < 2)
                     {
-                        $('#mainModalLabel').html(alertData[1].title);
-                        $('#mainModalBody').html(alertData[1].message);
+                        $('#mainModalLabel').html(alertData[0].title);
+                        $('#mainModalBody').html(alertData[0].message);
                         $('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
                         $('#mainModal').modal('show');
                     } else {
