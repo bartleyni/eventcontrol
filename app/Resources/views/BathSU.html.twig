@@ -119,7 +119,7 @@
     <script type="text/javascript">
     
         var alertData = null;
-        var oldAlertData = null;
+        //var oldAlertData = null;
         var display = false;
         var alertNumber = 0;
         var alertCurrent = 0;
@@ -204,9 +204,8 @@
             }
             
             function loadAlertModal(alerts, i)
-            {
-                          
-                if(alerts.length < 2)
+            {        
+                if(alerts.length <= 1)
                 {
                     $('#mainModalFooter').html('<button type="button" class="btn btn-primary">Acknowledge</button>');
                 } else {
@@ -222,7 +221,8 @@
                 $('#mainModalLabel').html(alerts[i].title);
                 $('#mainModalBody').html(alerts[i].message);
                 $('#mainModal').modal('show');
-                alertCurrentLength = alerts.length
+                alertCurrentLength = alerts.length;
+                alertCurrent = i;
                 display = true;
             }
     
