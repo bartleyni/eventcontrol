@@ -117,7 +117,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/easy-autocomplete/jquery.easy-autocomplete.min.js') }}"></script>
     <script type="text/javascript">
-            
+    
+        var alertData= null;
+        
         function resizeHeader() {
             $(".page-header-push").height($(".page-header").height()+3);
         }
@@ -213,7 +215,7 @@
             $(document).ready(function()
             {
                 $('#HeaderWeather').hide();
-                var alertData= null;
+                
                 updateClock();
                 updateWeatherWarning();
                 setInterval('updateClock()', 1000);
