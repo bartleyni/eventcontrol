@@ -118,7 +118,9 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/easy-autocomplete/jquery.easy-autocomplete.min.js') }}"></script>
     <script type="text/javascript">
     
-        var alertData= null;
+        var alertData = null;
+        var display = false;
+        var alertNumber = 0;
         
         function resizeHeader() {
             $(".page-header-push").height($(".page-header").height()+3);
@@ -182,34 +184,40 @@
                 {
                 $.getJSON('{{ path('Alert_Queue') }}', function(data) {
                     alertData = data;
-                    //$.each(data, function(index, alert) {
-                        //$('#mainModalLabel').html(alert.title);
-                        //$('#mainModalBody').html(alert.message);
-                        //$('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
-                        //$('#mainModal').modal('show');
-                    //});
                 });
             }
             
             function AlertCheck()
+            {
+                if(alertData && display === false)
                 {
-                if(alertData)
+                    loadAlertModal(alertData, 0);
+                    alertNumber=0;
+                } else{
+                    loadAlertModal(alertData, alertNumber);
+                }
+                    
+            }
+            
+            function loadAlertModal(var alerts, var i)
+            {
+                $('#mainModalLabel').html(alerts[i].title);
+                $('#mainModalBody').html(alerts[i].message);           
+                if(alerts.length < 2)
                 {
-                    if(alertData.length < 2)
+                    $('#mainModalFooter').html('<button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                } else {
+                    if(i-1 < 0)
                     {
-                        $('#mainModalLabel').html(alertData[0].title);
-                        $('#mainModalBody').html(alertData[0].message);
-                        $('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
-                        $('#mainModal').modal('show');
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
+                    } else if(i+1 > alerts.length) {
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');
                     } else {
-                        //$.each(data, function(index, alert) {
-                            //$('#mainModalLabel').html(alert.title);
-                            //$('#mainModalBody').html(alert.message);
-                            //$('#mainModalFooter').html('<br> <button type="button" class="btn btn-primary">Acknowledge</button>');
-                            //$('#mainModal').modal('show');
-                        //});
+                        $('#mainModalFooter').html('<button type="button" class="btn btn-primary" id="alerts-previous">Previous</button><button type="button" class="btn btn-primary" id="alerts-next">Next</button><button type="button" class="btn btn-primary">Ignore</button><button type="button" class="btn btn-primary">Acknowledge</button>');    
                     }
                 }
+                $('#mainModal').modal('show');
+                display = true;
             }
 
             $(document).ready(function()
