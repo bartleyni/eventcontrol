@@ -62,6 +62,7 @@ class AlertController extends Controller
                 $response = new JsonResponse();
                 $response->setData($Queue);
         } else {
+            $response = new Response();
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
