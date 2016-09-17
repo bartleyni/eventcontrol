@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\UPS;
 use AppBundle\Entity\UPS_Status;
 use AppBundle\Entity\Alert;
+use AppBundle\Entity\Queue;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
 
