@@ -47,7 +47,7 @@ class AlertController extends Controller
             ->leftJoin('AppBundle\Entity\Alert', 'Alert', 'WITH', 'Alert = queue.Alert')
             ->leftJoin('AppBundle\Entity\Event', 'Event', 'WITH', 'Event = Alert.event')
             ->where('(Alert.event) = :event')
-            ->orWhere('(Alert.event) IS null')
+            ->orWhere('Alert.event IS NULL')
             ->setParameter('event', $event)
             ;
         
