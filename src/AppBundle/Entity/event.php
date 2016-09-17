@@ -91,6 +91,12 @@ class event {
      */
     protected $event_last_weather_update;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
+     *
+     */
+    protected $UPSs; 
+    
     public function __toString()
     {
         return (string) $this->getName();
