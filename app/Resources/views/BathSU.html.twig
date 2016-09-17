@@ -246,7 +246,7 @@
                 if(alertData.length-1 > alertNumber)
                 {
                     loadAlertModal(alertData, alertNumber);
-                } else if(alertData.length-1 === alertNumber) {
+                } else if(alertData.length-1 === alertNumber && alertNumber > 0) {
                     alertNumber = alertNumber-1;
                     loadAlertModal(alertData, alertNumber);
                 } else {
