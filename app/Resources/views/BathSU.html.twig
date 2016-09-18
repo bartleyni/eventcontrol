@@ -154,6 +154,7 @@
         var alertNumber = 0;
         var alertCurrent = 0;
         var alertCurrentLength = 0;
+        var alertCounter = 0;
         
         function resizeHeader() {
             $(".page-header-push").height($(".page-header").height()+3);
@@ -231,6 +232,14 @@
                 } else if(alertData && alertCurrentLength !== alertData.length){
                     loadAlertModal(alertData, alertNumber);
                 }
+                if(alertData && display === true)
+                {
+                    alertCounter = alertCounter + 1;
+                }
+                if(alertCounter === 600)
+                {
+                    display = false;
+                }
             }
             
             function loadAlertModal(alerts, i)
@@ -287,7 +296,6 @@
                     loadAlertModal(alertData, alertNumber);
                 } else {
                     $('#mainModal').modal('hide');
-                    display = false;
                 }
                 AlertCheck();
             }
@@ -303,7 +311,8 @@
                 setInterval('AlertCheck()', 1000);
                 //setInterval('updateWeatherWarning()', 30000);
                 $('#mainModal').on('hidden.bs.modal', function (e) {
-                    display = false;
+                    alertCounter = 0;
+                    alertCurrentLength = alertData.length;
                 });
             });
 
