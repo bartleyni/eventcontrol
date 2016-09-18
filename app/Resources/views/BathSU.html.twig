@@ -236,19 +236,20 @@
             function loadAlertModal(alerts, i)
             {   
                 var created = new Date(alerts[i].created.date+' '+alerts[i].created.timezone);
+                var createdString = created.toLocaleTimeString()+' '+created.toDateString()
                 //var created = new Date(timestamp - timestamp.getTimezoneOffset());
                 
                 if(alerts.length <= 1)
                 {
-                    $('#mainModalFooter').html(created.toString()+'<button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
+                    $('#mainModalFooter').html(createdString+' <button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
                 } else {
                     if(i-1 < 0)
                     {
-                        $('#mainModalFooter').html(created.toUTCString()+' <button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
+                        $('#mainModalFooter').html(createdString+' <button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
                     } else if(i+1 >= alerts.length) {
-                        $('#mainModalFooter').html(created.toUTCString()+' <button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
+                        $('#mainModalFooter').html(createdString+' <button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
                     } else {
-                        $('#mainModalFooter').html(created.toUTCString()+' <button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');    
+                        $('#mainModalFooter').html(createdString+' <button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');    
                     }
                 }
                 $('#mainModalHeader').removeClass();
