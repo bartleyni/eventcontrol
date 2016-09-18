@@ -235,8 +235,10 @@
             
             function loadAlertModal(alerts, i)
             {   
-                var created = new Date(alerts[i].created.date+' '+alerts[i].created.timezone);
-                var createdString = created.toLocaleTimeString()+' - '+created.toDateString()
+                //2016-09-18 00:00:17.000000
+                //var created = new Date(alerts[i].created.date+' '+alerts[i].created.timezone);
+                var createdString = moment(alerts[i].created.date, "YYYY-MM-DD HH:mm:ss.SSSSSS").format("LTS ll");
+                //var createdString = created.toLocaleTimeString()+' - '+created.toDateString();
                 //var created = new Date(timestamp - timestamp.getTimezoneOffset());
                 
                 if(alerts.length <= 1)
