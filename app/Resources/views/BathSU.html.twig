@@ -236,12 +236,12 @@
             function loadAlertModal(alerts, i)
             {   
                 var created = new Date(alerts[i].created.date+' '+alerts[i].created.timezone);
-                var createdString = created.toLocaleTimeString()+' '+created.toDateString()
+                var createdString = created.toLocaleTimeString()+' - '+created.toDateString()
                 //var created = new Date(timestamp - timestamp.getTimezoneOffset());
                 
                 if(alerts.length <= 1)
                 {
-                    $('#mainModalFooter').html(createdString+' <button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button>');
+                    $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="row"><div class="col-md-6 col-md-offset-2"><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
                 } else {
                     if(i-1 < 0)
                     {
