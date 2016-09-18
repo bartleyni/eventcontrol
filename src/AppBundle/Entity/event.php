@@ -85,6 +85,11 @@ class event {
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     protected $event_last_weather_warning;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_last_weather_warning_update;
     
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -389,6 +394,30 @@ class event {
     public function getEventLastWeatherUpdate()
     {
         return $this->event_last_weather_update;
+    }
+    
+    /**
+     * Set eventLastWeatherWarningUpdate
+     *
+     * @param \DateTime $eventLastWeatherWarningUpdate
+     *
+     * @return event
+     */
+    public function setEventLastWeatherWarningUpdate($eventLastWeatherWarningUpdate)
+    {
+        $this->event_last_weather_warning_update = $eventLastWeatherWarningUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventLastWeatherWarningUpdate
+     *
+     * @return \DateTime
+     */
+    public function getEventLastWeatherWarningUpdate()
+    {
+        return $this->event_last_weather_warning_update;
     }
     
     public function getUPSs()
