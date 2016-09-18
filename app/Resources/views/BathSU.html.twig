@@ -236,7 +236,7 @@
                 {
                     alertCounter = alertCounter + 1;
                 }
-                if(alertCounter === 30)
+                if(alertCounter === 300)
                 {
                     display = false;
                 }
@@ -287,7 +287,7 @@
             {
                 var url = "{{ path('Alert_Ack') }}/"+alertID;
                 $.post(url);
-                AlertUpdate()
+                AlertUpdate();
                 if(alertData.length-1 > alertNumber)
                 {
                     loadAlertModal(alertData, alertNumber);
@@ -313,7 +313,9 @@
                 $('#mainModal').on('hidden.bs.modal', function (e) {
                     alertCounter = 0;
                     if(alertData){
-                        alertCurrentLength = alertData.length;
+                        //alertCurrentLength = alertData.length;
+                    } else {
+                        alertCurrentLength = 0;
                     }
                 });
             });
