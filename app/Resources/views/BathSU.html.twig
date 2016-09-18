@@ -51,6 +51,14 @@
   border-radius: 4px;
 }
 
+.modal-warning {
+    .btn-warning
+}
+
+.modal-danger {
+    .btn-danger
+}
+
 @-webkit-keyframes argh-my-eyes {
     0%   { background-color: #d9534f; }
     49% { background-color: #d9534f; }
@@ -220,7 +228,7 @@
                 }
                 $('#mainModalHeader').removeClass();
                 $('#mainModalHeader').addClass('modal-header');
-                var NewClass = 'btn-'+alerts[i].type;
+                var NewClass = 'modal-'+alerts[i].type;
                 $('#mainModalHeader').addClass(NewClass);
                 $('#mainModalLabel').html(alerts[i].title);
                 $('#mainModalBody').html(alerts[i].message);
