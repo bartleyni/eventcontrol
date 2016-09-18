@@ -243,15 +243,15 @@
                 
                 if(alerts.length <= 1)
                 {
-                    $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-3 col-md-offset-5"><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
+                    $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-3 col-md-offset-5"><button type="button" class="btn btn-primary btn-block" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
                 } else {
                     if(i-1 < 0)
                     {
-                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-3"><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button></div><div class="col-md-3"><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
+                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-3"><button type="button" class="btn btn-default btn-block" id="alerts-next" onclick="nextAlert();">Next</button></div><div class="col-md-3"><button type="button" class="btn btn-primary btn-block" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
                     } else if(i+1 >= alerts.length) {
-                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-1"><button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button></div><div class="col-md-3 col-md-offset-2"><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
+                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-1"><button type="button" class="btn btn-default btn-block" id="alerts-previous" onclick="previousAlert();">Previous</button></div><div class="col-md-3 col-md-offset-2"><button type="button" class="btn btn-primary btn-block" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');
                     } else {
-                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-1"><button type="button" class="btn btn-default" id="alerts-previous" onclick="previousAlert();">Previous</button></div><div class="col-md-2"><button type="button" class="btn btn-default" id="alerts-next" onclick="nextAlert();">Next</button></div><div class="col-md-3"><button type="button" class="btn btn-primary" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');    
+                        $('#mainModalFooter').html('<div class="row"><div class="col-md-4">'+createdString+'</div><div class="col-md-2 col-md-offset-1"><button type="button" class="btn btn-default btn-block" id="alerts-previous" onclick="previousAlert();">Previous</button></div><div class="col-md-2"><button type="button" class="btn btn-default btn-block" id="alerts-next" onclick="nextAlert();">Next</button></div><div class="col-md-3"><button type="button" class="btn btn-primary btn-block" onclick="Acknowledge('+alerts[i].id+');">Acknowledge</button></div></div>');    
                     }
                 }
                 $('#mainModalHeader').removeClass();
