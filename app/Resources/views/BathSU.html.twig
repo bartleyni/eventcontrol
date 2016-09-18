@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/easy-autocomplete/easy-autocomplete.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-dialog.min.css') }}" />
 <style>
 .severity1 {
     background-color: #E50D00;
@@ -220,8 +219,8 @@
                     }
                 }
                 $('#mainModalHeader').removeClass();
-                $('#mainModalHeader').addClass('modal-header bootstrap-dialog');
-                var NewClass = 'bootstrap-dialog.type-'+alerts[i].type;
+                $('#mainModalHeader').addClass('modal-header');
+                var NewClass = 'btn-'+alerts[i].type;
                 $('#mainModalHeader').addClass(NewClass);
                 $('#mainModalLabel').html(alerts[i].title);
                 $('#mainModalBody').html(alerts[i].message);
