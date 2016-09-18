@@ -99,20 +99,27 @@ class AlertController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         
-        $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy((array('id' => $id)));
-        $alert = $alert_queue->getAlert();
-        $em->remove($alert_queue);
-        $em->flush();
+        $response = new Response('Alert Acknowledgement Failed',Response::HTTP_OK, array('content-type' => 'text/html'));
         
-        $alert_history = new History();
-        $alert_history->setAlert($alert);
-        $alert_history->setOperator($usr);
-        
-        $em->persist($alert_history);
-        $em->flush();
-        
-        $response = new Response('Alert Acknowledged',Response::HTTP_OK, array('content-type' => 'text/html'));
+        if($id){
+            $alert_queue = $em->getRepository('AppBundle\Entity\Queue')->findOneBy((array('id' => $id)));
+            if($alert_queue)
+            {
+                $alert = $alert_queue->getAlert();
+                $em->remove($alert_queue);
+                $em->flush();
 
+                $alert_history = new History();
+                $alert_history->setAlert($alert);
+                $alert_history->setOperator($usr);
+
+                $em->persist($alert_history);
+                $em->flush();
+
+                $response = new Response('Alert Acknowledged',Response::HTTP_OK, array('content-type' => 'text/html'));
+            }
+        }
+        
         return $response;
     }
     
