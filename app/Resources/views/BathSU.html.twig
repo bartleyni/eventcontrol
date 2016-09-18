@@ -236,7 +236,7 @@
             function loadAlertModal(alerts, i)
             {   
                 var timestamp = new Date(alerts[i].created.date);
-                timestamp = timestamp - getTimezoneOffset();
+                timestamp = timestamp - timestamp.getTimezoneOffset();
                 
                 if(alerts.length <= 1)
                 {
