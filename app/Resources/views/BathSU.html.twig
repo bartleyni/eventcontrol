@@ -236,7 +236,7 @@
                 {
                     alertCounter = alertCounter + 1;
                 }
-                if(alertCounter === 600)
+                if(alertCounter === 30)
                 {
                     display = false;
                 }
@@ -312,7 +312,9 @@
                 //setInterval('updateWeatherWarning()', 30000);
                 $('#mainModal').on('hidden.bs.modal', function (e) {
                     alertCounter = 0;
-                    alertCurrentLength = alertData.length;
+                    if(alertData){
+                        alertCurrentLength = alertData.length;
+                    }
                 });
             });
 
