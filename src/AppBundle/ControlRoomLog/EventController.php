@@ -293,11 +293,11 @@ class EventController extends Controller
                         $warning = $warning.$alert['title'].'<br>';
                         $lastWarning = $event->getEventLastWeatherWarning();
                         //Add Alert to Alert Queue System
-                        if($lastWarning != $warning){
+                        if($last_weather_update && $minutes > 30){
                             $alert = new Alert();
                             $alert->setTitle($alert['title']);
-                            $alert->setMessage("Message");
-                            $alert->setURL("http://www.metoffice.gov.uk/");
+                            $alert->setMessage($alert['description']);
+                            $alert->setURL($alert['uri']);
                             $alert->setType("warning");
                             $alert->setEvent($event);
                             $em->persist($alert);

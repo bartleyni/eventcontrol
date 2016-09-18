@@ -264,7 +264,11 @@
                 var NewClass = 'modal-'+alerts[i].type;
                 $('#mainModalHeader').addClass(NewClass);
                 $('#mainModalLabel').html(alerts[i].title);
-                $('#mainModalBody').html(alerts[i].message);
+                if(alerts[i].url){
+                    $('#mainModalBody').html(alerts[i].message+' <a href="'+alerts[i].url+'">Link</a>');
+                } else {
+                    $('#mainModalBody').html(alerts[i].message);
+                }
                 $('#mainModal').modal('show');
                 alertCurrentLength = alerts.length;
                 alertCurrent = i;
