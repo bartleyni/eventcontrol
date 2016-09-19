@@ -7,24 +7,6 @@ Event Control
         {% block content %}
             {% if iframe %}
                 {{ iframe|raw }}
-                {% if iframe_username %}
-                    <script type="text/javascript">
-                        $(document).ready(function() {
-                                $('#iframe_radar').contents().find('#email_address').val("{{ iframe_username }}");
-                                $('#iframe_radar').contents().find('#password').val("{{ iframe_password }}");
-                                //$('#email_address').val("{{ iframe_username }}");
-                                //$('#password').val("{{ iframe_password }}");
-                        });
-                        
-                        $('#iframe_radar').load(function() {
-                            $('#iframe_radar').contents().find('#email_address').val("{{ iframe_username }}");
-                            $('#iframe_radar').contents().find('#password').val("{{ iframe_password }}");
-                            $('#email_address').val("{{ iframe_username }}");
-                            $('#password').val("{{ iframe_password }}");
-                        });
-                        
-                    </script>
-                {% endif %}
             {% endif %}
             {% if data %}
                 {{ data }}
