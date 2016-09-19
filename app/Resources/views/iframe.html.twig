@@ -15,6 +15,12 @@ Event Control
                                 //$('#email_address').val("{{ iframe_username }}");
                                 //$('#password').val("{{ iframe_password }}");
                         });
+                        
+                        $('#iframe_radar').load(function() {
+                             $('#iframe_radar').contents().find('#email_address').val("{{ iframe_username }}");
+                                $('#iframe_radar').contents().find('#password').val("{{ iframe_password }}");
+                        });
+                        
                     </script>
                 {% endif %}
             {% endif %}
