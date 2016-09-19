@@ -7,6 +7,14 @@ Event Control
         {% block content %}
             {% if iframe %}
                 {{ iframe|raw }}
+                {% if iframe_username %}
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                                $('#email_address).html({{ iframe_username }});
+                                $('#password).html({{ iframe_password }});
+                        }
+                    </script>
+                {% endif %}
             {% endif %}
             {% if data %}
                 {{ data }}
