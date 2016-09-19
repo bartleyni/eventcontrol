@@ -379,8 +379,10 @@ class EventController extends Controller
         
         $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
         $data = "u: weather@nb221.com p: uM7qflPqD91W";
+        $username = "weather@nb221.com";
+        $password = "uM7qflPqD91W";
         
-        return $this->render('iframe.html.twig', array('iframe' => $iframe, 'data' => $data));
+        return $this->render('iframe.html.twig', array('iframe' => $iframe, 'iframe_username' => $username, 'iframe_password' => $password, 'data' => $data));
     }
 }
 
