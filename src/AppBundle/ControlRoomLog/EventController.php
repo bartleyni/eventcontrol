@@ -270,7 +270,7 @@ class EventController extends Controller
 
             //$latlong = "51.379551,-2.325717";
             $latlong = $event->getEventLatLong();
-            $url = 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/'.$latlong.'?units=uk2&exclude=hourly,daily';
+            $url = 'https://api.darksky.net/forecast/9c4ec6b414ca6374999b6b88fbc44634/'.$latlong.'?units=uk2&exclude=hourly,daily';
             
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
