@@ -53,14 +53,14 @@ security:
         - { path: ^/LED/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/status/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/register, role: ROLE_USER, requires_channel: https }
         - { path: ^/fireregister, role: ROLE_USER, requires_channel: https }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/user/*, roles: ROLE_ADMIN, requires_channel: https }
-        - { path: ^/event, roles: ROLE_ADMIN}
-        - { path: ^/event/*, roles: ROLE_ADMIN}
+        - { path: ^/event, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/event/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/$, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/*, roles: ROLE_VIEW, requires_channel: https }
