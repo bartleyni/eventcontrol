@@ -7,9 +7,7 @@
                 <strong>User:</strong> {{ app.user.username }}
             </a>
             <br>
-            {% if is_full_view() %}
-                <a href="{{ path('event_weather_radar') }}">
-            {% endif %}
+            <a href="{{ path('event_weather_radar') }}">
                 <p id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</p>
             </a>
     </div>
