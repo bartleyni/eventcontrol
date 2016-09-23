@@ -5,18 +5,18 @@ Event Control
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-        {% if target %}
-           <a href="{{ target }}" target="blank" >
-        {% endif %}
             {% if iframe %}
                 {{ iframe|raw }}
             {% endif %}
         {% if target %}
-            </a>
+           <a href="{{ target }}" target="blank">
         {% endif %}
             {% if data %}
                 {{ data }}
             {% endif %}
+        {% if target %}
+            </a>
+        {% endif %}    
         {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}
