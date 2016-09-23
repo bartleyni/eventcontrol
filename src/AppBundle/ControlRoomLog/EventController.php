@@ -383,7 +383,7 @@ class EventController extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $iframe = '<iframe id="iframe_radar" name="iframe_radar" src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+        $iframe = '<iframe id="iframe_radar" name="iframe_radar" src="//premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
         $data = "u: weather@nb221.com p: uM7qflPqD91W";
         $username = "weather@nb221.com";
         $password = "uM7qflPqD91W";
