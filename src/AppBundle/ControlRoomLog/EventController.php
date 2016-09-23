@@ -257,11 +257,15 @@ class EventController extends Controller
         
         $last_weather_update = $event->getEventLastWeatherUpdate();
         
-        $interval1 = date_diff($last_weather_update, $now, TRUE);
-            
-        $minutes = $interval1->days * 24 * 60;
-        $minutes += $interval1->h * 60;
-        $minutes += $interval1->i;
+        if($last_weather_update){
+            $interval1 = date_diff($last_weather_update, $now, TRUE);
+                
+            $minutes = $interval1->days * 24 * 60;
+            $minutes += $interval1->h * 60;
+            $minutes += $interval1->i;
+        } else {
+            $minutes = 4;
+        }
         
         if($last_weather_update && $minutes < 2){
             $summary = $event->getEventLastWeather();
@@ -290,13 +294,15 @@ class EventController extends Controller
                 if ($data['alerts']){
                     
                     $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
-        
-                    $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
-
-                    $minutes2 = $interval2->days * 24 * 60;
-                    $minutes2 += $interval2->h * 60;
-                    $minutes2 += $interval2->i;
-        
+                    if($last_weather_warning_update){
+                        $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
+    
+                        $minutes2 = $interval2->days * 24 * 60;
+                        $minutes2 += $interval2->h * 60;
+                        $minutes2 += $interval2->i;
+                    } else {
+                        $minutes2 = 31;
+                    }
                     foreach ($data['alerts'] as $key => $alert)
                     {
                         $warning = $warning.$alert['title'].'<br>';
