@@ -5,6 +5,8 @@ Event Control
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
+        {% if full_view %}
+        target="_blank"
             {% if iframe %}
                 {{ iframe|raw }}
             {% endif %}
