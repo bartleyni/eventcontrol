@@ -135,7 +135,7 @@ class LEDController extends Controller
             $desk_led->setColour("White");
             $desk_led->setBrightness("0.5");
             $underDesk_led->setColour("Blue");
-            $underDesk_led->setBrightness("0.5");
+            $underDesk_led->setBrightness("1");
             $room_led->setColour("White");
             $room_led->setBrightness("0.5");
         }
