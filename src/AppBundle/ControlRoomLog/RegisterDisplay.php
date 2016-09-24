@@ -151,7 +151,7 @@ class RegisterDisplay extends Controller
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $em->flush();
 
-        $iframe = '<iframe src="http://eventcontrol.nb221.com/PDFfireregister/" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+        $iframe = '<iframe src="https://eventcontrol.nb221.com/PDFfireregister/" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
         return $this->render('iframe.html.twig', array('iframe' => $iframe));
     }

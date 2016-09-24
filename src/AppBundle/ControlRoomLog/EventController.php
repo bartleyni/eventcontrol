@@ -257,20 +257,24 @@ class EventController extends Controller
         
         $last_weather_update = $event->getEventLastWeatherUpdate();
         
-        $interval1 = date_diff($last_weather_update, $now, TRUE);
-            
-        $minutes = $interval1->days * 24 * 60;
-        $minutes += $interval1->h * 60;
-        $minutes += $interval1->i;
+        if($last_weather_update){
+            $interval1 = date_diff($last_weather_update, $now, TRUE);
+                
+            $minutes = $interval1->days * 24 * 60;
+            $minutes += $interval1->h * 60;
+            $minutes += $interval1->i;
+        } else {
+            $minutes = 4;
+        }
         
-        if($last_weather_update && $minutes < 5){
+        if($last_weather_update && $minutes < 2){
             $summary = $event->getEventLastWeather();
             
         } else {
 
             //$latlong = "51.379551,-2.325717";
             $latlong = $event->getEventLatLong();
-            $url = 'https://api.forecast.io/forecast/9c4ec6b414ca6374999b6b88fbc44634/'.$latlong.'?units=uk2&exclude=hourly,daily';
+            $url = 'https://api.darksky.net/forecast/9c4ec6b414ca6374999b6b88fbc44634/'.$latlong.'?units=uk2&exclude=hourly,daily';
             
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -290,13 +294,15 @@ class EventController extends Controller
                 if ($data['alerts']){
                     
                     $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
-        
-                    $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
-
-                    $minutes2 = $interval2->days * 24 * 60;
-                    $minutes2 += $interval2->h * 60;
-                    $minutes2 += $interval2->i;
-        
+                    if($last_weather_warning_update){
+                        $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
+    
+                        $minutes2 = $interval2->days * 24 * 60;
+                        $minutes2 += $interval2->h * 60;
+                        $minutes2 += $interval2->i;
+                    } else {
+                        $minutes2 = 31;
+                    }
                     foreach ($data['alerts'] as $key => $alert)
                     {
                         $warning = $warning.$alert['title'].'<br>';
@@ -377,10 +383,13 @@ class EventController extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $iframe = '<iframe src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+        $target = "http://premium.raintoday.co.uk/mobile";
+        $iframe = '<iframe id="iframe_radar" name="iframe_radar" src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
         $data = "u: weather@nb221.com p: uM7qflPqD91W";
+        $username = "weather@nb221.com";
+        $password = "uM7qflPqD91W";
         
-        return $this->render('iframe.html.twig', array('iframe' => $iframe, 'data' => $data));
+        return $this->render('iframe.html.twig', array('iframe' => $iframe, 'target' => $target, 'iframe_username' => $username, 'iframe_password' => $password, 'data' => $data));
     }
 }
 
