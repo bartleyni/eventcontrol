@@ -38,6 +38,8 @@ class LEDController extends Controller
         $people_counter_status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
         $UPS_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
         
+        $people_counter_status = true;
+        
         if($people_counter_status == False)
         {
             $led_statuses['Alert']['Type'] = 'Flash';
