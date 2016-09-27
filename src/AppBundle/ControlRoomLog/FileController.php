@@ -42,7 +42,7 @@ class FileController extends Controller
     {  
         if($filename)
         {
-            $iframe = '<iframe src="http://eventcontrol.nb221.com/media/'.$type.'/'.$filename.'" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            $iframe = '<iframe src="https://eventcontrol.nb221.com/media/'.$type.'/'.$filename.'" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
         }

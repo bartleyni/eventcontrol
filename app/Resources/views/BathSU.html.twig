@@ -330,6 +330,10 @@
                        e.preventDefault();
                        window.location.href = "{{ path('new_entry') }}";
                 });
+                Mousetrap.bind('ctrl+o', function(e) {
+                       e.preventDefault();
+                       window.location.href = "{{ path('sort_filter_log', {'sort': "desc", 'filter': "open"}) }}";
+                });
             });
         {% endif %}
     </script>
