@@ -53,7 +53,7 @@ security:
         - { path: ^/LED/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/status/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY ROLE_VIEW, requires_channel: https }
+        - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/register, role: ROLE_USER, requires_channel: https }
         - { path: ^/fireregister, role: ROLE_USER, requires_channel: https }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
