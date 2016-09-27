@@ -61,7 +61,7 @@ security:
         - { path: ^/user/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/event, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/event/weather/radar, roles: ROLE_VIEW, requires_channel: http }
-        - { path: ^/event/weather, roles: ROLE_VIEW, requires_channel: https }
+        - { path: ^/event/weather/, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/event/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/$, roles: ROLE_VIEW, requires_channel: https }
