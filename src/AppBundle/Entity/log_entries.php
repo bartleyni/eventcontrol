@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="log_entries")
+ * @ORM\Table(name="log_entries", indexes={@ORM\Index(name="event_idx", columns={"event_id"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
  */
 

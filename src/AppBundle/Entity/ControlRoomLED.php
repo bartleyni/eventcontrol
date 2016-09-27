@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="ControlRoomLED")
+ * @ORM\Table(name="ControlRoomLED", indexes={@ORM\Index(name="timestamp_led_idx", columns={"timestamp", "led_ref"})}))
  * @ORM\Entity(repositoryClass="AppBundle\Entity\ControlRoomLEDRepository")
  */
 
