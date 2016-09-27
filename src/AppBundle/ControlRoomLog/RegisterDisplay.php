@@ -100,10 +100,13 @@ class RegisterDisplay extends Controller
 
         //See if an old fire register can be found
         $finder = new Finder();
-        $finder->in('../media/PDFReports/'.$eventDIR);
-        $finder->files()->name('Fire Register *.pdf');
-        
         $fs = new Filesystem();
+        if($fs->exists('../media/PDFReports/'.$eventDIR))
+        {
+            $finder->in('../media/PDFReports/'.$eventDIR);
+            $finder->files()->name('Fire Register *.pdf');
+        }
+        
         
         foreach ($finder as $file) {
             try{
