@@ -104,19 +104,18 @@ class RegisterDisplay extends Controller
         if($fs->exists('../media/PDFReports/'.$eventDIR))
         {
             $finder->in('../media/PDFReports/'.$eventDIR);
-            $finder->files()->name('Fire Register *.pdf');
-        }
+            $finder->files()->name('Fire Register *.pdf');       
         
-        
-        foreach ($finder as $file) {
-            try{
-                $oldFilename = $file->getFilename();
-                $OldFileExists = $fs->exists('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
-                if($OldFileExists){
-                    $fs->remove('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
-                }
-            } catch (IOExceptionInterface $e) {
+            foreach ($finder as $file) {
+                try{
+                    $oldFilename = $file->getFilename();
+                    $OldFileExists = $fs->exists('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                    if($OldFileExists){
+                        $fs->remove('../media/PDFReports/'.$eventDIR.'/'.$oldFilename);
+                    }
+                } catch (IOExceptionInterface $e) {
 
+                }
             }
         }
 
