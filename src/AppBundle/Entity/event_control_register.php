@@ -243,7 +243,8 @@ class event_control_register {
     {
 
         if(!$this->sign_out_hash){
-            $this->sign_out_hash = base64_encode(random_bytes(15));
+            //$this->sign_out_hash = base64_encode(random_bytes(15));
+            $this->sign_out_hash = str_replace(array('+', '/'), array('-', '_'), base64_encode(random_bytes(15)));
         }
 
         return $this;
