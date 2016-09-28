@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="UPS_Status", indexes={@ORM\Index(name="ups_id_idx", columns={"UPS_id"})})
+ * @ORM\Table(name="UPS_Status", indexes={@ORM\Index(name="ups_id_timestamp_idx", columns={"UPS_id", "timestamp"})})
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UPS_StatusRepository")
  */
 class UPS_Status {
