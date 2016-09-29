@@ -29,8 +29,8 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        cookie_lifetime: 18000
-        gc_maxlifetime: 18000
+        cookie_lifetime: 21600
+        gc_maxlifetime: 21600
         handler_id:  ~
     fragments:       ~
     http_method_override: true
