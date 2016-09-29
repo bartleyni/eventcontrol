@@ -144,6 +144,16 @@
         Control Room Checklist
     </div>
     </a>
+    </a>
+{% if is_mobile_view() %}
+    <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx"  target="_blank" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+{% else %}
+    <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+{% endif %}
+    <div class="row">
+        University of Bath Incident Report Form
+    </div>
+    </a>
 {% if is_granted('ROLE_USER') %}
     <div class="row">
             <h4>Control Room Functions</h4>
