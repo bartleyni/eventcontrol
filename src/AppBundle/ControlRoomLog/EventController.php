@@ -242,9 +242,9 @@ class EventController extends Controller
     
     public function eventWeatherAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+//        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+//            throw $this->createAccessDeniedException();
+//        }
         
         $em = $this->getDoctrine()->getManager();
         
