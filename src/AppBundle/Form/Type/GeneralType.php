@@ -30,7 +30,7 @@ class GeneralType extends AbstractType
                 'label' => "Incident Open?",
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control checkbox'
                 )
             ))                
             ->add('submit_general', 'submit', array(
