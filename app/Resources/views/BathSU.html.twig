@@ -102,16 +102,32 @@
     99% { background-color: white; }
     100% { background-color: #d9534f; }
 }
+
 .flash {
     -webkit-animation: argh-my-eyes 1s infinite;
     -moz-animation:    argh-my-eyes 1s infinite;
     animation:         argh-my-eyes 1s infinite;
 }
 
+@-webkit-keyframes row_flash {
+  from { background-color: #f0ad4e; }
+  to { background-color: inherit; }
+}
+
+@-moz-keyframes row_flash {
+  from { background-color: #f0ad4e; }
+  to { background-color: inherit; }
+}
+
+@keyframes row_flash {
+  from { background-color: #f0ad4e; }
+  to { background-color: inherit; }
+}
+
 .row_flash {
-    -webkit-animation: argh-my-eyes 1s infinite;
-    -moz-animation:    argh-my-eyes 1s infinite;
-    animation:         argh-my-eyes 1s infinite;
+    -webkit-animation: row_flash 1s infinite;
+    -moz-animation:    row_flash 1s infinite;
+    animation:         row_flash 1s infinite;
 }
 
 </style>
