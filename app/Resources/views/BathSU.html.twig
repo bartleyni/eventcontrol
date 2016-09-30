@@ -110,16 +110,15 @@
 }
 
 @-webkit-keyframes row_flash {
-    0%   { background-color: #f0ad4e; }
-    49% { background-color: #f0ad4e; }
-    50% { background-color: inherit; }
-    99% { background-color: inherit; }
-    100% { background-color: #f0ad4e; }
+    0%   { background-color: inherit; }
+    50% { background-color: #f0ad4e; }
+    100% { background-color: inherit; }
 }
 
 @-moz-keyframes row_flash {
-  from { background-color: #f0ad4e; }
-  to { background-color: inherit; }
+    0%   { background-color: inherit; }
+    50% { background-color: #f0ad4e; }
+    100% { background-color: inherit; }
 }
 
 @keyframes row_flash {
@@ -129,9 +128,9 @@
 }
 
 .row_flash {
-    -webkit-animation: row_flash 2s infinite;
-    -moz-animation:    row_flash 2s infinite;
-    animation:         row_flash 2s infinite;
+    -webkit-animation: row_flash 3s infinite;
+    -moz-animation:    row_flash 3s infinite;
+    animation:         row_flash 3s infinite;
 }
 
 </style>
