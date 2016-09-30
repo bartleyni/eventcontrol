@@ -28,7 +28,9 @@ Control Room Log
                                 </thead>
                                 <tbody>
                                     {% for log in logs %}
-                                        {% if log.park_alert and log.log_update_timestamp < date('-2minutes') %}
+                                        {% if log.park_alert and log.log_entry_open_time < date('-2minutes') and log.log_update_timestamp is null %}
+                                            <tr class="row_flash">
+                                        {% elseif log.park_alert and log.log_update_timestamp < date('-2minutes') and log.log_update_timestamp is not null %}
                                             <tr class="row_flash">
                                         {% else %}
                                             <tr>
