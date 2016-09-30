@@ -120,8 +120,11 @@
 }
 
 @keyframes row_flash {
-  from { background-color: #f0ad4e; }
-  to { background-color: inherit; }
+    0%   { background-color: #f0ad4e; }
+    49% { background-color: #f0ad4e; }
+    50% { background-color: inherit; }
+    99% { background-color: inherit; }
+    100% { background-color: #f0ad4e; }
 }
 
 .row_flash {
