@@ -28,7 +28,11 @@ Control Room Log
                                 </thead>
                                 <tbody>
                                     {% for log in logs %}
-                                        <tr>
+                                        {% if log.park_alert and log.log_update_timestamp < date('-2minutes') %}
+                                            <tr class="row_flash">
+                                        {% else %}
+                                            <tr>
+                                        {% endif %}    
                                             <td>
                                                 {% if log.log_update_timestamp is not null %}
                                                     <div data-toggle="tooltip" data-placement="left" title="Updated: {{ log.log_update_timestamp|date('Y-m-d H:i:s', "Europe/London") }}">
