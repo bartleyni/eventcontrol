@@ -58,7 +58,7 @@ class LogType extends AbstractType
                 )
             ))
                 
-            ->add('park_alert', 'checkbox', array(
+            ->add('park_alert', 'choice', array(
                 'label' => "Alert if parked for 5 minutes?",
                 'required' => false,
                 'attr' => array(
