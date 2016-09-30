@@ -71,6 +71,11 @@ class log_entries {
      * @ORM\Column(type="text")
      */
     protected $reported_by;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $park_alert;
 
     /**
      * Get id
@@ -273,5 +278,28 @@ class log_entries {
     public function getEvent()
     {
         return $this->event;
+    }
+    
+    /** Set park_alert
+     *
+     * @param boolean $park_alert
+     *
+     * @return log_entries
+     */
+    public function setParkAlert($park_alert)
+    {
+        $this->park_alert = $park_alert;
+
+        return $this;
+    }
+
+    /**
+     * Get park_alert
+     *
+     * @return boolean
+     */
+    public function getParkAlert()
+    {
+        return $this->park_alert;
     }
 }
