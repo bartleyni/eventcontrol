@@ -60,7 +60,7 @@ class LogType extends AbstractType
                 'label' => "Alert if parked for 5 minutes?",
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-check-input'
+                    'class' => 'form-control checkbox'
                 )
             )) 
 //            ->add('log_files', 'file', array(
