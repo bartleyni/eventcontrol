@@ -14,9 +14,9 @@
             </thead>
             <tbody>
                 {% for log in logs %}
-                    {% if log.park_alert and log.log_entry_open_time < date('-2minutes') and log.log_update_timestamp is null %}
+                    {% if log.park_alert and log.log_entry_open_time < date('-5minutes') and log.log_update_timestamp is null and log.security_entry_closed_time is null and log.medical_entry_closed_time is null and log.general_entry_closed_time is null and log.lost_property_entry_closed_time is null %}
                         <tr class="row_flash">
-                    {% elseif log.park_alert and log.log_update_timestamp < date('-2minutes') and log.log_update_timestamp is not null %}
+                    {% elseif log.park_alert and log.log_update_timestamp < date('-5minutes') and log.log_update_timestamp is not null and log.security_entry_closed_time is null and log.medical_entry_closed_time is null and log.general_entry_closed_time is null and log.lost_property_entry_closed_time is null %}
                         <tr class="row_flash">
                     {% else %}
                         <tr>
