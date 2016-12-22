@@ -310,7 +310,7 @@
         
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
-            console.log(location);
+            //console.log(location);
             $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+"&z=18&t=k");
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
         });
