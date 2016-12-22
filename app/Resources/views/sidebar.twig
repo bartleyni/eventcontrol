@@ -311,8 +311,8 @@
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
             console.log(location);
+            $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+",18z");
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
-            $("a.locationURL").attr("href", "https://www.google.com/maps/preview/@"+location.coords.latitude+","+location.coords.longitude+",8z");
         });
     }
         
