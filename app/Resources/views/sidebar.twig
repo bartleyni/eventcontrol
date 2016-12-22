@@ -310,7 +310,7 @@
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
             console.log(location);
-            $('#Location').html("<strong>Location:</strong> "+location.result.coords.latitude+","+location.result.coords.longitude);
+            $('#Location').html("<strong>Location:</strong> "+location.coords.latitude+","+location.coords.longitude);
         });
     }
         
