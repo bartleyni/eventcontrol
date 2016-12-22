@@ -8,10 +8,11 @@
             </a>
             <br>
             <a href="{{ path('event_weather_radar') }}">
-                <p id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</p>
+                <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
             </a>
+            <br>
             <a class="locationURL" href="#">
-                <p id="Location"><strong>Location:</strong> Updating... </p>
+                <div id="Location"><strong>Location:</strong> Updating... </div>
             </a>
     </div>
 </div>
