@@ -10,8 +10,9 @@
             <a href="{{ path('event_weather_radar') }}">
                 <p id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</p>
             </a>
-            <br>
+            <a href="">
                 <p id="Location"><strong>Location:</strong> Updating... </p>
+            </a>
     </div>
 </div>
 <div class="row">
@@ -301,7 +302,7 @@
             timeout: 5000,
             maximumWait: 1000,     // max wait time for desired accuracy
             maximumAge: 0,          // disable cache
-            desiredAccuracy: 5,    // meters
+            desiredAccuracy: 30,    // meters
             fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
             addressLookup: false,    // requires Google API key if true
             timezone: false,         // requires Google API key if true
@@ -310,7 +311,7 @@
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
             console.log(location);
-            $('#Location').html("<strong>Location:</strong> "+location.coords.latitude+","+location.coords.longitude);
+            $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude);
         });
     }
         
