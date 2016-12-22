@@ -10,7 +10,7 @@
             <a href="{{ path('event_weather_radar') }}">
                 <p id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</p>
             </a>
-            <a href="">
+            <a class="locationURL" href="#">
                 <p id="Location"><strong>Location:</strong> Updating... </p>
             </a>
     </div>
@@ -311,7 +311,8 @@
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
             console.log(location);
-            $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude);
+            $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6);
+            $("a.locationURL").attr("href", "https://www.google.com/maps/preview/@"+location.coords.latitude+","+location.coords.longitude+",8z");
         });
     }
         
