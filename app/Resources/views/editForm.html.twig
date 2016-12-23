@@ -84,45 +84,36 @@ Control Room Log Edit
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            {{ form_label(log_entry.log_blurb) }}
-                                                            {{ form_errors(log_entry.log_blurb) }}
-                                                            {{ form_widget(log_entry.log_blurb) }}
-                                                        </div>
+                                                <div class="col-md-12">  
+                                                    <div class="form-group">
+                                                    {{ form_label(log_entry.location) }}
+                                                    {{ form_errors(log_entry.location) }}
+                                                    {{ form_widget(log_entry.location) }}
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">  
-                                                        <div class="form-group">
-                                                        {{ form_label(log_entry.location) }}
-                                                        {{ form_errors(log_entry.location) }}
-                                                        {{ form_widget(log_entry.location) }}
-                                                        </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10">  
+                                                    <div class="form-group">
+                                                        {{ form_label(log_entry.reported_by) }}
+                                                        {{ form_errors(log_entry.reported_by) }}
+                                                        {{ form_widget(log_entry.reported_by) }}
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-10">  
-                                                        <div class="form-group">
-                                                            {{ form_label(log_entry.reported_by) }}
-                                                            {{ form_errors(log_entry.reported_by) }}
-                                                            {{ form_widget(log_entry.reported_by) }}
-                                                        </div>
+                                                <div class="col-md-2">  
+                                                    <div class="form-group">
+                                                        {{ form_label(log_entry.park_alert) }}
+                                                        {{ form_errors(log_entry.park_alert) }}
+                                                        {{ form_widget(log_entry.park_alert) }}
                                                     </div>
-                                                    <div class="col-md-2">  
-                                                        <div class="form-group">
-                                                            {{ form_label(log_entry.park_alert) }}
-                                                            {{ form_errors(log_entry.park_alert) }}
-                                                            {{ form_widget(log_entry.park_alert) }}
-                                                        </div>
-                                                    </div>
-                                                </div>        
-                                            </div>
-                                            <div class="col-md-4">
-                                                <br>
-                                                <img width="350" src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7Clabel:%7C{{ entry.latitude }},{{ entry.longitude }}&scale=false&size=350x250&maptype=roadmap&format=png&visual_refresh=true&zoom=18&key=AIzaSyBCpMw_PcJRHplbVUskg0ltvmsCWxFyUPU" alt="Google Map of Entry">
-                                            </div>
+                                                </div>
+                                            </div>        
                                         </div>
+                                        <div class="col-md-4">
+                                            <br>
+                                            <img width="350" src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7Clabel:%7C{{ entry.latitude }},{{ entry.longitude }}&scale=false&size=350x250&maptype=roadmap&format=png&visual_refresh=true&zoom=18&key=AIzaSyBCpMw_PcJRHplbVUskg0ltvmsCWxFyUPU" alt="Google Map of Entry">
+                                        </div>
+                                    </div>
                                 {% endif %}
                             <div id="submit_button">
                                 {{ form_widget(log_entry.submit) }} <br>
