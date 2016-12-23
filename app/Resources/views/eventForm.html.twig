@@ -118,7 +118,7 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
-                        {% if event_id %}
+                        {% if event_id is defined %}
                             <div class="row">  
                                 <div class="col-md-8">
                                     {{ form_end(form) }}
