@@ -53,7 +53,7 @@ class log_entries {
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     private $event;
     

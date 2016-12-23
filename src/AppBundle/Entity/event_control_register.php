@@ -26,9 +26,9 @@ use Doctrine\ORM\Mapping as ORM;
 class event_control_register {
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
  
