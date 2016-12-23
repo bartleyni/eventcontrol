@@ -21,7 +21,7 @@ class venueRepository extends EntityRepository
         $output = ture;
         foreach ($cameras as $camera) {
 
-            $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera')->iscamerauptodate($camera['camera_id']);
+            $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->iscamerauptodate($camera['camera_id']);
             if(!$status){
                 $output = false;
             }
@@ -55,14 +55,14 @@ class venueRepository extends EntityRepository
 
         foreach ($cameras as $camera) {
             if ($camera['inverse']) {
-                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
                 $output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
                 $output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
             } else {
 
-                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera')->getcameracount($camera['camera_id']);
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
                 //echo "print camre doors";
                 //print_r($camera_doors);
                 //echo "print camera count";

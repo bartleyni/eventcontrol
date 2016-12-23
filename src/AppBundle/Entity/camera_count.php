@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of camera
+ * Description of camera_count
  *
  *
  * @author Matthew
@@ -18,12 +18,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Entity\cameraRepository")
- * @ORM\Table(name="camera")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\camera_countRepository")
+ * @ORM\Table(name="camera_count")
  * @ORM\HasLifecycleCallbacks
  */
 
-class camera {
+class camera_count {
 
 
     /**
@@ -72,9 +72,9 @@ class camera {
     public function calculate_running_total($args)
     {
         $Camera = $args->getEntityManager()->createQueryBuilder()->select('Camera')
-            ->from("AppBundle\Entity\camera", 'Camera')
-            ->orderBy('Camera.id', 'DESC')
-            ->where('Camera.camera_id = ?1')
+            ->from("AppBundle\Entity\camera_count", 'Camera_count')
+            ->orderBy('Camera_count.id', 'DESC')
+            ->where('Camera_count.camera_id = ?1')
             ->setParameter(1, $this->camera_id)
             ->setMaxResults(1)
             ->getQuery()
@@ -82,19 +82,19 @@ class camera {
         //print_r($this);
 
 
-        $diffrance_in = $this->count_in - $Camera[0]['Camera_count_in'];
-        $diffrance_out = $this->count_out - $Camera[0]['Camera_count_out'];
+        $diffrance_in = $this->count_in - $Camera[0]['Camera_count_count_in'];
+        $diffrance_out = $this->count_out - $Camera[0]['Camera_count_count_out'];
 
         if($diffrance_in < 0){
-            $this->running_count_in = $this->count_in + $Camera[0]['Camera_running_count_in'];
+            $this->running_count_in = $this->count_in + $Camera[0]['Camera_count_running_count_in'];
         }else{
-            $this->running_count_in = $Camera[0]['Camera_running_count_in'] + $diffrance_in;
+            $this->running_count_in = $Camera[0]['Camera_count_running_count_in'] + $diffrance_in;
         }
 
         if($diffrance_out < 0){
-            $this->running_count_out = $this->count_out + $Camera[0]['Camera_running_count_out'];
+            $this->running_count_out = $this->count_out + $Camera[0]['Camera_count_running_count_out'];
         }else{
-            $this->running_count_out = $Camera[0]['Camera_running_count_out'] + $diffrance_out;
+            $this->running_count_out = $Camera[0]['Camera_count_running_count_out'] + $diffrance_out;
         }
 
 

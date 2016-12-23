@@ -15,7 +15,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class CameraController extends Controller
 {
     /**
-     * @Route("/camera/newdata/{camera_id}/{count_in}/{count_out}", name="new_camera_data")
+     * @Route("/camera_count/newdata/{camera_id}/{count_in}/{count_out}", name="new_camera_data")
      */
     public function newdataAction($camera_id, $count_in, $count_out)
     {
@@ -23,13 +23,13 @@ class CameraController extends Controller
             
             $em = $this->getDoctrine()->getManager();
             
-            $camera = new camera();
+            $camera_count = new camera_count();
             
-            $camera->setCameraId($camera_id);
-            $camera->setCountIn($count_in);
-            $camera->setCountOut($count_out);
+            $camera_count->setCameraId($camera_id);
+            $camera_count->setCountIn($count_in);
+            $camera_count->setCountOut($count_out);
                                
-            $em->persist($camera);
+            $em->persist($camera_count);
             $em->flush();
 
             $response = new Response('Data added',Response::HTTP_OK, array('content-type' => 'text/html'));
