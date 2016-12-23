@@ -185,6 +185,7 @@
         sidebarPoll();
         updateWeather();
         setInterval('updateWeather()', 30000);
+        userLocate();
     });
     
     $('#LEDBtn1').click(function(){
@@ -206,7 +207,7 @@
     function sidebarPoll()
     {
         UPSUpdate();
-        userLocate();
+        //userLocate();
         //PeopleCounterUpdate();
     
         {% if activeEventId(app.user.id) != 0 %}
@@ -299,8 +300,8 @@
     function userLocate() {
         var options = {
             enableHighAccuracy: true,
-            timeout: 1750,
-            maximumWait: 1750,     // max wait time for desired accuracy
+            timeout: 4500,
+            maximumWait: 4500,     // max wait time for desired accuracy
             maximumAge: 0,          // disable cache
             desiredAccuracy: 30,    // meters
             fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
@@ -314,6 +315,8 @@
             $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+"&z=18&t=k");
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
         });
+        
+        setTimeout(userLocate,5000);
     }
         
 </script>
