@@ -76,6 +76,16 @@ class log_entries {
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $park_alert;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $latitude;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $longitude;
 
     /**
      * Get id
@@ -301,5 +311,53 @@ class log_entries {
     public function getParkAlert()
     {
         return $this->park_alert;
+    }
+    
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     *
+     * @return log_entries
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+    
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     *
+     * @return log_entries
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }
