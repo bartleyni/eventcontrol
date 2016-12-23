@@ -63,14 +63,18 @@ class venueRepository extends EntityRepository
 
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
+                print_r($camera_count);
+                echo " </br>Doors</br>";
+                print_r($camera_doors);
+                
                 //echo "print camre doors";
                 //print_r($camera_doors);
                 //echo "print camera count";
                 //print_r($camera_count);
                 //$output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
                 //$output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-                $output['running_count_in'] += $camera_count['running_count_in'];
-                $output['running_count_out'] += $camera_count['running_count_out'];
+                $output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+                $output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
             }
             //echo "print before output";
             //print_r($output);
