@@ -322,8 +322,12 @@ class log_entries {
      */
     public function setLatitude($latitude)
     {
-        $this->latitude = $latitude;
-
+        if($this->latitude)
+        {
+            //Do nothing
+        } else {
+            $this->latitude = $latitude;
+        }
         return $this;
     }
 
@@ -346,8 +350,13 @@ class log_entries {
      */
     public function setLongitude($longitude)
     {
-        $this->longitude = $longitude;
-
+        if($this->longitude)
+        {
+            //Do nothing
+        } else {
+            $this->longitude = $longitude;
+        }
+        
         return $this;
     }
 
