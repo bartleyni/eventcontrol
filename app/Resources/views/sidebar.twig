@@ -70,9 +70,10 @@
     <div class="row">
         <h4>Status</h4>
     </div>
+    {% include 'PeopleCountingModule.html.twig' %}
     {# 
-        {% include 'PeopleCountingModule.html.twig' %}
-    #}
+
+
         <div class="panel panel-info">
             <div class="panel-heading">
                 Current Occupancy
@@ -81,6 +82,7 @@
                 <li class="list-group-item" id="0">Purchase this People Counting Module now for the Low Low Price of $19.99 per hour and receive your free copy of People Counting Magazine.</li>
             </ul>
         </div>
+       #}
     {% include 'UPSModule.html.twig' %}
 {% endif %}
 <div class="row">
@@ -111,13 +113,13 @@
             </div>
         </a>
     {% endif %}
-    {#
+
         <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
             <div class="row">
                 People Counting
             </div>
         </a>
-    #}
+
 {% endif %}
 {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
