@@ -39,13 +39,31 @@ Control Room Log Edit
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">  
-                                    <div class="form-group">
-                                        {{ form_label(log_entry.log_blurb) }}
-                                        {{ form_errors(log_entry.log_blurb) }}
-                                        {{ form_widget(log_entry.log_blurb) }}
+                                {% if log_entry.longitude or log_entry.latitude is null %}
+                                    <div class="col-md-12">  
+                                        <div class="form-group">
+                                            {{ form_label(log_entry.log_blurb) }}
+                                            {{ form_errors(log_entry.log_blurb) }}
+                                            {{ form_widget(log_entry.log_blurb) }}
+                                        </div>
                                     </div>
-                                </div>
+                                {% else %}
+                                    <div class="col-md-9">  
+                                        <div class="form-group">
+                                            {{ form_label(log_entry.log_blurb) }}
+                                            {{ form_errors(log_entry.log_blurb) }}
+                                            {{ form_widget(log_entry.log_blurb) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <iframe
+                                            width="450"
+                                            height="250"
+                                            frameborder="0" style="border:0"
+                                            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBCpMw_PcJRHplbVUskg0ltvmsCWxFyUPU&q=record+stores+in+Seattle" >
+                                        </iframe>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="row">
                                 <div class="col-md-5">  
