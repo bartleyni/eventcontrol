@@ -71,7 +71,7 @@ class camera_count {
      */
     public function calculate_running_total($args)
     {
-        $Camera = $args->getEntityManager()->createQueryBuilder()->select('Camera')
+        $Camera = $args->getEntityManager()->createQueryBuilder()->select('Camera_count')
             ->from("AppBundle\Entity\camera_count", 'Camera_count')
             ->orderBy('Camera_count.id', 'DESC')
             ->where('Camera_count.camera_id = ?1')
