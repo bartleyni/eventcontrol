@@ -118,14 +118,14 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
-                        {% if event.id is defined %}
-                            <div class="row">  
-                                <div class="col-md-8">
+                        <div class="row">  
+                            <div class="col-md-8">
+                                {% if event.id is defined %}
                                     <button type="button" id="delete_button" class="btn btn-warning btn-block" onClick="location.href='{{ path('delete_event', {'deleteId': event.id}) }}'">Delete Event</button>
-                                </div>
+                                {% endif %}
+                                {{ form_end(form) }}
                             </div>
-                        {% endif %}
-                        {{ form_end(form) }}
+                        </div>
                     </div>
                 </div>
             </div>
