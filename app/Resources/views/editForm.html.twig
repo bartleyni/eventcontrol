@@ -39,7 +39,7 @@ Control Room Log Edit
                                 </div>
                             </div>
                             <div class="row">
-                                {% if log_entry.longitude or log_entry.latitude is null %}
+                                {% if entry.longitude or entry.latitude is null %}
                                     <div class="col-md-12">  
                                         <div class="form-group">
                                             {{ form_label(log_entry.log_blurb) }}
@@ -57,7 +57,7 @@ Control Room Log Edit
                                     </div>
                                     <div class="col-md-3">
                                         <iframe
-                                            width="450"
+                                            width="250"
                                             height="250"
                                             frameborder="0" style="border:0"
                                             src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBCpMw_PcJRHplbVUskg0ltvmsCWxFyUPU&q=record+stores+in+Seattle" >
