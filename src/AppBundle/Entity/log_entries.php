@@ -322,7 +322,7 @@ class log_entries {
      */
     public function setLatitude($latitude)
     {
-        if($this->latitude)
+        if($this->id)
         {
             //Do nothing
         } else {
@@ -350,7 +350,7 @@ class log_entries {
      */
     public function setLongitude($longitude)
     {
-        if($this->longitude)
+        if($this->id)
         {
             //Do nothing
         } else {
