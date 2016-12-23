@@ -206,7 +206,6 @@ Control Room Log Edit
                     if (e.which == '13') {
                         e.preventDefault();
                         var timestamp = new Date();
-                        //var currentText = $('textarea#new_general_form_general_description').val();
                         var currentText = $(this).val();
                         $(this).val(currentText + "\n[" + timestamp.toLocaleString('en-GB') + "] ");
                     }
