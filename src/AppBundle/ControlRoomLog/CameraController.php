@@ -2,9 +2,7 @@
 
 namespace AppBundle\ControlRoomLog;
 
-use AppBundle\Entity\camera;
-use AppBundle\Entity\venue;
-use AppBundle\Entity\venue_camera;
+use AppBundle\Entity\camera_count;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
