@@ -40,7 +40,8 @@ Control Room Log Edit
                             </div>
                             <div class="row">
                                 {{ entry.longitude }}
-                                {% if entry.longitude or entry.latitude is null %}
+                                {{ entry.latitude }}
+                                {% if (entry.longitude is null) or (entry.latitude is null) %}
                                     <div class="col-md-12">  
                                         <div class="form-group">
                                             {{ form_label(log_entry.log_blurb) }}
