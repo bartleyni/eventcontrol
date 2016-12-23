@@ -26,9 +26,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class event {
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
  
