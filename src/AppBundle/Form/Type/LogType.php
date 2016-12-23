@@ -44,8 +44,7 @@ class LogType extends AbstractType
                 'label' => 'Short Description',
                 'attr' => array(
                     'class' => 'form-control',
-                    'rows' => '5',
-                    'style' => 'height: 200px'
+                    'rows' => '2'
                 )
             ))
             ->add('location', 'text', array(
