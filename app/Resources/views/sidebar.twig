@@ -313,8 +313,10 @@
             if (err) return console.log(err);
             console.log(location);
             $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+"&z=20&t=k");
-            $('#new_entry_form_longitude').val(location.coords.longitude);
-            $('#new_entry_form_latitude').val(location.coords.latitude);
+            {% if is_granted('ROLE_FIELD') %}
+                $('#new_entry_form_longitude').val(location.coords.longitude);
+                $('#new_entry_form_latitude').val(location.coords.latitude);
+            {% endif %}
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
         });
         
