@@ -24,7 +24,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class log_entries {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
      */
