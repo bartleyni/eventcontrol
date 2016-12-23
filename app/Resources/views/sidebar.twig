@@ -303,7 +303,7 @@
             timeout: 4500,
             maximumWait: 4500,     // max wait time for desired accuracy
             maximumAge: 0,          // disable cache
-            desiredAccuracy: 30,    // meters
+            desiredAccuracy: 10,    // meters
             fallbackToIP: true,     // fallback to IP if Geolocation fails or rejected
             addressLookup: false,    // requires Google API key if true
             timezone: false,         // requires Google API key if true
@@ -311,7 +311,7 @@
         
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
-            //console.log(location);
+            console.log(location);
             $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+"&z=18&t=k");
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
         });
