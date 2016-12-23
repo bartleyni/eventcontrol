@@ -67,8 +67,10 @@ class venueRepository extends EntityRepository
                 //print_r($camera_doors);
                 //echo "print camera count";
                 //print_r($camera_count);
-                $output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
-                $output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                //$output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+                //$output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                $output['running_count_in'] += $camera_count['running_count_in'];
+                $output['running_count_out'] += $camera_count['running_count_out'];
             }
             //echo "print before output";
             //print_r($output);
