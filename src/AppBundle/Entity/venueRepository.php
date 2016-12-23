@@ -18,7 +18,7 @@ class venueRepository extends EntityRepository
     {
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
 
-        $output = ture;
+        $output = true;
         foreach ($cameras as $camera) {
 
             $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->iscamerauptodate($camera['camera_id']);
@@ -33,7 +33,7 @@ class venueRepository extends EntityRepository
     {
         $venues = $this->getEntityManager()->createQuery('SELECT p.id FROM AppBundle\Entity\venue p')->getResult();
        
-        $output = ture;
+        $output = true;
         foreach ($venues as $venue) {
 
             $status=$this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuestatus($venue['id']);
