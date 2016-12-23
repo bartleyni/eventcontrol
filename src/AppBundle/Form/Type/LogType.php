@@ -57,7 +57,16 @@ class LogType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-                
+            ->add('longitude', 'hidden', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('latitude', 'hidden', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))    
             ->add('park_alert', 'checkbox', array(
                 'label' => "Alert if parked for 5 minutes?",
                 'required' => false,
