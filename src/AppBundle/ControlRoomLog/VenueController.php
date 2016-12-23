@@ -2,7 +2,7 @@
 
 namespace AppBundle\ControlRoomLog;
 use AppBundle\Entity\venue;
-use AppBundle\Entity\camera;
+use AppBundle\Entity\camera_count;
 use AppBundle\Entity\venue_camera;
 use AppBundle\Entity\skew;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
