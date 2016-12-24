@@ -145,12 +145,31 @@ class EventController extends Controller
             $query = $qb->getQuery();
             $operators = $query->getResult();
             
+            $event->setOverlayImage(
+                new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
+            );
+            
             $em->flush();
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId,));
             $form->handleRequest($request);
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            if($event->getOverlayImage()){
+            
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $event->getOverlayImage();
+
+                $filename = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParamter('overlay_directory'),
+                    $filename
+                );
+
+                $event->setOverlayImage($filename);
+            }
             
             $event_operators = $form['event_operators']->getData();
             
