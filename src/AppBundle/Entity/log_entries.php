@@ -53,9 +53,9 @@ class log_entries {
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
-    private $event;
+    private $event_id;
     
     /**
      * @ORM\Column(type="datetime")
@@ -275,7 +275,7 @@ class log_entries {
      */
     public function setEvent(\AppBundle\Entity\event $event = null)
     {
-        $this->event = $event;
+        $this->event_id = $event;
 
         return $this;
     }
@@ -287,7 +287,7 @@ class log_entries {
      */
     public function getEvent()
     {
-        return $this->event;
+        return $this->event_id;
     }
     
     /** Set park_alert
