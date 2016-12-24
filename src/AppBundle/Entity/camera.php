@@ -44,6 +44,7 @@ class camera {
     protected $location;
 
     /**
+     * 
      * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="venue", mappedBy="cameras")
      */
