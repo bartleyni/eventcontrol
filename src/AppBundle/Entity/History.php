@@ -20,7 +20,7 @@ class History
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Alert", inversedBy="Queue")
+     * @ORM\ManyToOne(targetEntity="Alert")
      * @ORM\JoinColumn(name="Alert_id", referencedColumnName="id")
      */
     private $Alert;
@@ -31,7 +31,7 @@ class History
     protected $acknowledged;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="Queue")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      */
     private $Operator;

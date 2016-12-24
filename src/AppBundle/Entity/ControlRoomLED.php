@@ -37,7 +37,7 @@ class ControlRoomLED {
     protected $timestamp;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="ControlRoomLED")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      */
     private $operator;

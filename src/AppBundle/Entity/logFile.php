@@ -45,7 +45,7 @@ class logFile
     protected $file;
 
     /**
-     * @ORM\ManyToOne(targetEntity="log_entries", inversedBy="log_files")
+     * @ORM\ManyToOne(targetEntity="log_entries")
      * @ORM\JoinColumn(name="log_id", referencedColumnName="id")
      */
     
