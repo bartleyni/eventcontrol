@@ -57,18 +57,21 @@ class EventType extends AbstractType
             ))
             ->add('northEastBounds_lat_long', 'text', array(
                 'label' => 'North East Bound Latitude,Longitude',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('southWestBounds_lat_long', 'text', array(
                 'label' => 'South West Bound Latitude,Longitude',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('overlay_image', 'file', array(
                 'label' => 'Overlay Image (.png)',
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
