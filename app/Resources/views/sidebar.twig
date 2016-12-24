@@ -313,7 +313,7 @@
         
         geolocator.locate(options, function (err, location) {
             if (err) return console.log(err);
-            console.log(location);
+            //console.log(location);
             $("a.locationURL").attr("href", "https://maps.google.com/?q="+location.coords.latitude+","+location.coords.longitude+"&z=20&t=k");
             {% if is_granted('ROLE_FIELD') %}
                 $('#new_entry_form_longitude').val(location.coords.longitude);
