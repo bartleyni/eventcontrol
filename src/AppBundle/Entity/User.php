@@ -83,7 +83,7 @@ class User implements AdvancedUserInterface, \Serializable {
     private $isActive;
     
     /**
-     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="operator")
+     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="User_id")
      */
     private $log_entries;
     
