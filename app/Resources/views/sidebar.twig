@@ -209,8 +209,8 @@
     function sidebarPoll()
     {
         UPSUpdate();
-        //userLocate();
-        PeopleCounterUpdate();
+        
+        //PeopleCounterUpdate();
     
         {% if activeEventId(app.user.id) != 0 %}
             $.getJSON('{{ path('log_json_data') }}', function(data) {
