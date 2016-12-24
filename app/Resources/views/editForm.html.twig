@@ -339,6 +339,7 @@ Control Room Log Edit
                     center: {lat: 51.379300, lng: -2.32700},
                     mapTypeId: 'satellite'
                 });
+                console.log({{ entry.event.event_lat_long }});
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng(51.37808, -2.32938),
@@ -350,7 +351,7 @@ Control Room Log Edit
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
 
                 var marker = new google.maps.Marker({
-                    position: {lat:51.379300, lng:-2.32700},
+                    position: {lat:{{ entry.latitude }}, lng:{{ entry.longitude }}},
                     map: map
                 });
             }
