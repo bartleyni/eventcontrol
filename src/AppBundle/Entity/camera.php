@@ -44,9 +44,13 @@ class camera {
     protected $location;
 
     /**
-     * 
-     * Many Groups have Many Users.
      * @ORM\ManyToMany(targetEntity="venue", mappedBy="cameras")
      */
     private $venues;
+
+    public function __construct()
+    {
+        $this->venues = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }
