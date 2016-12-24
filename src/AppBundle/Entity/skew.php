@@ -49,7 +49,7 @@ class skew {
     protected $skew_out;
 
     /**
-     * @ORM\ManyToOne(targetEntity="venue")
+     * @ORM\ManyToOne(targetEntity="venue", inversedBy="skew")
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
      */
     protected $venue_id;
