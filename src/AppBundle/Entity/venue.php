@@ -44,8 +44,8 @@ class venue {
 
 
     /**
-     * @ManyToMany(targetEntity="camera", inversedBy="venus")
-     * @JoinTable(name="venue_camera")
+     * @ORM\ManyToMany(targetEntity="camera", inversedBy="venus")
+     * @ORM\JoinTable(name="venue_camera")
      */
     protected $cameras;
 

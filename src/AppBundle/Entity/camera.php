@@ -45,7 +45,7 @@ class camera {
 
     /**
      * Many Groups have Many Users.
-     * @ManyToMany(targetEntity="venue", mappedBy="cameras")
+     * @ORM\ManyToMany(targetEntity="venue", mappedBy="cameras")
      */
     private $venues;
 }
