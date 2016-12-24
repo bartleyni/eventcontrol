@@ -22,6 +22,10 @@ class FileController extends Controller
         if ($type == "pdf"){
             $filetype = ".pdf";
         }
+        
+        if ($type == "png"){
+            $filetype = ".png";
+        }
                 
         if ($filename && $filetype){
             $file = '../media/'.$filename.$filetype;
