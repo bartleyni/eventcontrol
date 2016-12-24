@@ -42,4 +42,10 @@ class camera {
      * @ORM\Column(type="string", length=200)
      */
     protected $location;
+
+    /**
+     * Many Groups have Many Users.
+     * @ManyToMany(targetEntity="venue", mappedBy="cameras")
+     */
+    private $venues;
 }
