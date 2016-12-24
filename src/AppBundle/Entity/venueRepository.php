@@ -29,9 +29,9 @@ class venueRepository extends EntityRepository
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuecameras($id);
 
         $output = true;
-        foreach ($cameras as $camera) {
+        foreach ($cameras as $cam) {
 
-            $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->iscamerauptodate($camera['camera_id']);
+            $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->iscamerauptodate($cam['camera_id']);
             if(!$status){
                 $output = false;
             }
@@ -65,19 +65,19 @@ class venueRepository extends EntityRepository
         $output['running_count_in'] = 0;
         $output['running_count_out'] = 0;
 
-        foreach ($cameras as $camera) {
-            if ($camera['inverse']) {
-                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
-                $output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-                $output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
-            } else {
+        foreach ($cameras as $cam) {
+           // if ($cam['inverse']) {
+             //   $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($cam['camera_id'], $timestamp);
+               // $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($cam['camera_id']);
+                //$output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                //$output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+            //} else {
 
-                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($cam['camera_id'], $timestamp);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($cam['camera_id']);
                 $output['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
                 $output['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-            }
+//            }
             //echo "print before output";
             //print_r($output);
             foreach ($skews as $skew) {
