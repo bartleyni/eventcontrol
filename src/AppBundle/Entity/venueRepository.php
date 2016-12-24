@@ -14,9 +14,20 @@ class venueRepository extends EntityRepository
         $doors = $this->getEntityManager()->createQuery('SELECT p.doors FROM AppBundle\Entity\venue p  WHERE p.id = :id')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
         return $doors['doors'];
     }
+
+    public function getvenuecameras($id)
+    {
+        //return "hi";
+        $venue = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->find($id);
+        $cameras = $venue->getCameras();
+        
+        print_r($cameras);
+        return $cameras;
+    }
+
     public function getvenuestatus($id)
     {
-        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
+        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuecameras($id);
 
         $output = true;
         foreach ($cameras as $camera) {
@@ -48,7 +59,7 @@ class venueRepository extends EntityRepository
     public function getvenuecount($id)
     {
 
-        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
+        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuecameras($id);
         $output = array();
         $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $skews = $this->getEntityManager()->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
