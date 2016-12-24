@@ -18,7 +18,7 @@ class venueRepository extends EntityRepository
     public function getvenuecameras($id)
     {
         //return "hi";
-        $venue = $this->getDoctrine()->getRepository('AppBundle\Entity\venue')->find($id);
+        $venue = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->findBy($id);
         $cameras = $venue->getCameras();
         return $cameras;
     }
