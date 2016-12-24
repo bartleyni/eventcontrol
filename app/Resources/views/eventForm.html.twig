@@ -120,25 +120,33 @@ Event Entry Form
                         </div><br>
                         <div class="row">   
                             <div class="form-group">
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     {{ form_label(form.northEastBounds_lat_long) }} 
                                     {{ form_errors(form.northEastBounds_lat_long) }}
+                                </div>
+                                <div class="col-md-6">
                                     {{ form_widget(form.northEastBounds_lat_long) }}
                                 </div>
                             </div>
+                        </div><br>
+                        <div class="row">  
                             <div class="form-group">
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     {{ form_label(form.southWestBounds_lat_long) }} 
                                     {{ form_errors(form.southWestBounds_lat_long) }}
+                                </div>
+                                <div class="col-md-6">
                                     {{ form_widget(form.southWestBounds_lat_long) }}
                                 </div>
                             </div>
                         </div><br>
                         <div class="row">   
                             <div class="form-group">
-                                <div class="col-md-8">
+                                <div class="col-md-2">
                                     {{ form_label(form.overlay_image) }} 
                                     {{ form_errors(form.overlay_image) }}
+                                </div>
+                                <div class="col-md-6">
                                     {{ form_widget(form.overlay_image) }}
                                 </div>
                             </div>
