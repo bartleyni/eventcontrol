@@ -58,7 +58,7 @@ class event {
     protected $event_log_stop_date;
     
     /**
-     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="event_id")
      */
     private $log_entries;
     
