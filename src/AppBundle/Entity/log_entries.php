@@ -53,9 +53,9 @@ class log_entries {
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
      */
-    private $event_id;
+    private $event;
     
     /**
      * @ORM\Column(type="datetime")
