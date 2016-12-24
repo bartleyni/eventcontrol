@@ -51,7 +51,7 @@ class UPS {
     private $UPS_Status;
     
     /**
-     * @ORM\ManyToMany(targetEntity="event", mappedBy="event")
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $event;
