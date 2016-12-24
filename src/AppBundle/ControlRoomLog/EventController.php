@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\UploadFile;
+use Symfony\Component\HttpFoundation\File\File;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
 use AppBundle\Entity\user_events;
@@ -75,13 +77,25 @@ class EventController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+            if($event->getOverlayImage()){
+            
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $event->getOverlayImage();
+
+                $filename = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParamter('overlay_directory'),
+                    $filename
+                );
+
+                $event->setOverlayImage($filename);
+            }
             $em->persist($event);
             $em->flush();
             
             $event_operators = $form['event_operators']->getData();
-            
-            //$all_users = $em->getRepository('AppBundle\Entity\User');
-            
+                                   
             if($event_operators)
             {                
                 foreach ($event_operators as $key => $operatorId)

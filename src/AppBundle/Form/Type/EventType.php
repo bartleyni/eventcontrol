@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EventType extends AbstractType
 {
@@ -54,6 +55,24 @@ class EventType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
+            ->add('northEastBounds_lat_long', 'text', array(
+                'label' => 'North East Bound Latitude,Longitude',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('southWestBounds_lat_long', 'text', array(
+                'label' => 'South West Bound Latitude,Longitude',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('overlay_image', 'file', array(
+                'label' => 'Overlay Image (.png)',
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            )) 
             ->add('event_date', 'datetime', array(
                 'label' => 'Date of Event',
                 'widget' => 'single_text',

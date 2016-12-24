@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     log_files_directory: '%kernel.root_dir%/../media/logFiles'
+    overlay_director: '%kernel.root_dir%/../media/overlay'
 
 framework:
     #esi:             ~

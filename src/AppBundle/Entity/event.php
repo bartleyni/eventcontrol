@@ -17,6 +17,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -101,7 +102,24 @@ class event {
      * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
      *
      */
-    protected $UPSs; 
+    protected $UPSs;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $northEastBounds_lat_long;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $southWestBounds_lat_long;
+    
+    /**
+     * 
+     * @ORM\Column(type="string", length=200, nullable=true)
+     * @Assert\File(mimeTypes={ "image/png" })
+     */
+    private $overlay_image;
     
     public function __toString()
     {
@@ -426,4 +444,63 @@ class event {
         return $this->UPSs;
     }
     
+    public function getOverlayImage()
+    {
+        return $this->overlay_image;
+    }
+    
+    public function setOverlayImage($overlay)
+    {
+        $this->overlay_image = $overlay;
+        
+        return $this;
+    }
+    
+    /**
+     * Get northEastBounds_lat_long
+     *
+     * @return string
+     */
+    public function getNorthEastBounds()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+    
+    /**
+     * Set northEastBounds_lat_long
+     *
+     * @param string $northEastBounds_lat_long
+     *
+     * @return event
+     */
+    public function setNorthEastBounds($northEastBounds_lat_long)
+    {
+        $this->northEastBounds_lat_long = $northEastBounds_lat_long;
+
+        return $this;
+    }
+    
+    /**
+     * Get southWestBounds_lat_long
+     *
+     * @return string
+     */
+    public function getSouthWestBounds()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+    
+    /**
+     * Set southWestBounds_lat_long
+     *
+     * @param string $southWestBounds_lat_long
+     *
+     * @return event
+     */
+    public function setSouthWestBounds($southWestBounds_lat_long)
+    {
+        $this->southWestBounds_lat_long = $southWestBounds_lat_long;
+
+        return $this;
+    }
 }

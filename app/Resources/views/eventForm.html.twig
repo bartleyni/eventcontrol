@@ -118,6 +118,31 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    {{ form_label(form.northEastBounds_lat_long) }} 
+                                    {{ form_errors(form.northEastBounds_lat_long) }}
+                                    {{ form_widget(form.northEastBounds_lat_long) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    {{ form_label(form.southWestBounds_lat_long) }} 
+                                    {{ form_errors(form.southWestBounds_lat_long) }}
+                                    {{ form_widget(form.southWestBounds_lat_long) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    {{ form_label(form.overlay_image) }} 
+                                    {{ form_errors(form.overlay_image) }}
+                                    {{ form_widget(form.overlay_image) }}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">  
                             <div class="col-md-8">
                                 {% if event.id is defined %}
