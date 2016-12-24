@@ -166,7 +166,7 @@ class EventController extends Controller
                 $filename = md5(uniqid()).'.'.$file->guessExtension();
 
                 $file->move(
-                    $this->getParamter('overlay_directory'),
+                    $this->getParameter('overlay_directory'),
                     $filename
                 );
 
