@@ -275,7 +275,7 @@ class log_entries {
      */
     public function setEvent(\AppBundle\Entity\event $event = null)
     {
-        $this->event_id = $event;
+        $this->event = $event;
 
         return $this;
     }
@@ -287,7 +287,7 @@ class log_entries {
      */
     public function getEvent()
     {
-        return $this->event_id;
+        return $this->event;
     }
     
     /** Set park_alert
