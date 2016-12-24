@@ -20,7 +20,7 @@ class Queue
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Alert", inversedBy="Queue")
+     * @ORM\ManyToOne(targetEntity="Alert")
      * @ORM\JoinColumn(name="Alert_id", referencedColumnName="id")
      */
     private $Alert;

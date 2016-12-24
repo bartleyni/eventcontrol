@@ -36,7 +36,7 @@ class medical_log {
     private $log_entry_id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="medical_reported_injury_type", inversedBy="mecical_logs")
+     * @ORM\ManyToOne(targetEntity="medical_reported_injury_type", inversedBy="medical_logs")
      * @ORM\JoinColumn(name="medical_reported_injury_type_id", referencedColumnName="id")
      */
     private $medical_reported_injury_type;
