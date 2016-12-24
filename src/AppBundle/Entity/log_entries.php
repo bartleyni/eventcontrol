@@ -47,9 +47,9 @@ class log_entries {
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="operator", referencedColumnName="id")
      */
-    private $User_id;
+    private $operator;
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
@@ -251,7 +251,7 @@ class log_entries {
      */
     public function setOperator(\AppBundle\Entity\User $operator = null)
     {
-        $this->User_id = $operator;
+        $this->operator = $operator;
 
         return $this;
     }
@@ -263,7 +263,7 @@ class log_entries {
      */
     public function getOperator()
     {
-        return $this->User_id;
+        return $this->operator;
     }
     
     /**
