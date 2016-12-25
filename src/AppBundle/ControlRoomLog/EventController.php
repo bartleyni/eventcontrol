@@ -173,6 +173,7 @@ class EventController extends Controller
             
                 //Get orifginal filename
                 $OriginalFilename = $event->getOverlayImage()->getClientOriginalName();
+                $OriginalFilename = $event->getOverlayImage();
                 
                 if($OriginalFilename != $current_overlay){
                     /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
