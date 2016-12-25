@@ -145,7 +145,7 @@ class EventController extends Controller
             $query = $qb->getQuery();
             $operators = $query->getResult();
             
-            if ($form->isSubmitted() == false or $form->isValid() == false) {
+            if ($form == null){
                 if($event->getOverlayImage()){
                     $event->setOverlayImage(
                         new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
