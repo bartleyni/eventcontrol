@@ -158,7 +158,7 @@ Event Entry Form
                                         <strong>Current File:</strong>
                                     </div>
                                     <div class="col-md-6">
-                                        {{ current_overlay }}
+                                        <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
                                     </div>
                                 </div>
                             </div><br>
