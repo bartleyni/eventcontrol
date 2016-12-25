@@ -171,13 +171,15 @@ class EventController extends Controller
             
             if($event->getOverlayImage()){
             
-                //Get orifginal filename
+                //Get original filename
+                
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 $file = $event->getOverlayImage();
                 $OriginalFilename = $event->getOverlayImage()->getClientOriginalName();
                 //$OriginalFilename = $event->getOverlayImage();
                 
-                if($OriginalFilename != $current_overlay){
-                    /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                if($OriginalFilename != $current_overlay && $OriginalFilename != NULL){
+                    
                     //$file = $event->getOverlayImage();
 
                     $filename = md5(uniqid()).'.'.$file->guessExtension();
