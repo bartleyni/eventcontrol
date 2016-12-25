@@ -167,19 +167,28 @@ class EventController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+            
+            
             if($event->getOverlayImage()){
             
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $file = $event->getOverlayImage();
+                //Get orifginal filename
+                $OriginalFilename = $event->getOverlayImage()->getClientOriginalName();
+                
+                if($OriginalFilename != $current_overlay){
+                    /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                    $file = $event->getOverlayImage();
 
-                $filename = md5(uniqid()).'.'.$file->guessExtension();
+                    $filename = md5(uniqid()).'.'.$file->guessExtension();
 
-                $file->move(
-                    $this->getParameter('overlay_directory'),
-                    $filename
-                );
-
-                $event->setOverlayImage($filename);
+                    $file->move(
+                        $this->getParameter('overlay_directory'),
+                        $filename
+                    );
+                    
+                    $event->setOverlayImage($filename);
+                } else {
+                    $event->setOverlayImage($OriginalFilename);
+                }
             }
             
             $event_operators = $form['event_operators']->getData();
