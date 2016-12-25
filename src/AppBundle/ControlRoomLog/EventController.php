@@ -145,13 +145,6 @@ class EventController extends Controller
             $query = $qb->getQuery();
             $operators = $query->getResult();
             
-            if (empty($form)){
-                if($event->getOverlayImage()){
-                    $event->setOverlayImage(
-                        new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
-                    );
-                }
-            }
             $em->flush();
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId,));
             $form->handleRequest($request);

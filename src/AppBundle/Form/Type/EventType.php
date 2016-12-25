@@ -73,7 +73,8 @@ class EventType extends AbstractType
                 'label' => 'Overlay Image (.png)',
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'data-class' => null
                 )
             )) 
             ->add('event_date', 'datetime', array(
