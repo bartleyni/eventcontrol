@@ -342,8 +342,10 @@ Control Room Log Edit
                 });
 
                 var bounds = new google.maps.LatLngBounds(
-                    new google.maps.LatLng(51.37808, -2.32938),
-                    new google.maps.LatLng(51.38039, -2.32373)
+                    //new google.maps.LatLng(51.37808, -2.32938),
+                    new google.maps.LatLng({{ NEbound }}),
+                    //new google.maps.LatLng(51.38039, -2.32373)
+                    new google.maps.LatLng({{ SWbound }})
                 );
 
                 var srcImage = 'https://eventcontrol.nb221.com/media/png/SB16_SITE';
