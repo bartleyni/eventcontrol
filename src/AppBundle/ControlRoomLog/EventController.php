@@ -145,16 +145,16 @@ class EventController extends Controller
             $query = $qb->getQuery();
             $operators = $query->getResult();
             
-            $currenet_overlay = null;
-            $current_overlay  = $event->getOverlayImage();
+            $current_overlay = null;
+            $current_overlay = $event->getOverlayImage();
             
             $em->flush();
             
-            if($current_overlay){
+            //if($current_overlay){
                 $event->setOverlayImage(
                     new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
                 );
-            }
+            //}
             
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
             
