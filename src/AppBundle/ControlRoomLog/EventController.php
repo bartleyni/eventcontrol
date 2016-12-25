@@ -151,7 +151,8 @@ class EventController extends Controller
             
             if($current_overlay){
                 $event->setOverlayImage(
-                    new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
+                    //new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
+                    new File($event->getOverlayImage())
                 );
             }
             
