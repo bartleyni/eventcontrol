@@ -144,6 +144,8 @@ class EventController extends Controller
             
             $query = $qb->getQuery();
             $operators = $query->getResult();
+            
+            $currenet_overlay = null;
             $current_overlay  = $event->getOverlayImage();
             
             $em->flush();
@@ -155,7 +157,13 @@ class EventController extends Controller
             }
             
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId, 'current_overlay' => $current_overlay));
+            
             $form->handleRequest($request);
+            
+            if (!$form->isSubmitted() or !$form->isValid()){
+                //Do nothing until I think of something to go here
+                
+            }
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
