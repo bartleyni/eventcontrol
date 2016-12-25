@@ -151,8 +151,7 @@ class EventController extends Controller
             
             if($current_overlay){
                 $event->setOverlayImage(
-                    //new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
-                    new File($event->getOverlayImage())
+                    new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
                 );
             }
             
@@ -238,7 +237,7 @@ class EventController extends Controller
         
         return $this->render(
             'eventForm.html.twig',
-            array('form' => $form->createView(), 'event' => $event, 'current_overlay' => $current_overlay)
+            array('form' => $form->createView(), 'event' => $event, 'OriginalFilename' => $OriginalFilename, 'current_overlay' => $current_overlay)
         );
     }
     
