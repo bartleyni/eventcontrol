@@ -151,14 +151,14 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
-                        {% if event.overlay_image is defined %}
+                        {% if current_overlay is defined %}
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-2">
                                         Current File:
                                     </div>
                                     <div class="col-md-6">
-                                        {{ event.overlay_image }}
+                                        {{ current_overlay }}
                                     </div>
                                 </div>
                             </div><br>

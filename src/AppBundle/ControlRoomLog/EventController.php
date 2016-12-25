@@ -144,9 +144,10 @@ class EventController extends Controller
             
             $query = $qb->getQuery();
             $operators = $query->getResult();
+            $current_overlay  = $event->getOverlayImage();
             
             $em->flush();
-            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId,));
+            
             $form->handleRequest($request);
         }
         
@@ -209,6 +210,15 @@ class EventController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('event_list');
+        } else {
+            if($current_overlay){
+                $event->setOverlayImage(
+                    new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
+                );
+            }
+            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId, 'current_overlay' => $current_overlay));
+            
+            
         }
         
         return $this->render(
