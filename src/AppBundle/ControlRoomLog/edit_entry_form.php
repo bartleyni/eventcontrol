@@ -86,8 +86,7 @@ class edit_entry_form extends Controller
         $eventLong = $eventLatLong[1];
         $NEbound = $entryEvent->getNorthEastBounds();
         $SWbound = $entryEvent->getSouthWestBounds();
-        $fullOverlayName = explode(".",$entryEvent->getOverlayImageName());
-        $overlay = $fullOverlayName[0];
+        $overlay = $entryEvent->getOverlayImageName();
         
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
