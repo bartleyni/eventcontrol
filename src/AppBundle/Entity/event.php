@@ -474,6 +474,11 @@ class event {
     {
         return $this->UPSs;
     }
+
+    public function getVenue()
+    {
+        return $this->venue;
+    }
     
     /**
      * Get northEastBounds_lat_long
@@ -699,6 +704,31 @@ class event {
     {
         $this->UPSs->removeElement($uPSs);
     }
+    /**
+     * Add Venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     *
+     * @return event
+     */
+
+    public function addVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venue[] = $venue;
+
+        return $this;
+    }
+
+    /**
+     * Remove venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     */
+    public function removeVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venue->removeElement($venue);
+    }
+
 
     /**
      * Add location
