@@ -54,6 +54,23 @@ class FileController extends Controller
         }
     }
     
+        /**
+     * @Route("/log_support/{filename}", name="log_support")
+     */
+    public function logSupport(Request $request, $filename=null)
+    {
+        $response = new Response();
+
+        if ($filename){
+            $file = $this->getParameter('log_support_directory').'/'.$filename;
+            $response = new BinaryFileResponse($file);
+            return $response;
+            
+        }else{
+                return $this->redirectToRoute('full_log');
+        }
+    }
+    
     /**
     * @Route("/media/iframe/{type}/{filename}", name="media_iframe");
     * 
