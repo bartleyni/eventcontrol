@@ -24,12 +24,12 @@ class LocationType extends AbstractType
         $builder
             ->add('locationText', 'text', array(
                 'attr' => array(
-                    'class' => 'collection form-control'
+                    'class' => 'collection'
                 )
             ))
             ->add('locationLatLong', 'text', array(
                 'attr' => array(
-                    'class' => 'collection form-control'
+                    'class' => 'collection'
                 )
             ))    
         ;
