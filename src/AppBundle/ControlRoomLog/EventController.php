@@ -188,7 +188,7 @@ class EventController extends Controller
         
         return $this->render(
             'eventForm.html.twig',
-            array('form' => $form->createView(), 'event' => $event, 'OriginalFilename' => $OriginalFilename, 'current_overlay' => $current_overlay)
+            array('form' => $form->createView(), 'event' => $event, 'current_overlay' => $current_overlay)
         );
     }
     
