@@ -167,13 +167,7 @@ Event Entry Form
                         <div class="row">   
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    {{ form_label(form.locations) }} 
-                                    {{ form_errors(form.locations) }}
-                                </div>
-                                <div class="col-md-4">
-                                    {% for location in form.locations %}
-                                        {{ form_widget(location) }}<br>
-                                    {% endfor %}
+                                    {{ form_row(form.locations}}
                                 </div>
                             </div>
                         </div><br>
