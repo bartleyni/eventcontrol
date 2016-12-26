@@ -23,11 +23,13 @@ class LocationType extends AbstractType
     {
         $builder
             ->add('locationText', 'text', array(
+                'label' => 'Location (Text):',
                 'attr' => array(
                     'class' => 'collection'
                 )
             ))
             ->add('locationLatLong', 'text', array(
+                'label' => 'Co-ordinates (Latitude, Longitude):',
                 'attr' => array(
                     'class' => 'collection'
                 )
