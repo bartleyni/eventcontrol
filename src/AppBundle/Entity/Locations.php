@@ -40,7 +40,7 @@ class Locations {
     private $locationLatLong;
     
     /**
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="Locations")
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="locations")
      * @ORM\JoinColumn(name="event", referencedColumnName="id")
      */
     private $event;
