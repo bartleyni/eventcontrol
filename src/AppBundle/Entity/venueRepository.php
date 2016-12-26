@@ -1,4 +1,3 @@
-s (70 sloc)  3.61 KB
 <?php
 namespace AppBundle\Entity;
 use AppBundle\Entity;
