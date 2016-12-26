@@ -171,11 +171,9 @@ Event Entry Form
                                     {{ form_errors(form.locations) }}
                                 </div>
                                 <div class="col-md-4">
-                                    <ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
-                                        {% for location in form.locations %}
-                                            {{ form_widget(location) }}<br>
-                                        {% endfor %}
-                                    </ul>
+                                    {% for location in form.locations %}
+                                        {{ form_widget(location) }}<br>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div><br>

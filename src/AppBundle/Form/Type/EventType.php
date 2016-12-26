@@ -130,8 +130,9 @@ class EventType extends AbstractType
                 'by_reference' => false,
                 'allow_delete' => true,
                 'prototype' => true,
+                'delete_empty' => true,
                 'attr' => array(
-                    'class' => 'form-control my-selector'
+                    'class' => 'my-selector'
                 )
             ))    
             ->add('submit', 'submit', array(
