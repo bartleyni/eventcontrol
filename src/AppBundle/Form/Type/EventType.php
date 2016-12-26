@@ -123,7 +123,8 @@ class EventType extends AbstractType
                 )
             ))
             ->add('locations', CollectionType::class, array(
-                'entry_type' => LocationType::class
+                'entry_type' => LocationType::class,
+                'allow_add'  => true
             ))    
             ->add('submit', 'submit', array(
                 'attr' => array(
