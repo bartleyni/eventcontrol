@@ -123,8 +123,10 @@ class EventType extends AbstractType
                 )
             ))
             ->add('locations', CollectionType::class, array(
+                'label' => 'Locations',
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )

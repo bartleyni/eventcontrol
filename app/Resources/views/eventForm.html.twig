@@ -172,7 +172,7 @@ Event Entry Form
                                 <div class="col-md-4">
                                     <ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
                                         {% for location in form.locations %}
-                                            {{ form_widget(location) }} {{ form_label(location) }}<br>
+                                            {{ form_widget(location) }}<br>
                                         {% endfor %}
                                     </ul>
                                 </div>
