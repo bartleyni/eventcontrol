@@ -6,10 +6,10 @@ Event Entry Form
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-            {% form_theme form 'jquery.collection.html.twig' %}
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
+                        {% form_theme form 'jquery.collection.html.twig' %}
                         {{ form_start(form) }}
                         <br>
                         <div class="row">
