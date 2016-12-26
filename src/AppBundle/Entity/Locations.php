@@ -41,7 +41,7 @@ class Locations {
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="locations")
-     * @ORM\JoinColumn(name="event", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id", nullable=false)
      */
     private $event;
     

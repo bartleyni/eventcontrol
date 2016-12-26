@@ -51,4 +51,9 @@ class venue
     {
         return (string) $this->getName();
     }
+    
+    public function __construct()
+    {
+        $this->event = new ArrayCollection();
+    }
 }
