@@ -47,4 +47,8 @@ class venue
      */
     private $event;
 
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }
