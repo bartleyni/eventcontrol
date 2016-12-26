@@ -29,12 +29,12 @@ class venue_camera {
      * @ORM\JoinColumn(name="camera_id", referencedColumnName="id")
      *
      */
-    protected $camera;
+    protected $camera_id;
     /**
      * @ORM\ManyToOne(targetEntity="venue", inversedBy="venue_camera")
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
      */
-    protected $venue;
+    protected $venue_id;
     /**
      * @ORM\Column(type="boolean", nullable=false, )
      */

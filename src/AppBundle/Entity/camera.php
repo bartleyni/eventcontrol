@@ -42,7 +42,7 @@ class camera {
      */
     protected $location;
     /**
-     * @ORM\OneToMany(targetEntity="venue_camera", mappedBy="camera")
+     * @ORM\OneToMany(targetEntity="venue_camera", mappedBy="camera_id")
      */
     protected $venue_camera;
 

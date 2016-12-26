@@ -33,7 +33,7 @@ class venue
      */
     protected $name;
     /**
-     * @ORM\OneToMany(targetEntity="venue_camera", mappedBy="venue")
+     * @ORM\OneToMany(targetEntity="venue_camera", mappedBy="venue_id")
      */
     protected $venue_camera;
     /**
