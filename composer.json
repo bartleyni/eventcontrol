@@ -23,7 +23,7 @@
 	"ninsuo/symfony-collection": "~2.0",
         "vich/uploader-bundle": "^0.14.0",
         "suncat/mobile-detect-bundle": "^0.10.3",
-        "components/jqueryui":   "^1.21"
+        "components/jqueryui":   "~1.11"
 
 
     },
