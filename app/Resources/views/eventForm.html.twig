@@ -109,11 +109,11 @@ Event Entry Form
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    {{ form_label(form.event_venue) }}
-                                    {{ form_errors(form.event_venue) }}
+                                    {{ form_label(form.venues) }}
+                                    {{ form_errors(form.venues) }}
                                 </div>
                                 <div class="col-md-6">
-                                    {% for venue in form.event_venue %}
+                                    {% for venue in form.venues %}
                                         {{ form_widget(venue) }} {{ form_label(venue) }}<br>
                                     {% endfor %}
                                 </div>
