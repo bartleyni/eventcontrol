@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.9",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.8.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
         "symfony/assetic-bundle": "~2.3",
@@ -19,7 +19,13 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "ircmaxell/password-compat": "^1.0",
-        "knplabs/knp-snappy-bundle": "~1.4"
+        "knplabs/knp-snappy-bundle": "~1.4",
+	"ninsuo/symfony-collection": "~2.0",
+        "vich/uploader-bundle": "^0.14.0",
+        "suncat/mobile-detect-bundle": "^0.10.3",
+        "components/jqueryui":   "~1.11"
+
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

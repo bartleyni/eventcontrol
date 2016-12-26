@@ -286,4 +286,28 @@ class User implements AdvancedUserInterface, \Serializable {
     {
         return $this->isActive;
     }
+
+    /**
+     * Add group
+     *
+     * @param \AppBundle\Entity\Group $group
+     *
+     * @return User
+     */
+    public function addGroup(\AppBundle\Entity\Group $group)
+    {
+        $this->groups[] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Remove group
+     *
+     * @param \AppBundle\Entity\Group $group
+     */
+    public function removeGroup(\AppBundle\Entity\Group $group)
+    {
+        $this->groups->removeElement($group);
+    }
 }

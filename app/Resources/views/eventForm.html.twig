@@ -9,6 +9,7 @@ Event Entry Form
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
+                        {% form_theme form 'jquery.collection.html.twig' %}
                         {{ form_start(form) }}
                         <br>
                         <div class="row">
@@ -118,6 +119,62 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.northEastBounds_lat_long) }} 
+                                    {{ form_errors(form.northEastBounds_lat_long) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_widget(form.northEastBounds_lat_long) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">  
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.southWestBounds_lat_long) }} 
+                                    {{ form_errors(form.southWestBounds_lat_long) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_widget(form.southWestBounds_lat_long) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.overlay_imageFile) }} 
+                                    {{ form_errors(form.overlay_imageFile) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_widget(form.overlay_imageFile) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        {% if current_overlay %}
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <strong>Current File: </strong>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
+                                    </div>
+                                </div>
+                            </div><br>
+                        {% endif %}
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.locations) }}
+                                    {{ form_errors(form.locations) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_widget(form.locations) }}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">  
                             <div class="col-md-8">
                                 {% if event.id is defined %}
@@ -137,7 +194,16 @@ Event Entry Form
     {% endembed %}
 {% endblock %}
 {% block scripts %}
+    <script src="{{ asset('assets/vendor/symfony-collection/jquery.collection.js') }}"></script>
     <script type="text/javascript">
+        $('.collection').collection({
+            allow_up: false,
+            allow_down: false,
+            allow_duplicate: false,
+            add_at_the_end: true,
+            name_prefix:  '{{ form.locations.vars.full_name }}'
+        });
+        
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 useCurrent: false,
@@ -161,5 +227,8 @@ Event Entry Form
                 showTodayButton: true
             });
         });
-    </script>        
+        
+        
+    </script>
+    
 {% endblock %}        

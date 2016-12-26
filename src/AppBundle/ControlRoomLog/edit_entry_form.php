@@ -78,6 +78,16 @@ class edit_entry_form extends Controller
             throw $this->createAccessDeniedException();
         }
         
+        //Get the Lat and Long from the event
+        
+        $entryEvent = $entry->getEvent();
+        $eventLatLong = explode(",",$entryEvent->getEventLatLong());
+        $eventLat = $eventLatLong[0];
+        $eventLong = $eventLatLong[1];
+        $NEbound = $entryEvent->getNorthEastBounds();
+        $SWbound = $entryEvent->getSouthWestBounds();
+        $overlay = $entryEvent->getOverlayImageName();
+        
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
                 $medical = new medical_log();
@@ -222,7 +232,7 @@ class edit_entry_form extends Controller
         {
             //return $this->redirect('../log/');
         }
-        return $this->render('editForm.html.twig', array('entry'=> $entry, 'medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed, 'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
+        return $this->render('editForm.html.twig', array('entry'=> $entry, 'overlayFileName' =>$overlay, 'eventLat'=> $eventLat, 'eventLong'=> $eventLong, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed, 'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
     }
     
     /**

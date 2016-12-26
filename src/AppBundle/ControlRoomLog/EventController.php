@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\UploadFile;
+use Symfony\Component\HttpFoundation\File\File;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
 use AppBundle\Entity\user_events;
@@ -79,9 +81,7 @@ class EventController extends Controller
             $em->flush();
             
             $event_operators = $form['event_operators']->getData();
-            
-            //$all_users = $em->getRepository('AppBundle\Entity\User');
-            
+                                   
             if($event_operators)
             {                
                 foreach ($event_operators as $key => $operatorId)
@@ -130,9 +130,13 @@ class EventController extends Controller
             
             $query = $qb->getQuery();
             $operators = $query->getResult();
+          
+            $current_overlay = $event->getOverlayImageName();
             
             $em->flush();
-            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId,));
+            
+            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
+            
             $form->handleRequest($request);
         }
         
@@ -184,7 +188,7 @@ class EventController extends Controller
         
         return $this->render(
             'eventForm.html.twig',
-            array('form' => $form->createView(), 'event' => $event)
+            array('form' => $form->createView(), 'event' => $event, 'current_overlay' => $current_overlay)
         );
     }
     

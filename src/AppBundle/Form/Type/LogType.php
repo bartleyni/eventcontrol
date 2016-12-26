@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class LogType extends AbstractType
 {
@@ -74,12 +75,13 @@ class LogType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             )) 
-//            ->add('log_files', 'file', array(
-//                'label' => 'Associated Files',
-//                'attr' => array(
-//                    'class' => 'form-control'
-//                )
-//            ))
+            ->add('log_supportFile', 'vich_file', array(
+                'label' => 'Supporting Files',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',

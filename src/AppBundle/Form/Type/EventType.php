@@ -13,6 +13,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class EventType extends AbstractType
 {
@@ -54,6 +56,27 @@ class EventType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
+            ->add('northEastBounds_lat_long', 'text', array(
+                'label' => 'North East Bound Latitude,Longitude',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('southWestBounds_lat_long', 'text', array(
+                'label' => 'South West Bound Latitude,Longitude',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('overlay_imageFile', 'file', array(
+                'label' => 'Overlay Image (.png)',
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            )) 
             ->add('event_date', 'datetime', array(
                 'label' => 'Date of Event',
                 'widget' => 'single_text',
@@ -99,6 +122,19 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
+            ->add('locations', 'collection', array(
+                'label' => 'Locations',
+                'entry_type' => LocationType::class,
+                'allow_add'  => true,
+                'required' => false,
+                'by_reference' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'delete_empty' => true,
+                'attr' => array(
+                    'class' => 'form-control collection',
+                )
+            ))    
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
@@ -135,5 +171,10 @@ class EventType extends AbstractType
             'data_class' => 'AppBundle\Entity\event',
             'event_id' => null,
         ));
+    }
+    
+    public function getBlockPrefix()
+    {
+        return 'LocationType';
     }
 }

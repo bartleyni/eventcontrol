@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityManager;
 
 
-class AppExtension extends \Twig_Extension
+class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $doctrine;
   

@@ -17,10 +17,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 
 class event {
@@ -101,7 +106,45 @@ class event {
      * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
      *
      */
-    protected $UPSs; 
+    protected $UPSs;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $northEastBounds_lat_long;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $southWestBounds_lat_long;
+    
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="event_overlay", fileNameProperty="overlay_imageName")
+     * 
+     * @var File
+     */
+    private $overlay_imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $overlay_imageName;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $overlay_updatedAt;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
+    */
+    protected $locations;
     
     public function __toString()
     {
@@ -426,4 +469,252 @@ class event {
         return $this->UPSs;
     }
     
+    /**
+     * Get northEastBounds_lat_long
+     *
+     * @return string
+     */
+    public function getNorthEastBounds()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+    
+    /**
+     * Set northEastBounds_lat_long
+     *
+     * @param string $northEastBounds_lat_long
+     *
+     * @return event
+     */
+    public function setNorthEastBounds($northEastBounds_lat_long)
+    {
+        $this->northEastBounds_lat_long = $northEastBounds_lat_long;
+
+        return $this;
+    }
+    
+    /**
+     * Get southWestBounds_lat_long
+     *
+     * @return string
+     */
+    public function getSouthWestBounds()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+    
+    /**
+     * Set southWestBounds_lat_long
+     *
+     * @param string $southWestBounds_lat_long
+     *
+     * @return event
+     */
+    public function setSouthWestBounds($southWestBounds_lat_long)
+    {
+        $this->southWestBounds_lat_long = $southWestBounds_lat_long;
+
+        return $this;
+    }
+    
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return event
+     */
+    public function setOverlayImageFile(File $image = null)
+    {
+        $this->overlay_imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->overlay_updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getOverlayImageFile()
+    {
+        return $this->overlay_imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return event
+     */
+    public function setOverlayImageName($imageName)
+    {
+        $this->overlay_imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOverlayImageName()
+    {
+        return $this->overlay_imageName;
+    }
+    
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * Set northEastBoundsLatLong
+     *
+     * @param string $northEastBoundsLatLong
+     *
+     * @return event
+     */
+    public function setNorthEastBoundsLatLong($northEastBoundsLatLong)
+    {
+        $this->northEastBounds_lat_long = $northEastBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get northEastBoundsLatLong
+     *
+     * @return string
+     */
+    public function getNorthEastBoundsLatLong()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+
+    /**
+     * Set southWestBoundsLatLong
+     *
+     * @param string $southWestBoundsLatLong
+     *
+     * @return event
+     */
+    public function setSouthWestBoundsLatLong($southWestBoundsLatLong)
+    {
+        $this->southWestBounds_lat_long = $southWestBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get southWestBoundsLatLong
+     *
+     * @return string
+     */
+    public function getSouthWestBoundsLatLong()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+
+    /**
+     * Set overlayUpdatedAt
+     *
+     * @param \DateTime $overlayUpdatedAt
+     *
+     * @return event
+     */
+    public function setOverlayUpdatedAt($overlayUpdatedAt)
+    {
+        $this->overlay_updatedAt = $overlayUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get overlayUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getOverlayUpdatedAt()
+    {
+        return $this->overlay_updatedAt;
+    }
+
+    /**
+     * Add logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     *
+     * @return event
+     */
+    public function addLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries[] = $logEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     */
+    public function removeLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries->removeElement($logEntry);
+    }
+
+    /**
+     * Add uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     *
+     * @return event
+     */
+    public function addUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs[] = $uPSs;
+
+        return $this;
+    }
+
+    /**
+     * Remove uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     */
+    public function removeUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs->removeElement($uPSs);
+    }
+
+    /**
+     * Add location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     *
+     * @return event
+     */
+    public function addLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations[] = $location;
+
+        return $this;
+    }
+
+    /**
+     * Remove location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     */
+    public function removeLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations->removeElement($location);
+    }
 }

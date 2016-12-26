@@ -8,11 +8,14 @@ imports:
 parameters:
     locale: en
     log_files_directory: '%kernel.root_dir%/../media/logFiles'
+    overlay_directory: '%kernel.root_dir%/../media/overlay'
+    log_support_directory: '%kernel.root_dir%/../media/log_support'
 
 framework:
     #esi:             ~
     #
     #translator:      { fallbacks: ["%locale%"] }
+    translator: ~
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -39,6 +42,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'jquery.collection.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -102,3 +108,25 @@ mobile_detect:
         mobile: ~
         tablet: ~
     switch_device_view: ~
+
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        event_overlay:
+            uri_prefix:         /overlay
+            upload_destination: '%kernel.root_dir%/../media/overlay'
+            
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            
+        log_support_file:
+            uri_prefix:         /log_support
+            upload_destination: '%kernel.root_dir%/../media/log_support'
+            
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            
+            namer:              vich_uploader.namer_uniqid
