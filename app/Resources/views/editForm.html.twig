@@ -348,7 +348,7 @@ Control Room Log Edit
                     new google.maps.LatLng({{ SWbound }})
                 );
 
-                var srcImage = 'https://eventcontrol.nb221.com/media/png/SB16_SITE';
+                var srcImage = '{{ path('overlay', {'filename': overlayFileName}) }}';
 
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
 
