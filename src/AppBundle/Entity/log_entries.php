@@ -450,4 +450,28 @@ class log_entries {
     {
         return $this->log_supportFileName;
     }
+
+    /**
+     * Set logSupportUpdatedAt
+     *
+     * @param \DateTime $logSupportUpdatedAt
+     *
+     * @return log_entries
+     */
+    public function setLogSupportUpdatedAt($logSupportUpdatedAt)
+    {
+        $this->log_supportUpdatedAt = $logSupportUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get logSupportUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getLogSupportUpdatedAt()
+    {
+        return $this->log_supportUpdatedAt;
+    }
 }

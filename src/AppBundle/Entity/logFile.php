@@ -106,4 +106,62 @@ class logFile
 
        $this->file = null;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return logFile
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     *
+     * @return logFile
+     */
+    public function setLogEntry(\AppBundle\Entity\log_entries $logEntry = null)
+    {
+        $this->log_entry = $logEntry;
+
+        return $this;
+    }
+
+    /**
+     * Get logEntry
+     *
+     * @return \AppBundle\Entity\log_entries
+     */
+    public function getLogEntry()
+    {
+        return $this->log_entry;
+    }
 }

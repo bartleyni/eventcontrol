@@ -15,17 +15,23 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="log_entries")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 
 class log_entries {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
     
@@ -46,13 +52,13 @@ class log_entries {
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="operator", referencedColumnName="id")
      */
     private $operator;
     
     /**
      * @ORM\ManyToOne(targetEntity="event", inversedBy="log_entries")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
      */
     private $event;
     
@@ -70,7 +76,46 @@ class log_entries {
      * @ORM\Column(type="text")
      */
     protected $reported_by;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $park_alert;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $latitude;
+    
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $longitude;
 
+/**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="log_supportFileName")
+     * 
+     * @var File
+     */
+    private $log_supportFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $log_supportFileName;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $log_supportUpdatedAt;
+    
+    
     /**
      * Get id
      *
@@ -272,5 +317,161 @@ class log_entries {
     public function getEvent()
     {
         return $this->event;
+    }
+    
+    /** Set park_alert
+     *
+     * @param boolean $park_alert
+     *
+     * @return log_entries
+     */
+    public function setParkAlert($park_alert)
+    {
+        $this->park_alert = $park_alert;
+
+        return $this;
+    }
+
+    /**
+     * Get park_alert
+     *
+     * @return boolean
+     */
+    public function getParkAlert()
+    {
+        return $this->park_alert;
+    }
+    
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     *
+     * @return log_entries
+     */
+    public function setLatitude($latitude)
+    {
+        if($this->id)
+        {
+            //Do nothing
+        } else {
+            $this->latitude = $latitude;
+        }
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+    
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     *
+     * @return log_entries
+     */
+    public function setLongitude($longitude)
+    {
+        if($this->id)
+        {
+            //Do nothing
+        } else {
+            $this->longitude = $longitude;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+    
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return event
+     */
+    public function setLogSupportFile(File $file = null)
+    {
+        $this->log_supportFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->log_supportUpdatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getLogSupportFile()
+    {
+        return $this->log_supportFile;
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return event
+     */
+    public function setLogSupportFileName($fileName)
+    {
+        $this->log_supportFileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLogSupportFileName()
+    {
+        return $this->log_supportFileName;
+    }
+
+    /**
+     * Set logSupportUpdatedAt
+     *
+     * @param \DateTime $logSupportUpdatedAt
+     *
+     * @return log_entries
+     */
+    public function setLogSupportUpdatedAt($logSupportUpdatedAt)
+    {
+        $this->log_supportUpdatedAt = $logSupportUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get logSupportUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getLogSupportUpdatedAt()
+    {
+        return $this->log_supportUpdatedAt;
     }
 }

@@ -573,4 +573,148 @@ class event {
     {
         return $this->locations;
     }
+
+    /**
+     * Set northEastBoundsLatLong
+     *
+     * @param string $northEastBoundsLatLong
+     *
+     * @return event
+     */
+    public function setNorthEastBoundsLatLong($northEastBoundsLatLong)
+    {
+        $this->northEastBounds_lat_long = $northEastBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get northEastBoundsLatLong
+     *
+     * @return string
+     */
+    public function getNorthEastBoundsLatLong()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+
+    /**
+     * Set southWestBoundsLatLong
+     *
+     * @param string $southWestBoundsLatLong
+     *
+     * @return event
+     */
+    public function setSouthWestBoundsLatLong($southWestBoundsLatLong)
+    {
+        $this->southWestBounds_lat_long = $southWestBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get southWestBoundsLatLong
+     *
+     * @return string
+     */
+    public function getSouthWestBoundsLatLong()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+
+    /**
+     * Set overlayUpdatedAt
+     *
+     * @param \DateTime $overlayUpdatedAt
+     *
+     * @return event
+     */
+    public function setOverlayUpdatedAt($overlayUpdatedAt)
+    {
+        $this->overlay_updatedAt = $overlayUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get overlayUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getOverlayUpdatedAt()
+    {
+        return $this->overlay_updatedAt;
+    }
+
+    /**
+     * Add logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     *
+     * @return event
+     */
+    public function addLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries[] = $logEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     */
+    public function removeLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries->removeElement($logEntry);
+    }
+
+    /**
+     * Add uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     *
+     * @return event
+     */
+    public function addUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs[] = $uPSs;
+
+        return $this;
+    }
+
+    /**
+     * Remove uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     */
+    public function removeUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs->removeElement($uPSs);
+    }
+
+    /**
+     * Add location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     *
+     * @return event
+     */
+    public function addLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations[] = $location;
+
+        return $this;
+    }
+
+    /**
+     * Remove location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     */
+    public function removeLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations->removeElement($location);
+    }
 }

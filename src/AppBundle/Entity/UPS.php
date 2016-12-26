@@ -109,4 +109,96 @@ class UPS {
     {
         $this->location = $location;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set power
+     *
+     * @param string $power
+     *
+     * @return UPS
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return string
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Add uPSStatus
+     *
+     * @param \AppBundle\Entity\UPS_Status $uPSStatus
+     *
+     * @return UPS
+     */
+    public function addUPSStatus(\AppBundle\Entity\UPS_Status $uPSStatus)
+    {
+        $this->UPS_Status[] = $uPSStatus;
+
+        return $this;
+    }
+
+    /**
+     * Remove uPSStatus
+     *
+     * @param \AppBundle\Entity\UPS_Status $uPSStatus
+     */
+    public function removeUPSStatus(\AppBundle\Entity\UPS_Status $uPSStatus)
+    {
+        $this->UPS_Status->removeElement($uPSStatus);
+    }
+
+    /**
+     * Get uPSStatus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUPSStatus()
+    {
+        return $this->UPS_Status;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return UPS
+     */
+    public function addEvent(\AppBundle\Entity\event $event)
+    {
+        $this->event[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvent(\AppBundle\Entity\event $event)
+    {
+        $this->event->removeElement($event);
+    }
 }

@@ -129,4 +129,64 @@ class ControlRoomLED {
 
         return $this;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get timestamp
+     *
+     * @return \DateTime
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Get ledRef
+     *
+     * @return string
+     */
+    public function getLedRef()
+    {
+        return $this->ledRef;
+    }
+
+    /**
+     * Get colour
+     *
+     * @return string
+     */
+    public function getColour()
+    {
+        return $this->colour;
+    }
+
+    /**
+     * Get brightness
+     *
+     * @return string
+     */
+    public function getBrightness()
+    {
+        return $this->brightness;
+    }
+
+    /**
+     * Get operator
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
 }

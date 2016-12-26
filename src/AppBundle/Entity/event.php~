@@ -16,18 +16,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 
 class event {
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
  
@@ -57,13 +63,97 @@ class event {
     protected $event_log_stop_date;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\OneToMany(targetEntity="log_entries", mappedBy="event")
      */
-    protected $event_active;
+    private $log_entries;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_report_run_date;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $event_report_filename;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $event_lat_long;
+    
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    protected $event_last_weather;
+    
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    protected $event_last_weather_warning;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_last_weather_warning_update;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $event_last_weather_update;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
+     *
+     */
+    protected $UPSs;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $northEastBounds_lat_long;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $southWestBounds_lat_long;
+    
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="event_overlay", fileNameProperty="overlay_imageName")
+     * 
+     * @var File
+     */
+    private $overlay_imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $overlay_imageName;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $overlay_updatedAt;
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
+    */
+    protected $locations;
     
     public function __toString()
     {
         return (string) $this->getName();
+    }
+    
+    public function __construct()
+    {
+        $this->UPSs = new ArrayCollection();
     }
 
     /**
@@ -197,26 +287,434 @@ class event {
     }
 
     /**
-     * Set eventActive
+     * Set eventReportRunDate
      *
-     * @param boolean $eventActive
+     * @param \DateTime $eventReportRunDate
      *
      * @return event
      */
-    public function setEventActive($eventActive)
+    public function setEventReportRunDate($eventReportRunDate)
     {
-        $this->event_active = $eventActive;
+        $this->event_report_run_date = $eventReportRunDate;
 
         return $this;
     }
 
     /**
-     * Get eventActive
+     * Get eventReportRunDate
      *
-     * @return boolean
+     * @return \DateTime
      */
-    public function getEventActive()
+    public function getEventReportRunDate()
     {
-        return $this->event_active;
+        return $this->event_report_run_date;
+    }
+    
+    /**
+     * Set event_report_filename
+     *
+     * @param string $event_report_filename
+     *
+     * @return event
+     */
+    public function setEventReportFilename($event_report_filename)
+    {
+        $this->event_report_filename = $event_report_filename;
+
+        return $this;
+    }
+
+    /**
+     * Get event_report_filename
+     *
+     * @return string
+     */
+    public function getEventReportFilename()
+    {
+        return $this->event_report_filename;
+    }
+    
+    /**
+     * Get logEntries
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogEntries()
+    {
+        return $this->log_entries;
+    }
+    
+    /**
+     * Set event_lat_long
+     *
+     * @param string $event_lat_long
+     *
+     * @return event
+     */
+    public function setEventLatLong($event_lat_long)
+    {
+        $this->event_lat_long = $event_lat_long;
+
+        return $this;
+    }
+
+    /**
+     * Get event_lat_long
+     *
+     * @return string
+     */
+    public function getEventLatLong()
+    {
+        return $this->event_lat_long;
+    }
+    
+    /**
+     * Set event_last_weather
+     *
+     * @param string $event_last_weather
+     *
+     * @return event
+     */
+    public function setEventLastWeather($event_last_weather)
+    {
+        $this->event_last_weather = $event_last_weather;
+
+        return $this;
+    }
+    
+    /**
+     * Get event_last_weather
+     *
+     * @return string
+     */
+    public function getEventLastWeather()
+    {
+        return $this->event_last_weather;
+    }
+    
+        /**
+     * Set event_last_weather_warning
+     *
+     * @param string $event_last_weather_warning
+     *
+     * @return event
+     */
+    public function setEventLastWeatherWarning($event_last_weather_warning)
+    {
+        $this->event_last_weather_warning = $event_last_weather_warning;
+
+        return $this;
+    }
+    
+    /**
+     * Get event_last_weather_warning
+     *
+     * @return string
+     */
+    public function getEventLastWeatherWarning()
+    {
+        return $this->event_last_weather_warning;
+    }
+    
+    /**
+     * Set eventLastWeatherUpdate
+     *
+     * @param \DateTime $eventLastWeatherUpdate
+     *
+     * @return event
+     */
+    public function setEventLastWeatherUpdate($eventLastWeatherUpdate)
+    {
+        $this->event_last_weather_update = $eventLastWeatherUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventLastWeatherUpdate
+     *
+     * @return \DateTime
+     */
+    public function getEventLastWeatherUpdate()
+    {
+        return $this->event_last_weather_update;
+    }
+    
+    /**
+     * Set eventLastWeatherWarningUpdate
+     *
+     * @param \DateTime $eventLastWeatherWarningUpdate
+     *
+     * @return event
+     */
+    public function setEventLastWeatherWarningUpdate($eventLastWeatherWarningUpdate)
+    {
+        $this->event_last_weather_warning_update = $eventLastWeatherWarningUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventLastWeatherWarningUpdate
+     *
+     * @return \DateTime
+     */
+    public function getEventLastWeatherWarningUpdate()
+    {
+        return $this->event_last_weather_warning_update;
+    }
+    
+    public function getUPSs()
+    {
+        return $this->UPSs;
+    }
+    
+    /**
+     * Get northEastBounds_lat_long
+     *
+     * @return string
+     */
+    public function getNorthEastBounds()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+    
+    /**
+     * Set northEastBounds_lat_long
+     *
+     * @param string $northEastBounds_lat_long
+     *
+     * @return event
+     */
+    public function setNorthEastBounds($northEastBounds_lat_long)
+    {
+        $this->northEastBounds_lat_long = $northEastBounds_lat_long;
+
+        return $this;
+    }
+    
+    /**
+     * Get southWestBounds_lat_long
+     *
+     * @return string
+     */
+    public function getSouthWestBounds()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+    
+    /**
+     * Set southWestBounds_lat_long
+     *
+     * @param string $southWestBounds_lat_long
+     *
+     * @return event
+     */
+    public function setSouthWestBounds($southWestBounds_lat_long)
+    {
+        $this->southWestBounds_lat_long = $southWestBounds_lat_long;
+
+        return $this;
+    }
+    
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return event
+     */
+    public function setOverlayImageFile(File $image = null)
+    {
+        $this->overlay_imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->overlay_updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getOverlayImageFile()
+    {
+        return $this->overlay_imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return event
+     */
+    public function setOverlayImageName($imageName)
+    {
+        $this->overlay_imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOverlayImageName()
+    {
+        return $this->overlay_imageName;
+    }
+    
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * Set northEastBoundsLatLong
+     *
+     * @param string $northEastBoundsLatLong
+     *
+     * @return event
+     */
+    public function setNorthEastBoundsLatLong($northEastBoundsLatLong)
+    {
+        $this->northEastBounds_lat_long = $northEastBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get northEastBoundsLatLong
+     *
+     * @return string
+     */
+    public function getNorthEastBoundsLatLong()
+    {
+        return $this->northEastBounds_lat_long;
+    }
+
+    /**
+     * Set southWestBoundsLatLong
+     *
+     * @param string $southWestBoundsLatLong
+     *
+     * @return event
+     */
+    public function setSouthWestBoundsLatLong($southWestBoundsLatLong)
+    {
+        $this->southWestBounds_lat_long = $southWestBoundsLatLong;
+
+        return $this;
+    }
+
+    /**
+     * Get southWestBoundsLatLong
+     *
+     * @return string
+     */
+    public function getSouthWestBoundsLatLong()
+    {
+        return $this->southWestBounds_lat_long;
+    }
+
+    /**
+     * Set overlayUpdatedAt
+     *
+     * @param \DateTime $overlayUpdatedAt
+     *
+     * @return event
+     */
+    public function setOverlayUpdatedAt($overlayUpdatedAt)
+    {
+        $this->overlay_updatedAt = $overlayUpdatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get overlayUpdatedAt
+     *
+     * @return \DateTime
+     */
+    public function getOverlayUpdatedAt()
+    {
+        return $this->overlay_updatedAt;
+    }
+
+    /**
+     * Add logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     *
+     * @return event
+     */
+    public function addLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries[] = $logEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove logEntry
+     *
+     * @param \AppBundle\Entity\log_entries $logEntry
+     */
+    public function removeLogEntry(\AppBundle\Entity\log_entries $logEntry)
+    {
+        $this->log_entries->removeElement($logEntry);
+    }
+
+    /**
+     * Add uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     *
+     * @return event
+     */
+    public function addUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs[] = $uPSs;
+
+        return $this;
+    }
+
+    /**
+     * Remove uPSs
+     *
+     * @param \AppBundle\Entity\UPS $uPSs
+     */
+    public function removeUPSs(\AppBundle\Entity\UPS $uPSs)
+    {
+        $this->UPSs->removeElement($uPSs);
+    }
+
+    /**
+     * Add location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     *
+     * @return event
+     */
+    public function addLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations[] = $location;
+
+        return $this;
+    }
+
+    /**
+     * Remove location
+     *
+     * @param \AppBundle\Entity\Locations $location
+     */
+    public function removeLocation(\AppBundle\Entity\Locations $location)
+    {
+        $this->locations->removeElement($location);
     }
 }

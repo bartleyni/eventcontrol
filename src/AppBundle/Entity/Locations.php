@@ -65,4 +65,38 @@ class Locations {
         $this->locationLatLong = $latLong;
     }
     
+
+    /**
+     * Get id
+     *
+     * @return guid
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return Locations
+     */
+    public function setEvent(\AppBundle\Entity\event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }
