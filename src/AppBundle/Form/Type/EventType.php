@@ -126,7 +126,6 @@ class EventType extends AbstractType
                 'label' => 'Locations',
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
-                'allow_remove'  => true,
                 'required' => false,
                 'by_reference' => false,
                 'allow_delete' => true,
