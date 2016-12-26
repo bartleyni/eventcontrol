@@ -141,6 +141,11 @@ class event {
      */
     private $overlay_updatedAt;
     
+    /**
+    * @ORM\OneToMany(targetEntity="Locations", cascade={"persist"})
+    */
+    protected $locations;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -562,5 +567,10 @@ class event {
     public function getOverlayImageName()
     {
         return $this->overlay_imageName;
+    }
+    
+    public function getLocations()
+    {
+        return $this->locations;
     }
 }

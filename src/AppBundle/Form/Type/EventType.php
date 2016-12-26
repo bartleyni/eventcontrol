@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class EventType extends AbstractType
 {
@@ -121,6 +122,9 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
+            ->add('locations', CollectionType::class, array(
+                'entry_type' => LocationType::class
+            ))    
             ->add('submit', 'submit', array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
