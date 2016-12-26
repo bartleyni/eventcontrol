@@ -122,12 +122,12 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
-            ->add('locations', 'collection', array(
+            ->add('locations', CollectionType::class, array(
                 'label' => 'Locations',
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
                 'required' => false,
-                'by_reference' => false,
+                'by_reference' => true,
                 'allow_delete' => true,
                 'prototype' => true,
                 'delete_empty' => true,
