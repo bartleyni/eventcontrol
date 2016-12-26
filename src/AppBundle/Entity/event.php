@@ -107,6 +107,12 @@ class event {
      *
      */
     protected $UPSs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="venue", inversedBy="event")
+     *
+     */
+    protected $venue;
     
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
