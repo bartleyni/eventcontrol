@@ -23,6 +23,8 @@ use Symfony\Component\HttpFoundation\File\File;
  * @ORM\Entity
  * @ORM\Table(name="log_entries")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 
 class log_entries {
