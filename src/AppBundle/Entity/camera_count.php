@@ -85,7 +85,7 @@ class camera_count {
         $diffrance_in = $this->count_in - $Camera[0]['Camera_count_count_in'];
         $diffrance_out = $this->count_out - $Camera[0]['Camera_count_count_out'];
 
-        if($diffrance_in < 0){
+        if($diffrance_out < 0){
             $this->running_count_in = $this->count_in + $Camera[0]['Camera_count_running_count_in'];
         }else{
             $this->running_count_in = $Camera[0]['Camera_count_running_count_in'] + $diffrance_in;
