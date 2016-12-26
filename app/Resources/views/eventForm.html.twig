@@ -6,7 +6,7 @@ Event Entry Form
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-            {% form_theme form 'ninsuo/symfony-collection/jquery.collection.html.twig' %}
+            {% form_theme form 'AppBundle::jquery.collection.html.twig' %}
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
@@ -198,7 +198,7 @@ Event Entry Form
     {% endembed %}
 {% endblock %}
 {% block scripts %}
-    <script src="{{ asset('bundles/acmedemo/js/jquery.collection.js') }}"></script>
+    <script src="{{ asset('assets/vendor/symfony-collection/jquery.collection.js') }}"></script>
     <script type="text/javascript">
         $('.collection').collection({
             allow_up: false,
