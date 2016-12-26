@@ -122,7 +122,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
-            ->add('locations', CollectionType::class, array(
+            ->add('locations', 'collection', array(
                 'label' => 'Locations',
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
@@ -171,5 +171,10 @@ class EventType extends AbstractType
             'data_class' => 'AppBundle\Entity\event',
             'event_id' => null,
         ));
+    }
+    
+    public function getBlockPrefix()
+    {
+        return 'LocationType';
     }
 }
