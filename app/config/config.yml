@@ -41,7 +41,8 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - '%kernel.root_dir%/../vendor/vich/uploader-bundle/Resources/views/Form/fields.html.twig'
+        - 'VichUploaderBundle:Form:fields.html.twig'
+        #- '%kernel.root_dir%/../vendor/vich/uploader-bundle/Resources/views/Form/fields.html.twig'
 
 # Assetic Configuration
 assetic:
