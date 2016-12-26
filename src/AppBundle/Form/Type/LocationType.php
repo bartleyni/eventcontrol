@@ -25,13 +25,13 @@ class LocationType extends AbstractType
             ->add('locationText', 'text', array(
                 'label' => 'Location (Text): ',
                 'attr' => array(
-                    'class' => 'collection'
+                    'class' => 'collection form-control'
                 )
             ))
             ->add('locationLatLong', 'text', array(
                 'label' => 'Co-ordinates (Latitude, Longitude): ',
                 'attr' => array(
-                    'class' => 'collection'
+                    'class' => 'collection form-control'
                 )
             ))    
         ;
