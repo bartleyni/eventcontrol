@@ -127,6 +127,8 @@ class EventType extends AbstractType
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
                 'required' => false,
+                'by_reference' => false,
+                'allow_delete' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )

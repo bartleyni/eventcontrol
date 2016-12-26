@@ -573,4 +573,15 @@ class event {
     {
         return $this->locations;
     }
+    
+    public function addLocation(Locations $location)
+    {
+        $this->locations->add($location);
+    }
+    
+    public function removeLocation(Locations $location)
+    {
+        $this->locations->removeElement($location);
+    }
+
 }
