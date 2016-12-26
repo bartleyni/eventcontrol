@@ -573,19 +573,6 @@ class event {
     {
         return $this->locations;
     }
-<<<<<<< HEAD
-    
-    public function addLocation(Locations $location)
-    {
-        $this->locations->add($location);
-    }
-    
-    public function removeLocation(Locations $location)
-    {
-        $this->locations->removeElement($location);
-    }
-
-=======
 
     /**
      * Set northEastBoundsLatLong
@@ -730,5 +717,4 @@ class event {
     {
         $this->locations->removeElement($location);
     }
->>>>>>> a71fdc01af5bffb135e327e88f84373e5c46ddde
 }
