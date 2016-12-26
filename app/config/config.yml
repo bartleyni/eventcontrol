@@ -40,6 +40,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -111,6 +113,14 @@ vich_uploader:
         event_overlay:
             uri_prefix:         /media/overlay
             upload_destination: '%kernel.root_dir%/../media/overlay'
+            
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            
+        log_support_file:
+            uri_prefix:         /media/log_support
+            upload_destination: '%kernel.root_dir%/../media/log_support'
             
             inject_on_load:     false
             delete_on_update:   true
