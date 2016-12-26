@@ -127,7 +127,7 @@ class EventType extends AbstractType
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
                 'required' => false,
-                'by_reference' => true,
+                'by_reference' => false,
                 'allow_delete' => true,
                 'prototype' => true,
                 'delete_empty' => true,
