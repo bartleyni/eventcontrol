@@ -142,7 +142,7 @@ class event {
     private $overlay_updatedAt;
     
     /**
-    * @ORM\OneToMany(targetEntity="Locations", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
     */
     protected $locations;
     
