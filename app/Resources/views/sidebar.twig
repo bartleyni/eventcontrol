@@ -210,7 +210,7 @@
     {
         UPSUpdate();
         
-        //PeopleCounterUpdate();
+        PeopleCounterUpdate();
     
         {% if activeEventId(app.user.id) != 0 %}
             $.getJSON('{{ path('log_json_data') }}', function(data) {
@@ -290,9 +290,9 @@
                     $('#venue-' + venue.id).html(venue.name + ": " + count);
                     if (venue.status === "false") {
                         //console.log("old!");
-                        $('#venue-' + venue.id).addClass("flash");
+                        $('#venue-' + venue.id).addClass("people_counting_old");
                     } else {
-                        $('#venue-' + venue.id).removeClass("flash");
+                        $('#venue-' + venue.id).removeClass("people_counting_old");
                     }
                 }
             });
