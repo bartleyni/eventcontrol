@@ -17,9 +17,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Locations {
     
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    protected $id;
+    
     private $locationText;
     
     private $locationLatLong;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="Locations")
+     * @ORM\JoinColumn(name="event", referencedColumnName="id")
+     */
+    private $event;
     
     public function getLocationText()
     {
