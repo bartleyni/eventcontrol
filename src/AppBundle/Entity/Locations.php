@@ -15,6 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Nick
  */
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="Locations")
+ */
 class Locations {
     
     /**
@@ -24,8 +29,14 @@ class Locations {
      */
     protected $id;
     
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
     private $locationText;
     
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
     private $locationLatLong;
     
     /**
