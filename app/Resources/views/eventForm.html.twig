@@ -6,6 +6,7 @@ Event Entry Form
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
+            {% form_theme form 'AppBundle::jquery.collection.html.twig' %}
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
@@ -197,7 +198,15 @@ Event Entry Form
     {% endembed %}
 {% endblock %}
 {% block scripts %}
+    <script src="{{ asset('bundles/acmedemo/js/jquery.collection.js') }}"></script>
     <script type="text/javascript">
+        $('.collection').collection({
+            allow_up: false,
+            allow_down: false,
+            allow_duplicate: false,
+            add_at_the_end: true
+        });
+        
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 useCurrent: false,
@@ -222,71 +231,7 @@ Event Entry Form
             });
         });
         
-        var $collectionHolder;
-
-        // setup an "add a location" link
-        var $addLocationLink = $('<a href="#" class="add_location_link">Add a Location</a>');
-        var $newLinkLi = $('<li></li>').append($addLocationLink);
-
-        jQuery(document).ready(function() {
-
-            // add a delete link to all of the existing location form li elements
-            $collectionHolder.find('li').each(function() {
-                addLocationFormDeleteLink($(this));
-            });
-            
-            // Get the ul that holds the collection of locationss
-            $collectionHolder = $('ul.locations');
-
-            // add the "add a location" anchor and li to the locations ul
-            $collectionHolder.append($newLinkLi);
-
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-            $addLocationLink.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
-
-                // add a new location form (see next code block)
-                addLocationForm($collectionHolder, $newLinkLi);
-            });
-        });
         
-        function addLocationForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
-
-            // get the new index
-            var index = $collectionHolder.data('index');
-
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            var newForm = prototype.replace(/__name__/g, index);
-
-            // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
-
-            // Display the form in the page in an li, before the "Add a Location" link li
-            var $newFormLi = $('<li></li>').append(newForm);
-            $newLinkLi.before($newFormLi);
-            
-            addLocationFormDeleteLink($newFormLi);
-        }
-        
-        function addLocationFormDeleteLink($locationFormLi) {
-            var $removeFormA = $('<a href="#">delete this location</a>');
-            $locationFormLi.append($removeFormA);
-
-            $removeFormA.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
-
-                // remove the li for the location form
-                $locationFormLi.remove();
-            });
-        }
     </script>
     
 {% endblock %}        
