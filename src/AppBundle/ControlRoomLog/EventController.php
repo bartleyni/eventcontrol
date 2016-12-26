@@ -77,20 +77,6 @@ class EventController extends Controller
         
         if ($form->isSubmitted() && $form->isValid()) {
             
-            if($event->getOverlayImage()){
-            
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $file = $event->getOverlayImage();
-
-                $filename = md5(uniqid()).'.'.$file->guessExtension();
-                
-                $file->move(
-                    $this->getParameter('overlay_directory'),
-                    $filename
-                );
-
-                $event->setOverlayImage($filename);
-            }
             $em->persist($event);
             $em->flush();
             
@@ -145,15 +131,9 @@ class EventController extends Controller
             $query = $qb->getQuery();
             $operators = $query->getResult();
           
-            $current_overlay = $event->getOverlayImage();
+            $current_overlay = $event->getOverlayImageName();
             
             $em->flush();
-            
-            //if($current_overlay){
-                $event->setOverlayImage(
-                    new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
-                );
-            //}
             
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
             
@@ -161,34 +141,6 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            
-            
-            if($event->getOverlayImage()){
-            
-                //Get original filename
-                
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $file = $event->getOverlayImage();
-                $OriginalFilename = $event->getOverlayImage()->getClientOriginalName();
-                //$OriginalFilename = $event->getOverlayImage();
-                
-                if($OriginalFilename != NULL){
-                    
-                    //$file = $event->getOverlayImage();
-
-                    $filename = md5(uniqid()).'.'.$file->guessExtension();
-
-                    $file->move(
-                        $this->getParameter('overlay_directory'),
-                        $filename
-                    );
-                    
-                    $event->setOverlayImage($filename);
-                } else {
-                    $event->setOverlayImage($OriginalFilename);
-                }
-            }
             
             $event_operators = $form['event_operators']->getData();
             

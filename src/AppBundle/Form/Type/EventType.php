@@ -69,7 +69,7 @@ class EventType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('overlay_image', 'file', array(
+            ->add('overlay_imageFile', 'file', array(
                 'label' => 'Overlay Image (.png)',
                 'required' => false,
                 'attr' => array(

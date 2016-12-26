@@ -143,11 +143,11 @@ Event Entry Form
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-2">
-                                    {{ form_label(form.overlay_image) }} 
-                                    {{ form_errors(form.overlay_image) }}
+                                    {{ form_label(form.overlay_imageFile) }} 
+                                    {{ form_errors(form.overlay_imageFile) }}
                                 </div>
                                 <div class="col-md-6">
-                                    {{ form_widget(form.overlay_image) }}
+                                    {{ form_widget(form.overlay_imageFile) }}
                                 </div>
                             </div>
                         </div><br>
@@ -155,7 +155,7 @@ Event Entry Form
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-2">
-                                        <strong>Current File: ({{ OriginalFilename }})</strong>
+                                        <strong>Current File: </strong>
                                     </div>
                                     <div class="col-md-6">
                                         <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
