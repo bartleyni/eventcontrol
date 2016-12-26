@@ -149,20 +149,15 @@ class EventController extends Controller
             
             $em->flush();
             
-            if($current_overlay){
+            //if($current_overlay){
                 $event->setOverlayImage(
                     new File($this->getParameter('overlay_directory').'/'.$event->getOverlayImage())
                 );
-            }
+            //}
             
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
             
             $form->handleRequest($request);
-            
-            if (!$form->isSubmitted() or !$form->isValid()){
-                //Do nothing until I think of something to go here
-                
-            }
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -178,7 +173,7 @@ class EventController extends Controller
                 $OriginalFilename = $event->getOverlayImage()->getClientOriginalName();
                 //$OriginalFilename = $event->getOverlayImage();
                 
-                if($OriginalFilename != $current_overlay && $OriginalFilename != NULL){
+                if($OriginalFilename != NULL){
                     
                     //$file = $event->getOverlayImage();
 

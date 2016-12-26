@@ -103,3 +103,11 @@ mobile_detect:
         mobile: ~
         tablet: ~
     switch_device_view: ~
+
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        event_overlay:
+            uri_prefix:         /media/overlay
+            upload_destination: '%kernel.root_dir%/../media/overlay'

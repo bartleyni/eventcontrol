@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             //new FOS\UserBundle\FOSUserBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new AppBundle\AppBundle()
         );
 
