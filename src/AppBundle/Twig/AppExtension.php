@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManager;
 class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $doctrine;
+    private $tokenStorage;
   
     public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage) {
         $this->doctrine = $doctrine;
