@@ -264,7 +264,7 @@ class edit_entry_form extends Controller
         //$lookup = $lookup1+$lookup2;
         
         $response = new JsonResponse();
-        $response->setData($lookup);
+        $response->setData($lookup1);
         
         return $response;
     }
