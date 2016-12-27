@@ -40,7 +40,7 @@ class VenueController extends Controller
        
         
         foreach ($venues as $key => $value) {
-           $venueclass->set($key, $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']));
+           $venues->set($key, $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']));
         }
         
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
