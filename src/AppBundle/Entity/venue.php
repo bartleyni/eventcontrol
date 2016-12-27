@@ -56,6 +56,4 @@ class venue
     {
         $this->event = new ArrayCollection();
     }
-
-
 }

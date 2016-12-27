@@ -25,25 +25,22 @@ class VenueController extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $event = $this->getDoctrine()->getRepository('AppBundle\Entity\event')->find($active_event);
-        $em->flush();
-        $venues = $event->getVenues();
-        $venue_array = $venues->toArray();
-        //$em = $this->getDoctrine()->getManager();
-        //$qb = $em->createQueryBuilder();
-        //$qb->select('u')
-         //   ->from('AppBundle\Entity\venue', 'u');
-        //$query = $qb->getQuery();
-        //$venues = $query->getArrayResult();
-        //
-        
-       
-        
-        foreach ($venue_array as $key => $value) {
-           $venue_array['$key']['count'] = "hi";
+
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
+            JOIN v.event e
+            WHERE e.id = :id'
+            )->setParameter('id', $active_event);
+
+        $venue = $query->getArrayResult();
+
+        //echo $venue->getName();
+
+        foreach ($venue as $key => $value) {
+            $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
-        
-        return $this->render('peoplecounting.html.twig', array('venues' => $venue_array));
+
+        return $this->render('peoplecounting.html.twig', array('venues' => $output));
     }
 
     /**
@@ -53,19 +50,19 @@ class VenueController extends Controller
     public function skew(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $skew = new skew();
 
-        
+
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $em->flush();
         $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-        
-      
+
+
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-        
+
         $skew->setVenueId($venue);
-        
+
         $form = $this->createForm(new SkewType(), $skew);
 
         // 2) handle the submit (will only happen on POST)
