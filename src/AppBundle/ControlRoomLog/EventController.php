@@ -204,7 +204,10 @@ class EventController extends Controller
                     $em->remove($location);
                 }
             }
-            foreach ($event->getLocations() as $location){
+            
+            $locations = $form['locations']->getData();
+            
+            foreach ($locations as $location){
                 $location->setEvent($event);
                 $em->persist($location);
             }
