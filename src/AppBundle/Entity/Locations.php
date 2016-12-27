@@ -19,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="Locations")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\locationsRepository")
  */
 class Locations {
     
