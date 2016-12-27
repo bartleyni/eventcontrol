@@ -9,7 +9,6 @@ Event Entry Form
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
-                        {% form_theme form 'jquery.collection.html.twig' %}
                         {{ form_start(form) }}
                         <br>
                         <div class="row">
@@ -169,7 +168,7 @@ Event Entry Form
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-2">
-                                        <strong>Current File: </strong>
+                                        <strong>Current Overlay File: </strong>
                                     </div>
                                     <div class="col-md-6">
                                         <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
@@ -184,9 +183,12 @@ Event Entry Form
                                     {{ form_errors(form.locations) }}
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="row"> 
-                                        {{ form_widget(form.locations) }}
-                                    </div>
+                                    <ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
+                                        {# iterate over each existing location and render its fields #}
+                                        {% for location in form.locations %}
+                                            <li>{{ form_row(location) }}</li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </div>
                         </div><br>
@@ -211,13 +213,51 @@ Event Entry Form
 {% block scripts %}
     <script src="{{ asset('assets/vendor/symfony-collection/jquery.collection.js') }}"></script>
     <script type="text/javascript">
-        $('.collection').collection({
-            allow_up: false,
-            allow_down: false,
-            allow_duplicate: false,
-            add_at_the_end: true,
-            name_prefix:  '{{ form.locations.vars.full_name }}'
+        
+        var $collectionHolder;
+
+        // setup an "add a location" link
+        var $addLocationLink = $('<a href="#" class="add_location_link">Add a location</a>');
+        var $newLinkLi = $('<li></li>').append($addLocationLink);
+
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of locations
+            $collectionHolder = $('ul.locations');
+
+            // add the "add a location" anchor and li to the locations ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addLocationLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new location form (see next code block)
+                addLocationForm($collectionHolder, $newLinkLi);
+            });
         });
+        
+        function addLocationForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a location" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
         
         $(function () {
             $('#datetimepicker1').datetimepicker({
