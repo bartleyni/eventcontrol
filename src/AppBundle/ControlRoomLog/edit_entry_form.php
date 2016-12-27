@@ -237,6 +237,7 @@ class edit_entry_form extends Controller
     
     /**
      * @Route("/entry/lookup/location/{location}", name="location_lookup");
+     * @Route("/entry/lookup/location/");
      * 
      */
     public function LocationLookupAction($location=null)
