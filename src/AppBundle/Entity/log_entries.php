@@ -109,7 +109,7 @@ class log_entries {
     private $log_supportFileName;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
