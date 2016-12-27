@@ -175,8 +175,8 @@ class edit_entry_form extends Controller
                         $log_location = $form['location']->getData();
                         $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $event, 'locationText' => $log_location));
                         $latLong = explode(", ", $location->getLocationLatLong());
-                        $new_entry->setLatitude($latLong[0]);
-                        $new_entry->setLongitude($latLong[1]);
+                        $entry->setLatitude($latLong[0]);
+                        $entry->setLongitude($latLong[1]);
                     }
                     $em->persist($entry);
                     $em->flush();
