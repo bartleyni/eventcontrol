@@ -57,10 +57,5 @@ class venue
         $this->event = new ArrayCollection();
     }
 
-    public function setCount($count)
-    {
-        $this->count[] = $count;
 
-        return $this;
-    }
 }

@@ -38,7 +38,7 @@ class VenueController extends Controller
         //
         
         foreach ($venues as $key => $value) {
-           $venues->setCount($em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']));
+           $venues->count = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
         
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
