@@ -12,12 +12,14 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 {
     private $doctrine;
   
-    public function __construct(RegistryInterface $doctrine) {
+    public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage) {
         $this->doctrine = $doctrine;
+        $this->tokenStorage = $tokenStorage;
     }
-    
+
     public function getGlobals()
     {
+        $token = $this->tokenStorage->getToken();
         $em = $this->doctrine->getManager();
         $qb = $em->createQueryBuilder(); 
         
@@ -30,7 +32,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
 
         $em = $this->doctrine->getManager();
-        $usr = $this->getToken()->getUser();
+        $usr = $token->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
