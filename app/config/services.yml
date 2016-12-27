@@ -12,6 +12,7 @@ services:
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         arguments:
-            doctrine: '@doctrine'
+            doctrine: []'@doctrine','@security.token_storage']
+
         tags:
             - { name: twig.extension }
