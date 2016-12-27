@@ -183,7 +183,7 @@ Event Entry Form
                                     {{ form_errors(form.locations) }}
                                 </div>
                                 <div class="col-md-6">
-                                    <ul class="locations list-unstyled" data-prototype="{{ form_widget(form.locations.vars.prototype.locationText)|e('html_attr') }}">
+                                    <ul class="locations list-unstyled" data-prototype="{{ form_widget(form.locations.vars.prototype.locationText)|e('html_attr') }} {{ form_widget(form.locations.vars.prototype.locationLatLong)|e('html_attr') }}">
                                         {# iterate over each existing location and render its fields #}
                                         {% for location in form.locations %}
                                             <li>
