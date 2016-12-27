@@ -739,7 +739,9 @@ class event {
      */
     public function addLocation(\AppBundle\Entity\Locations $location)
     {
-        $this->locations[] = $location;
+        //$this->locations[] = $location;
+        $location->setEvent($this);
+        //$this->locations->add($location);
 
         return $this;
     }

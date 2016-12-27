@@ -99,4 +99,11 @@ class Locations {
     {
         return $this->event;
     }
+    
+    public function addEvent(event $event)
+    {
+        if (!$this->event->contains($event)) {
+            $this->event->add($event);
+        }
+    }
 }

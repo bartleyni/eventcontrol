@@ -133,6 +133,13 @@ class EventController extends Controller
           
             $current_overlay = $event->getOverlayImageName();
             
+             $originalTags = new ArrayCollection();
+
+            // Create an ArrayCollection of the current location objects in the database
+            foreach ($event->getLocations() as $location) {
+                $originalLocations->add($location);
+            }
+            
             $em->flush();
             
             $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
@@ -177,6 +184,23 @@ class EventController extends Controller
                     
                     $em->remove($not_operator);
                     $em->flush();
+                }
+            }
+            
+            
+            // remove the relationship between the location and the Event
+            foreach ($originalLocations as $location) {
+                if (false === $event->getLocations()->contains($location)) {
+                    // remove the Event from the Location
+                    $location->getEvent()->removeElement($event);
+
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    // $tag->setTask(null);
+
+                    $em->persist($location);
+
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    $em->remove($location);
                 }
             }
             

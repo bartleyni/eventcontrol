@@ -186,7 +186,10 @@ Event Entry Form
                                     <ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
                                         {# iterate over each existing location and render its fields #}
                                         {% for location in form.locations %}
-                                            <li>{{ form_row(location) }}</li>
+                                            <li>
+                                                {{ form_label(location.locationText) }} {{ form_widget(location.locationText) }}
+                                                {{ form_label(location.locationLatLong) }} {{ form_widget(location.locationLatLong) }}
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -224,6 +227,14 @@ Event Entry Form
             // Get the ul that holds the collection of locations
             $collectionHolder = $('ul.locations');
 
+            // add a delete link to all of the existing locations form li elements
+            $collectionHolder.find('li').each(function() {
+                addLocationFormDeleteLink($(this));
+            });    
+        
+            // Get the ul that holds the collection of locations
+            $collectionHolder = $('ul.locations');
+
             // add the "add a location" anchor and li to the locations ul
             $collectionHolder.append($newLinkLi);
 
@@ -257,6 +268,21 @@ Event Entry Form
             // Display the form in the page in an li, before the "Add a location" link li
             var $newFormLi = $('<li></li>').append(newForm);
             $newLinkLi.before($newFormLi);
+            
+            addLocationFormDeleteLink($newFormLi);
+        }
+        
+        function addLocationFormDeleteLink($locationFormLi) {
+            var $removeFormA = $('<a href="#">delete this location</a>');
+            $locationFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the location form
+                $locationFormLi.remove();
+            });
         }
         
         $(function () {
