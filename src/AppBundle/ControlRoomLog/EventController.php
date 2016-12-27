@@ -204,7 +204,9 @@ class EventController extends Controller
                     $em->remove($location);
                 }
             }
-            
+            foreach ($event->getLocations() as $location){
+                $em->persist($location);
+            }
             $em->persist($event);
             $em->flush();
 

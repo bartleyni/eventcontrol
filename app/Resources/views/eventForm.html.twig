@@ -183,12 +183,12 @@ Event Entry Form
                                     {{ form_errors(form.locations) }}
                                 </div>
                                 <div class="col-md-6">
-                                    <ul class="locations" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
+                                    <ul class="locations list-unstyled" data-prototype="{{ form_widget(form.locations.vars.prototype)|e('html_attr') }}">
                                         {# iterate over each existing location and render its fields #}
                                         {% for location in form.locations %}
                                             <li>
-                                                {{ form_label(location.locationText) }} {{ form_widget(location.locationText) }}
-                                                {{ form_label(location.locationLatLong) }} {{ form_widget(location.locationLatLong) }}
+                                                {{ form_widget(location.locationText) }}
+                                                {{ form_widget(location.locationLatLong) }}
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -220,7 +220,7 @@ Event Entry Form
         var $collectionHolder;
 
         // setup an "add a location" link
-        var $addLocationLink = $('<a href="#" class="add_location_link">Add a location</a>');
+        var $addLocationLink = $('<a href="#" class="add_location_link">Add a new location</a>');
         var $newLinkLi = $('<li></li>').append($addLocationLink);
 
         jQuery(document).ready(function() {
@@ -273,7 +273,7 @@ Event Entry Form
         }
         
         function addLocationFormDeleteLink($locationFormLi) {
-            var $removeFormA = $('<a href="#">delete this location</a>');
+            var $removeFormA = $('<a href="#">Delete this location</a>');
             $locationFormLi.append($removeFormA);
 
             $removeFormA.on('click', function(e) {

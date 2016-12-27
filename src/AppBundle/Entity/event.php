@@ -160,6 +160,7 @@ class event {
     public function __construct()
     {
         $this->UPSs = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     /**
