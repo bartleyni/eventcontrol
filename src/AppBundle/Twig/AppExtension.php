@@ -28,14 +28,21 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         
         $UPS = $qb->getQuery()->getResult();
 
-        $qb = $em->createQueryBuilder();
 
-        $qb
-            ->select('venue.id, venue.name')
-            ->from('AppBundle\Entity\venue', 'venue')
-        ;
+        $em = $this->getDoctrine()->getManager();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
-        $venue = $qb->getQuery()->getResult();
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
+            JOIN v.event e
+            WHERE e.id = :id'
+            )->setParameter('id', $active_event);
+
+        $venue = $query->getResult();
+
+
 
 
         return array("GlobalTest" => "Hello Test", "UPSs" => $UPS, "venues" => $venue);
