@@ -205,6 +205,7 @@ class EventController extends Controller
                 }
             }
             foreach ($event->getLocations() as $location){
+                $location->setEvent($event);
                 $em->persist($location);
             }
             $em->persist($event);
