@@ -28,7 +28,7 @@ class VenueController extends Controller
         $event = $this->getDoctrine()->getRepository('AppBundle\Entity\event')->find($active_event);
         $em->flush();
         $venues = $event->getVenues();
-        dump(get_class($venues));
+        $venue_array = $venues->getData();
         //$em = $this->getDoctrine()->getManager();
         //$qb = $em->createQueryBuilder();
         //$qb->select('u')
@@ -39,11 +39,11 @@ class VenueController extends Controller
         
        
         
-        foreach ($venues as $key => $value) {
-           $venues->set($key, $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']));
+        foreach ($venue_array as $key => $value) {
+           $venue_array['$key']['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
         
-        return $this->render('peoplecounting.html.twig', array('venues' => $venues));
+        return $this->render('peoplecounting.html.twig', array('venues' => $venue_array));
     }
 
     /**
