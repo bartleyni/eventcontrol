@@ -14,6 +14,7 @@ use AppBundle\Entity\event;
 use AppBundle\Entity\user_events;
 use AppBundle\Entity\Alert;
 use AppBundle\Entity\Queue;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class EventController extends Controller
 {
