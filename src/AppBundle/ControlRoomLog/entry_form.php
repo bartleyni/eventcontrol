@@ -64,7 +64,7 @@ class entry_form extends Controller
                 $new_entry->setEvent($event);
                 
                 //Lookup log location in event location entity and if latlong is blank use data
-                $variable = $form['longitude']->getData();
+                //$variable = $form['longitude']->getData();
 //                if($form['longitude']->getData() == null){
 //                    $log_location = $form['location']->getData();
 //                    $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $event, 'locationText' => $log_location));
