@@ -268,10 +268,10 @@ class edit_entry_form extends Controller
             array_push($lookup1, $lookupLocation);
         }
         
-        $lookup = $lookup1;
+        $lookup = array_unique($lookup1, SORT_REGULAR);
         
         $response = new JsonResponse();
-        $response->setData($lookup2);
+        $response->setData($lookup);
         
         return $response;
     }
