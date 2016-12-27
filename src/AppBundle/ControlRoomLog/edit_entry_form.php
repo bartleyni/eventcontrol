@@ -263,9 +263,9 @@ class edit_entry_form extends Controller
         //$lookup = array_unique(array_push($lookup1,$lookup2),SORT_REGULAR);
         //$lookup = $lookup1+$lookup2;
         
-        $diffLookup1 = array_diff($lookup1, $lookup2);
-        $diffLookup2 = array_diff($lookup2, $lookup1);
-        $interLookup1 = array_intersect($lookup1, $lookup2);
+        $diffLookup1 = array_diff_assoc($lookup1, $lookup2);
+        $diffLookup2 = array_diff_assoc($lookup2, $lookup1);
+        $interLookup1 = array_intersect_assoc($lookup1, $lookup2);
         
         foreach($diffLookup2 as $lookupLocation)
         {
