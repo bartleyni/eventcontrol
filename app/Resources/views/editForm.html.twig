@@ -306,30 +306,7 @@ Control Room Log Edit
             $('#submit_button').show();
         });
         //location lookup and reported by bit goes here
-        var locationOptions = {
-            url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
-            getValue: "location",
-            list: {
-		maxNumberOfElements: 5,
-		match: {
-			enabled: true
-		}
-            }
-        };
-
-        var reportedOptions = {
-            url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
-            getValue: "reported_by",
-            list: {
-		maxNumberOfElements: 5,
-		match: {
-			enabled: true
-		}
-            }
-        };
-
-        $("#new_entry_form_location").easyAutocomplete(locationOptions);
-        $("#new_entry_form_reported_by").easyAutocomplete(reportedOptions);
+        
         
         //Map Overlay Below here
         {% if (entry.longitude is not null) and (entry.latitude is not null) %}
