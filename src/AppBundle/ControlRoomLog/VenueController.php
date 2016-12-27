@@ -28,7 +28,7 @@ class VenueController extends Controller
         $event = $this->getDoctrine()->getRepository('AppBundle\Entity\event')->find($active_event);
         $em->flush();
         $venues = $event->getVenues();
-        
+        dump(get_class($venues);
         //$em = $this->getDoctrine()->getManager();
         //$qb = $em->createQueryBuilder();
         //$qb->select('u')
