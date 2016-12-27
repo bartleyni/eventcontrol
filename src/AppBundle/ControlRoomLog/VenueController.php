@@ -21,11 +21,12 @@ class VenueController extends Controller
      */
     public function view(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $event = $this->getDoctrine()->getRepository('AppBundle\Entity\event')->find($active_event);
-
+        $em->flush();
         $venues = $event->getVenues();
         
         //$em = $this->getDoctrine()->getManager();
@@ -34,7 +35,7 @@ class VenueController extends Controller
          //   ->from('AppBundle\Entity\venue', 'u');
         //$query = $qb->getQuery();
         //$venues = $query->getArrayResult();
-        //$em->flush();
+        //
         foreach ($venues as $key => $value) {
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
         }
