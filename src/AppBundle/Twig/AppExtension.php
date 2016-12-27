@@ -29,7 +29,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         $UPS = $qb->getQuery()->getResult();
 
 
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->doctrine->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
