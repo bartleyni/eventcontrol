@@ -263,7 +263,7 @@ class edit_entry_form extends Controller
         //$lookup = array_unique(array_push($lookup1,$lookup2),SORT_REGULAR);
         //$lookup = $lookup1+$lookup2;
         
-        foreach($loookup2 as $lookupLocation)
+        foreach($lookup2 as $lookupLocation)
         {
             array_push($lookup1, $lookupLocation);
         }
