@@ -67,10 +67,10 @@ class entry_form extends Controller
                 //$variable = $form['longitude']->getData();
                 if($form['longitude']->getData() == null){
                     $log_location = $form['location']->getData();
-//                    $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $event, 'locationText' => $log_location));
-//                    $latLong = explode(" ,", $location->getLocationLatLong());
-//                    $new_entry->setLatitude($latLong[0]);
-//                    $new_entry->setLongitude($latLong[1]);
+                    $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $event, 'locationText' => $log_location));
+                    $latLong = explode(" ,", $location->getLocationLatLong());
+                    $new_entry->setLatitude($latLong[0]);
+                    $new_entry->setLongitude($latLong[1]);
                 }
                 $em->persist($new_entry);
                 $em->flush();
