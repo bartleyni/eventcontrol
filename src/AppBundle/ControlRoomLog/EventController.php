@@ -134,7 +134,7 @@ class EventController extends Controller
           
             $current_overlay = $event->getOverlayImageName();
             
-             $originalTags = new ArrayCollection();
+             $originalLocations = new ArrayCollection();
 
             // Create an ArrayCollection of the current location objects in the database
             foreach ($event->getLocations() as $location) {
