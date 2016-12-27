@@ -42,7 +42,7 @@ class venue
     protected $skew;
 
     /**
-     * @ORM\ManyToMany(targetEntity="event", mappedBy="venue")
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="venues")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $event;

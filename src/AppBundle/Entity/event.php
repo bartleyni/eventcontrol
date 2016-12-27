@@ -112,7 +112,7 @@ class event {
      * @ORM\ManyToMany(targetEntity="venue", inversedBy="event")
      *
      */
-    protected $venue;
+    protected $venues;
     
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
@@ -475,9 +475,9 @@ class event {
         return $this->UPSs;
     }
 
-    public function getVenue()
+    public function getVenues()
     {
-        return $this->venue;
+        return $this->venues;
     }
     
     /**
@@ -712,9 +712,9 @@ class event {
      * @return event
      */
 
-    public function addVenue(\AppBundle\Entity\venue $venue)
+    public function addVenues(\AppBundle\Entity\venue $venue)
     {
-        $this->venue[] = $venue;
+        $this->venues[] = $venue;
 
         return $this;
     }
@@ -724,9 +724,9 @@ class event {
      *
      * @param \AppBundle\Entity\venue $venue
      */
-    public function removeVenue(\AppBundle\Entity\venue $venue)
+    public function removeVenues(\AppBundle\Entity\venue $venue)
     {
-        $this->venue->removeElement($venue);
+        $this->venues->removeElement($venue);
     }
 
 
