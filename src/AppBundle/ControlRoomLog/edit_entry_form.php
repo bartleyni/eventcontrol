@@ -260,8 +260,8 @@ class edit_entry_form extends Controller
         $lookup1 = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
         $lookup2 = $em->getRepository('AppBundle\Entity\Locations')->getEventLocationLookup($activeEvent, $location);
         
-        //$lookup = array_unique(array_push($lookup1,$lookup2),SORT_REGULAR);
-        $lookup = $lookup1+$lookup2;
+        $lookup3 = array_unique(array_merge_recursive($lookup1,$lookup2),SORT_REGULAR);
+        //$lookup = $lookup1+$lookup2;
         
         //$diffLookup1 = array_diff_assoc($lookup1, $lookup2);
         //$diffLookup2 = array_diff_assoc($lookup2, $lookup1);
@@ -277,8 +277,16 @@ class edit_entry_form extends Controller
 //            array_push($diffLookup1, $lookupLocation);
 //        }
         
-        $lookup = array_unique($lookup, SORT_REGULAR);
+        //$lookup = array_unique($lookup, SORT_REGULAR);
         //$lookup = $diffLookup1;
+        
+        $lookup = array();
+        
+        foreach($lookup3 as $val)
+        {
+            array_push($lookup, $val);
+        }
+        
         
         $response = new JsonResponse();
         $response->setData($lookup);
