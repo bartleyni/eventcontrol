@@ -193,12 +193,12 @@ class EventController extends Controller
             foreach ($originalLocations as $location) {
                 if (false === $event->getLocations()->contains($location)) {
                     // remove the Event from the Location
-                    $location->getEvent()->removeElement($event);
+                    //$location->getEvent()->removeElement($event);
 
                     // if it was a many-to-one relationship, remove the relationship like this
                     // $tag->setTask(null);
 
-                    $em->persist($location);
+                    //$em->persist($location);
 
                     // if you wanted to delete the Tag entirely, you can also do that
                     $em->remove($location);
