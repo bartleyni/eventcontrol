@@ -251,10 +251,10 @@ class edit_entry_form extends Controller
         $lookup1 = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
         $lookup2 = $em->getRepository('AppBundle\Entity\Locations')->getEventLocationLookup($activeEvent, $location);
         
-        //$lookup = array_unique(array_merge($lookup1,$lookup2));
+        $lookup = array_unique(array_merge($lookup1,$lookup2),SORT_REGULAR);
         
         $response = new JsonResponse();
-        $response->setData($lookup1);
+        $response->setData($lookup);
         
         return $response;
     }
