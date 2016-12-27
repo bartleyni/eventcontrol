@@ -263,13 +263,22 @@ class edit_entry_form extends Controller
         //$lookup = array_unique(array_push($lookup1,$lookup2),SORT_REGULAR);
         //$lookup = $lookup1+$lookup2;
         
-        foreach($lookup2 as $lookupLocation)
+        $diffLookup1 = array_diff($lookup1, $lookup2);
+        $diffLookup2 = array_diff($lookup2, $lookup1);
+        $interLookup1 = array_intersect($lookup1, $lookup2);
+        
+        foreach($diffLookup2 as $lookupLocation)
         {
-            array_push($lookup1, $lookupLocation);
+            array_push($diffLookup1, $lookupLocation);
+        }
+        
+        foreach($interLookup1 as $lookupLocation)
+        {
+            array_push($diffLookup1, $lookupLocation);
         }
         
         //$lookup = array_unique($lookup1, SORT_REGULAR);
-        $lookup = $lookup1;
+        $lookup = $diffLookup1;
         
         $response = new JsonResponse();
         $response->setData($lookup);
