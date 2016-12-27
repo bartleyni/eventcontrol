@@ -92,7 +92,7 @@ class log_entries {
      */
     protected $longitude;
 
-/**
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="log_supportFileName")
@@ -109,7 +109,7 @@ class log_entries {
     private $log_supportFileName;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
