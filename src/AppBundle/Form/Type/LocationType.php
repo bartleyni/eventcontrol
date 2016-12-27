@@ -24,15 +24,15 @@ class LocationType extends AbstractType
         $builder
             ->add('locationText', 'text', array(
                 'label' => 'Location (Text): ',
-                'placeholder' => 'Location',
                 'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'Location'
                 )
             ))
             ->add('locationLatLong', 'text', array(
                 'label' => 'Co-ordinates (Latitude, Longitude): ',
-                'placeholder' => 'Co-ordinates (Latitude, Longitude)',
                 'attr' => array(
+                    'placeholder' => 'Co-ordinates (Latitude, Longitude)',
                     'class' => 'form-control'
                 )
             ))    
