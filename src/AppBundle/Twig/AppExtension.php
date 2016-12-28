@@ -45,16 +45,18 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             $venue = $qb->getQuery()->getResult();
         }else{
             $usr = $token->getUser();
-            $operatorId = $usr->getId();
-            $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+            if(is_object($usr)) {
+                $operatorId = $usr->getId();
+                $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
-            $query = $this->doctrine->getManager()
-                ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
+                $query = $this->doctrine->getManager()
+                    ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
             JOIN v.event e
             WHERE e.id = :id'
-                )->setParameter('id', $active_event);
+                    )->setParameter('id', $active_event);
 
-            $venue = $query->getResult();
+                $venue = $query->getResult();
+            }
         }
 
 
