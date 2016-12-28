@@ -45,8 +45,8 @@ class MapController extends Controller
         {
             $eventId = $event->getId();
             $latLong = $latLong = explode(",", $event->getEventLatLong());
-            $longitude = $latLong[0];
-            $latitude = $latLong[1];
+            $latitude = $latLong[0];
+            $longitude = $latLong[1];
             $NEbound = $event->getNorthEastBounds();
             $SWbound = $event->getSouthWestBounds();
             return $this->render('map.html.twig', array('event' => $event, 'overlayFileName' => $overlay, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'latitude' => $latitude, 'longitude' => $longitude));
