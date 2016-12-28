@@ -20,10 +20,11 @@ class CameraController extends Controller
         if ($camera_id and $count_in and $count_out) {
             
             $em = $this->getDoctrine()->getManager();
+            $camera = $em->getRepository('AppBundle\Entity\camera')->findOneBy((array('id' => $camera_id)));
             
             $camera_count = new camera_count();
             
-            $camera_count->setCameraId($camera_id);
+            $camera_count->setCameraId($camera);
             $camera_count->setCountIn($count_in);
             $camera_count->setCountOut($count_out);
                                
