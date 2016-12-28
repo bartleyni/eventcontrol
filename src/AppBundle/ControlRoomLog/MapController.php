@@ -37,12 +37,19 @@ class MapController extends Controller
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
+        $overlay = $event->getOverlayImageName();
+        
         $em->flush();
         
-        if ($event)
+        if ($overlay)
         {
             $eventId = $event->getId();
-            return $this->render('map.html.twig', array('event' => $event));
+            $latLong = $latLong = explode(", ", $event->getLatLong());
+            $longitude = $latLong[0];
+            $latitude = $latLong[1];
+            $NEbound = $event->getNorthEastBounds();
+            $SWbound = $event->getSouthWestBounds();
+            return $this->render('map.html.twig', array('event' => $event, 'overlayFileName' => $overlay, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'latitude' => $latitude, 'longitude' => $longitude));
         } else {
             return $this->redirectToRoute('full_log');
         }
@@ -222,9 +229,10 @@ class MapController extends Controller
         $query = $qb->getQuery();
         $logs = $query->getResult();
         
+        $response = new JsonResponse();
+        
         if ($logs)
         {
-            $response = new JsonResponse();
             $response->setData($logs);
         } else {
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
