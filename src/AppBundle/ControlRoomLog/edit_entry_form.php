@@ -176,7 +176,7 @@ class edit_entry_form extends Controller
                         $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $entryEvent, 'locationText' => $log_location));
                         if($location){
                             $latLong = explode(", ", $location->getLocationLatLong());
-                            $entry->setLatitude($latLong[0]);
+                            $enytry->setLatitude($latLong[0]);
                             $entry->setLongitude($latLong[1]);
                         }
                     }
