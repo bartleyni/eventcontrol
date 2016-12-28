@@ -95,7 +95,7 @@ class log_entries {
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $geolocated;
+    protected $geolocated;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -412,7 +412,7 @@ class log_entries {
      */
     public function setGeolocated($geolocated)
     {
-        $this->geolocated = $geolcated;
+        $this->geolocated = $geolocated;
 
         return $this;
     }
