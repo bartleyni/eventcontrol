@@ -1,6 +1,6 @@
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-Control Room Log Map
+Control Room Log
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
@@ -8,13 +8,13 @@ Control Room Log Map
             <div class="wrapper">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>Event Log Map</h4>
+                        <h4>Log Entries</h4>
                     </div>
                 </div>
                 <div class="row" id="logTable">
                     <div class="col-md-12">
-                        {% if event. is empty %}
-                            No map available
+                        {% if logs is empty %}
+                            No logs available
                         {% else %}
                             
                         {% endif %}  
