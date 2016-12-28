@@ -88,6 +88,9 @@ class edit_entry_form extends Controller
         $SWbound = $entryEvent->getSouthWestBounds();
         $overlay = $entryEvent->getOverlayImageName();
         
+        //get original entry Longitude for test on submit
+        $origLongitude = $entry->getLongitude();
+        
         $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $id));
         if (!$medical){
                 $medical = new medical_log();
@@ -171,12 +174,12 @@ class edit_entry_form extends Controller
                 if ($form->get('submit')->isClicked()){
                     $entry->setLogUpdateTimestamp(new \DateTime());
                     //Lookup log location in event location entity and if latlong is blank use data
-                    if($form['longitude']->getData() == null){
+                    if($form['longitude']->getData() == null && $origLongitude == null){
                         $log_location = $form['location']->getData();
                         $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $entryEvent, 'locationText' => $log_location));
                         if($location){
                             $latLong = explode(", ", $location->getLocationLatLong());
-                            $enytry->setLatitude($latLong[0]);
+                            $entry->setLatitude($latLong[0]);
                             $entry->setLongitude($latLong[1]);
                         }
                     }

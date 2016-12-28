@@ -351,12 +351,12 @@ class log_entries {
      */
     public function setLatitude($latitude)
     {
-        if($this->id)
-        {
-            //Do nothing
-        } else {
+//        if($this->id)
+//        {
+//            //Do nothing
+//        } else {
             $this->latitude = $latitude;
-        }
+//        }
         return $this;
     }
 
@@ -379,12 +379,12 @@ class log_entries {
      */
     public function setLongitude($longitude)
     {
-        if($this->id)
-        {
-            //Do nothing
-        } else {
+//        if($this->id)
+//        {
+//            //Do nothing
+//        } else {
             $this->longitude = $longitude;
-        }
+//        }
         
         return $this;
     }
