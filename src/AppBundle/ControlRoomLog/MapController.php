@@ -44,7 +44,7 @@ class MapController extends Controller
         if ($overlay)
         {
             $eventId = $event->getId();
-            $latLong = $latLong = explode(", ", $event->getEventLatLong());
+            $latLong = $latLong = explode(",", $event->getEventLatLong());
             $longitude = $latLong[0];
             $latitude = $latLong[1];
             $NEbound = $event->getNorthEastBounds();
