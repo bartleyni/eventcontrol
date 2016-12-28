@@ -174,7 +174,7 @@ class edit_entry_form extends Controller
                 if ($form->get('submit')->isClicked()){
                     $entry->setLogUpdateTimestamp(new \DateTime());
                     //Lookup log location in event location entity and if latlong is blank use data
-                    if($form['longitude']->getData() == null && $origLongitude == null){
+                    if($entry->getGeolocated() == false){
                         $log_location = $form['location']->getData();
                         $location = $em->getRepository('AppBundle\Entity\Locations')->findOneBy(array('event' => $entryEvent, 'locationText' => $log_location));
                         if($location){

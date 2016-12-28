@@ -72,6 +72,9 @@ class entry_form extends Controller
                         $new_entry->setLatitude($latLong[0]);
                         $new_entry->setLongitude($latLong[1]);
                     }
+                    $new_entry->setGeolocated(false);
+                } else{
+                    $new_entry->setGeolocated(true);
                 }
                 $em->persist($new_entry);
                 $em->flush();

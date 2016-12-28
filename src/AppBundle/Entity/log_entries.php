@@ -91,6 +91,11 @@ class log_entries {
      * @ORM\Column(type="text", nullable=true)
      */
     protected $longitude;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $geolocated;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -397,6 +402,29 @@ class log_entries {
     public function getLongitude()
     {
         return $this->longitude;
+    }
+    
+        /** Set geolocated
+     *
+     * @param boolean $geolocated
+     *
+     * @return log_entries
+     */
+    public function setGeolocated($geolocated)
+    {
+        $this->geolocated = $geolcated;
+
+        return $this;
+    }
+
+    /**
+     * Get geolocated
+     *
+     * @return boolean
+     */
+    public function getGeolocated()
+    {
+        return $this->geolocated;
     }
     
     /**
