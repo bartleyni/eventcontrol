@@ -6,51 +6,62 @@ namespace AppBundle\Twig;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 
 class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $doctrine;
     private $tokenStorage;
-  
-    public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage) {
+
+    public function __construct(RegistryInterface $doctrine, TokenStorage $tokenStorage) {
         $this->doctrine = $doctrine;
         $this->tokenStorage = $tokenStorage;
     }
 
     public function getGlobals()
     {
-        $token = $this->tokenStorage->getToken();
+
         $em = $this->doctrine->getManager();
-        $qb = $em->createQueryBuilder(); 
-        
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('ups.id, ups.name, ups.location, ups.power')
             ->from('AppBundle\Entity\UPS', 'ups')
         ;
-        
+
         $UPS = $qb->getQuery()->getResult();
 
 
         $em = $this->doctrine->getManager();
-        $usr = $token->getUser();
-        $operatorId = $usr->getId();
-        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        if (null === $token = $this->tokenStorage->getToken()) {
+            $qb = $em->createQueryBuilder();
 
-        $query = $this->getDoctrine()->getManager()
-            ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
+            $qb
+                ->select('venue.id, venue.name')
+                ->from('AppBundle\Entity\venue', 'venue')
+            ;
+
+            $venue = $qb->getQuery()->getResult();
+        }else{
+            $usr = $token->getUser();
+            $operatorId = $usr->getId();
+            $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+
+            $query = $this->doctrine->getManager()
+                ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
             JOIN v.event e
             WHERE e.id = :id'
-            )->setParameter('id', $active_event);
+                )->setParameter('id', $active_event);
 
-        $venue = $query->getResult();
-
+            $venue = $query->getResult();
+        }
 
 
 
         return array("GlobalTest" => "Hello Test", "UPSs" => $UPS, "venues" => $venue);
     }
-    
+
     public function getFunctions()
     {
         return array(
@@ -69,47 +80,47 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             new \Twig_SimpleFunction('eventLostPropertyLogs', array($this, 'getLostPropertyLogsByEvent')),
         );
     }
-    
+
     public function getEventById($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
+
         //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
-        
+
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        
+
         //if($user_event)
         //{
         //$eId = $user_event->getEventId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
-            if($event)
-            {
-                $eventId=$event->getId();
-            } else {
-                $eventId = 0;
-            }
+        if($event)
+        {
+            $eventId=$event->getId();
+        } else {
+            $eventId = 0;
+        }
         //} else {
-            //$eventId = 0;
+        //$eventId = 0;
         //}
-        
+
         return $eventId;
     }
-    
+
     public function getUPS()
     {
         $em = $this->doctrine->getManager();
         $UPS = $em->getRepository('AppBundle\Entity\UPS');
-        
+
         return array('ups' => $UPS);
     }
 
     public function getEventWeather($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
+
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        
+
         if($event)
         {
             $eventWeather = $event->getEventLastWeather();
@@ -118,55 +129,55 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         }
 
         return $eventWeather;
-    }  
-    
+    }
+
     public function getEventName($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
+
         //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         //if($user_event)
         //{
         //$eId = $user_event->getEventId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
-            if($event)
-            {
-                $eventName = $event->getName();
-            } else {
-                $eventName = "Not Assigned";
-            }
+        if($event)
+        {
+            $eventName = $event->getName();
+        } else {
+            $eventName = "Not Assigned";
+        }
         //} else {
-            //$eventName = "Not Assigned";
+        //$eventName = "Not Assigned";
         //}
         return $eventName;
     }
-    
+
     public function getTotalLogs($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
             ->setParameter('eventId', $this->getEventById($operatorId))
-            ;
+        ;
 
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
 
         return $totalLogs;
     }
-    
+
     public function getMedicalLogs($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
 
-        $qb = $em->createQueryBuilder(); 
-        
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -175,19 +186,19 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('med.medical_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventById($operatorId))
-            ;
+        ;
 
         $totalMedical = $qb->getQuery()->getSingleScalarResult();
         //$totalLogs = 25;
         return $totalMedical;
     }
-    
+
     public function getSecurityLogs($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -196,19 +207,19 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('sec.security_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventById($operatorId))
-            ;
+        ;
 
         $totalSecurity = $qb->getQuery()->getSingleScalarResult();
 
         return $totalSecurity;
     }
-    
+
     public function getLostPropertyLogs($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -217,19 +228,19 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('lost.lost_property_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventById($operatorId))
-            ;
+        ;
 
         $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
 
         return $totalLostProperty;
     }
-    
+
     public function getOpenLogs($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -239,56 +250,56 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->leftJoin('AppBundle\Entity\lost_property', 'lost', 'WITH', 'lost.log_entry_id = entry.id')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where($qb->expr()->orX(
-                        $qb->expr()->andX(
-                            $qb->expr()->isNotNull('gen.general_description'),
-                            $qb->expr()->isNull('gen.general_entry_closed_time')
-                             ),                            
-                        $qb->expr()->andX(
-                            $qb->expr()->isNotNull('sec.security_description'),
-                            $qb->expr()->isNull('sec.security_entry_closed_time')
-                             ),
-                        $qb->expr()->andX(
-                            $qb->expr()->isNotNull('med.medical_description'),
-                            $qb->expr()->isNull('med.medical_entry_closed_time')
-                            ),
-                        $qb->expr()->andX(
-                            $qb->expr()->isNotNull('lost.lost_property_description'),
-                            $qb->expr()->isNull('lost.lost_property_entry_closed_time')
-                            )))
+                $qb->expr()->andX(
+                    $qb->expr()->isNotNull('gen.general_description'),
+                    $qb->expr()->isNull('gen.general_entry_closed_time')
+                ),
+                $qb->expr()->andX(
+                    $qb->expr()->isNotNull('sec.security_description'),
+                    $qb->expr()->isNull('sec.security_entry_closed_time')
+                ),
+                $qb->expr()->andX(
+                    $qb->expr()->isNotNull('med.medical_description'),
+                    $qb->expr()->isNull('med.medical_entry_closed_time')
+                ),
+                $qb->expr()->andX(
+                    $qb->expr()->isNotNull('lost.lost_property_description'),
+                    $qb->expr()->isNull('lost.lost_property_entry_closed_time')
+                )))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $this->getEventById($operatorId))
-            ;
+        ;
 
         $totalOpen = $qb->getQuery()->getSingleScalarResult();
 
         return $totalOpen;
     }
-    
+
     public function getTotalLogsByEvent($eventId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = entry.event')
             ->where('event.id = :eventId')
             ->setParameter('eventId', $eventId)
-            ;
+        ;
 
         $totalLogs = $qb->getQuery()->getSingleScalarResult();
 
         return $totalLogs;
     }
-    
+
     public function getMedicalLogsByEvent($eventId = 0)
     {
         $em = $this->doctrine->getManager();
 
-        $qb = $em->createQueryBuilder(); 
-        
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -297,19 +308,19 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('med.medical_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $eventId)
-            ;
+        ;
 
         $totalMedical = $qb->getQuery()->getSingleScalarResult();
         //$totalLogs = 25;
         return $totalMedical;
     }
-    
+
     public function getSecurityLogsByEvent($eventId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -318,19 +329,19 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('sec.security_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $eventId)
-            ;
+        ;
 
         $totalSecurity = $qb->getQuery()->getSingleScalarResult();
 
         return $totalSecurity;
     }
-    
+
     public function getLostPropertyLogsByEvent($eventId = 0)
     {
         $em = $this->doctrine->getManager();
-        
-        $qb = $em->createQueryBuilder(); 
-        
+
+        $qb = $em->createQueryBuilder();
+
         $qb
             ->select('count(entry.id)')
             ->from('AppBundle\Entity\log_entries', 'entry')
@@ -339,13 +350,13 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ->where($qb->expr()->isNotNull('lost.lost_property_description'))
             ->andWhere('event.id = :eventId')
             ->setParameter('eventId', $eventId)
-            ;
+        ;
 
         $totalLostProperty = $qb->getQuery()->getSingleScalarResult();
 
         return $totalLostProperty;
-    }    
-    
+    }
+
     public function getName()
     {
         return 'AppExtension';

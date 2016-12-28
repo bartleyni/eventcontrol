@@ -11,9 +11,7 @@ services:
  #   class: AppBundle\Utils\Slugger
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
-        arguments:
-            doctrine: '@doctrine'
-            tokenStorage: '@security.token_storage'
+        arguments: [@doctrine, @security.token_storage]
 
         tags:
             - { name: twig.extension }
