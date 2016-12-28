@@ -35,7 +35,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
         $em = $this->doctrine->getManager();
         $token = $this->tokenStorage->getToken();
-        if (is_object($token = $this->tokenStorage->getToken() && null === $token = $this->tokenStorage->getToken())) {
+        if (is_object($token) && null === $token = $this->tokenStorage->getToken()) {
             $qb = $em->createQueryBuilder();
 
             $qb
