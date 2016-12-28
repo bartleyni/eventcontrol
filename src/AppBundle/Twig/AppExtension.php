@@ -34,8 +34,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
 
         $em = $this->doctrine->getManager();
-        $token = $this->tokenStorage->getToken();
-        if (is_object($token) && null === $token = $this->tokenStorage->getToken()) {
+        if (null === $token = $this->tokenStorage->getToken()) {
             $qb = $em->createQueryBuilder();
 
             $qb
@@ -44,7 +43,8 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             ;
 
             $venue = $qb->getQuery()->getResult();
-        }else{
+        }elseif(is_object($token)) {
+
             $usr = $token->getUser();
             $operatorId = $usr->getId();
             $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
@@ -56,6 +56,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 )->setParameter('id', $active_event);
 
             $venue = $query->getResult();
+
         }
 
 
