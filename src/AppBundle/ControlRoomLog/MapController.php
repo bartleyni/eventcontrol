@@ -244,15 +244,13 @@ class MapController extends Controller
                 if($log['severity'] && $log['medical_severity'])
                 {
                     $severity = min($log['severity'], $log['medical_severity']);
-                } else if($log['severity']) {
+                } else if($log['severity'] && !$log['medical_severity']) {
                     $severity = $log['severity'];
-                } else if($log['medical_severity']) {
+                } else if($log['medical_severity'] && !$log['severity']) {
                     $severity = $log['medical_severity'];
                 } else {
                     $severity = 0;
                 }
-          
-                
                 
                 if ($severity == 1){
                     $colour = "#E50D00";
