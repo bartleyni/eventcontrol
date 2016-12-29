@@ -93,6 +93,19 @@ Control Room Log Map
                 });
                 
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
+                
+                map.data.forEach(function(feature) {
+                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + feature.getProperty('marker-color');
+                    var point = new google.maps.LatLng(feature.getProperty('coordinates'));
+                    var mark = new google.maps.Marker({
+                        position: point,
+                        title: '',
+                        icon: image,
+                        map: map,
+                        draggable: false,
+                        animation: google.maps.Animation.DROP
+                    });
+                });
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
