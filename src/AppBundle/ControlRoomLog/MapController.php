@@ -250,7 +250,7 @@ class MapController extends Controller
         
         if ($logs)
         {
-            $response->setData($logs);
+            $response->setData($data);
         } else {
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
