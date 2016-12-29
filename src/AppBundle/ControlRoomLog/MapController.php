@@ -241,8 +241,8 @@ class MapController extends Controller
         {
             if($log['latitude'] != null)
             {
-//                $severity = min($log['severity'], $log['medical_severity']);
-                $severity = $log['severity'];
+                $severity = min($log['severity'], $log['medical_severity']);
+//                $severity = $log['severity'];
                 
                 
 //                if ($severity == 1){
