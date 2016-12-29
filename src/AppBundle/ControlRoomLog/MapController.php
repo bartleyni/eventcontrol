@@ -241,6 +241,8 @@ class MapController extends Controller
         {
             $data['features']['type'] = "Feature";
             $data['features']['properties'] = ["marker-color" => "#ff8080", "marker-size" => "medium", "marker-symbol"=> ""];
+            $data['features']['geometry'] = ["type" => "point"];
+            $data['features']['geometry'] = ["coordinates" => [$log['latitude'], $log['longitude']]];
         }
         
         
