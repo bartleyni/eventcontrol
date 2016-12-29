@@ -240,9 +240,8 @@ class MapController extends Controller
         foreach ($logs as $log)
         {
             $data['features']['type'] = "Feature";
-            $data['features']['properties'] = ["marker-color" => "#ff8080", "marker-size" => "medium", "marker-symbol"=> ""];
-            $data['features']['geometry'] = ["type" => "point"];
-            $data['features']['geometry'] = ["coordinates" => [$log['latitude'], $log['longitude']]];
+            $data['features']['properties'] = ["marker-color" => "#ff8080", "marker-size" => "medium", "marker-symbol"=> "", "id" => $log['id']];
+            $data['features']['geometry'] = [["type" => "point"], ["coordinates" => [$log['latitude'], $log['longitude']]]];
         }
         
         
@@ -252,7 +251,7 @@ class MapController extends Controller
         
         if ($logs)
         {
-            $response->setData($data);
+            $response->setData(json_encode($data, JSON_PRETTY_PRINT));
         } else {
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
