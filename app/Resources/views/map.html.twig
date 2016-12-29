@@ -92,6 +92,8 @@ Control Room Log Map
                     center: {lat: {{ latitude }}, lng: {{ longitude }}},
                     mapTypeId: 'satellite'
                 });
+                
+                map.data.loadGeoJson('{{ path('map_json_data') }}');
 
                 var bounds = new google.maps.LatLngBounds(
                     //new google.maps.LatLng(51.37808, -2.32938),
