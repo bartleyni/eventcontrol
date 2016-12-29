@@ -239,7 +239,7 @@ class MapController extends Controller
         
         foreach ($logs as $log)
         {
-            if($log['latitude' != null])
+            if($log['latitude'] != null)
             {
                 $logFeature = ['type' => "Feature", 'properties' =>["marker-color" => "#ff8080", "marker-size" => "medium", "marker-symbol"=> "", "id" => $log['id']], 'geometry' => ["type" => "point"], ["coordinates" => [floatval($log['latitude']), floatval($log['longitude'])]]];
                 array_push($data['features'],$logFeature);
