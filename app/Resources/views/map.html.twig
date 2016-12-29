@@ -95,7 +95,7 @@ Control Room Log Map
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
                 
                 map.data.forEach(function(feature) {
-                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + feature.property.marker-color);
+                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|#ff8080');
                     var point = new google.maps.LatLng(feature.getProperty('coordinates'));
                     var mark = new google.maps.Marker({
                         position: point,
