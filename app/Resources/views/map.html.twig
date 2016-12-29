@@ -88,7 +88,6 @@ Control Room Log Map
             function initMap() {
                 var map = new google.maps.Map(document.getElementById('largeLogMap'), {
                     zoom: 18,
-                    //center: {lat: 51.379300, lng: -2.32700},
                     center: {lat: {{ latitude }}, lng: {{ longitude }}},
                     mapTypeId: 'satellite'
                 });
@@ -96,9 +95,7 @@ Control Room Log Map
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
 
                 var bounds = new google.maps.LatLngBounds(
-                    //new google.maps.LatLng(51.37808, -2.32938),
                     new google.maps.LatLng({{ NEbound }}),
-                    //new google.maps.LatLng(51.38039, -2.32373)
                     new google.maps.LatLng({{ SWbound }})
                 );
 
@@ -106,10 +103,10 @@ Control Room Log Map
 
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
 
-                var marker = new google.maps.Marker({
-                    position: {lat:{{ latitude }}, lng:{{ longitude }}},
-                    map: map
-                });
+                //var marker = new google.maps.Marker({
+                //    position: {lat:{{ latitude }}, lng:{{ longitude }}},
+                //    map: map
+                //});
             }
 
             /** @constructor */
