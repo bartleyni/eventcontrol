@@ -92,10 +92,18 @@ Control Room Log Map
                     mapTypeId: 'satellite'
                 });
                 
-                //map.data.loadGeoJson('{{ path('map_json_data') }}');
-                var script = document.createElement('script');
-                script.src = '{{ path('map_json_data') }}';
-                document.getElementsByTagName('head')[0].appendChild(script);
+                map.data.loadGeoJson('{{ path('map_json_data') }}');
+                
+                map.data.forEach(function(feature) {
+                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
+                    var point = new google.maps.LatLng(feature.getProperty('coordinates'));
+                    var marker = new google.maps.Marker({
+                        position: point,
+                        title: '',
+                        icon: image,
+                        map: map
+                    });
+                });
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
@@ -110,19 +118,6 @@ Control Room Log Map
                 //    position: {lat:{{ latitude }}, lng:{{ longitude }}},
                 //    map: map
                 //});
-            }
-            
-            window.eqfeed_callback = function(results) {
-                for (var i = 0; i < results.features.length; i++) {
-                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    var coords = results.features[i].geometry.coordinates;
-                    var latLng = new google.maps.LatLng(coords[1],coords[0]);
-                    var marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map,
-                        icon: image
-                    });
-                }
             }
 
             /** @constructor */
