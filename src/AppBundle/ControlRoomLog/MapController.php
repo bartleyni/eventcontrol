@@ -24,11 +24,15 @@ class MapController extends Controller
 {
     /**
     * @Route("/map.{_format}", name="map_pdf");
-    * @Route("/map/", name="full_map");
-    * @Route("/map");
+    * @Route("/map/");
+    * @Route("/map", name="full_map");
+    * @Route("/map/{filter}", name="map_filter");
+    * @Route("/map/{filter}/");
+    * @Route("/map/{filter}/{filter_type}", name="map_filter_type");
+    * @Route("/map/{filter}/{filter_type}/");
     */
     
-     public function mapAction($_format="html")
+     public function mapAction($_format="html", $filter=null, $filter_type=null)
     {
         $em = $this->getDoctrine()->getManager();
         
@@ -49,19 +53,19 @@ class MapController extends Controller
             $longitude = $latLong[1];
             $NEbound = $event->getNorthEastBounds();
             $SWbound = $event->getSouthWestBounds();
-            return $this->render('map.html.twig', array('event' => $event, 'overlayFileName' => $overlay, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'latitude' => $latitude, 'longitude' => $longitude));
+            return $this->render('map.html.twig', array('event' => $event, 'overlayFileName' => $overlay, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'latitude' => $latitude, 'longitude' => $longitude, 'filter' => $filter, 'filter_type' => $filter_type));
         } else {
             return $this->redirectToRoute('full_log');
         }
     }
     
      /**
-     * @Route("/mapjsondata/", name="map_json_data");
+     * @Route("/mapjsondata/");
      * @Route("/mapjsondata/{filter}", name="map_filter_json_data");
      * @Route("/mapjsondata/{filter}/");
      * @Route("/mapjsondata/{filter}/{filter_type}", name="map_filter_type_json_data");
      * @Route("/mapjsondata/{filter}/{filter_type}/", name="map_json_data");
-     * @Route("/mapjsondata");
+     * @Route("/mapjsondata", name="map_json_data");
      *
      */
     public function map_json_data($filter=null, $filter_type=null)
@@ -89,7 +93,7 @@ class MapController extends Controller
         $qb = $em->createQueryBuilder(); 
         
         $qb
-            ->select('entry.id, entry.log_entry_open_time, entry.log_update_timestamp, entry.log_blurb, entry.location, entry.reported_by, entry.park_alert, gen.general_description, gen.general_open, gen.general_entry_closed_time, sec.security_description, sec.security_entry_closed_time, secinc.security_incident_description, secinc.severity, secinc.security_incident_colour, med.medical_entry_closed_time, medinj.medical_severity, medinj.medical_injury_description, medrsp.medical_response_description, med.nine_nine_nine_required, lost.lost_property_entry_closed_time, lost.lost_property_description')
+            ->select('entry.id, entry.log_entry_open_time, entry.log_update_timestamp, entry.log_blurb, entry.location, entry.latitude, entry.longitude, entry.reported_by, entry.park_alert, gen.general_description, gen.general_open, gen.general_entry_closed_time, sec.security_description, sec.security_entry_closed_time, secinc.security_incident_description, secinc.severity, secinc.security_incident_colour, med.medical_entry_closed_time, medinj.medical_severity, medinj.medical_injury_description, medrsp.medical_response_description, med.nine_nine_nine_required, lost.lost_property_entry_closed_time, lost.lost_property_description')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->orderBy('entry.log_entry_open_time', $sort_dir)
             ->leftJoin('AppBundle\Entity\general_log', 'gen', 'WITH', 'gen.log_entry_id = entry.id')
@@ -228,6 +232,19 @@ class MapController extends Controller
         }
         $query = $qb->getQuery();
         $logs = $query->getResult();
+        
+        //Now convert the data from logs in to GeoJson formatting.
+        $data['type'] = "FeatureCollection";
+        $data['features'] = array();
+        
+        foreach ($logs as $log)
+        {
+            $data['features']['type'] = "Feature";
+            $data['features']['properties'] = ["marker-color" => "#ff8080", "marker-size" => "medium", "marker-symbol"=> ""];
+        }
+        
+        
+        
         
         $response = new JsonResponse();
         

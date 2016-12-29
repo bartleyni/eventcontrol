@@ -52,6 +52,22 @@ Control Room Log Map
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+        
+        function updateMarkers()
+        {
+            {% if overlayFileName is not empty %}
+                $.getJSON('{{ path('map_json_data') }}', function(data) {
+                    $('#logTotal-Total').html(data['Total']);
+                    $('#logTotal-Open').html(data['Open']);
+                    $('#logTotal-Medical').html(data['Medical']);
+                    $('#logTotal-Security').html(data['Security']);
+                    $('#logTotal-Lost').html(data['Lost']);
+                });
+            {% endif %}    
+                i++;
+                setTimeout(updateMarkers, 5000);
+        }
+
 
         
         
