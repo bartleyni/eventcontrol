@@ -251,7 +251,7 @@ class MapController extends Controller
         
         if ($logs)
         {
-            $response->setData(json_encode($data, JSON_PRETTY_PRINT));
+            $response->setData(json_encode($data));
         } else {
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
