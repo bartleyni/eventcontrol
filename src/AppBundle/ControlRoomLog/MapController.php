@@ -252,7 +252,7 @@ class MapController extends Controller
                 } elseif(min($log['severity'], $log['medical_severity']) == 5) {
                     $colour = "#1CCE00";
                 } else {
-                    $colour = "#ff8080"
+                    $colour = "#ff8080";
                 }
                     
                 $logFeature = ['type' => "Feature", 'properties' => ["marker-color" => $colour, "marker-size" => "medium", "marker-symbol"=> "", "id" => $log['id']], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
