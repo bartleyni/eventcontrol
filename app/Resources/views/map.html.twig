@@ -84,6 +84,8 @@ Control Room Log Map
                     };
                 });
                 
+                var infowindow = new google.maps.InfoWindow();
+                
                 map.data.addListener('click', function(event) {
                     //var blurb = event.feature.getProperty('blurb');
                     //var id = event.feature.getProperty('id');
@@ -92,10 +94,8 @@ Control Room Log Map
                     //var med_type = event.feature.getProperty('med_type');
                     //var sec_type = event.feature.getProperty('sec_type');
                     
-                    var infowindow = new google.maps.InfoWindow({
-                        content: "This is an info window!"
-                      });
-                    infowindow.open(map, map.data.feature);
+                    infowindow.setContent( "This is an info window");
+                    infowindow.open(map, event.feature.getGeometry().get());
                     
                 });
 
