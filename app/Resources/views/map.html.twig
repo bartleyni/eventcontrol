@@ -104,7 +104,15 @@ Control Room Log Map
                         map: map
                     });
                 });
-                
+
+                map.data.setStyle(function(feature) {
+                    var color = feature.getProperty('color');
+                    return {
+                        fillColor: color,
+                        strokeWeight: 1
+                    };
+                });
+
                 //map.data.setStyle({
                 //    icon: image,
                 //    map: map
