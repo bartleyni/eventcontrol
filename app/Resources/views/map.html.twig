@@ -96,17 +96,17 @@ Control Room Log Map
                 
                 console.log("Loaded GeoJSON data!");
                 
-                map.data.forEach(function(Feature) {
+                map.data.forEach(function(feature) {
                     console.log("Looping features!");
-                    var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    setStyle(Feature,{
-                        icon: image
-                    });
+                    //var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
+                    //setStyle(feature,{
+                        //icon: image
+                    //});
                 });
                 
-                map.data.forEach(function(Feature) { 
-                    console.log('>> ', Feature.get('letter'), 'properties are: '); 
-                    Feature.forEachProperty(function(value,property) {
+                map.data.forEach(function(feature) { 
+                    console.log('>> ', feature.get('letter'), 'properties are: '); 
+                    feature.forEachProperty(function(value,property) {
                         console.log(property,':',value);
                     });
                 });
