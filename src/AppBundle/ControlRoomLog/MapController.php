@@ -255,7 +255,7 @@ class MapController extends Controller
                 } else if($log['medical_severity'] && !$log['severity']) {
                     $severity = $log['medical_severity'];
                 } else {
-                    $severity = 0;
+                    $severity = 10;
                 }
                 
                 if ($log['security_description'] && !$log['security_entry_closed_time'])
@@ -295,6 +295,7 @@ class MapController extends Controller
                 } else {
                     $status = "Closed";
                     $colour = "777";
+                    $severity = 99;
                 }
                 
                 $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];

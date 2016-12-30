@@ -96,6 +96,12 @@ Control Room Log Map
                         icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + colour
                     };
                 });
+                
+                map.data.setZIndex(function(feature) {
+                    return {
+                        feature.getProperty('severity');
+                    };
+                });
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
