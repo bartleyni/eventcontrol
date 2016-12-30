@@ -83,6 +83,21 @@ Control Room Log Map
                         zIndex: zI
                     };
                 });
+                
+                map.data.addListener('click', function(event) {
+                    //var blurb = event.feature.getProperty('blurb');
+                    //var id = event.feature.getProperty('id');
+                    //var sec_severity = event.feature.getProperty('sec_severity');
+                    //var med_severity = event.feature.getProperty('med_severity');
+                    //var med_type = event.feature.getProperty('med_type');
+                    //var sec_type = event.feature.getProperty('sec_type');
+                    
+                    var infowindow = new google.maps.InfoWindow({
+                        content: "This is an info window!"
+                      });
+                    infowindow.open(map, feature);
+                    
+                });
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
