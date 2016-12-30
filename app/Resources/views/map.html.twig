@@ -111,6 +111,16 @@ Control Room Log Map
                     });
                 });
                 
+                
+                map.data.setStyle(function(feature) {
+                    //var color = feature.getProperty('color');
+                    return {
+                        //fillColor: color,
+                        strokeWeight: 1,
+                        icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300";
+                    };
+                });
+                
                 //map.data.setStyle({
                 //    icon: image,
                 //    map: map
