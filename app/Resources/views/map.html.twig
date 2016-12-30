@@ -56,7 +56,7 @@ Control Room Log Map
         function updateMarkers()
         {
             {% if overlayFileName is not empty %}
-                $.getJSON('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}', function(data) {
+                $.getJSON('{{ path('map_filter_type_json_data', {'filter': "open", 'filter_type': "medical"}) }}', function(data) {
                     $('#logTotal-Total').html(data['Total']);
                     $('#logTotal-Open').html(data['Open']);
                     $('#logTotal-Medical').html(data['Medical']);
