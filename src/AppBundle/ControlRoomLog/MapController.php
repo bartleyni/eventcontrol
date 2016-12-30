@@ -253,21 +253,21 @@ class MapController extends Controller
                 }
                 
                 if ($severity == 1){
-                    $colour = "#E50D00";
+                    $colour = "E50D00";
                 } elseif($severity == 2) {
-                    $colour = "#DF7200";
+                    $colour = "DF7200";
                 } elseif($severity == 3) {
-                    $colour = "#D9D100";
+                    $colour = "D9D100";
                 } elseif($severity == 4) {
-                    $colour = "#7CD300";
+                    $colour = "7CD300";
                 } elseif($severity == 5) {
-                    $colour = "#1CCE00";
+                    $colour = "1CCE00";
                 } else {
-                    $colour = "#ff8080";
+                    $colour = "ff8080";
                 }
                     
                 //$logFeature = ['type' => "Feature", 'properties' => ["marker-color" => $colour, "marker-size" => "large", "marker-symbol"=> "a", "id" => $log['id'], "severity" => $severity], 'geometry' => ["type" => "Point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
-                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
+                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'], "colour" => $colour, "severity" => $severity], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
