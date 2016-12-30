@@ -53,21 +53,6 @@ Control Room Log Map
             $('[data-toggle="tooltip"]').tooltip();
         });
         
-        function updateMarkers()
-        {
-            {% if overlayFileName is not empty %}
-                $.getJSON('{{ path('map_filter_type_json_data', {'filter': "open", 'filter_type': "medical"}) }}', function(data) {
-                    $('#logTotal-Total').html(data['Total']);
-                    $('#logTotal-Open').html(data['Open']);
-                    $('#logTotal-Medical').html(data['Medical']);
-                    $('#logTotal-Security').html(data['Security']);
-                    $('#logTotal-Lost').html(data['Lost']);
-                });
-            {% endif %}    
-                i++;
-                setTimeout(updateMarkers, 5000);
-        }
-        
         {% if (longitude is not null) and (latitude is not null) %}
         
             /* 
@@ -88,7 +73,7 @@ Control Room Log Map
                     mapTypeId: 'satellite'
                 });
                 
-                map.data.loadGeoJson('{{ path('map_json_data') }}');
+                map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type) }}');
                 
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');

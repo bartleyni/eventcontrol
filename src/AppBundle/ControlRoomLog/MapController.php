@@ -68,7 +68,7 @@ class MapController extends Controller
      * @Route("/mapjsondata", name="map_json_data");
      *
      */
-    public function map_json_data($filter="open", $filter_type="medical")
+    public function map_json_data($filter=null, $filter_type=null)
     {
         $em = $this->getDoctrine()->getManager();
         
