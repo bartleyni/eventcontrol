@@ -94,16 +94,16 @@ Control Room Log Map
                 
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
                 
-                map.data.forEach(function(feature) {
+                map.data.forEach(function(Feature) {
                     var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    setStyle(feature,{
+                    setStyle(Feature,{
                         icon: image
                     });
                 });
                 
-                map.data.forEach(function(feature) { 
-                    console.log('>> ', feature.get('letter'), 'properties are: '); 
-                    feature.forEachProperty(function(value,property) {
+                map.data.forEach(function(Feature) { 
+                    console.log('>> ', Feature.get('letter'), 'properties are: '); 
+                    Feature.forEachProperty(function(value,property) {
                         console.log(property,':',value);
                     });
                 });
