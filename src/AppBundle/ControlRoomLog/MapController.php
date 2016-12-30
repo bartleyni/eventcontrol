@@ -168,7 +168,7 @@ class MapController extends Controller
                 $qb->andWhere($qb->expr()->isNotNull('lost.lost_property_description'));
             }
         }else{
-            if ($filter=="open"){
+            if ($filter=="open" && $filter_type == null){
                 $qb->andWhere($qb->expr()->orX(
                         $qb->expr()->andX(
                             $qb->expr()->isNotNull('gen.general_description'),
@@ -186,7 +186,7 @@ class MapController extends Controller
                             $qb->expr()->isNotNull('lost.lost_property_description'),
                             $qb->expr()->isNull('lost.lost_property_entry_closed_time')
                             )));
-            } elseif ($filter=="closed"){
+            } elseif ($filter=="closed" && $filter_type == null){
                 $qb->andWhere($qb->expr()->andX(
                         $qb->expr()->orX(   
                             $qb->expr()->isNull('gen.general_description'),
