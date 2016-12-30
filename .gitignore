@@ -12,4 +12,3 @@
 /composer.phar
 /nbproject/private/
 app/Resources/views/SecurityForm.twig
-.idea/workspace.xml
