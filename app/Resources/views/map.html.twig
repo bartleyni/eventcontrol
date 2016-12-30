@@ -101,6 +101,13 @@ Control Room Log Map
                     });
                 });
                 
+                map.data.forEach(function(feature) { 
+                    console.log('>> ', feature.get('letter'), 'properties are: '); 
+                    feature.forEachProperty(function(value,property) {
+                        console.log(property,':',value);
+                    });
+                });
+                
                 //map.data.setStyle({
                 //    icon: image,
                 //    map: map
