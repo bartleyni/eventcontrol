@@ -98,7 +98,7 @@ Control Room Log Map
                 });
                 
                 map.data.setZIndex(function(feature) {
-                    return feature.getProperty('severity');
+                    return feature.getProperty('zIndex');
                 });
 
                 var bounds = new google.maps.LatLngBounds(

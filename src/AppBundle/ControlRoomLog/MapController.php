@@ -255,7 +255,7 @@ class MapController extends Controller
                 } else if($log['medical_severity'] && !$log['severity']) {
                     $severity = $log['medical_severity'];
                 } else {
-                    $severity = 10;
+                    $zIndex = 10;
                 }
                 
                 if ($log['security_description'] && !$log['security_entry_closed_time'])
@@ -270,23 +270,30 @@ class MapController extends Controller
                 {
                     $general_status = "Open";
                     $colour = "337ab7";
+                    $zIndex = 50;
                 }
                 if ($log['lost_property_description'] && !$log['lost_property_entry_closed_time'])
                 {
                     $lost_property_status = "Open";
                     $colour = "5bc0de";
+                    $zIndex = 40;
                 }
                 
                 if ($severity == 1){
                     $colour = "E50D00";
+                    $zIndex = 100;
                 } elseif($severity == 2) {
                     $colour = "DF7200";
+                    $zIndex = 90;
                 } elseif($severity == 3) {
                     $colour = "D9D100";
+                    $zIndex = 80;
                 } elseif($severity == 4) {
                     $colour = "7CD300";
+                    $zIndex = 70;
                 } elseif($severity == 5) {
                     $colour = "1CCE00";
+                    $zIndex = 60;
                 }                
                 
                 if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
@@ -295,10 +302,10 @@ class MapController extends Controller
                 } else {
                     $status = "Closed";
                     $colour = "777";
-                    $severity = 99;
+                    $zIndex = 1;
                 }
                 
-                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
+                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
