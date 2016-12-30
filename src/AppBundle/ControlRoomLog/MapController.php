@@ -297,12 +297,12 @@ class MapController extends Controller
                     $zIndex = 60;
                 }                
                 
-                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
+                if ($security_status === "Open" or $medical_status === "Open" or $general_status === "Open" or $lost_property_status === "Open")
                 {
                     $status = "Open";
                 } else {
                     $status = "Closed";
-                    $colour = "777";
+                    //$colour = "777";
                     $zIndex = 1;
                 }
                 
