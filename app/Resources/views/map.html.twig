@@ -96,10 +96,10 @@ Control Room Log Map
                 
                 console.log("Loaded GeoJSON data!");
                 
-                map.data.forEach(function(feature) {
+                map.data.forEach(function(Feature) {
                     console.log("Looping features!");
                     var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    setStyle(feature,{
+                    setStyle(Feature,{
                         icon: image
                     });
                 });
