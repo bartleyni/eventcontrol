@@ -241,6 +241,12 @@ class MapController extends Controller
         {
             if($log['latitude'] != null)
             {
+                $status = null;
+                $general_status = "Closed";
+                $lost_property_status = "Closed";
+                $medical_status = "Closed";
+                $security_status = "Closed";
+                
                 if($log['severity'] && $log['medical_severity'])
                 {
                     $severity = min($log['severity'], $log['medical_severity']);
@@ -250,6 +256,25 @@ class MapController extends Controller
                     $severity = $log['medical_severity'];
                 } else {
                     $severity = 0;
+                }
+                
+                if ($log['security_description'] && !$log['security_entry_closed_time'])
+                {
+                    $security_status = "Open";
+                }
+                if ($log['medical_description'] && !$log['medical_entry_closed_time'])
+                {
+                    $medical_status = "Open";
+                }
+                if ($log['general_description'] && !$log['general_entry_closed_time'])
+                {
+                    $general_status = "Open";
+                    $colour = "337ab7";
+                }
+                if ($log['lost_property_description'] && !$log['lost_property_entry_closed_time'])
+                {
+                    $lost_property_status = "Open";
+                    $colour = "5bc0de";
                 }
                 
                 if ($severity == 1){
@@ -262,12 +287,17 @@ class MapController extends Controller
                     $colour = "7CD300";
                 } elseif($severity == 5) {
                     $colour = "1CCE00";
+                }                
+                
+                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
+                {
+                    $status = "Open";
                 } else {
-                    $colour = "ff8080";
+                    $status = "Closed";
+                    $colour = "777";
                 }
-                    
-                //$logFeature = ['type' => "Feature", 'properties' => ["marker-color" => $colour, "marker-size" => "large", "marker-symbol"=> "a", "id" => $log['id'], "severity" => $severity], 'geometry' => ["type" => "Point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
-                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
+                
+                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
