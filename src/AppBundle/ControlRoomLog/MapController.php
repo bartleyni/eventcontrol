@@ -246,6 +246,7 @@ class MapController extends Controller
                 $lost_property_status = "Closed";
                 $medical_status = "Closed";
                 $security_status = "Closed";
+                $zIndex = 10;
                 
                 if($log['severity'] && $log['medical_severity'])
                 {

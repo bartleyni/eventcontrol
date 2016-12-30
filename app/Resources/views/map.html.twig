@@ -92,10 +92,10 @@ Control Room Log Map
                 
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
-                    var zIndex = feature.getProperty('zIndex');
+                    var zI = feature.getProperty('zIndex');
                     return {
-                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + colour
-                        zIndex: zIndex
+                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + colour,
+                        zIndex: zI
                     };
                 });
 
