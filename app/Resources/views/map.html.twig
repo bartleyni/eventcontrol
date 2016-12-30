@@ -73,7 +73,7 @@ Control Room Log Map
                     mapTypeId: 'satellite'
                 });
                 
-                map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type) }}');
+                map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
