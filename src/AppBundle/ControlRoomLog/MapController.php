@@ -64,7 +64,7 @@ class MapController extends Controller
      * @Route("/mapjsondata/{filter}", name="map_filter_json_data");
      * @Route("/mapjsondata/{filter}/");
      * @Route("/mapjsondata/{filter}/{filter_type}", name="map_filter_type_json_data");
-     * @Route("/mapjsondata/{filter}/{filter_type}/", name="map_json_data");
+     * @Route("/mapjsondata/{filter}/{filter_type}/");
      * @Route("/mapjsondata", name="map_json_data");
      *
      */
