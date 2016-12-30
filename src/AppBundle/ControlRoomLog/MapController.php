@@ -267,7 +267,7 @@ class MapController extends Controller
                 }
                     
                 //$logFeature = ['type' => "Feature", 'properties' => ["marker-color" => $colour, "marker-size" => "large", "marker-symbol"=> "a", "id" => $log['id'], "severity" => $severity], 'geometry' => ["type" => "Point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
-                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"color" => $colour, "severity" => $severity], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
+                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'],"colour" => $colour, "severity" => $severity], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
