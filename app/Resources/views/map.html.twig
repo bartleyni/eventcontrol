@@ -94,14 +94,10 @@ Control Room Log Map
                 
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
                 
-                map.data.forEach(function(Feature) {
+                map.data.forEach(function(feature) {
                     var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    var point = new google.maps.LatLng(Feature.getProperty('coordinates'));
-                    var marker = new google.maps.Marker({
-                        position: point,
-                        //title: '',
-                        icon: image,
-                        map: map
+                    setStyle(feature,{
+                        icon: image
                     });
                 });
 
