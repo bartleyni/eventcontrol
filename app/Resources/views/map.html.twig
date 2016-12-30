@@ -87,18 +87,30 @@ Control Room Log Map
                 var infowindow = new google.maps.InfoWindow();
                 
                 map.data.addListener('click', function(event) {
-                    //var blurb = event.feature.getProperty('blurb');
-                    //var id = event.feature.getProperty('id');
-                    //var sec_severity = event.feature.getProperty('sec_severity');
-                    //var med_severity = event.feature.getProperty('med_severity');
-                    //var med_type = event.feature.getProperty('med_type');
-                    //var sec_type = event.feature.getProperty('sec_type');
+
                     var log = event.feature.getProperty('log');
-                    var content = '<div><h2>'+log['blurb']+'</h2>'+
+                    var security = null;
+                    if (log['security_description'])
+                    {
+                        if(log['security_entry_closed_time'])
+                        {
+                            security = '<span class="label label-default">'+
+                                    log['security_description']+
+                                    '</span> &nbsp';
+                        } else {
+                            security = '<span class="label severity'+log['severity']+'">'+
+                                    log['security_description']+
+                                    '</span> &nbsp';
+                        }
+                    }
+                            
+                    var content = '<div><h3>'+log['log_blurb']+'</h3>'+
                         '<p>'+log['log_entry_open_time']+'</p>'+
                         '<p>Location: '+log['location']+'</p>'+
                         '<p>Reported By: '+log['reported_by']+'</p>'+
+                        security+
                         '</div>';
+                    
                     infowindow.setContent(content);
                     infowindow.setPosition(event.feature.getGeometry().get());
                     infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
