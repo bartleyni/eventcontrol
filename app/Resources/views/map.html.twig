@@ -96,7 +96,7 @@ Control Room Log Map
                 
                 map.data.forEach(function(feature) {
                     var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    overrideStyle(feature,{
+                    setStyle(feature,{
                         icon: image
                     });
                 });
