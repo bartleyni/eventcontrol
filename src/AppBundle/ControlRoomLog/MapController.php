@@ -307,7 +307,7 @@ class MapController extends Controller
                     $zIndex = 1;
                 }
                 
-                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'], "blurb" => $log['log_blurb'], "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
+                $logFeature = ['type' => "Feature", 'properties' => ["id" => $log['id'], "blurb" => $log['log_blurb'], "log" => $log, "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
