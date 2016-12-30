@@ -96,34 +96,13 @@ Control Room Log Map
                 
                 console.log("Loaded GeoJSON data!");
                 
-                map.data.forEach(function(feature) {
-                    console.log("Looping features!");
-                    //var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    //setStyle(feature,{
-                        //icon: image
-                    //});
-                });
-                
-                map.data.forEach(function(feature) { 
-                    console.log('>> ', feature.get('letter'), 'properties are: '); 
-                    feature.forEachProperty(function(value,property) {
-                        console.log(property,':',value);
-                    });
-                });
-                
-                
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
                     return {
-                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + colour
+                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=1|%E2%80%A2|" + colour
                     };
                 });
                 
-                //map.data.setStyle({
-                //    icon: image,
-                //    map: map
-                //});
-
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
                     new google.maps.LatLng({{ SWbound }})
@@ -133,10 +112,6 @@ Control Room Log Map
 
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
 
-                //var marker = new google.maps.Marker({
-                //    position: {lat:{{ latitude }}, lng:{{ longitude }}},
-                //    map: map
-                //});
             }
 
             /** @constructor */
