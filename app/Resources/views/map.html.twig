@@ -94,21 +94,21 @@ Control Room Log Map
                 
                 map.data.loadGeoJson('{{ path('map_json_data') }}');
                 
-                //map.data.forEach(function(feature) {
+                map.data.forEach(function(Feature) {
                     var image = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|7CD300';
-                    //var point = new google.maps.LatLng(feature.getProperty('coordinates'));
-                    //var marker = new google.maps.Marker({
-                        //position: point,
+                    var point = new google.maps.LatLng(Feature.getProperty('coordinates'));
+                    var marker = new google.maps.Marker({
+                        position: point,
                         //title: '',
-                        //icon: image,
-                        //map: map
-                    //});
-                //});
-                
-                map.data.setStyle({
-                    icon: image,
-                    map: map
+                        icon: image,
+                        map: map
+                    });
                 });
+                
+                //map.data.setStyle({
+                //    icon: image,
+                //    map: map
+                //});
 
                 var bounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng({{ NEbound }}),
