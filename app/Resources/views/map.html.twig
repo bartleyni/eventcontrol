@@ -94,8 +94,9 @@ Control Room Log Map
                     //var med_type = event.feature.getProperty('med_type');
                     //var sec_type = event.feature.getProperty('sec_type');
                     
-                    infowindow.setContent( "This is an info window");
+                    infowindow.setContent(event.feature.getProperty('blurb'));
                     infowindow.setPosition(event.feature.getGeometry().get());
+                    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
                     infowindow.open(map);
                     
                 });
