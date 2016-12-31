@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
+use AppBundle\Form\Type;
 use AppBundle\Form\Type\SkewType;
 use AppBundle\Form\Type\VenueCameraType;
 
@@ -98,8 +99,6 @@ class VenueController extends Controller
             $venue_camera = new venue_camera();
             $venue_camera->setVenueId($venue);
         }
-
-        
 
         $form = $this->createForm(new VenueCameraType(), $venue_camera);
 

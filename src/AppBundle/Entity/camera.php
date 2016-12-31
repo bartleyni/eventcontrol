@@ -50,5 +50,10 @@ class camera {
      */
     protected $camera_count;
 
-    
+    public function __toString()
+    {
+        return (string) $this->getName()." - ".$this->getLocation();
+    }
+
+   
 }
