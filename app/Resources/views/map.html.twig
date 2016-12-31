@@ -89,26 +89,68 @@ Control Room Log Map
                 map.data.addListener('click', function(event) {
 
                     var log = event.feature.getProperty('log');
-                    var security = null;
-                    if (log['security_description'])
+                    var security = "";
+                    if (log['security_incident_description'])
                     {
                         if(log['security_entry_closed_time'])
                         {
                             security = '<span class="label label-default">'+
-                                    log['security_description']+
+                                    log['security_incident_description']+
                                     '</span> &nbsp';
                         } else {
                             security = '<span class="label severity'+log['severity']+'">'+
-                                    log['security_description']+
+                                    log['security_incident_description']+
                                     '</span> &nbsp';
                         }
                     }
-                            
+                    var medical = "";
+                    if (log['medical_injury_description'])
+                    {
+                        if(log['medical_entry_closed_time'])
+                        {
+                            medical = '<span class="label label-default">'+
+                                    log['medical_injury_description']+
+                                    '</span> &nbsp';
+                        } else {
+                            medical = '<span class="label severity'+log['medical_severity']+'">'+
+                                    log['medical_injury_description']+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    var general = "";
+                    if (log['general_description'])
+                    {
+                        if(log['general_entry_closed_time'])
+                        {
+                            general = '<span class="label label-default">'+
+                                    log['general_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        } else {
+                            general = '<span class="label label-primary">'+
+                                    log['general_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    var lost = "";
+                    if (log['lost_property_description'])
+                    {
+                        if(log['lost_property_entry_closed_time'])
+                        {
+                            lost = '<span class="label label-default">'+
+                                    log['lost_property_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        } else {
+                            lost = '<span class="label label-info">'+
+                                    log['lost_property_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    
                     var content = '<div><h3>'+log['log_blurb']+'</h3>'+
                         '<p>'+log['log_entry_open_time']+'</p>'+
                         '<p>Location: '+log['location']+'</p>'+
                         '<p>Reported By: '+log['reported_by']+'</p>'+
-                        security+
+                        medical+security+general+lost+
                         '</div>';
                     
                     infowindow.setContent(content);

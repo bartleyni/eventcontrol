@@ -54,7 +54,7 @@
                             {{ log.medical_injury_description }}
                             </span> &nbsp;
                         {% endif %}
-                        {% if log.security_description is null %}
+                        {% if log.security_incident_description is null %}
                         {% else %}
                             {% if log.security_entry_closed_time is not null %}
                                 <span class="label label-default" data-toggle="tooltip" data-placement="left" title="Closed: {{ log.security_entry_closed_time|date('Y-m-d H:i:s', "Europe/London") }}">
