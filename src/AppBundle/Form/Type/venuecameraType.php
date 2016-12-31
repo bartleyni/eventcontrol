@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntergerType;
 
 class VenueCameraType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -42,6 +43,9 @@ class VenueCameraType extends AbstractType
     }
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'AppBundle\Entity\venue_camera'));
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\venue_camera',
+            'venue_id' => null
+        ));
     }
 }
