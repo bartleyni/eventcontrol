@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
 use AppBundle\Form\Type\SkewType;
+use AppBundle\Form\Type\VenueCameraType;
 
 class VenueController extends Controller
 {
