@@ -22,23 +22,14 @@ class VenueController extends Controller
     public function view(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
-        $operatorId = $usr->getId();
-        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
-        $query = $this->getDoctrine()->getManager()
-            ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
-            JOIN v.event e
-            WHERE e.id = :id'
-            )->setParameter('id', $active_event);
-
-        $venue = $query->getArrayResult();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues();
 
         //echo $venue->getName();
         print_r($venue);
 
         foreach ($venue as $key => $value) {
-            $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
+            $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
         }
 
         return $this->render('peoplecounting.html.twig', array('venues' => $venue));
@@ -105,18 +96,13 @@ class VenueController extends Controller
      * @Route("/venue/jsondata", name="venue_json_data");
      *
      */
-    public function venue_json_data(Request $request)
+    public function venue_json_data()
     {
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder();
-        $qb->select('u')
-            ->from('AppBundle\Entity\venue', 'u');
-        $query = $qb->getQuery();
-        $venues = $query->getArrayResult();
+        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues();
 
-        $output = array();
         foreach ($venues as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
             $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['id']);
             if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
             $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
@@ -129,6 +115,7 @@ class VenueController extends Controller
             $response->setData($venues);
 
         } else {
+            $response = new \HttpResponse();
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);

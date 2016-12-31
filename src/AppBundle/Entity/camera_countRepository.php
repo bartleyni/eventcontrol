@@ -15,9 +15,9 @@ class camera_countRepository extends EntityRepository
         return $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, IDENTITY(p.camera_id) FROM AppBundle\Entity\camera_count p  WHERE p.camera_id = :id AND p.timestamp <= :timestamp ORDER BY p.timestamp DESC ')->setParameter('id', $id)->setParameter('timestamp', $timestamp)->setMaxResults(1)->getOneOrNullResult();
     }
 
-    public function getcameracount($id)
+    public function getcameracount($id, $endtimestamp)
     {
-        $current_data = $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, IDENTITY(p.camera_id) FROM AppBundle\Entity\camera_count p  WHERE p.camera_id = :id ORDER BY p.timestamp DESC')->setParameter('id', $id)->setMaxResults(1)->getOneOrNullResult();
+        $current_data = $this->getEntityManager()->createQuery('SELECT p.id, p.timestamp, p.count_in, p.running_count_in, p.count_out, p.running_count_out, IDENTITY(p.camera_id) FROM AppBundle\Entity\camera_count p  WHERE p.camera_id = :id AND p.timestamp <= :endtimestamp ORDER BY p.timestamp DESC')->setParameter('id', $id)->setParameter('endtimestamp', $endtimestamp)->setMaxResults(1)->getOneOrNullResult();
 
         $output['running_count_in']=$current_data['running_count_in'];
         $output['running_count_out']=$current_data['running_count_out'];

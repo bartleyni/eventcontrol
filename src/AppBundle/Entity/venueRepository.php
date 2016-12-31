@@ -4,6 +4,23 @@ use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 class venueRepository extends EntityRepository
 {
+
+    public function getactiveeventvenues()
+    {
+        $em = $this->getEntityManager();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
+            JOIN v.event e
+            WHERE e.id = :id'
+            )->setParameter('id', $active_event);
+
+        return $query->getArrayResult();
+    }
+    
     public function getvenuedoors($id)
     {
         //return "hi";
@@ -36,7 +53,7 @@ class venueRepository extends EntityRepository
         }
     }
 
-    public function getvenuecount($id)
+    public function getvenuecount($id, $endtimestamp)
     {
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
         $output = array();
@@ -47,12 +64,12 @@ class venueRepository extends EntityRepository
         foreach ($cameras as $camera) {
             if ($camera['inverse']) {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
                 $output['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
                 $output['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
             } else {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
-                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id']);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
                 //echo "print camre doors";
                 //print_r($camera_doors);
                 //echo "print camera count";
