@@ -21,7 +21,7 @@
                                 <div class="col-md-6">
                                     {% for camera in form.camera_id %}
                                         {{ form_widget(camera) }} {{ form_label(camera) }}<br>
-                                        {{ form_widget(form.inverse) }} {{ form_label(form.inverse) }}<br>
+                                        {{ form_widget(camera.inverse) }} {{ form_label(camera.inverse) }}<br>
                                     {% endfor %}
                                 </div>
                             </div>
