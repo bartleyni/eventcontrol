@@ -95,9 +95,10 @@ class VenueController extends Controller
         
         if(!$venue_camera){
             $venue_camera = new venue_camera();
+            $venue_camera->setVenueId($venue);
         }
 
-        $venue_camera->setVenueId($venue);
+        
 
         $form = $this->createForm(new VenueCameraType(), $venue_camera);
 
