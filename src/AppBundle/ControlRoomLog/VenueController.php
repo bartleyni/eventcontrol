@@ -35,6 +35,7 @@ class VenueController extends Controller
         $venue = $query->getArrayResult();
 
         //echo $venue->getName();
+        print_r($venue);
 
         foreach ($venue as $key => $value) {
             $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id']);
