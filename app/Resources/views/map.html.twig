@@ -87,14 +87,73 @@ Control Room Log Map
                 var infowindow = new google.maps.InfoWindow();
                 
                 map.data.addListener('click', function(event) {
-                    //var blurb = event.feature.getProperty('blurb');
-                    //var id = event.feature.getProperty('id');
-                    //var sec_severity = event.feature.getProperty('sec_severity');
-                    //var med_severity = event.feature.getProperty('med_severity');
-                    //var med_type = event.feature.getProperty('med_type');
-                    //var sec_type = event.feature.getProperty('sec_type');
+
+                    var log = event.feature.getProperty('log');
+                    var security = "";
+                    if (log['security_incident_description'])
+                    {
+                        if(log['security_entry_closed_time'])
+                        {
+                            security = '<span class="label label-default">'+
+                                    log['security_incident_description']+
+                                    '</span> &nbsp';
+                        } else {
+                            security = '<span class="label severity'+log['severity']+'">'+
+                                    log['security_incident_description']+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    var medical = "";
+                    if (log['medical_injury_description'])
+                    {
+                        if(log['medical_entry_closed_time'])
+                        {
+                            medical = '<span class="label label-default">'+
+                                    log['medical_injury_description']+
+                                    '</span> &nbsp';
+                        } else {
+                            medical = '<span class="label severity'+log['medical_severity']+'">'+
+                                    log['medical_injury_description']+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    var general = "";
+                    if (log['general_description'])
+                    {
+                        if(log['general_entry_closed_time'])
+                        {
+                            general = '<span class="label label-default">'+
+                                    log['general_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        } else {
+                            general = '<span class="label label-primary">'+
+                                    log['general_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        }
+                    }
+                    var lost = "";
+                    if (log['lost_property_description'])
+                    {
+                        if(log['lost_property_entry_closed_time'])
+                        {
+                            lost = '<span class="label label-default">'+
+                                    log['lost_property_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        } else {
+                            lost = '<span class="label label-info">'+
+                                    log['lost_property_description'].substring(0,30)+"..."+
+                                    '</span> &nbsp';
+                        }
+                    }
                     
-                    infowindow.setContent(event.feature.getProperty('blurb'));
+                    var content = '<div><h4>'+log['log_blurb']+'</h4>'+
+                        '<p>'+log['log_entry_open_time']+'<br>'+
+                        'Location: '+log['location']+'<br>'+
+                        'Reported By: '+log['reported_by']+'</p>'+
+                        medical+security+general+lost+
+                        '</div>';
+                    
+                    infowindow.setContent(content);
                     infowindow.setPosition(event.feature.getGeometry().get());
                     infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
                     infowindow.open(map);

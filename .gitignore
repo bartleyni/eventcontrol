@@ -11,5 +11,5 @@
 /bin/
 /composer.phar
 /nbproject/private/
-app/Resources/views/SecurityForm.twig
 /.idea/
+app/Resources/views/SecurityForm.twig
