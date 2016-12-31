@@ -12,7 +12,7 @@ class venueRepository extends EntityRepository
         $operatorId = $usr->getId();
         $active_event = $this->getEntityManager()->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
-        $query = $this->getDoctrine()->getManager()
+        $query = $this->getEntityManager()
             ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
             JOIN v.event e
             WHERE e.id = :id'
