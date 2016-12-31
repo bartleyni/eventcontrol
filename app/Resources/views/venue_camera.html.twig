@@ -1,4 +1,4 @@
-{# app/Resources/views/venue_camera.html.twig #}
+{# app/Resources/views/.html.twig #}
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
     Event Entry Form
@@ -21,7 +21,7 @@
                                 <div class="col-md-6">
                                     {% for camera in form.camera_id %}
                                         {{ form_widget(camera) }} {{ form_label(camera) }}<br>
-
+                                        {{ form_widget(inverse) }} {{ form_label(inverse) }}<br>
                                     {% endfor %}
                                 </div>
                             </div>
