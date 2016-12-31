@@ -55,5 +55,6 @@ class camera {
         return (string) $this->getName()." - ".$this->getLocation();
     }
 
-   
+    
+    
 }
