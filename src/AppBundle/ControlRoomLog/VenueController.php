@@ -81,7 +81,7 @@ class VenueController extends Controller
     }
 
     /**
-     * @Route("/venue/camera/{id}", name="skew");
+     * @Route("/venue/camera/{id}", name="venue_camera");
      *
      */
     public function venue_camera(Request $request, $id)
