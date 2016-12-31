@@ -26,8 +26,7 @@ class VenueController extends Controller
         $venue = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         //echo $venue->getName();
-        print_r($venue);
-
+     
         foreach ($venue as $key => $value) {
             $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
         }
@@ -116,7 +115,7 @@ class VenueController extends Controller
             $response->setData($venues);
 
         } else {
-            $response = new \HttpResponse();
+            $response = new HttpResponse();
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
