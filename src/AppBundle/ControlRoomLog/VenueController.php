@@ -22,8 +22,8 @@ class VenueController extends Controller
     public function view(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $venue = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         //echo $venue->getName();
         print_r($venue);
@@ -99,7 +99,8 @@ class VenueController extends Controller
     public function venue_json_data()
     {
         $em = $this->getDoctrine()->getManager();
-        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues();
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         foreach ($venues as $key => $value) {
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);

@@ -2,13 +2,13 @@
 namespace AppBundle\Entity;
 use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+
 class venueRepository extends EntityRepository
 {
 
-    public function getactiveeventvenues()
+    public function getactiveeventvenues($usr)
     {
-        $em = $this->getEntityManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
