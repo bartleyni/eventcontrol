@@ -103,7 +103,6 @@ class VenueController extends Controller
         $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         foreach ($venues as $key => $value) {
-            print_r($value['event'][0]['event_log_stop_date']);
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
             $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['id']);
             if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
