@@ -5,6 +5,7 @@ use AppBundle\Entity\venue;
 use AppBundle\Entity\camera_count;
 use AppBundle\Entity\venue_camera;
 use AppBundle\Entity\skew;
+use AppBundle\Entity\venue_cameraRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,6 +78,50 @@ class VenueController extends Controller
 
         return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form' => $form->createView()));
     }
+
+    /**
+     * @Route("/venue/camera/{id}", name="skew");
+     *
+     */
+    public function venue_camera(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        
+
+        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
+        
+        $venue_camera = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
+        
+        if(!$venue_camera){
+            $venue_camera = new venue_camera();
+        }
+
+        $venue_camera->setVenueId($venue);
+
+        $form = $this->createForm(new VenueCameraType(), $venue_camera);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // 4) save the skew!
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($venue_camera);
+            $em->flush();
+
+            $venue_camera = new venue_camera();
+            $venue->setVenueId($venue);
+            $form = $this->createForm(new VenueCameraType(), $venue_camera);
+            //return $this->redirectToRoute('skew', ['id' => $id]);
+        }
+
+        $em->flush();
+       
+        return $this->render('venue_camera.html.twig', array('venue' => $venue, 'form' => $form->createView()));
+    }
+    
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");
      *

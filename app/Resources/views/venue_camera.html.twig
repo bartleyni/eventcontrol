@@ -1,0 +1,42 @@
+{# app/Resources/views/eventForm.html.twig #}
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+    Event Entry Form
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(form) }}
+                        <br>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.camera_id) }}
+                                    {{ form_errors(form.camera_id) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {% for camera in form.camera_id %}
+                                        {{ form_widget(camera) }} {{ form_label(camera) }}<br>
+                                        {{ form_widget(inverse) }} {{ form_label(inverse) }}<br>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div><br>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+            {% include 'darksky.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
