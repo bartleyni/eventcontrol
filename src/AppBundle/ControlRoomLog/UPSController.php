@@ -27,14 +27,16 @@ use Doctrine\ORM\Query\ResultSetMapping;
 class UPSController extends Controller
 {
     /**
-     * @Route("/UPS/status", name="UPS_status");
+     * @Route("/UPS/status/{event_id}", name="UPS_status");
      * 
      */
-    public function UPSAction(Request $request)
+    public function UPSAction(Request $request, $event_id = null)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
+        
+        $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS($event);
         
         if ($ups_statuses)
         {

@@ -241,7 +241,7 @@
         
     function UPSUpdate()
     {
-        $.getJSON('{{ path('UPS_status') }}', function(data) {
+        $.getJSON('{{ path('UPS_status', {'event_id': activeEventId(app.user.id)}) }}', function(data) {
             $.each(data, function(index, ups) {
                 if (ups.loadPercentage !== null && ups.status == "Mains")
                 {
