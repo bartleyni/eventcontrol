@@ -35,7 +35,7 @@
                                 </tr>
                                 {% for camera in venue_detailed_count.cameras %}
                                     <tr
-                                            {% if  camera.status %}
+                                            {% if  camera.status == true %}
                                                 class=""
                                             {% else %}
                                                 class="flash"
