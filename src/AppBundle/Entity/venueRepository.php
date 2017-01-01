@@ -110,11 +110,12 @@ class venueRepository extends EntityRepository
                 $cameras[$key]['count_out'] = $camera_count['running_count_out'] - $camera_doors['running_count_out'];
             }
             foreach ($skews as $skew) {
-                $cameras['skew']['count_in'] = $skew['skew_in'];
-                $cameras['skew']['count_out'] = $skew['skew_out'];
+                $output['skew']['count_in'] = $skew['skew_in'];
+                $output['skew']['count_out'] = $skew['skew_out'];
             }
         }
-        return $cameras;
+        $output['cameras'] = $cameras;
+        return $output;
     }
     
 }
