@@ -103,17 +103,17 @@ class venueRepository extends EntityRepository
             if ($camera['inverse']) {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
-                $cameras[$key]['count_in'] = $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-                $cameras[$key]['count_out'] = $camera_count['running_count_in'] - $camera_doors['running_count_in'];
-                $output['totals']['running_count_in'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-                $output['totals']['running_count_out'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+                $cameras[$key]['count_in'] = ($camera_count['running_count_out'] - $camera_doors['running_count_out']);
+                $cameras[$key]['count_out'] = ($camera_count['running_count_in'] - $camera_doors['running_count_in']);
+                $output['totals']['running_count_in'] += ($camera_count['running_count_out'] - $camera_doors['running_count_out']);
+                $output['totals']['running_count_out'] += ($camera_count['running_count_in'] - $camera_doors['running_count_in']);
             } else {
                 $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
                 $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
-                $cameras[$key]['count_in'] = $camera_count['running_count_in'] - $camera_doors['running_count_in'];
-                $cameras[$key]['count_out'] = $camera_count['running_count_out'] - $camera_doors['running_count_out'];
-                $output['totals']['running_count_in'] += $camera_count['running_count_in'] - $camera_doors['running_count_in'];
-                $output['totals']['running_count_out'] += $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                $cameras[$key]['count_in'] = ($camera_count['running_count_in'] - $camera_doors['running_count_in']);
+                $cameras[$key]['count_out'] = ($camera_count['running_count_out'] - $camera_doors['running_count_out']);
+                $output['totals']['running_count_in'] += ($camera_count['running_count_in'] - $camera_doors['running_count_in']);
+                $output['totals']['running_count_out'] += ($camera_count['running_count_out'] - $camera_doors['running_count_out']);
             }
             foreach ($skews as $skew) {
                 $output['skew']['count_in'] = $skew['skew_in'];
