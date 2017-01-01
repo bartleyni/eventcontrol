@@ -91,4 +91,30 @@ class venueRepository extends EntityRepository
         }
         return $output;
     }
+
+    public function getvenuedetailedcount($id, $endtimestamp)
+    {
+        $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
+        $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+        $skews = $this->getEntityManager()->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
+        foreach ($cameras as $key => $camera) {
+            if ($camera['inverse']) {
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
+                $cameras[$key]['count_in'] = $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+                $cameras[$key]['count_out'] = $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+            } else {
+                $camera_doors = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameradoors($camera['camera_id'], $timestamp);
+                $camera_count = $this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->getcameracount($camera['camera_id'], $endtimestamp);
+                $cameras[$key]['count_in'] = $camera_count['running_count_in'] - $camera_doors['running_count_in'];
+                $cameras[$key]['count_out'] = $camera_count['running_count_out'] - $camera_doors['running_count_out'];
+            }
+            foreach ($skews as $skew) {
+                $cameras['skew']['count_in']= $skew['skew_in'];
+                $cameras['skew']['count_out'] += $skew['skew_out'];
+            }
+        }
+        return $cameras;
+    }
+    
 }

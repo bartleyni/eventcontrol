@@ -26,15 +26,15 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
-        $venue = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
+        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         //echo $venue->getName();
      
-        foreach ($venue as $key => $value) {
-            $venue[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
+        foreach ($venues as $key => $value) {
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
         }
 
-        return $this->render('peoplecounting.html.twig', array('venues' => $venue));
+        return $this->render('peoplecounting.html.twig', array('venues' => $venues));
     }
 
     /**
@@ -88,11 +88,14 @@ class VenueController extends Controller
     public function venue_camera(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $usr = $this->get('security.context')->getToken()->getUser();
+        $operatorId = $usr->getId();
+        $active_event = $this->getEntityManager()->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
-
-        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-
+        print_r($active_event);
+        
+        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($value['id'], $active_event['event_log_stop_date']);
+        
         $venue_camera = new venue_camera();
         $venue_camera->setVenueId($venue);
 
@@ -117,7 +120,7 @@ class VenueController extends Controller
 
         $em->flush();
        
-        return $this->render('venue_camera.html.twig', array('venue' => $venue, 'form' => $form->createView()));
+        return $this->render('venue_camera.html.twig', array('venue' => $venue,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView()));
     }
     
     /**
