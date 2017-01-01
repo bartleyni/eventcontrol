@@ -15,11 +15,12 @@
                             <table class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <td><strong>Id</strong></td>
+                                    <td><strong>Camera Id</strong></td>
                                     <td><strong>Camera Name</strong></td>
                                     <td><strong>Camera inverse</strong></td>
                                     <td><strong>Count in</strong></td>
                                     <td><strong>Count out</strong></td>
+                                    <td><strong>Occupancy</strong></td>
                                 </tr>
                                 {% for camera in venue_detailed_count.cameras %}
                                     <tr>
@@ -32,17 +33,28 @@
                                         {% endif %}
                                         <td>{{ camera.count_in }}</td>
                                         <td>{{ camera.count_out }}</td>
+                                        <td>{{ camera.count_in-camera.count_out }}</td>
                                     </tr>
                                 {% endfor %}
                                 {% if venue_detailed_count.skew is empty %}
                                 {% else %}
                                     <tr>
                                         <td></td>
-                                        <td>Venue Skew</td>
-                                        <td>{{ venue_detailed_count.skew.count_in }}</td>
-                                        <td>{{ venue_detailed_count.skew.count_out }}</td>
+                                        <td><strong>Total:</strong></td>
+                                        <td></td>
+                                        <td><strong>{ venue_detailed_count.totals.count_in }}</strong></td>
+                                        <td><strong>{{ venue_detailed_count.totals.count_out }}</strong></td>
+                                        <td><strong>{{ venue_detailed_count.totals.count_in-venue_detailed_count.totals.count_out }}</strong></td>
                                     </tr>
                                 {% endif %}
+                                <tr>
+                                    <td></td>
+                                    <td>Venue Skew</td>
+                                    <td></td>
+                                    <td>{{ venue_detailed_count.skew.count_in }}</td>
+                                        <td>{{ venue_detailed_count.skew.count_out }}</td>
+                                        <td>{{ <td>{{ venue_detailed_count.skew.count_in-venue_detailed_count.skew.count_out }}</td>
+                                        </tr>
                                 </tbody>
                             </table>
                         {% endif %}
