@@ -36,28 +36,6 @@ class VenueController extends Controller
 
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
     }
-
-    /**
-     * @Route("/venue/skew/{id}", name="skew");
-     *
-     */
-    public function skew(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-       
-
-
-        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
-        $em->flush();
-        
-
-        $em->flush();
-        $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-
-        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form_skew' => $form_skew->createView()));
-    }
-
     /**
      * @Route("/venue/detailed/{id}", name="venue_detailed");
      *
