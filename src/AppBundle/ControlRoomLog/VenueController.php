@@ -186,7 +186,6 @@ class VenueController extends Controller
             }
         }
         echo "Venue Id:";
-        print_r($venue_id);
         return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
     }
 
