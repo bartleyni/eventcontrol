@@ -162,7 +162,7 @@ class VenueController extends Controller
                 $em->flush();
             }
         }
-       return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
+       return $this->redirectToRoute('venue_detailed',  array('id' => $venue_id));
     }
 
 }
