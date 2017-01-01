@@ -88,9 +88,9 @@ class VenueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
-        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $active_event_end_time = $em->getRepository('AppBundle\Entity\user_events')->getActiveEventEndTime($operatorId);
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event['event_log_stop_date']);
+        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
         
         $venue_camera = new venue_camera();
         $venue_camera->setVenueId($venue);
