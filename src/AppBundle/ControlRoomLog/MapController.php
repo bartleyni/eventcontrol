@@ -281,19 +281,19 @@ class MapController extends Controller
                     $zIndex = 40;
                 }
                 
-                if ($severity == 1){
+                if ($severity === 1){
                     $colour = "E50D00";
                     $zIndex = 100;
-                } elseif($severity == 2) {
+                } elseif($severity === 2) {
                     $colour = "DF7200";
                     $zIndex = 90;
-                } elseif($severity == 3) {
+                } elseif($severity === 3) {
                     $colour = "D9D100";
                     $zIndex = 80;
-                } elseif($severity == 4) {
+                } elseif($severity === 4) {
                     $colour = "7CD300";
                     $zIndex = 70;
-                } elseif($severity == 5) {
+                } elseif($severity === 5) {
                     $colour = "1CCE00";
                     $zIndex = 60;
                 }                

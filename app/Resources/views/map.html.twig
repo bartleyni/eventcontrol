@@ -149,7 +149,7 @@ Control Room Log Map
                     var url = "{{ path('edit_entry') }}";
                     var content = '<div><a href="'+url+'/'+log['id']+'">'+
                         '<h4>'+log['log_blurb']+'</h4></a>'+
-                        '<p>'+log['log_entry_open_time']+'<br>'+
+                        '<p>'+log['log_entry_open_time']->format('Y-m-d H:i:s')+'<br>'+
                         'Location: '+log['location']+'<br>'+
                         'Reported By: '+log['reported_by']+'</p>'+
                         medical+security+general+lost+
