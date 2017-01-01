@@ -8,6 +8,40 @@
         {% block content %}
             <div class="wrapper">
                 <div class="row">
+                    <div class="col-md-6">
+                        {% if venue_detailed_count is empty %}
+                            No venue_detailed_count
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Id</strong></td>
+                                    <td><strong>Camera Name</strong></td>
+                                    <td><strong>Count in</strong></td>
+                                    <td><strong>Count out</strong></td>
+                                </tr>
+                                {% for camera in venue_detailed_count.cameras %}
+                                    <tr>
+                                        <td>{{ camera.id }}</td>
+                                        <td>{{ camera.name }}</td>
+                                        <td>{{ camera.count_in }}</td>
+                                        <td>{{ camera.count_out }}</td>
+                                    </tr>
+                                {% endfor %}
+                                {% if venue_detailed_count.skew is !empty %}
+                                    <tr>
+                                        <td></td>
+                                        <td>Venue Skew</td>
+                                        <td>{{ venue_detailed_count.skew.count_in }}</td>
+                                        <td>{{ venue_detailed_count.skew.count_out }}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12">
                         {{ form_start(form) }}
                         <br>
