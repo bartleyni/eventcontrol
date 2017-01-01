@@ -146,7 +146,7 @@ Control Room Log Map
                         }
                     }
                     
-                    var content = '<div><a href="{{ path('edit_entry', {'filter': log['id']}) }}">'+
+                    var content = '<div><a href="{{ path('edit_entry', {'id': log['id']}) }}">'+
                         '<h4>'+log['log_blurb']+'</h4></a>'+
                         '<p>'+log['log_entry_open_time']+'<br>'+
                         'Location: '+log['location']+'<br>'+
