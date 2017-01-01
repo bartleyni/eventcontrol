@@ -90,8 +90,7 @@ class VenueController extends Controller
         $operatorId = $usr->getId();
         $active_event_end_time = $em->getRepository('AppBundle\Entity\user_events')->getActiveEventEndTime($operatorId);
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
-        
+
         $venue_camera = new venue_camera();
         $venue_camera->setVenueId($venue);
 
@@ -115,7 +114,8 @@ class VenueController extends Controller
         }
 
         $em->flush();
-        print_r($venue_detailed_count);
+
+        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
         return $this->render('venue_camera.html.twig', array('venue' => $venue,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView()));
     }
     
