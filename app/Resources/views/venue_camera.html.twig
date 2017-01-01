@@ -28,7 +28,7 @@
                                         <td>{{ camera.count_out }}</td>
                                     </tr>
                                 {% endfor %}
-                                {% if venue_detailed_count.skew is !empty %}
+                                {% if venue_detailed_count.skew not empty %}
                                     <tr>
                                         <td></td>
                                         <td>Venue Skew</td>
