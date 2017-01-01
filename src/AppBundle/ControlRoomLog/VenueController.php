@@ -92,8 +92,6 @@ class VenueController extends Controller
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
-        print_r($active_event);
-        
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($value['id'], $active_event['event_log_stop_date']);
         
         $venue_camera = new venue_camera();
