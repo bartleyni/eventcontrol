@@ -177,7 +177,7 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if ($deleteId){
+        if ($id){
             $venue_camera  = $em->getRepository('AppBundle\Entity\venue_camera')->findOneBy(array('id' => $id));
             $venue_id = $venue_camera->getVenueId();
             if ($venue_camera) {
