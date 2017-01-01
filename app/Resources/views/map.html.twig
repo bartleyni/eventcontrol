@@ -146,7 +146,8 @@ Control Room Log Map
                         }
                     }
                     
-                    var content = '<div><h4>'+log['log_blurb']+'</h4>'+
+                    var content = '<div><a href="{{ path('map_filter_type_json_data', {'filter': log['id']}) }}">'+
+                        '<h4>'+log['log_blurb']+'</h4></a>'+
                         '<p>'+log['log_entry_open_time']+'<br>'+
                         'Location: '+log['location']+'<br>'+
                         'Reported By: '+log['reported_by']+'</p>'+
