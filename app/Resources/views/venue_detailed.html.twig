@@ -1,12 +1,22 @@
 {# app/Resources/views/.html.twig #}
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
-    Event Entry Form
+    Venue
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
             <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="flash notice">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        <h3>Venue detalied</h3>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         {% if venue_detailed_count is empty %}
@@ -28,9 +38,9 @@
                                         <td>{{ camera.camera_id }}</td>
                                         <td>{{ camera.name }}</td>
                                         {% if  camera.inverse %}
-                                        <td>TRUE</td>
+                                            <td>TRUE</td>
                                         {% else %}
-                                        <td>FALSE</td>
+                                            <td>FALSE</td>
                                         {% endif %}
                                         <td>{{ camera.count_in }}</td>
                                         <td>{{ camera.count_out }}</td>
@@ -51,15 +61,15 @@
                                         <td></td>
                                     </tr>
                                 {% endif %}
-                                    <tr>
-                                        <td></td>
-                                        <td><strong>Total:</strong></td>
-                                        <td></td>
-                                        <td><strong>{{ venue_detailed_count.totals.running_count_in }}</strong></td>
-                                        <td><strong>{{ venue_detailed_count.totals.running_count_out }}</strong></td>
-                                        <td><strong>{{ venue_detailed_count.totals.running_count_in-venue_detailed_count.totals.running_count_out }}</strong></td>
-                                        <td></td>
-                                    </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><strong>Total:</strong></td>
+                                    <td></td>
+                                    <td><strong>{{ venue_detailed_count.totals.running_count_in }}</strong></td>
+                                    <td><strong>{{ venue_detailed_count.totals.running_count_out }}</strong></td>
+                                    <td><strong>{{ venue_detailed_count.totals.running_count_in-venue_detailed_count.totals.running_count_out }}</strong></td>
+                                    <td></td>
+                                </tr>
                                 </tbody>
                             </table>
                         {% endif %}
@@ -67,12 +77,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
+                        <h4>Add camera to venue</h4>
                         {{ form_start(form) }}
                         <br>
 
                         <div class="row">
                             <div class="form-group">
-                                 <div class="col-md-6">
+                                <div class="col-md-6">
                                     {{ form_label(form.camera_id) }}
                                     {{ form_errors(form.camera_id) }}
                                     {{ form_widget(form.camera_id) }}
@@ -90,12 +101,71 @@
                             </div>
                             {{ form_end(form) }}
                         </div>
-
-
-
-
                     </div>
                 </div>
+
+                {# start of skew rows#}
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if skews is empty %}
+                            No skews
+                        {% else %}
+                            <table class="table table-striped">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Id</strong></td>
+                                    <td><strong>Timestamp</strong></td>
+                                    <td><strong>Skew in</strong></td>
+                                    <td><strong>Skew out</strong></td>
+                                </tr>
+                                {% for skew in skews %}
+                                    <tr>
+                                        <td>{{ skew.id }}</td>
+                                        <td>{{ skew.timestamp|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                        <td>{{ skew.skew_in }}</td>
+                                        <td>{{ skew.skew_out }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_start(form_skew) }}
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form_skew.skew_in) }}
+                                    {{ form_errors(form_skew.skew_in) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_widget(form_skew.skew_in) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form_skew.skew_out) }}
+                                    {{ form_errors(form_skew.skew_out) }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form_widget(form_skew.skew_out) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-success btn-block" type="submit">Add skew</button>
+                            </div>
+                            {{ form_end(form_skew) }}
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         {% endblock %}
         {% block sidebar %}

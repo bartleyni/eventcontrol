@@ -45,45 +45,24 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $skew = new skew();
+       
 
 
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $em->flush();
-
-        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-
-        $skew->setVenueId($venue);
-
-        $form = $this->createForm(new SkewType(), $skew);
-
-        // 2) handle the submit (will only happen on POST)
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // 4) save the skew!
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($skew);
-            $em->flush();
-
-            $skew = new skew();
-            $skew->setVenueId($venue);
-            $form = $this->createForm(new SkewType(), $skew);
-            //return $this->redirectToRoute('skew', ['id' => $id]);
-        }
+        
 
         $em->flush();
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
 
-        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form' => $form->createView()));
+        return $this->render('skew.html.twig', array('skews' => $skews, 'venue' => $venue, 'form_skew' => $form_skew->createView()));
     }
 
     /**
-     * @Route("/venue/camera/{id}", name="venue_camera");
+     * @Route("/venue/detailed/{id}", name="venue_detailed");
      *
      */
-    public function venue_camera(Request $request, $id)
+    public function venue_detailed(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
@@ -112,11 +91,31 @@ class VenueController extends Controller
             $form = $this->createForm(new VenueCameraType(), $venue_camera);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
+        $skew = new skew();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
+        $skew->setVenueId($venue);
+        $form_skew = $this->createForm(new SkewType(), $skew);
 
+        // 2) handle the submit (will only happen on POST)
+        $form_skew->handleRequest($request);
+        if ($form_skew->isSubmitted() && $form_skew->isValid()) {
+
+            // 4) save the skew!
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($skew);
+            $em->flush();
+
+            $skew = new skew();
+            $skew->setVenueId($venue);
+            $form_skew = $this->createForm(new SkewType(), $skew);
+            //return $this->redirectToRoute('skew', ['id' => $id]);
+        }
         $em->flush();
-
+        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+        $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
-        return $this->render('venue_camera.html.twig', array('venue' => $venue,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView()));
+        return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
 
     /**
