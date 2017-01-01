@@ -151,7 +151,7 @@ Control Room Log Map
                     
                     var content = '<div><a href="'+url+'/'+log['id']+'">'+
                         '<h4>'+log['log_blurb']+'</h4></a>'+
-                        '<p>'+log_date+'<br>'+
+                        '<p>'+log_date.toLocaleString())+'<br>'+
                         'Location: '+log['location']+'<br>'+
                         'Reported By: '+log['reported_by']+'</p>'+
                         medical+security+general+lost+
