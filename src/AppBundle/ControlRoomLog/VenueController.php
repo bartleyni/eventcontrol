@@ -29,7 +29,7 @@ class VenueController extends Controller
         $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         //echo $venue->getName();
-     
+
         foreach ($venues as $key => $value) {
             $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
         }
@@ -50,7 +50,7 @@ class VenueController extends Controller
 
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $em->flush();
-       
+
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
 
         $skew->setVenueId($venue);
@@ -63,10 +63,10 @@ class VenueController extends Controller
 
             // 4) save the skew!
             $em = $this->getDoctrine()->getManager();
-            
+
             $em->persist($skew);
             $em->flush();
-            
+
             $skew = new skew();
             $skew->setVenueId($venue);
             $form = $this->createForm(new SkewType(), $skew);
@@ -118,7 +118,7 @@ class VenueController extends Controller
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
         return $this->render('venue_camera.html.twig', array('venue' => $venue,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView()));
     }
-    
+
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");
      *
@@ -150,7 +150,7 @@ class VenueController extends Controller
             $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
             if ($status) {   $venues['people_counting_status'] = "true"; }else{  $venues['people_counting_status'] = "false"; }
         }
-        
+
         if ($venues)
         {
             $response = new JsonResponse();
@@ -170,22 +170,23 @@ class VenueController extends Controller
     }
 
     /**
-     * @Route("/venue/camera/delete/{deleteId}", name="venue_camera_delete");
+     * @Route("/venue/camera/delete/{id}", name="venue_camera_delete");
      */
 
-    public function deletVenueCamera(Request $request, $deleteId=null)
+    public function deletVenueCamera(Request $request, $id=null)
     {
         $em = $this->getDoctrine()->getManager();
 
         if ($deleteId){
-            $venue_camera  = $em->getRepository('AppBundle\Entity\venue_camera')->findOneBy(array('id' => $deleteId));
+            $venue_camera  = $em->getRepository('AppBundle\Entity\venue_camera')->findOneBy(array('id' => $id));
             $venue_id = $venue_camera->getVenueId();
             if ($venue_camera) {
                 $em->remove($venue_camera);
                 $em->flush();
             }
         }
-
+        echo "Venue Id:";
+        print_r($venue_id);
         return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
     }
 
