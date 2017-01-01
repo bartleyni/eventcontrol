@@ -34,9 +34,9 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
         
-        $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS($event);
+        $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS($event_id);
         
         if ($ups_statuses)
         {
