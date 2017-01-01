@@ -179,14 +179,13 @@ class VenueController extends Controller
 
         if ($id){
             $venue_camera  = $em->getRepository('AppBundle\Entity\venue_camera')->findOneBy(array('id' => $id));
-            $venue_id = $venue_camera->getVenueId();
+            $venue_id = $venue_camera->getVenueId()->getId();
             if ($venue_camera) {
                 $em->remove($venue_camera);
                 $em->flush();
             }
         }
-        echo "Venue Id:";
-        return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
+       return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
     }
 
 }
