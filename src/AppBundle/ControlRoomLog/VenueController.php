@@ -92,13 +92,12 @@ class VenueController extends Controller
         
 
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
-               
-        if(!$venue){
-            $venue = new venue();
-            $venue->setVenueId($venue);
-        }
 
-        $form = $this->createForm(new VenueCameraType(), $venue);
+        $venue_camera = new venue_camera();
+        $venue_camera->setVenueId($venue);
+
+
+        $form = $this->createForm(new VenueCameraType(), $venue_camera);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -110,9 +109,9 @@ class VenueController extends Controller
             $em->persist($venue_camera);
             $em->flush();
 
-            $venue = new venue();
-            $venue->setVenueId($venue);
-            $form = $this->createForm(new VenueCameraType(), $venue);
+            $venue_camera = new venue_camera();
+            $venue_camera->setVenueId($venue);
+            $form = $this->createForm(new VenueCameraType(), $venue_camera);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
 

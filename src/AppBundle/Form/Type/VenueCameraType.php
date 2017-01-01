@@ -22,8 +22,6 @@ class VenueCameraType extends AbstractType
             ->add('camera_id', 'entity', array(
                 'class' => 'AppBundle:camera',
                 'label' => 'Camera',
-                'multiple' => true,
-                'expanded' => true,
                 'attr' => array(
                     'class' => 'form-control checkbox'
                 )
@@ -44,7 +42,7 @@ class VenueCameraType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\venue',
+            'data_class' => 'AppBundle\Entity\venue_camera',
             'venue_id' => null
         ));
     }
