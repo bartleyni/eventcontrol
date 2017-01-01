@@ -169,4 +169,24 @@ class VenueController extends Controller
         //return $response;
     }
 
+    /**
+     * @Route("/venue/camera/delete/{deleteId}", name="venue_camera_delete");
+     */
+
+    public function deletVenueCamera(Request $request, $deleteId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($deleteId){
+            $venue_camera  = $em->getRepository('AppBundle\Entity\venue_camera')->findOneBy(array('id' => $deleteId));
+            $venue_id = $venue_camera->getVenueId();
+            if ($venue_camera) {
+                $em->remove($venue_camera);
+                $em->flush();
+            }
+        }
+
+        return $this->redirectToRoute('venue_camera',  array('id' => $venue_id));
+    }
+
 }

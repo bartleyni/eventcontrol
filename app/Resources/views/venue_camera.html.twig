@@ -21,6 +21,7 @@
                                     <td><strong>Count in</strong></td>
                                     <td><strong>Count out</strong></td>
                                     <td><strong>Occupancy</strong></td>
+                                    <td><strong>Remove Camera</strong></td>
                                 </tr>
                                 {% for camera in venue_detailed_count.cameras %}
                                     <tr>
@@ -34,6 +35,8 @@
                                         <td>{{ camera.count_in }}</td>
                                         <td>{{ camera.count_out }}</td>
                                         <td>{{ camera.count_in-camera.count_out }}</td>
+                                        <td><a href="{{ path('venue_camera_delete', {'id': camera.id}) }}"><span class="glyphicon glyphicon-check" onclick="return confirm('Are you sure you want to remove the camera?')" aria-hidden="true" aria-label="Remove camera"></span></a></td>
+
                                     </tr>
                                 {% endfor %}
                                 {% if venue_detailed_count.skew is empty %}
@@ -45,6 +48,7 @@
                                         <td>{{ venue_detailed_count.skew.count_in }}</td>
                                         <td>{{ venue_detailed_count.skew.count_out }}</td>
                                         <td>{{ venue_detailed_count.skew.count_in-venue_detailed_count.skew.count_out }}</td>
+                                        <td></td>
                                     </tr>
                                 {% endif %}
                                     <tr>
@@ -54,6 +58,7 @@
                                         <td><strong>{{ venue_detailed_count.totals.running_count_in }}</strong></td>
                                         <td><strong>{{ venue_detailed_count.totals.running_count_out }}</strong></td>
                                         <td><strong>{{ venue_detailed_count.totals.running_count_in-venue_detailed_count.totals.running_count_out }}</strong></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
