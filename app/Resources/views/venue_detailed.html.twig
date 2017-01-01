@@ -34,12 +34,14 @@
                                     <td><strong>Remove Camera</strong></td>
                                 </tr>
                                 {% for camera in venue_detailed_count.cameras %}
-                                    <tr
-                                            {% if not camera.status %}
-                                               class="flash"
-                                            {% endif %}
 
-                                    >
+                                    {% if not camera.status %}
+                                       <tr class="flash">
+                                        {% else %}
+                                        <tr>
+                                    {% endif %}
+
+
                                         <td>{{ camera.camera_id }}</td>
                                         <td>{{ camera.name }}</td>
                                         {% if  camera.inverse %}
