@@ -115,7 +115,7 @@ class VenueController extends Controller
         }
 
         $em->flush();
-       
+        print_r($venue_detailed_count);
         return $this->render('venue_camera.html.twig', array('venue' => $venue,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView()));
     }
     
