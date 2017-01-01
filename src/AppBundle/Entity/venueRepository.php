@@ -115,8 +115,8 @@ class venueRepository extends EntityRepository
         }
         $output['skew'] = array();
         foreach ($skews as $skew) {
-            $output['skew']['count_in'] = $skew['skew_in'];
-            $output['skew']['count_out'] = $skew['skew_out'];
+            $output['skew']['count_in'] += $skew['skew_in'];
+            $output['skew']['count_out'] += $skew['skew_out'];
             $output['totals']['running_count_in'] += $skew['skew_in'];
             $output['totals']['running_count_out'] += $skew['skew_out'];
         }
