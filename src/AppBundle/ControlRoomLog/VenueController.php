@@ -90,7 +90,7 @@ class VenueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
-        $active_event = $this->getEntityManager()->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         
         print_r($active_event);
         
