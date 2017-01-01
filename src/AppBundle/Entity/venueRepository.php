@@ -113,7 +113,8 @@ class venueRepository extends EntityRepository
             $status =$this->getEntityManager()->getRepository('AppBundle\Entity\camera_count')->iscamerauptodate($camera['camera_id']);
             if ($status) {   $cameras[$key]['status'] = "true"; }else{  $cameras[$key]['status'] = "false"; }
         }
-        $output['skew'] = array();
+        $output['skew']['count_in'] = 0;
+        $output['skew']['count_out'] = 0;
         foreach ($skews as $skew) {
             $output['skew']['count_in'] += $skew['skew_in'];
             $output['skew']['count_out'] += $skew['skew_out'];
