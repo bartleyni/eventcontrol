@@ -93,10 +93,12 @@ class VenueController extends Controller
 
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         
+        $venue_camera = $em->getRepository('AppBundle\Entity\venue_camera')->find();
         
+        if(!$venue_camera){
             $venue_camera = new venue_camera();
             $venue_camera->setVenueId($venue);
-      
+        }
 
         $form = $this->createForm(new VenueCameraType(), $venue_camera);
 
