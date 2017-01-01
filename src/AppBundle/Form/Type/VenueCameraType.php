@@ -44,7 +44,7 @@ class VenueCameraType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\venue_camera',
+            'data_class' => 'AppBundle\Entity\venue',
             'venue_id' => null
         ));
     }
