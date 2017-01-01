@@ -50,9 +50,7 @@ class VenueController extends Controller
 
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $em->flush();
-        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-
-
+       
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
 
         $skew->setVenueId($venue);
@@ -91,8 +89,8 @@ class VenueController extends Controller
         $usr = $this->get('security.context')->getToken()->getUser();
         $operatorId = $usr->getId();
         $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        
-        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($value['id'], $active_event['event_log_stop_date']);
+        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
+        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event['event_log_stop_date']);
         
         $venue_camera = new venue_camera();
         $venue_camera->setVenueId($venue);
