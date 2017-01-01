@@ -17,6 +17,7 @@
                                 <tr>
                                     <td><strong>Id</strong></td>
                                     <td><strong>Camera Name</strong></td>
+                                    <td><strong>Camera inverse</strong></td>
                                     <td><strong>Count in</strong></td>
                                     <td><strong>Count out</strong></td>
                                 </tr>
@@ -24,6 +25,11 @@
                                     <tr>
                                         <td>{{ camera.camera_id }}</td>
                                         <td>{{ camera.name }}</td>
+                                        {% if  camera.inverse %}
+                                        <td>TRUE</td>
+                                        {% else %}
+                                        <td>FALSE</td>
+                                        {% endif %}
                                         <td>{{ camera.count_in }}</td>
                                         <td>{{ camera.count_out }}</td>
                                     </tr>
