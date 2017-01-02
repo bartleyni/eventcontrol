@@ -136,7 +136,7 @@ class MapController extends Controller
                     $severity = $log['medical_severity'];
                 }
                 
-                if (!$log['security_description'] == null && $log['security_entry_closed_time'] == null)
+                if ($log['security_description'] != null && $log['security_entry_closed_time'] == null)
                 {
                     $security_status = "Open";
                     if ($severity == 1){
@@ -151,7 +151,7 @@ class MapController extends Controller
                         $colour = "1CCE00";
                     }
                 }
-                if (!$log['medical_description'] == null && $log['medical_entry_closed_time'] == null)
+                if ($log['medical_description'] != null && $log['medical_entry_closed_time'] == null)
                 {
                     $medical_status = "Open";
                     if ($severity == 1){
@@ -166,16 +166,14 @@ class MapController extends Controller
                         $colour = "1CCE00";
                     }
                 }
-                if (!$log['general_description'] == null && $log['general_open'] == true)
+                if ($log['general_description'] != null && $log['general_entry_closed_time'] == null)
                 {
                     $general_status = "Open";
-                    //$colour = "337ab7";
                     $general_severity = 10;
                 }
-                if (!$log['lost_property_description'] == null && $log['lost_property_entry_closed_time'] == null)
+                if ($log['lost_property_description'] != null && $log['lost_property_entry_closed_time'] == null)
                 {
                     $lost_property_status = "Open";
-                    //$colour = "5bc0de";
                     $lost_severity = 20;
                 }             
                 
