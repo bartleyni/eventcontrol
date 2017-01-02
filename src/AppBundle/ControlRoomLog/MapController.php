@@ -107,7 +107,7 @@ class MapController extends Controller
                                 //$key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
                 $key = null;
                 if($markers){
-                    $old_distance = 50;
+                    $old_distance = 30;
                     foreach ($markers as $key1 => $marker)
                     {
                         $latFrom = deg2rad($marker['latitude']);
