@@ -110,6 +110,7 @@ class MapController extends Controller
                     $markerId = $markerId+1;
                     $markers[$markerId] = ['latlong' => round($log['latitude'], 6).", ".round($log['longitude'], 6), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
                     $key = $markerId;
+                    $markers[$key]['logs'] = array();
                 }
                 
                 $status = null;
@@ -180,7 +181,7 @@ class MapController extends Controller
                 
                 //$log_details = ["log" => $log, "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status];
                 
-                array_push($markers[$key]['log'], $log);
+                array_push($markers[$key]['logs'], $log);
                 
                 //$logFeature = ['type' => "Feature", 'properties' => ["log" => $log, "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
                 //array_push($data['features'],$logFeature);
