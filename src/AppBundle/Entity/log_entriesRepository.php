@@ -47,7 +47,7 @@ class log_entriesRepository extends EntityRepository
         $qb = $em->createQueryBuilder(); 
         
         $qb
-            ->select('entry.id, entry.log_entry_open_time, entry.log_update_timestamp, entry.log_blurb, entry.latitude, entry.longitude, entry.location, entry.reported_by, entry.park_alert, gen.general_description, gen.general_open, gen.general_entry_closed_time, sec.security_description, sec.security_entry_closed_time, secinc.security_incident_description, secinc.severity, secinc.security_incident_colour, med.medical_entry_closed_time, medinj.medical_severity, medinj.medical_injury_description, medrsp.medical_response_description, med.nine_nine_nine_required, lost.lost_property_entry_closed_time, lost.lost_property_description')
+            ->select('entry.id, entry.log_entry_open_time, entry.log_update_timestamp, entry.log_blurb, entry.latitude, entry.longitude, entry.location, entry.reported_by, entry.park_alert, gen.general_description, gen.general_open, gen.general_entry_closed_time, sec.security_description, sec.security_entry_closed_time, secinc.security_incident_description, secinc.severity, secinc.security_incident_colour, med.medical_description, med.medical_entry_closed_time, medinj.medical_severity, medinj.medical_injury_description, medrsp.medical_response_description, med.nine_nine_nine_required, lost.lost_property_entry_closed_time, lost.lost_property_description')
             ->from('AppBundle\Entity\log_entries', 'entry')
             ->orderBy('entry.log_entry_open_time', $sort_dir)
             ->leftJoin('AppBundle\Entity\general_log', 'gen', 'WITH', 'gen.log_entry_id = entry.id')
