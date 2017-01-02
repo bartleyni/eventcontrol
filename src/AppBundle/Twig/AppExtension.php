@@ -62,7 +62,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 ->from('AppBundle\Entity\UPS', 'ups')
                 ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = ups.event')
                 ->where('event.id = :eventId')
-                ->setParameter('eventId', $active_event)
+                ->setParameter('eventId', $active_event->getId())
                 ;
                 
             }
