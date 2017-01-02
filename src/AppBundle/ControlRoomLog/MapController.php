@@ -111,7 +111,6 @@ class MapController extends Controller
                     $markers[$markerId] = ['latlong' => round($log['latitude'], 6).", ".round($log['longitude'], 6), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
                     $key = $markerId;
                     $markers[$key]['logs'] = array();
-                    
                 }
                 
                 $status = null;
@@ -190,7 +189,8 @@ class MapController extends Controller
             foreach ($markers as $marker)
             {
                 $multiple = false;
-                if (sizeof(marker['logs'] > 1))
+                
+                if (sizeof($marker['logs'] > 1))
                 {
                     $multiple = true;
                 }
