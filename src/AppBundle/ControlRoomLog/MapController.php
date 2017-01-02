@@ -111,7 +111,7 @@ class MapController extends Controller
                     $key = $markerId;
                     $markers[$key]['logs'] = array();
                 }
-                
+                $current_severity = null;
                 $current_severity = $markers[$key]['severity'];
                 
                 $status = null;
@@ -139,64 +139,42 @@ class MapController extends Controller
                 if ($log['security_description'] != null && $log['security_entry_closed_time'] == null)
                 {
                     $security_status = "Open";
-                    if ($severity == 1){
-                        $colour = "E50D00";
-                    } elseif($severity == 2) {
-                        $colour = "DF7200";
-                    } elseif($severity == 3) {
-                        $colour = "D9D100";
-                    } elseif($severity == 4) {
-                        $colour = "7CD300";
-                    } elseif($severity == 5) {
-                        $colour = "1CCE00";
-                    }
                 }
                 if ($log['medical_description'] != null && $log['medical_entry_closed_time'] == null)
                 {
                     $medical_status = "Open";
-                    if ($severity == 1){
-                        $colour = "E50D00";
-                    } elseif($severity == 2) {
-                        $colour = "DF7200";
-                    } elseif($severity == 3) {
-                        $colour = "D9D100";
-                    } elseif($severity == 4) {
-                        $colour = "7CD300";
-                    } elseif($severity == 5) {
-                        $colour = "1CCE00";
-                    }
                 }
-                if ($log['general_description'] != null && $log['general_entry_closed_time'] == null)
-                {
-                    $general_status = "Open";
-                    $general_severity = 10;
-                }
-                if ($log['lost_property_description'] != null && $log['lost_property_entry_closed_time'] == null)
-                {
-                    $lost_property_status = "Open";
-                    $lost_severity = 20;
-                }             
-                
-                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
-                {
-                    $status = "Open";
-                    $severityNotNull = array_diff(array($log['severity'], $log['medical_severity'], $general_severity, $lost_severity), array(null));
-                    $severity = min($severityNotNull);
-                } else {
-                    $status = "Closed";
-                    $severity = 99;
-                }
+//                if ($log['general_description'] != null && $log['general_entry_closed_time'] == null)
+//                {
+//                    $general_status = "Open";
+//                    $general_severity = 10;
+//                }
+//                if ($log['lost_property_description'] != null && $log['lost_property_entry_closed_time'] == null)
+//                {
+//                    $lost_property_status = "Open";
+//                    $lost_severity = 20;
+//                }             
+//                
+//                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
+//                {
+//                    $status = "Open";
+//                    $severityNotNull = array_diff(array($log['severity'], $log['medical_severity'], $general_severity, $lost_severity), array(null));
+//                    $severity = min($severityNotNull);
+//                } else {
+//                    $status = "Closed";
+//                    $severity = 99;
+//                }
                 
                 if ($current_severity == null)
                 {
                     $new_severity = $severity;
-                }
-                
-                if ($severity < $current_severity)
-                {
-                    $new_severity = $severity;
                 } else {
-                    $new_severity = $current_severity;
+                    if ($severity < $current_severity)
+                    {
+                        $new_severity = $severity;
+                    } else {
+                        $new_severity = $current_severity;
+                    }
                 }
                 
                 if ($new_severity == 1){
@@ -214,7 +192,7 @@ class MapController extends Controller
                 } elseif($new_severity == 20) {
                     $colour = "5bc0de";
                 } elseif($new_severity == 99) {
-                    $colour = "777";
+                    $colour = "888";
                 }
                 
                 array_push($markers[$key]['logs'], $log);
