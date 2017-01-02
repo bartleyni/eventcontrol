@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\log_entriesRepository;
 
 /**
  * Description of MapController
