@@ -192,7 +192,8 @@ class Log extends Controller
                 ->setParameter('end', new \DateTime('2014-04-25'));
         }
         $query = $qb->getQuery();
-        $logs = $query->getResult();
+        //$logs = $query->getResult();
+        $logs = $em->getRepository('AppBundle\Entity\log_entries')->getLogEntries($eventId, $sort, $filter, $filter_type);
         print_r($_format);
        if ($_format=="pdf") {
             $pageUrl = $this->generateUrl('full_log', array(), true); // use absolute path!
