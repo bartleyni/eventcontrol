@@ -58,7 +58,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 $venue = $query->getResult();
                
                 $qb1
-                ->select('ups.id, ups.name, ups.location, event.id, ups.event, ups.power')
+                ->select('ups.id, ups.name, ups.location, event.id, ups.power')
                 ->from('AppBundle\Entity\UPS', 'ups')
                 ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = ups.event')
                 ->where('event.id = :eventId')
