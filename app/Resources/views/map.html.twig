@@ -93,7 +93,8 @@ Control Room Log Map
                     console.log("Marker Window");
                     
                     //var arrayLength = marker.length;
-                    var arrayLength = Object.keys(marker).length;
+                    var logs = marker['log'];
+                    var arrayLength = Object.keys(logs).length;
                     
                     console.log(arrayLength);
                     
@@ -101,7 +102,7 @@ Control Room Log Map
 
                         console.log("loop");
                         
-                        var log = marker[i];
+                        var log = logs[i];
                         
                         var security = "";
                         if (log['security_incident_description'])
