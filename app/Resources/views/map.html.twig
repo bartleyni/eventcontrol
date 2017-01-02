@@ -76,8 +76,9 @@ Control Room Log Map
                 map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
                 map.data.setStyle(function(feature) {
-                    var colour = feature.getProperty('colour');
+                    
                     var marker = feature.getProperty('marker');
+                    var colour = marker['colour'];
                     var logs = marker['logs'];
                     var arrayLength = Object.keys(logs).length;
                     //var zI = feature.getProperty('zIndex');

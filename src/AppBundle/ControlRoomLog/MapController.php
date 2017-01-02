@@ -113,6 +113,8 @@ class MapController extends Controller
                     $markers[$key]['logs'] = array();
                 }
                 
+                $current_severity = $markers[$key]['severity'];
+                
                 $status = null;
                 $general_status = "Closed";
                 $lost_property_status = "Closed";
@@ -120,6 +122,7 @@ class MapController extends Controller
                 $security_status = "Closed";
                 $colour = "777";
                 $zIndex = 10;
+                $severity = 99;
                 
                 if($log['severity'] && $log['medical_severity'])
                 {
@@ -175,12 +178,26 @@ class MapController extends Controller
                     $status = "Open";
                 } else {
                     $status = "Closed";
+                    $severity = 99;
                     $colour = "777";
                     $zIndex = 1;
                 }
                 
-                array_push($markers[$key]['logs'], $log);
+                if ($current_severity == null)
+                {
+                    $new_severity = $severity;
+                }
                 
+                if ($current_severity > $severity)
+                {
+                    $new_severity = $severity;
+                } else {
+                    $new_severity = $current_severity;
+                }
+                
+                array_push($markers[$key]['logs'], $log);
+                $markers[$key]['severity'] = $new_severity;
+                $markers[$key]['colour'] = $colour;
             }
         }
         
@@ -188,13 +205,7 @@ class MapController extends Controller
         {
             foreach ($markers as $marker)
             {
-                $multiple = false;
-                
-                if (sizeof($marker['logs']) > 2)
-                {
-                    $multiple = true;
-                }
-                $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker, "colour" => "777", "multiple" => $multiple], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
+                $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
