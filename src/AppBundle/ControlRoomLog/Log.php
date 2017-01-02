@@ -222,7 +222,6 @@ class Log extends Controller
     
     public function tableAction($sort='DESC', $filter=null, $filter_type=null)
     {
-        $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
         
         $usr = $this->get('security.context')->getToken()->getUser();
