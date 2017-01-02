@@ -109,7 +109,15 @@ class MapController extends Controller
                     $old_distance = 30;
                     foreach ($markers as $key1 => $marker)
                     {
-                        $distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
+                        //$distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
+                        
+                        $theta = $marker['longitude'] - $log['longitude'];
+                        $dist = sin(deg2rad($marker['latitude'])) * sin(deg2rad($log['latitude'])) +  cos(deg2rad($marker['latitude'])) * cos(deg2rad($log['latitude'])) * cos(deg2rad($theta));
+                        $dist = acos($dist);
+                        $dist = rad2deg($dist);
+                        $miles = $dist * 60 * 1.1515;
+                        $metres = $miles * 1.609344 * 1000;
+                        
                         if ($distance < $old_distance)
                         {
                             $key = $key1;
