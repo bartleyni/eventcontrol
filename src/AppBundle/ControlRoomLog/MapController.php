@@ -97,17 +97,31 @@ class MapController extends Controller
         
         $markerId = 0;
         $markers = array();
+        $key = null;
         
         foreach ($logs as $log)
         {
             if($log['latitude'] != null)
             {
-                $key = array_search(round($log['latitude'], 3).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
+                                //$key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
+                
+                if($markers){
+                    $old_distance = 30;
+                    foreach ($markers as $key1 => $marker)
+                    {
+                        $distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
+                        if ($distance < $old_distance)
+                        {
+                            $key = $key1;
+                            $old_distance = $distance;
+                        }
+                    }
+                }
                 
                 if($key == null)
                 {
                     $markerId = $markerId+1;
-                    $markers[$markerId] = ['latlong' => round($log['latitude'], 3).", ".round($log['longitude'], 3), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
+                    $markers[$markerId] = ['latlong' => round($log['latitude'], 6).", ".round($log['longitude'], 6), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
                     $key = $markerId;
                     $markers[$key]['logs'] = array();
                 }
@@ -219,5 +233,16 @@ class MapController extends Controller
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
         return $response;
+    }
+    
+    function distance($lat1, $lon1, $lat2, $lon2)
+    {
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $m = $miles * 1.609344 * 1000;
+        return $m;
     }
 }
