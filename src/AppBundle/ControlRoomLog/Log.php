@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\log_entriesRepository;
 
 class Log extends Controller
 {
@@ -398,7 +399,9 @@ class Log extends Controller
                 ->setParameter('end', new \DateTime('2014-04-25'));
         }
         $query = $qb->getQuery();
-        $logs = $query->getResult();
+        //$logs = $query->getResult();
+        
+        $logs = $em->getRepository('AppBundle\Entity\log_entries')->getLogEntries($eventId, $sort, $filter, $filter_type);
         return $this->render('logTable2.html.twig', array('logs' => $logs));
     }
     
