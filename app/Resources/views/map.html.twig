@@ -77,10 +77,10 @@ Control Room Log Map
                 
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
-                    var zI = feature.getProperty('zIndex');
+                    //var zI = feature.getProperty('zIndex');
                     return {
                         icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour,
-                        zIndex: zI
+                        //zIndex: zI
                     };
                 });
                 
@@ -88,76 +88,83 @@ Control Room Log Map
                 
                 map.data.addListener('click', function(event) {
 
-                    var log = event.feature.getProperty('log');
-                    var security = "";
-                    if (log['security_incident_description'])
-                    {
-                        if(log['security_entry_closed_time'])
-                        {
-                            security = '<span class="label label-default">'+
-                                    log['security_incident_description']+
-                                    '</span> &nbsp';
-                        } else {
-                            security = '<span class="label severity'+log['severity']+'">'+
-                                    log['security_incident_description']+
-                                    '</span> &nbsp';
-                        }
-                    }
-                    var medical = "";
-                    if (log['medical_injury_description'])
-                    {
-                        if(log['medical_entry_closed_time'])
-                        {
-                            medical = '<span class="label label-default">'+
-                                    log['medical_injury_description']+
-                                    '</span> &nbsp';
-                        } else {
-                            medical = '<span class="label severity'+log['medical_severity']+'">'+
-                                    log['medical_injury_description']+
-                                    '</span> &nbsp';
-                        }
-                    }
-                    var general = "";
-                    if (log['general_description'])
-                    {
-                        if(log['general_entry_closed_time'])
-                        {
-                            general = '<span class="label label-default">'+
-                                    log['general_description'].substring(0,30)+"..."+
-                                    '</span> &nbsp';
-                        } else {
-                            general = '<span class="label label-primary">'+
-                                    log['general_description'].substring(0,30)+"..."+
-                                    '</span> &nbsp';
-                        }
-                    }
-                    var lost = "";
-                    if (log['lost_property_description'])
-                    {
-                        if(log['lost_property_entry_closed_time'])
-                        {
-                            lost = '<span class="label label-default">'+
-                                    log['lost_property_description'].substring(0,30)+"..."+
-                                    '</span> &nbsp';
-                        } else {
-                            lost = '<span class="label label-info">'+
-                                    log['lost_property_description'].substring(0,30)+"..."+
-                                    '</span> &nbsp';
-                        }
-                    }
+                    var marker = event.feature.getProperty('marker');
+                    var info_content;
                     
-                    var url = "{{ path('edit_entry') }}";
-                    var utc_log_date = moment.tz(log['log_entry_open_time']['date'], log['log_entry_open_time']['timezone']);
-                    var log_date = moment(utc_log_date).local();
-                    var content = '<div><a href="'+url+'/'+log['id']+'">'+
-                        '<h4>'+log['log_blurb']+'</h4></a>'+
-                        '<p>'+log_date.format("YYYY-MM-DD HH:mm:ss")+'<br>'+
-                        'Location: '+log['location']+'<br>'+
-                        'Reported By: '+log['reported_by']+'</p>'+
-                        medical+security+general+lost+
-                        '</div>';
-                    
-                    infowindow.setContent(content);
+                    marker.forEach(function(log) {
+                        
+                        var security = "";
+                        if (log['security_incident_description'])
+                        {
+                            if(log['security_entry_closed_time'])
+                            {
+                                security = '<span class="label label-default">'+
+                                        log['security_incident_description']+
+                                        '</span> &nbsp';
+                            } else {
+                                security = '<span class="label severity'+log['severity']+'">'+
+                                        log['security_incident_description']+
+                                        '</span> &nbsp';
+                            }
+                        }
+                        var medical = "";
+                        if (log['medical_injury_description'])
+                        {
+                            if(log['medical_entry_closed_time'])
+                            {
+                                medical = '<span class="label label-default">'+
+                                        log['medical_injury_description']+
+                                        '</span> &nbsp';
+                            } else {
+                                medical = '<span class="label severity'+log['medical_severity']+'">'+
+                                        log['medical_injury_description']+
+                                        '</span> &nbsp';
+                            }
+                        }
+                        var general = "";
+                        if (log['general_description'])
+                        {
+                            if(log['general_entry_closed_time'])
+                            {
+                                general = '<span class="label label-default">'+
+                                        log['general_description'].substring(0,30)+"..."+
+                                        '</span> &nbsp';
+                            } else {
+                                general = '<span class="label label-primary">'+
+                                        log['general_description'].substring(0,30)+"..."+
+                                        '</span> &nbsp';
+                            }
+                        }
+                        var lost = "";
+                        if (log['lost_property_description'])
+                        {
+                            if(log['lost_property_entry_closed_time'])
+                            {
+                                lost = '<span class="label label-default">'+
+                                        log['lost_property_description'].substring(0,30)+"..."+
+                                        '</span> &nbsp';
+                            } else {
+                                lost = '<span class="label label-info">'+
+                                        log['lost_property_description'].substring(0,30)+"..."+
+                                        '</span> &nbsp';
+                            }
+                        }
+
+                        var url = "{{ path('edit_entry') }}";
+                        var utc_log_date = moment.tz(log['log_entry_open_time']['date'], log['log_entry_open_time']['timezone']);
+                        var log_date = moment(utc_log_date).local();
+                        var content = '<div><a href="'+url+'/'+log['id']+'">'+
+                            '<h4>'+log['log_blurb']+'</h4></a>'+
+                            '<p>'+log_date.format("YYYY-MM-DD HH:mm:ss")+'<br>'+
+                            'Location: '+log['location']+'<br>'+
+                            'Reported By: '+log['reported_by']+'</p>'+
+                            medical+security+general+lost+
+                            '</div>';
+                        
+                        info_content = info_content+"</br>"+content;
+                    });
+
+                    infowindow.setContent(info_content);
                     infowindow.setPosition(event.feature.getGeometry().get());
                     infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
                     infowindow.open(map);
