@@ -102,7 +102,6 @@ class MapController extends Controller
         {
             if($log['latitude'] != null)
             {
-                
                 $key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
                 
                 if($key == null)
@@ -171,18 +170,19 @@ class MapController extends Controller
                 {
                     $general_status = "Open";
                     $colour = "337ab7";
-                    $severity = 10;
+                    $general_severity = 10;
                 }
                 if (!$log['lost_property_description'] == null && $log['lost_property_entry_closed_time'] == null)
                 {
                     $lost_property_status = "Open";
                     $colour = "5bc0de";
-                    $severity = 20;
+                    $lost_severity = 20;
                 }             
                 
                 if ($security_status === "Open" or $medical_status === "Open" or $general_status === "Open" or $lost_property_status === "Open")
                 {
                     $status = "Open";
+                    $severity = min($log['severity'], $log['medical_severity'], $general_severity, $lost_severity);
                 } else {
                     $status = "Closed";
                     $severity = 99;
