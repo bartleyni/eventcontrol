@@ -42,7 +42,7 @@ class log_entriesRepository extends EntityRepository
     public function getLogEntries($eventId, $sort='DESC', $filter=null, $filter_type=null)
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getEntityManager();
         
         $qb = $em->createQueryBuilder(); 
         
