@@ -144,11 +144,11 @@ class MapController extends Controller
                 {
                     $medical_status = "Open";
                 }
-//                if ($log['general_description'] != null && $log['general_entry_closed_time'] == null)
-//                {
-//                    $general_status = "Open";
-//                    $general_severity = 10;
-//                }
+                if ($log['general_description'] != null && $log['general_entry_closed_time'] == null)
+                {
+                    $general_status = "Open";
+                    $general_severity = 10;
+                }
 //                if ($log['lost_property_description'] != null && $log['lost_property_entry_closed_time'] == null)
 //                {
 //                    $lost_property_status = "Open";
