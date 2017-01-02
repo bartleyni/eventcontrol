@@ -143,6 +143,8 @@ class MapController extends Controller
                 $medical_status = "Closed";
                 $security_status = "Closed";
                 $colour = "777";
+                $lost_severity = null;
+                $general_severity = null;
                 $severity = 99;
                 
                 if($log['severity'] && $log['medical_severity'])
