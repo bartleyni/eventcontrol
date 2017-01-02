@@ -56,13 +56,14 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                         )->setParameter('id', $active_event);
 
                 $venue = $query->getResult();
+                $eventId = $active_event->getId();
                
                 $qb1
                 ->select('ups.id, ups.name, ups.location, event.id, ups.power')
                 ->from('AppBundle\Entity\UPS', 'ups')
                 ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = ups.event')
                 ->where('event.id = :eventId')
-                ->setParameter('eventId', $active_event->getId())
+                ->setParameter('eventId', $eventId)
                 ;
                 
             }
