@@ -78,8 +78,10 @@ Control Room Log Map
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
                     var multiple = feature.getProperty('multiple');
+                    var logs = marker['logs'];
+                    var arrayLength = Object.keys(logs).length;
                     //var zI = feature.getProperty('zIndex');
-                    if (multiple = true)
+                    if (arrayLength > 1)
                     {
                         return {
                             icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=M|" + colour
