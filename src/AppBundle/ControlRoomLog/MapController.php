@@ -155,15 +155,15 @@ class MapController extends Controller
 //                    $lost_severity = 20;
 //                }             
 //                
-//                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
-//                {
-//                    $status = "Open";
-//                    $severityNotNull = array_diff(array($log['severity'], $log['medical_severity'], $general_severity, $lost_severity), array(null));
-//                    $severity = min($severityNotNull);
-//                } else {
-//                    $status = "Closed";
-//                    $severity = 99;
-//                }
+                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
+                {
+                    $status = "Open";
+                    $severityNotNull = array_diff(array($log['severity'], $log['medical_severity'], $general_severity, $lost_severity), array(null));
+                    $severity = min($severityNotNull);
+                } else {
+                    $status = "Closed";
+                    $severity = 99;
+                }
                 
                 if ($current_severity == null)
                 {
