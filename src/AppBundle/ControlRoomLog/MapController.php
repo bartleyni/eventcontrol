@@ -121,57 +121,64 @@ class MapController extends Controller
                 $medical_status = "Closed";
                 $security_status = "Closed";
                 $colour = "777";
-                $zIndex = 10;
                 $severity = 99;
                 
                 if($log['severity'] && $log['medical_severity'])
                 {
-                    $severity = min($log['severity'], $log['medical_severity']);
+                    if ($log['severity'] == $log['medical_severity'])
+                    {
+                        $severity = $log['severity'];
+                    } else {
+                        $severity = min($log['severity'], $log['medical_severity']);
+                    }
                 } else if($log['severity'] && !$log['medical_severity']) {
                     $severity = $log['severity'];
                 } else if($log['medical_severity'] && !$log['severity']) {
                     $severity = $log['medical_severity'];
-                } else {
-                    $zIndex = 10;
                 }
                 
                 if (!$log['security_description'] == null && $log['security_entry_closed_time'] == null)
                 {
                     $security_status = "Open";
+                    if ($severity == 1){
+                        $colour = "E50D00";
+                    } elseif($severity == 2) {
+                        $colour = "DF7200";
+                    } elseif($severity == 3) {
+                        $colour = "D9D100";
+                    } elseif($severity == 4) {
+                        $colour = "7CD300";
+                    } elseif($severity == 5) {
+                        $colour = "1CCE00";
+                    }
                 }
                 if (!$log['medical_description'] == null && $log['medical_entry_closed_time'] == null)
                 {
                     $medical_status = "Open";
+                    if ($severity == 1){
+                        $colour = "E50D00";
+                    } elseif($severity == 2) {
+                        $colour = "DF7200";
+                    } elseif($severity == 3) {
+                        $colour = "D9D100";
+                    } elseif($severity == 4) {
+                        $colour = "7CD300";
+                    } elseif($severity == 5) {
+                        $colour = "1CCE00";
+                    }
                 }
                 if (!$log['general_description'] == null && $log['general_open'] == true)
                 {
                     $general_status = "Open";
                     $colour = "337ab7";
-                    $zIndex = 50;
+                    $severity = 10;
                 }
                 if (!$log['lost_property_description'] == null && $log['lost_property_entry_closed_time'] == null)
                 {
                     $lost_property_status = "Open";
                     $colour = "5bc0de";
-                    $zIndex = 40;
-                }
-                
-                if ($severity === 1){
-                    $colour = "E50D00";
-                    $zIndex = 100;
-                } elseif($severity === 2) {
-                    $colour = "DF7200";
-                    $zIndex = 90;
-                } elseif($severity === 3) {
-                    $colour = "D9D100";
-                    $zIndex = 80;
-                } elseif($severity === 4) {
-                    $colour = "7CD300";
-                    $zIndex = 70;
-                } elseif($severity === 5) {
-                    $colour = "1CCE00";
-                    $zIndex = 60;
-                }                
+                    $severity = 20;
+                }             
                 
                 if ($security_status === "Open" or $medical_status === "Open" or $general_status === "Open" or $lost_property_status === "Open")
                 {
@@ -179,8 +186,6 @@ class MapController extends Controller
                 } else {
                     $status = "Closed";
                     $severity = 99;
-                    $colour = "777";
-                    $zIndex = 1;
                 }
                 
                 if ($current_severity == null)
@@ -188,11 +193,29 @@ class MapController extends Controller
                     $new_severity = $severity;
                 }
                 
-                if ($current_severity > $severity)
+                if ($severity < $current_severity)
                 {
                     $new_severity = $severity;
                 } else {
                     $new_severity = $current_severity;
+                }
+                
+                if ($new_severity == 1){
+                    $colour = "E50D00";
+                } elseif($new_severity == 2) {
+                    $colour = "DF7200";
+                } elseif($new_severity == 3) {
+                    $colour = "D9D100";
+                } elseif($new_severity == 4) {
+                    $colour = "7CD300";
+                } elseif($new_severity == 5) {
+                    $colour = "1CCE00";
+                } elseif($new_severity == 10) {
+                    $colour = "337ab7";
+                } elseif($new_severity == 20) {
+                    $colour = "5bc0de";
+                } elseif($new_severity == 99) {
+                    $colour = "777";
                 }
                 
                 array_push($markers[$key]['logs'], $log);
