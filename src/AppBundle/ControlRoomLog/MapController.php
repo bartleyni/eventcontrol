@@ -190,7 +190,7 @@ class MapController extends Controller
             {
                 $multiple = false;
                 
-                if (sizeof($marker['logs'] > 2))
+                if (sizeof($marker['logs']) > 1)
                 {
                     $multiple = true;
                 }
