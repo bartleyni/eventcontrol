@@ -118,10 +118,10 @@ class MapController extends Controller
                         $miles = $dist * 60 * 1.1515;
                         $metres = $miles * 1.609344 * 1000;
                         
-                        if ($distance < $old_distance)
+                        if ($metres < $old_distance)
                         {
                             $key = $key1;
-                            $old_distance = $distance;
+                            $old_distance = $metres;
                         }
                     }
                 }
