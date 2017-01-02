@@ -79,15 +79,16 @@ Control Room Log Map
                     var colour = feature.getProperty('colour');
                     var multiple = feature.getProperty('multiple');
                     //var zI = feature.getProperty('zIndex');
-                    return {
-                        if (multiple = true)
-                        {
+                    if (multiple = true)
+                    {
+                        return {
                             icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=M|" + colour
-                        } else {
+                        };
+                    } else {
+                        return {
                             icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour
-                        }
-                        //zIndex: zI
-                    };
+                        };
+                    }
                 });
                 
                 var infowindow = new google.maps.InfoWindow();
