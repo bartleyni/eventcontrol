@@ -105,20 +105,11 @@ class MapController extends Controller
             if($log['latitude'] != null)
             {
                                 //$key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
-                
+                $key = null;
                 if($markers){
-                    $old_distance = 100;
+                    $old_distance = 50;
                     foreach ($markers as $key1 => $marker)
                     {
-                        //$distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
-                        
-//                        $theta = $marker['longitude'] - $log['longitude'];
-//                        $dist = sin(deg2rad($marker['latitude'])) * sin(deg2rad($log['latitude'])) +  cos(deg2rad($marker['latitude'])) * cos(deg2rad($log['latitude'])) * cos(deg2rad($theta));
-//                        $dist = acos($dist);
-//                        $dist = rad2deg($dist);
-//                        $miles = $dist * 60 * 1.1515;
-//                        $metres = abs($miles * 1.609344 * 1000);
-                        
                         $latFrom = deg2rad($marker['latitude']);
                         $lonFrom = deg2rad($marker['longitude']);
                         $latTo = deg2rad($log['latitude']);
