@@ -16,6 +16,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
 
 class log_entriesRepository extends EntityRepository
 {
