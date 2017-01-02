@@ -106,7 +106,7 @@ class MapController extends Controller
                                 //$key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
                 
                 if($markers){
-                    $old_distance = 5;
+                    $old_distance = 0.1;
                     foreach ($markers as $key1 => $marker)
                     {
                         //$distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
