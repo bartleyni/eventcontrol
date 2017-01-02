@@ -77,9 +77,15 @@ Control Room Log Map
                 
                 map.data.setStyle(function(feature) {
                     var colour = feature.getProperty('colour');
+                    var multiple = feature.getProperty('multiple');
                     //var zI = feature.getProperty('zIndex');
                     return {
-                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour
+                        if (multiple == true)
+                        {
+                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=M|" + colour
+                        } else {
+                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour
+                        }
                         //zIndex: zI
                     };
                 });
@@ -166,7 +172,7 @@ Control Room Log Map
                             medical+security+general+lost+
                             '</div>';
                         
-                        info_content = info_content+"</br>"+content;
+                        info_content = info_content+content+"</br>";
                     }
 
                     infowindow.setContent(info_content);

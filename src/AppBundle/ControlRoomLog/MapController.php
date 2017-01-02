@@ -111,6 +111,7 @@ class MapController extends Controller
                     $markers[$markerId] = ['latlong' => round($log['latitude'], 6).", ".round($log['longitude'], 6), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
                     $key = $markerId;
                     $markers[$key]['logs'] = array();
+                    
                 }
                 
                 $status = null;
@@ -179,12 +180,8 @@ class MapController extends Controller
                     $zIndex = 1;
                 }
                 
-                //$log_details = ["log" => $log, "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status];
-                
                 array_push($markers[$key]['logs'], $log);
                 
-                //$logFeature = ['type' => "Feature", 'properties' => ["log" => $log, "colour" => $colour, "severity" => $severity, "zIndex"=> $zIndex, "status" => $status], 'geometry' => ["type" => "point", "coordinates" => [floatval($log['longitude']), floatval($log['latitude'])]]];
-                //array_push($data['features'],$logFeature);
             }
         }
         
@@ -192,7 +189,12 @@ class MapController extends Controller
         {
             foreach ($markers as $marker)
             {
-                $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker, "colour" => "777", "multiple" => true], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
+                $multiple = false;
+                if (sizeof(marker['logs'] > 1))
+                {
+                    $multiple = true;
+                }
+                $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker, "colour" => "777", "multiple" => $multiple], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
                 array_push($data['features'],$logFeature);
             }
         }
