@@ -34,6 +34,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
 
             //$em = $this->doctrine->getManager();
+            $UPS = $qb1->getQuery()->getResult();
         
             $qb = $em->createQueryBuilder();
 
@@ -66,9 +67,11 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 ->setParameter('eventId', $eventId)
                 ;
                 
+                $UPS = $qb1->getQuery()->getResult();
+                
             }
         }
-        $UPS = $qb1->getQuery()->getResult();
+        
 
 
 

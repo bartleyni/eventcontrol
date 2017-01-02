@@ -208,9 +208,7 @@
     
     function sidebarPoll()
     {
-        UPSUpdate();
         
-        PeopleCounterUpdate();
     
         {% if activeEventId(app.user.id) != 0 %}
             $.getJSON('{{ path('log_json_data') }}', function(data) {
@@ -220,6 +218,9 @@
                 $('#logTotal-Security').html(data['Security']);
                 $('#logTotal-Lost').html(data['Lost']);
             });
+            UPSUpdate();
+        
+            PeopleCounterUpdate();
         {% endif %}    
             i++;
             setTimeout(sidebarPoll,2000);
