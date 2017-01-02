@@ -92,9 +92,12 @@ Control Room Log Map
                     var info_content;
                     console.log("Marker Window");
                     
-                    Array.from(marker).forEach(function(log) {
+                    var arrayLength = marker.length;
+                    for (var i = 0; i < arrayLength; i++) {
+
+                        console.log("loop");
                         
-                        console.log("log");
+                        var log = marker[i]["log"];
                         
                         var security = "";
                         if (log['security_incident_description'])
