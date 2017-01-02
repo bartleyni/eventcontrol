@@ -23,18 +23,18 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
 
         $em = $this->doctrine->getManager();
-        $qb = $em->createQueryBuilder();
-
-        $qb
-            ->select('ups.id, ups.name, ups.location, ups.power')
-            ->from('AppBundle\Entity\UPS', 'ups')
-        ;
-
-        $UPS = $qb->getQuery()->getResult();
-
-
-        $em = $this->doctrine->getManager();
+        $qb1 = $em->createQueryBuilder();
+        
         if (null === $token = $this->tokenStorage->getToken()) {
+
+            $qb1
+                ->select('ups.id, ups.name, ups.location, ups.power')
+                ->from('AppBundle\Entity\UPS', 'ups')
+            ;
+
+
+            //$em = $this->doctrine->getManager();
+        
             $qb = $em->createQueryBuilder();
 
             $qb
@@ -51,13 +51,23 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
                 $query = $this->doctrine->getManager()
                     ->createQuery('SELECT v, e FROM AppBundle\Entity\venue v
-            JOIN v.event e
-            WHERE e.id = :id'
-                    )->setParameter('id', $active_event);
+                        JOIN v.event e
+                        WHERE e.id = :id'
+                        )->setParameter('id', $active_event);
 
                 $venue = $query->getResult();
+               
+                $qb1
+                ->select('ups.id, ups.name, ups.location, event.id, ups.event, ups.power')
+                ->from('AppBundle\Entity\UPS', 'ups')
+                ->leftJoin('AppBundle\Entity\event', 'event', 'WITH', 'event.id = ups.event')
+                ->where('event.id = :eventId')
+                ->setParameter('eventId', $active_event)
+                ;
+                
             }
         }
+        $UPS = $qb1->getQuery()->getResult();
 
 
 
