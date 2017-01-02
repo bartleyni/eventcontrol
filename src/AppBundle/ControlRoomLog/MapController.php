@@ -135,7 +135,7 @@ class MapController extends Controller
                         {
                             $key = $key1;
                             $old_distance = $metres;
-                            $distances[] = $distances;
+                            $distances[] = $metres;
                         }
                     }
                 }
@@ -237,7 +237,7 @@ class MapController extends Controller
                 array_push($markers[$key]['logs'], $log);
                 $markers[$key]['severity'] = $new_severity;
                 $markers[$key]['colour'] = $colour;
-                $markers[$key]['distance'] = $metres;
+                $markers[$key]['distance'] = $distances;
             }
         }
         
