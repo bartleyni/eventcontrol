@@ -103,7 +103,7 @@ class MapController extends Controller
             if($log['latitude'] != null)
             {
                 
-                $key = array_search(round($log['latitude'], 6).", ".round($log['longitude'], 6), $markers);
+                $key = array_search(round($log['latitude'], 6).", ".round($log['longitude'], 6), array_column($markers, 'latlong'));
                 
                 if($key == null)
                 {
