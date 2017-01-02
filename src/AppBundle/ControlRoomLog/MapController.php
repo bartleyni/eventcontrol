@@ -169,20 +169,21 @@ class MapController extends Controller
                 if (!$log['general_description'] == null && $log['general_open'] == true)
                 {
                     $general_status = "Open";
-                    $colour = "337ab7";
+                    //$colour = "337ab7";
                     $general_severity = 10;
                 }
                 if (!$log['lost_property_description'] == null && $log['lost_property_entry_closed_time'] == null)
                 {
                     $lost_property_status = "Open";
-                    $colour = "5bc0de";
+                    //$colour = "5bc0de";
                     $lost_severity = 20;
                 }             
                 
-                if ($security_status === "Open" or $medical_status === "Open" or $general_status === "Open" or $lost_property_status === "Open")
+                if ($security_status == "Open" or $medical_status == "Open" or $general_status == "Open" or $lost_property_status == "Open")
                 {
                     $status = "Open";
-                    $severity = min($log['severity'], $log['medical_severity'], $general_severity, $lost_severity);
+                    $severityNotNull = array_diff(array($log['severity'], $log['medical_severity'], $general_severity, $lost_severity), array(null));
+                    $severity = min($severityNotNull);
                 } else {
                     $status = "Closed";
                     $severity = 99;
