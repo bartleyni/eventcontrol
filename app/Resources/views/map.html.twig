@@ -89,14 +89,10 @@ Control Room Log Map
                 map.data.addListener('click', function(event) {
 
                     var marker = event.feature.getProperty('marker');
-                    var info_content;
-                    console.log("Marker Window");
+                    var info_content = "";
                     
-                    //var arrayLength = marker.length;
                     var logs = marker['logs'];
                     var arrayLength = Object.keys(logs).length;
-                    
-                    console.log(arrayLength);
                     
                     for (var i = 0; i < arrayLength; i++) {
 
