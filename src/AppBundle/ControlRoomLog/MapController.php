@@ -235,7 +235,7 @@ class MapController extends Controller
                 array_push($markers[$key]['logs'], $log);
                 $markers[$key]['severity'] = $new_severity;
                 $markers[$key]['colour'] = $colour;
-                $markers[$key]['distance'] = $old_distance;
+                $markers[$key]['distance'] = $metres;
             }
         }
         
