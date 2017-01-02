@@ -124,6 +124,7 @@ class MapController extends Controller
                     $markers[$markerId] = ['latlong' => round($log['latitude'], 6).", ".round($log['longitude'], 6), 'latitude' => $log['latitude'], 'longitude' => $log['longitude']];
                     $key = $markerId;
                     $markers[$key]['logs'] = array();
+                    $markers[$key]['severity'] = 99;
                 }
                 $current_severity = null;
                 $current_severity = $markers[$key]['severity'];
