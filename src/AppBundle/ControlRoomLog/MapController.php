@@ -111,12 +111,24 @@ class MapController extends Controller
                     {
                         //$distance = distance($marker['latitude'],$marker['longitude'],$log['latitude'],$log['longitude']);
                         
-                        $theta = $marker['longitude'] - $log['longitude'];
-                        $dist = sin(deg2rad($marker['latitude'])) * sin(deg2rad($log['latitude'])) +  cos(deg2rad($marker['latitude'])) * cos(deg2rad($log['latitude'])) * cos(deg2rad($theta));
-                        $dist = acos($dist);
-                        $dist = rad2deg($dist);
-                        $miles = $dist * 60 * 1.1515;
-                        $metres = abs($miles * 1.609344 * 1000);
+//                        $theta = $marker['longitude'] - $log['longitude'];
+//                        $dist = sin(deg2rad($marker['latitude'])) * sin(deg2rad($log['latitude'])) +  cos(deg2rad($marker['latitude'])) * cos(deg2rad($log['latitude'])) * cos(deg2rad($theta));
+//                        $dist = acos($dist);
+//                        $dist = rad2deg($dist);
+//                        $miles = $dist * 60 * 1.1515;
+//                        $metres = abs($miles * 1.609344 * 1000);
+                        
+                        $latFrom = deg2rad($marker['latitude']);
+                        $lonFrom = deg2rad($marker['longitude']);
+                        $latTo = deg2rad($log['latitude']);
+                        $lonTo = deg2rad($log['longitude']);
+                        $earthRadius = 6371000;
+
+                        $latDelta = $latTo - $latFrom;
+                        $lonDelta = $lonTo - $lonFrom;
+
+                        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));                       
+                        $metres = $angle * $earthRadius;
                         
                         if ($metres < $old_distance)
                         {
