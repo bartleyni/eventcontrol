@@ -139,11 +139,11 @@ class MapController extends Controller
                 {
                     $security_status = "Open";
                 }
-                if (!$log['medical_description'] = null && $log['medical_entry_closed_time'] == null)
+                if (!$log['medical_description'] == null && $log['medical_entry_closed_time'] == null)
                 {
                     $medical_status = "Open";
                 }
-                if (!$log['general_description'] == null && $log['general_entry_closed_time'] == null)
+                if (!$log['general_description'] == null && $log['general_open'] == true)
                 {
                     $general_status = "Open";
                     $colour = "337ab7";
