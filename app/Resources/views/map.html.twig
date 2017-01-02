@@ -91,7 +91,7 @@ Control Room Log Map
                     var marker = event.feature.getProperty('marker');
                     var info_content;
                     
-                    marker.forEach(function(log) {
+                    Array.from(marker).forEach(function(log) {
                         
                         var security = "";
                         if (log['security_incident_description'])
