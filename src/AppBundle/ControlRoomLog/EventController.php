@@ -80,7 +80,10 @@ class EventController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             
             $em->persist($event);
+            $editId = $event->getId();
             $em->flush();
+            
+            $editId = $event->getId();
             
             $event_operators = $form['event_operators']->getData();
                                    
