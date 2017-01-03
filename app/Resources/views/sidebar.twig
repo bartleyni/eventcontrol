@@ -40,6 +40,7 @@
         <label>Select Event:</label>
         {#<select id="event" class="form-control">#}
             {% for event in activeEvents(app.user.id) %}
+                {{ event.id }}
                 {% for value in event %}
                     {{ value }}
                 {% endfor %}
