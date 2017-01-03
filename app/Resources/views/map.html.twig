@@ -38,6 +38,34 @@ Control Room Log Map
                                 <li class="list-group-item"><span class="label severity5">Very Low</span></li>
                             </ul>
                         </div>
+                        <div class="col-md-2">
+                            <fieldset>
+                                <strong>Filter by Status</strong>
+                                <p>
+                                    <label>Fitler</label>
+                                    <select id = "filter">
+                                        <option value = "All">All</option>
+                                        <option value = "Open">Open</option>
+                                        <option value = "Closed">Closed</option>
+                                    </select>
+                                </p>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-2">
+                            <fieldset>
+                                <strong>Filter by Type</strong>
+                                <p>
+                                    <label>Type Fitler</label>
+                                    <select id = "typeFilter">
+                                        <option value = "All">All</option>
+                                        <option value = "Medical">Medical</option>
+                                        <option value = "Security">Security</option>
+                                        <option value = "General">General</option>
+                                        <option value = "Lost">Lost Property</option>
+                                    </select>
+                                </p>
+                            </fieldset>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -73,59 +101,6 @@ Control Room Log Map
                     center: {lat: {{ latitude }}, lng: {{ longitude }}},
                     mapTypeId: 'satellite'
                 });
-                
-                //Create Filter Options
-                var divFilterOptions1 = {
-                    gmap: map,
-                    name: 'All',
-                    title: "All",
-                    id: "filterAllOption",
-                    action: function(){
-                            alert('option1');
-                    }
-                };
-                var optionFilterDiv1 = new optionFilterDiv(divFilterOptions1);
-
-                var divFilterOptions2 = {
-                    gmap: map,
-                    name: 'Open',
-                    title: "Open",
-                    id: "filterOpenOption",
-                    action: function(){
-                            alert('option1');
-                    }
-                };
-                var optionFilterDiv2 = new optionFilterDiv(divFilterOptions2);
-                
-                var divFilterOptions3 = {
-                    gmap: map,
-                    name: 'Closed',
-                    title: "Closed",
-                    id: "filterClosedOption",
-                    action: function(){
-                            alert('option1');
-                    }
-                };
-                var optionFilterDiv3 = new optionFilterDiv(divFilterOptions3);                
-                
-                var FilterOptions = {
-                    items: [optionFilterDiv1, optionFilterDiv2, optionFilterDiv3],
-                    id: "myddOptsFilterDiv"        		
-                };
-                
-                var dropDownFilterDiv = new dropDownOptionsDiv(FilterOptions);               
-                
-                var dropDownFilterOptions = {
-                                gmap: map,
-                                name: 'Filter',
-                                id: 'ddFilterControl',
-                                title: 'Filter by All, Open or Closed entries',
-                                position: google.maps.ControlPosition.TOP_RIGHT,
-                                dropDown: dropDownFilterDiv
-                };
-
-                var dropDown1 = new dropDownControl(dropDownFilterOptions); 
-
                 
                 loadGeoJson(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
