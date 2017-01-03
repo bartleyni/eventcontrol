@@ -73,7 +73,8 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $event = new event();
-        $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => null,));
+        $current_overlay = null;
+        $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => null, 'current_overlay' => $current_overlay));
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -143,7 +144,7 @@ class EventController extends Controller
             
             $em->flush();
             
-            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId, 'current_overlay' => $current_overlay));
+            $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => $editId));
             
             $form->handleRequest($request);
         }
