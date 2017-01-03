@@ -141,7 +141,7 @@ class event {
     private $overlay_imageName;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
