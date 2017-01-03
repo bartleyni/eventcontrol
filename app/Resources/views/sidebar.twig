@@ -10,17 +10,19 @@
             <a href="{{ path('event_weather_radar') }}">
                 <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
             </a>
-            {% if is_granted('ROLE_FIELD') %}
-                <a class="locationURL" href="#" target="_blank">
-                    <div id="Location"><strong>Location:</strong><br>Updating... </div>
-                </a>
-                <a href="{{ path('field_user_toggle') }}">
-                    <strong>Toggle field user off</strong>
-                </a>
-            {% else %}
-                <a href="{{ path('field_user_toggle') }}">
-                    <strong>Toggle field user on</strong>
-                </a>
+            {% if is_granted('ROLE_USER') %}
+                {% if is_granted('ROLE_FIELD') %}
+                    <a class="locationURL" href="#" target="_blank">
+                        <div id="Location"><strong>Location:</strong><br>Updating... </div>
+                    </a>
+                    <a href="{{ path('field_user_toggle') }}">
+                        <strong>Toggle field user off</strong>
+                    </a>
+                {% else %}
+                    <a href="{{ path('field_user_toggle') }}">
+                        <strong>Toggle field user on</strong>
+                    </a>
+                {% endif %}
             {% endif %}
     </div>
 </div>
@@ -69,6 +71,13 @@
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 Latest Lost Property <span class="badge" id="logTotal-Lost">{{ activeLostPropertyLogs(app.user.id) }}</span>
+            </div>
+        </div>
+    </a>
+    <a href="{{ path('full_map') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                Map View
             </div>
         </div>
     </a>
