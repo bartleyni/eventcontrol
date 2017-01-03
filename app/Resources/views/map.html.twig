@@ -299,7 +299,7 @@ Control Room Log Map
                         };
                     }
                 });
-                setTimeout(loadGeoJson(map, geoJson), 5000);
+                setTimeout(function(){ alertFunc(loadGeoJson(map, geoJson); }, 5000);
             }
             
         {% endif %}
