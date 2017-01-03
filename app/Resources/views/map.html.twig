@@ -74,6 +74,7 @@ Control Room Log Map
                     mapTypeId: 'satellite'
                 });
                 
+                /*
                 map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
                 map.data.setStyle(function(feature) {
@@ -94,6 +95,9 @@ Control Room Log Map
                         };
                     }
                 });
+                */
+                
+                loadGeoJson(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
                 var infowindow = new google.maps.InfoWindow();
                 
@@ -272,6 +276,31 @@ Control Room Log Map
             };
 
             google.maps.event.addDomListener(window, 'load', initMap);
+            
+            function loadGeoJson(map, geoJson)
+            {
+                map.data.loadGeoJson(geoJson);
+                
+                map.data.setStyle(function(feature) {
+                    
+                    var marker = feature.getProperty('marker');
+                    var colour = marker['colour'];
+                    var logs = marker['logs'];
+                    var arrayLength = Object.keys(logs).length;
+                    //var zI = feature.getProperty('zIndex');
+                    if (arrayLength > 1)
+                    {
+                        return {
+                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld="+arrayLength+"|" + colour
+                        };
+                    } else {
+                        return {
+                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour
+                        };
+                    }
+                });
+            }
+            
         {% endif %}
         
     </script>
