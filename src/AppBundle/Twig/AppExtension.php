@@ -59,7 +59,12 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                         )->setParameter('id', $active_event);
 
                 $venue = $query->getResult();
-                $eventId = $active_event->getId();
+                if($active_event)
+                {
+                    $eventId=$active_event->getId();
+                } else {
+                    $eventId = 0;
+                }
                
                 $qb1
                 ->select('ups.id, ups.name, ups.location, event.id as eId, ups.power')
