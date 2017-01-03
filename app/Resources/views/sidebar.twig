@@ -19,7 +19,7 @@
     </div>
 </div>
 {% if is_granted('ROLE_USER') %}
-    {% if activeEvents(app.user.id)|length > 1 %}
+    {% if activeEvents(app.user.id)|length > 1 OR activeEventId(app.user.id) == 0 %}
         <div class="form-group">
             <label>Select Event:</label>
             <select id="event" class="form-control" onchange="setActiveEvent(this)">
