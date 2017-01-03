@@ -91,7 +91,14 @@ class User implements AdvancedUserInterface, \Serializable {
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
      *
      */
-    protected $groups;    
+    protected $groups;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="Users")
+     * @ORM\JoinColumn(name="selected_event", referencedColumnName="id")
+     */
+    private $selected_event;
+    
     
     public function __construct()
     {

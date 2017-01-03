@@ -152,6 +152,11 @@ class event {
     */
     protected $locations;
     
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="selected_event")
+     */
+    private $user_selected;
+    
     public function __toString()
     {
         return (string) $this->getName();
