@@ -278,9 +278,12 @@ Control Room Log Map
             google.maps.event.addDomListener(window, 'load', initMap);
             
             function loadGeoJson(map, geoJson)
-            {
-                map.data.clearLayers();
-               
+            {               
+                map.data.forEach(function (feature) {
+                    console.log(feature);
+                    map.data.remove(feature);
+                });
+                
                 map.data.loadGeoJson(geoJson);
                 
                 map.data.setStyle(function(feature) {
