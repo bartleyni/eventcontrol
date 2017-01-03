@@ -127,12 +127,14 @@ class EditUserController extends Controller
         $group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
         
         if ($this->get('security.authorization_checker')->isGranted('ROLE_FIELD')) {
-            $group->removeUser($user);
+            //$group->removeUser($user);
+            $user->removeGroup($group);
         } else {
-            $group->addUser($user);
+            //$group->addUser($user);
+            $user->addGroup($group);
         }
         
-        $em->persist($group);
+        $em->persist($user);
         $em->flush();
 
         return $this->redirectToRoute('full_log');
