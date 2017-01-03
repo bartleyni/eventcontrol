@@ -38,26 +38,26 @@ Control Room Log Map
                                 <li class="list-group-item"><span class="label severity5">Very Low</span></li>
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Filter by Status</label>
-                                <select id = "filter" class = "form-control">
-                                    <option value = "All">All</option>
-                                    <option value = "Open">Open</option>
-                                    <option value = "Closed">Closed</option>
+                                <select id = "filter" class = "form-control" onchange="setFitler(this)">
+                                    <option value = "All" class = "form-control">All</option>
+                                    <option value = "Open" class = "form-control">Open</option>
+                                    <option value = "Closed" class = "form-control">Closed</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Filter by Type</label>
-                                <select id = "typeFilter" class = "form-control">
-                                    <option value = "All">All</option>
-                                    <option value = "Medical">Medical</option>
-                                    <option value = "Security">Security</option>
-                                    <option value = "General">General</option>
-                                    <option value = "Lost">Lost Property</option>
-                                </select>>
+                                <select id = "typeFilter" class = "form-control" onchange="setTypeFitler(this)">
+                                    <option value = "All" class = "form-control">All</option>
+                                    <option value = "Medical" class = "form-control">Medical</option>
+                                    <option value = "Security" class = "form-control">Security</option>
+                                    <option value = "General" class = "form-control">General</option>
+                                    <option value = "Lost" class = "form-control">Lost Property</option>
+                                </select>
                             </div>
                         </div>                        
                     </div>
@@ -74,7 +74,18 @@ Control Room Log Map
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+        var filter = null;
+        var typeFilter = null;
         
+        function setFilter(sel) {
+            filter = sel.value;
+            initMap();
+        }
+        
+        function setTypeFilter(sel) {
+            typeFilter = sel.value;
+            initMap();
+        }
         
         {% if (longitude is not null) and (latitude is not null) %}
         
@@ -96,7 +107,7 @@ Control Room Log Map
                     mapTypeId: 'satellite'
                 });
                 
-                loadGeoJson(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
+                loadGeoJson(map, '{{ path('map_json_data') }}'+'/'+filter+'/'+typeFilter);
                 
                 var infowindow = new google.maps.InfoWindow();
                 
