@@ -83,8 +83,6 @@ class EventController extends Controller
             $editId = $event->getId();
             $em->flush();
             
-            $editId = $event->getId();
-            
             $event_operators = $form['event_operators']->getData();
                                    
             if($event_operators)
