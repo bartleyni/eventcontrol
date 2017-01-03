@@ -195,18 +195,9 @@ Control Room Log Map
                 var srcImage = '{{ url('overlay', {'filename': overlayFileName}) }}';
 
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
-                refreshMarkers(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
 
             }
             
-            function refreshMarkers(map, geoJson){
-                map.data.forEach(function (feature) {
-                    map.data.remove(feature);
-                });
-                
-                map.data.loadGeoJson(geoJson);
-                setTimeout(refreshMarkers(map, geoJson), 5000);
-            }
 
             /** @constructor */
             function EventSiteOverlay(bounds, image, map) {
