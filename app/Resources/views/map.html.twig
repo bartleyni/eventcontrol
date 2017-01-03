@@ -279,9 +279,7 @@ Control Room Log Map
             
             function loadGeoJson(map, geoJson)
             {
-                map.data.remove(function (feature) {
-                    map.data.remove(feature);
-                });
+                map.data.clearLayers();
                
                 map.data.loadGeoJson(geoJson);
                 
