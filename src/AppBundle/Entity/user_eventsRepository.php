@@ -21,7 +21,7 @@ class user_eventsRepository extends EntityRepository
     {
         $now = new \DateTime();
         
-        $user_event = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->setMaxResults(1)->getResult();
+        $user_event = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->setMaxResults(1)->getOneOrNullResult();
         
         return $this->getEntityManager()->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $user_event));
     }
