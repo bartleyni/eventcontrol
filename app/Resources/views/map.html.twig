@@ -61,7 +61,37 @@ Control Room Log Map
             * To change this template file, choose Tools | Templates
             * and open the template in the editor.
             */
+            
+            function DropDownControl() {
 
+                var g = google.maps;
+
+                var typeIds = [];
+                var container = document.createElement("div");
+                container.style.margin = "7px";
+                container.id = "select_box";
+                var selectFilter = document.createElement("select");
+                selectFilter.id = "selectFilter";
+                selectFilter.title ="Change Filter";
+     
+                selectFilter.options[0] = new Option("All", 0);
+                selectFilter.options[1] = new Option("Open", 1);
+                selectFilter.options[2] = new Option("Closed", 2);
+
+                selectFilter.selectedIndex = 0;
+
+                container.appendChild(selectFilter);
+                map.controls[g.ControlPosition.TOP_RIGHT].push(container);
+
+                g.event.addDomListener(selectFilter, "change", function() {
+                    var numSel = selectFilter.selectedIndex;
+                    var chosen = typeIds[selectFilter.options[numSel].value];
+                    map.setMapTypeId(chosen);
+                    this.blur();
+                    toggleCopy(numSel);
+                });
+            }
+            
             var overlay;
             EventSiteOverlay.prototype = new google.maps.OverlayView();
 
@@ -73,29 +103,6 @@ Control Room Log Map
                     center: {lat: {{ latitude }}, lng: {{ longitude }}},
                     mapTypeId: 'satellite'
                 });
-                
-                /*
-                map.data.loadGeoJson('{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
-                
-                map.data.setStyle(function(feature) {
-                    
-                    var marker = feature.getProperty('marker');
-                    var colour = marker['colour'];
-                    var logs = marker['logs'];
-                    var arrayLength = Object.keys(logs).length;
-                    //var zI = feature.getProperty('zIndex');
-                    if (arrayLength > 1)
-                    {
-                        return {
-                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld="+arrayLength+"|" + colour
-                        };
-                    } else {
-                        return {
-                            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%20|" + colour
-                        };
-                    }
-                });
-                */
                 
                 loadGeoJson(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
