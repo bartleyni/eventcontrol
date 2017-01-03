@@ -38,7 +38,7 @@
     {% endif %}
     <div class="form-group">
         <label>Select Event:</label>
-        <select id = "filter" class = "form-control" onchange="setFilter(this)">
+        <select id="event" class="form-control">
             {% for events in activeEvents(app.user.id) %}
                 <option value = "{{ events.id }}" class = "form-control">{{ events.name }}</option>
             {% endfor %}
