@@ -19,23 +19,6 @@
     </div>
 </div>
 {% if is_granted('ROLE_USER') %}
-    {% if is_granted('ROLE_FIELD') %}
-        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    Toggle field user off
-                </div>
-            </div>
-        </a>
-    {% else %}
-        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    Toggle field user on
-                </div>
-            </div>
-        </a>
-    {% endif %}
     <div class="form-group">
         <label>Select Event:</label>
         <select id="event" class="form-control">
@@ -139,6 +122,23 @@
     </a>
 {% endif %}
 {% if is_granted('ROLE_USER') %}
+    {% if is_granted('ROLE_FIELD') %}
+        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    Toggle field user off
+                </div>
+            </div>
+        </a>
+    {% else %}
+        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    Toggle field user on
+                </div>
+            </div>
+        </a>
+    {% endif %}
     {% if activeEventId(app.user.id) != 0 %}
         <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
             <div class="row">
