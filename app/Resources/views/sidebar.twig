@@ -24,7 +24,11 @@
         <select id="event" class="form-control" onchange="setActiveEvent(this)">
             <option value = "0" class = "form-control"></option>
             {% for event in activeEvents(app.user.id) %}
-                <option value = "{{ event.id }}" class = "form-control">{{ event.name }}</option>
+                {% if event.id == activeEventId(app.user.id) %}
+                    <option value = "{{ event.id }}" class = "form-control" selected = "selected">{{ event.name }}</option>
+                {% else %}
+                    <option value = "{{ event.id }}" class = "form-control">{{ event.name }}</option>
+                {% endif %}
             {% endfor %}
         </select>
     </div>

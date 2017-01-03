@@ -152,11 +152,12 @@ class EditUserController extends Controller
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
         
-        $user->setSelectedEvent($event);
-        
-        $em->persist($user);
-        $em->flush();
-
+        if($event)
+        {
+            $user->setSelectedEvent($event);
+            $em->persist($user);
+            $em->flush();
+        }
         return $this->redirectToRoute('full_log');
    
     }
