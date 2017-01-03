@@ -134,7 +134,7 @@ class EventController extends Controller
           
             $current_overlay = $event->getOverlayImageName();
             
-             $originalLocations = new ArrayCollection();
+            $originalLocations = new ArrayCollection();
 
             // Create an ArrayCollection of the current location objects in the database
             foreach ($event->getLocations() as $location) {
@@ -249,11 +249,7 @@ class EventController extends Controller
     public function EventTestStatusAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        #$now = new \DateTime();
-        
-        //$statuses = $em->getRepository('AppBundle\Entity\user_events')->getEventUsers(2);
-        //$statuses = $em->getRepository('AppBundle\Entity\user_events')->getEventUsersNotInList(6,array(2,3,));
+       
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent(1);
         $statuses = $event->getId();
         

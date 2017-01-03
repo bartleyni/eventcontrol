@@ -10,9 +10,18 @@
             <a href="{{ path('event_weather_radar') }}">
                 <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
             </a>
-            <a class="locationURL" href="#" target="_blank">
-                <div id="Location"><strong>Location:</strong><br>Updating... </div>
-            </a>
+            {% if is_granted('ROLE_FIELD') %}
+                <a class="locationURL" href="#" target="_blank">
+                    <div id="Location"><strong>Location:</strong><br>Updating... </div>
+                </a>
+                <a href="{{ path('field_user_toggle') }}">
+                    Field User Off
+                </a>
+            {% else %}
+                <a href="{{ path('field_user_toggle') }}">
+                    Field User On
+                </a>
+            {% endif %}
     </div>
 </div>
 <div class="row">

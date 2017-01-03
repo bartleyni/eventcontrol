@@ -113,4 +113,29 @@ class EditUserController extends Controller
 
         return $this->render('userEdit.html.twig', array('form' => $form->createView(),));      
     }
+    
+    
+    /**
+     * @Route("/user/fieldUser", name="field_user_toggle")
+     */
+    public function fieldUserToggleAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
+        
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_FIELD')) {
+            $group->removeUser($user);
+        } else {
+            $group->addUser($user);
+        }
+        
+        $em->persist($group);
+        $em->flush();
+
+        return $this->redirectToRoute('full_log');
+   
+    }
 }
