@@ -86,6 +86,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             new \Twig_SimpleFunction('activeEventName', array($this, 'getEventName')),
             new \Twig_SimpleFunction('activeEventWeather', array($this, 'getEventWeather')),
             new \Twig_SimpleFunction('activeEventId', array($this, 'getEventById')),
+            new \Twig_SimpleFunction('activeEvents', array($this, 'getEventsById')),
             new \Twig_SimpleFunction('activeTotalLogs', array($this, 'getTotalLogs')),
             new \Twig_SimpleFunction('activeMedicalLogs', array($this, 'getMedicalLogs')),
             new \Twig_SimpleFunction('activeSecurityLogs', array($this, 'getSecurityLogs')),
@@ -103,28 +104,50 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
-
-        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('event_active' => true));
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
-        //if($user_event)
-        //{
-        //$eId = $user_event->getEventId();
-        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
         if($event)
         {
             $eventId=$event->getId();
         } else {
             $eventId = 0;
         }
-        //} else {
-        //$eventId = 0;
-        //}
+
+        return $eventId;
+    }
+    
+    public function getEventById2($operatorId = 0)
+    {
+        $em = $this->doctrine->getManager();
+
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+
+        if($event)
+        {
+            $eventId=$event->getId();
+        } else {
+            $eventId = 0;
+        }
 
         return $eventId;
     }
 
+    public function getEventsById($operatorId = 0)
+    {
+        $em = $this->doctrine->getManager();
+
+        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvents($operatorId);
+
+//        if($event)
+//        {
+//            $eventId=$event->getId();
+//        } else {
+//            $eventId = 0;
+//        }
+
+        return $event;
+    }    
+    
     public function getUPS()
     {
         $em = $this->doctrine->getManager();
@@ -153,21 +176,15 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        //if($user_event)
-        //{
-        //$eId = $user_event->getEventId();
-        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eId));
+
         if($event)
         {
             $eventName = $event->getName();
         } else {
             $eventName = "Not Assigned";
         }
-        //} else {
-        //$eventName = "Not Assigned";
-        //}
+
         return $eventName;
     }
 

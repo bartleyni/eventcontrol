@@ -24,11 +24,17 @@ class user_eventsRepository extends EntityRepository
         $user_event = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getOneOrNullResult();
         
         return $this->getEntityManager()->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $user_event));
-        
-        //return $user_event;
-        
-        //$return $this->getEntityManager()->createQuery('SELECT event FROM AppBundle\Entity\event event
     }
+    
+    public function getActiveEvents($userId)
+    {
+        $now = new \DateTime();
+        
+        $user_events = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        
+        return $user_events;
+    }
+    
     public function getActiveEventEndTime($userId)
     {
         $now = new \DateTime();
@@ -37,9 +43,5 @@ class user_eventsRepository extends EntityRepository
 
         $event_log_stop_date = $this->getEntityManager()->createQuery('SELECT event.event_log_stop_date FROM AppBundle\Entity\event event WHERE event.id = :id')->setParameter('id', $user_event)->getOneOrNullResult();
         return $event_log_stop_date['event_log_stop_date'];
-
-        //return $user_event;
-
-        //$return $this->getEntityManager()->createQuery('SELECT event FROM AppBundle\Entity\event event
     }
 }

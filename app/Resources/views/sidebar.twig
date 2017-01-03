@@ -1,4 +1,5 @@
 <div class="panel panel-primary">
+    
     <div class="panel-heading">
         {{ activeEventName(app.user.id) }}
     </div>
@@ -35,6 +36,14 @@
             </div>
         </a>
     {% endif %}
+    <div class="form-group">
+        <label>Select Event:</label>
+        <select id = "filter" class = "form-control" onchange="setFilter(this)">
+            {% for events in activeEvents(app.user.id) %}
+                <option value = "{{ events.id }}" class = "form-control">{{ events.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
 {% endif %}
 <div class="row">
     <h4>Log Functions</h4>
