@@ -164,17 +164,19 @@ Event Entry Form
                                 </div>
                             </div>
                         </div><br>
-                        {% if current_overlay %}
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-2">
-                                        <strong>Current Overlay File: </strong>
+                        {% if current_overlay is defined %}
+                            {% if current_overlay %}
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-2">
+                                            <strong>Current Overlay File: </strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href='{{ path('overlay', {'filename': current_overlay}) }}'>{{ current_overlay }}</a>
-                                    </div>
-                                </div>
-                            </div><br>
+                                </div><br>
+                            {% endif %}
                         {% endif %}
                         <div class="row">   
                             <div class="form-group">
