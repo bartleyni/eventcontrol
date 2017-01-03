@@ -138,6 +138,26 @@ class EditUserController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('full_log');
+    }
+    
+    /**
+     * @Route("/user/setEvent/", name="set_active_event")
+     * @Route("/user/setEvent/{eventId}")
+     */
+    public function setActiveEventAction(Request $request, $eventId = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
+        
+        $user->setSelectedEvent($user);
+        
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('full_log');
    
     }
 }

@@ -21,7 +21,7 @@
 {% if is_granted('ROLE_USER') %}
     <div class="form-group">
         <label>Select Event:</label>
-        <select id="event" class="form-control">
+        <select id="event" class="form-control" onchange="setActiveEvent(this)">
             <option value = "0" class = "form-control"></option>
             {% for event in activeEvents(app.user.id) %}
                 <option value = "{{ event.id }}" class = "form-control">{{ event.name }}</option>
@@ -227,6 +227,12 @@
         setInterval('updateWeather()', 30000);
         userLocate();
     });
+    
+    function setActiveEvent(sel) {
+        var eId = sel.value;
+        window.location.replace('{{ path('set_active_event') }}'+eId);
+    }
+    
     
     $('#LEDBtn1').click(function(){
         $.post( "{{ path('LED_mode', {'mode': "Working"}) }}" );
