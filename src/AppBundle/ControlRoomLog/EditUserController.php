@@ -152,7 +152,7 @@ class EditUserController extends Controller
         
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
         
-        $user->setSelectedEvent($user);
+        $user->setSelectedEvent($event);
         
         $em->persist($user);
         $em->flush();
