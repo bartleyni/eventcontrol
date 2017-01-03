@@ -62,36 +62,6 @@ Control Room Log Map
             * and open the template in the editor.
             */
             
-            function DropDownControl() {
-
-                var g = google.maps;
-
-                var typeIds = [];
-                var container = document.createElement("div");
-                container.style.margin = "7px";
-                container.id = "select_box";
-                var selectFilter = document.createElement("select");
-                selectFilter.id = "selectFilter";
-                selectFilter.title ="Change Filter";
-     
-                selectFilter.options[0] = new Option("All", 0);
-                selectFilter.options[1] = new Option("Open", 1);
-                selectFilter.options[2] = new Option("Closed", 2);
-
-                selectFilter.selectedIndex = 0;
-
-                container.appendChild(selectFilter);
-                map.controls[g.ControlPosition.TOP_RIGHT].push(container);
-
-                g.event.addDomListener(selectFilter, "change", function() {
-                    var numSel = selectFilter.selectedIndex;
-                    var chosen = typeIds[selectFilter.options[numSel].value];
-                    map.setMapTypeId(chosen);
-                    this.blur();
-                    toggleCopy(numSel);
-                });
-            }
-            
             var overlay;
             EventSiteOverlay.prototype = new google.maps.OverlayView();
 
@@ -103,6 +73,59 @@ Control Room Log Map
                     center: {lat: {{ latitude }}, lng: {{ longitude }}},
                     mapTypeId: 'satellite'
                 });
+                
+                //Create Filter Options
+                var divFilterOptions1 = {
+                    gmap: map,
+                    name: 'All',
+                    title: "All",
+                    id: "filterAllOption",
+                    action: function(){
+                            alert('option1');
+                    }
+                };
+                var optionFilterDiv1 = new optionFilterDiv(divFilterOptions1);
+
+                var divFilterOptions2 = {
+                    gmap: map,
+                    name: 'Open',
+                    title: "Open",
+                    id: "filterOpenOption",
+                    action: function(){
+                            alert('option1');
+                    }
+                };
+                var optionFilterDiv2 = new optionFilterDiv(divFilterOptions2);
+                
+                var divFilterOptions3 = {
+                    gmap: map,
+                    name: 'Closed',
+                    title: "Closed",
+                    id: "filterClosedOption",
+                    action: function(){
+                            alert('option1');
+                    }
+                };
+                var optionFilterDiv3 = new optionFilterDiv(divFilterOptions3);                
+                
+                var FilterOptions = {
+                    items: [optionFilterDiv1, optionFilterDiv2, optionFilterDiv3],
+                    id: "myddOptsFilterDiv"        		
+                };
+                
+                var dropDownFilterDiv = new dropDownOptionsDiv(FilterOptions);               
+                
+                var dropDownFilterOptions = {
+                                gmap: map,
+                                name: 'Filter',
+                                id: 'ddFilterControl',
+                                title: 'Filter by All, Open or Closed entries',
+                                position: google.maps.ControlPosition.TOP_RIGHT,
+                                dropDown: dropDownFilterDiv
+                };
+
+                var dropDown1 = new dropDownControl(dropDownFilterOptions); 
+
                 
                 loadGeoJson(map, '{{ path('map_filter_type_json_data', {'filter': filter, 'filter_type': filter_type}) }}');
                 
