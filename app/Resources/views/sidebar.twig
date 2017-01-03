@@ -37,10 +37,11 @@
         </a>
     {% endif %}
     <div class="form-group">
+        {{ activeEvents(app.user.id) }}
         <label>Select Event:</label>
         <select id="event" class="form-control">
-            {% for events in activeEvents(app.user.id) %}
-                <option value = "{{ events.id }}" class = "form-control">{{ events.name }}</option>
+            {% for event in activeEvents(app.user.id) %}
+                <option value = "{{ event.id }}" class = "form-control">{{ event.name }}</option>
             {% endfor %}
         </select>
     </div>
