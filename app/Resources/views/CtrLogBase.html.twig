@@ -4,10 +4,27 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Control Room Logging{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <style>
+            .loader {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+                background: url("{{ asset('assets/page-load.gif') }}") 50% 50% no-repeat rgb(249,249,249);
+            }
+        </style>
         {% block javascripts %}{% endblock %}
+        <script type="text/javascript">
+            $(window).load(function() {
+                $(".loader").fadeOut("slow");
+            })
+        </script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 <body class="{% block theme %}default{% endblock %}">
+    <div class="loader"></div>
     <div class="page-header">
         <div class="row">
             <h1 class="col-md-5 text-nowrap">
