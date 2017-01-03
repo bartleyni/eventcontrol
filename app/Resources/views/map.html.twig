@@ -53,14 +53,6 @@ Control Room Log Map
             $('[data-toggle="tooltip"]').tooltip();
         });
         
-        function refreshMarkers(map, geoJson){
-            map.data.forEach(function (feature) {
-                map.data.remove(feature);
-            });
-
-            map.data.loadGeoJson(geoJson);
-            setTimeout(refreshMarkers(map, geoJson), 5000);
-        }   
         
         {% if (longitude is not null) and (latitude is not null) %}
         
