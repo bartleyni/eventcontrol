@@ -74,6 +74,8 @@ security:
         - { path: ^/event/edit/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/event/delete/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/event/new/, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/log/*, roles: ROLE_VIEW }
+        - { path: ^/log, roles: ROLE_VIEW }
         - { path: ^/, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/$, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/*, roles: ROLE_VIEW, requires_channel: https }
