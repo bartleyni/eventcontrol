@@ -56,15 +56,24 @@ security:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/register, role: ROLE_USER, requires_channel: https }
+        - { path: ^/mySettings/, role: ROLE_USER, requires_channel: https }
         - { path: ^/fireregister, role: ROLE_USER, requires_channel: https }
+        - { path: ^/Alert/*, roles: ROLE_USER, requires_channel: https }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user/, roles: ROLE_USER, requires_channel: https }
         - { path: ^/user/fieldUser, roles: ROLE_USER, requires_channel: https }
-        - { path: ^/user/*, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/user/, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/user, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/user/*, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/event/weather/radar, roles: ROLE_VIEW }
         - { path: ^/event/weather/, roles: ROLE_VIEW }
+        - { path: ^/map/*, roles: ROLE_VIEW }
+        - { path: ^/map, roles: ROLE_VIEW }
+        - { path: ^/mapjsondata, roles: ROLE_VIEW }
+        - { path: ^/mapjsondata/*, roles: ROLE_VIEW }
         - { path: ^/event, roles: ROLE_USER, requires_channel: https }
-        - { path: ^/event/*, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/event/edit/*, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/event/delete/*, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/event/new/, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/$, roles: ROLE_VIEW, requires_channel: https }
         - { path: ^/*, roles: ROLE_VIEW, requires_channel: https }
