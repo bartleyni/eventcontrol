@@ -42,7 +42,7 @@ class user_eventsRepository extends EntityRepository
             } else {
                 $event = $this->getEntityManager()->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $user_event));
                 $user->setSelectedEvent($event);
-                $em->persist($user);
+                $this->getEntityManager()->persist($user);
             }
             
         }
