@@ -39,6 +39,9 @@ class user_eventsRepository extends EntityRepository
             if(!$user_event)
             {
                 $event = null;
+            } else {
+                $user->setSelectedEvent($user_event);
+                $em->persist($user);
             }
             
         }
