@@ -153,9 +153,11 @@ Control Room Log
                     {
                         $("#logTable").html(data);
                         oldTable = data;
+                        
                     }
                 }
             });
+            $('#Logs').DataTable();
             setTimeout(dataPoll,5000);
         }
     </script>
