@@ -132,12 +132,14 @@ Control Room Log
             $('[data-toggle="tooltip"]').tooltip();
         });
         
+        var oldData;
+        
         $(document).ready(function() {
             dataPoll();
             $('#Logs').DataTable();
         });
         
-        var oldData;
+        var oldTable = null;
         
         function dataPoll(){
             $.ajax({
@@ -148,16 +150,17 @@ Control Room Log
                 success:function(data)
                 {
                     var newTable = data;
-                    var oldTable = $("#logTable").html();
+                    //var oldTable = $("#logTable").html();
                     if (oldTable != newTable)
                     {
                         $("#logTable").html(data);
                         oldTable = data;
+                        $('#Logs').DataTable();
                         
                     }
                 }
             });
-            $('#Logs').DataTable();
+            
             setTimeout(dataPoll,5000);
         }
     </script>
