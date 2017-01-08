@@ -136,7 +136,9 @@ Control Room Log
         
         $(document).ready(function() {
             dataPoll();
-            $('#Logs').DataTable();
+            $('#Logs').DataTable( {
+                "pageLength": 15
+            });
         });
         
         var oldTable = null;
@@ -155,7 +157,9 @@ Control Room Log
                     {
                         $("#logTable").html(data);
                         oldTable = data;
-                        $('#Logs').DataTable();
+                        $('#Logs').DataTable( {
+                            "pageLength": 15
+                        });
                         
                     }
                 }
