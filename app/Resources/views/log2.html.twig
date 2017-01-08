@@ -16,7 +16,7 @@ Control Room Log
                         {% if logs is empty %}
                             No logs available
                         {% else %}
-                            <table class="table table-sm table-striped table-bordered table-hover">
+                            <table id="Logs" class="table table-sm table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Log Time</th>
@@ -134,6 +134,7 @@ Control Room Log
         
         $(document).ready(function() {
             dataPoll();
+            $('#Logs').DataTable();
         });
         
         var oldData;
