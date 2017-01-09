@@ -26,15 +26,15 @@
                             {{ entry.logBlurb }}<br>
                             <strong>Location: </strong>
                             {{ entry.location }}
-                            {% if entry.latitude is defined %}
+                            {% if entry.latitude is not null %}
                                 (<strong>GPS Co-ordinates: </strong>
                                 {{ entry.latitude }}, {{  entry.longitude }}
                                 {% if entry.gelocated is defined %}
                                     <strong>Geo-located: </strong>
                                     {{ entry.geolocated }}
                                 {% endif %}
-                                )<br>
-                            {% endif %}
+                                )
+                            {% endif %}<br>
                             <strong>Reported By: </strong>
                             {{ entry.reportedBy }}<br>
                         </div>
