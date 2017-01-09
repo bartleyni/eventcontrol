@@ -11,7 +11,7 @@ Control Room Users
                         {% if users is empty %}
                             No users available
                         {% else %}
-                            <table class="table table-sm table-striped table-bordered table-hover">
+                            <table id="Users" class="table table-sm table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Username</th>
@@ -55,6 +55,14 @@ Control Room Users
     <script type="text/javascript">
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
+        });
+        
+        $(document).ready(function() {
+            dataPoll();
+            $('#Users').DataTable( {
+                "pageLength": 10,
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            });
         });
     </script>
 {% endblock %}

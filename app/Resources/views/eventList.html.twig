@@ -16,7 +16,7 @@ Events Settings
                         {% if events is empty %}
                             No events available
                         {% else %}
-                            <table class="table table-sm table-striped table-bordered table-hover">
+                            <table id="Events" class="table table-sm table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
@@ -80,6 +80,14 @@ Events Settings
     <script type="text/javascript">
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
+        });
+        
+        $(document).ready(function() {
+            dataPoll();
+            $('#Events').DataTable( {
+                "pageLength": 10,
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            });
         });
     </script>
 {% endblock %}
