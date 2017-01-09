@@ -14,7 +14,7 @@ Event Control
             {% if data is defined%}
                 {{ data }}
             {% endif %}
-            {% if target %}
+            {% if target is defined %}
                 </a>
             {% endif %}    
         {% endblock %}
