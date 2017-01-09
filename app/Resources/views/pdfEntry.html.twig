@@ -29,7 +29,7 @@
                             {% if entry.latitude is not null %}
                                 (<strong>GPS Co-ordinates: </strong>
                                 {{ entry.latitude|number_format( 6, '.', '') }}, {{  entry.longitude|number_format( 6, '.', '') }}
-                                {% if entry.gelocated is not null %}
+                                {% if entry.geolocated is not null %}
                                     <strong>Geo-located: </strong>
                                     {{ entry.geolocated }}
                                 {% endif %}
