@@ -25,7 +25,16 @@
                             <strong>Short Description:</strong><br>
                             {{ entry.logBlurb }}<br>
                             <strong>Location: </strong>
-                            {{ entry.location }}<br>
+                            {{ entry.location }}
+                            {% if entry.latitude is defined %}
+                                (<strong>GPS Co-ordinates: </strong>
+                                {{ entry.latitude }}, {{  entry.longitude }}
+                                {% if entry.gelocated is defined %}
+                                    <strong>Geo-located: </strong>
+                                    {{ entry.geolocated }}
+                                {% endif %}
+                                )<br>
+                            {% endif %}
                             <strong>Reported By: </strong>
                             {{ entry.reportedBy }}<br>
                         </div>
