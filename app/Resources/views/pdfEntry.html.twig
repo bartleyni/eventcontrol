@@ -31,7 +31,7 @@
                                 {{ entry.latitude|number_format( 6, '.', '') }}, {{  entry.longitude|number_format( 6, '.', '') }}
                                 {% if entry.geolocated is not null %}
                                     <strong>Geo-located: </strong>
-                                    {{ entry.geolocated }}
+                                    {{ entry.geolocated ? 'True' : 'False'}}
                                 {% endif %}
                                 )
                             {% endif %}<br>
