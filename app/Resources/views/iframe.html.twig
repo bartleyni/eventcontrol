@@ -5,15 +5,15 @@ Event Control
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
-            {% if iframe %}
+            {% if iframe is defined %}
                 {{ iframe|raw }}
             {% endif %}
             {% if target is defined %}
                <a href="{{ target }}" target="blank">
             {% endif %}
-                {% if data %}
-                    {{ data }}
-                {% endif %}
+            {% if data is defined%}
+                {{ data }}
+            {% endif %}
             {% if target %}
                 </a>
             {% endif %}    
