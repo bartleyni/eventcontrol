@@ -38,6 +38,11 @@
                             <strong>Reported By: </strong>
                             {{ entry.reportedBy }}<br>
                         </div>
+                        {% if entry.latitude is not null %}
+                            <div class="panel-footer">
+                                <img width="400" src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue%7Clabel:%7C{{ entry.latitude }},{{ entry.longitude }}&scale=false&size=350x250&maptype=roadmap&format=png&visual_refresh=true&zoom=18&key=AIzaSyBCpMw_PcJRHplbVUskg0ltvmsCWxFyUPU" alt="Google Map of Entry">
+                            </div>
+                        {% endif %}
                     </div>
                     {% if general is null %}                      
                     {% else %}
