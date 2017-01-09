@@ -8,15 +8,15 @@ Event Control
             {% if iframe %}
                 {{ iframe|raw }}
             {% endif %}
-        {% if target %}
-           <a href="{{ target }}" target="blank">
-        {% endif %}
-            {% if data %}
-                {{ data }}
+            {% if target is defined %}
+               <a href="{{ target }}" target="blank">
             {% endif %}
-        {% if target %}
-            </a>
-        {% endif %}    
+                {% if data %}
+                    {{ data }}
+                {% endif %}
+            {% if target %}
+                </a>
+            {% endif %}    
         {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}
