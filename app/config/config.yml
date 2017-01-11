@@ -103,7 +103,7 @@ knp_snappy:
             - { name: 'footer-line', value: true }
             - { name: 'enable-javascript', value: true }
             - { name: 'no-stop-slow-scripts', value: true }
-            - { name: 'javascript-delay', value: '5000' }
+            - { name: 'javascript-delay', value: '15000' }
 
 mobile_detect:
     redirect:
