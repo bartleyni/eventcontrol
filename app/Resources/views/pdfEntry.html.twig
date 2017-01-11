@@ -142,7 +142,7 @@
                 var map = new google.maps.Map(document.getElementById('logMap'), {
                     zoom: 17,
                     //center: {lat: 51.379300, lng: -2.32700},
-                    center: {lat: {{ eventLat }}, lng: {{ eventLong }}},
+                    center: {lat: {{ entry.latitude }}, lng: {{ entry.longitude }}},
                     mapTypeId: 'satellite'
                 });
                 var bounds = new google.maps.LatLngBounds(
