@@ -142,6 +142,14 @@ class pdfEntry extends Controller
                     }
                     //$em->flush();
                     
+                    $eventLatLong = explode(",",$event->getEventLatLong());
+                    $eventLat = $eventLatLong[0];
+                    $eventLong = $eventLatLong[1];
+                    $NEbound = $event->getNorthEastBounds();
+                    $SWbound = $event->getSouthWestBounds();
+                    $overlay = $event->getOverlayImageName();
+                    
+                    
                     $reports[] = $this->renderView(
                         'pdfEntry.html.twig',
                         array(
@@ -151,7 +159,11 @@ class pdfEntry extends Controller
                             'general' => $general,
                             'lost' => $lostProperty,
                             'event' => $event,
-                            
+                            'overlayFileName' =>$overlay,
+                            'eventLat'=> $eventLat,
+                            'eventLong'=> $eventLong,
+                            'NEbound' => $NEbound,
+                            'SWbound' => $SWbound,
                         )
                     );
                 }
