@@ -101,6 +101,9 @@ knp_snappy:
             - { name: 'header-line', value: true }
             - { name: 'footer-center', value: '[page]/[topage]' }
             - { name: 'footer-line', value: true }
+            - { name: 'enable-javascript', value: true }
+            - { name: 'no-stop-slow-scripts', value: true }
+            - { name: 'javascript-delay', value: '5000' }
 
 mobile_detect:
     redirect:
