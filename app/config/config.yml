@@ -104,7 +104,8 @@ knp_snappy:
             - { name: 'enable-javascript', value: true }
             - { name: 'no-stop-slow-scripts', value: true }
             - { name: 'javascript-delay', value: '15000' }
-
+            - { name: 'debug-javascript', value: true }
+            
 mobile_detect:
     redirect:
         mobile: ~
