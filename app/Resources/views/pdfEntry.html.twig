@@ -156,7 +156,8 @@
                     new google.maps.LatLng({{ NEbound }}),
                     new google.maps.LatLng({{ SWbound }})
                 );
-                var srcImage = '{{ absolute_url('overlay', {'filename': overlayFileName}) }}';
+                //var srcImage = '{{ absolute_url('overlay', {'filename': overlayFileName}) }}';
+                var srcImage = 'https://eventcontrol.nb221.com/overlay/SB16_SITE.png';
 
                 overlay = new EventSiteOverlay(bounds, srcImage, map);
                 var marker = new google.maps.Marker({
