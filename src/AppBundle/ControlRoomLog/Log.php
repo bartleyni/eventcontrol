@@ -29,7 +29,7 @@ class Log extends Controller
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
@@ -75,7 +75,7 @@ class Log extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
 
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
@@ -107,7 +107,7 @@ class Log extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));

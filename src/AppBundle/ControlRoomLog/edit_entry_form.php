@@ -68,7 +68,7 @@ class edit_entry_form extends Controller
         
         $em->flush();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
@@ -257,7 +257,7 @@ class edit_entry_form extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $em->flush();
@@ -289,7 +289,7 @@ class edit_entry_form extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         $activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $em->flush();

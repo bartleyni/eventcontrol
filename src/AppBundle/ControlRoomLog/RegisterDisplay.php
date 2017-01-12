@@ -20,7 +20,7 @@ class RegisterDisplay extends Controller
     public function fireRegisterAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             //array('event_active' => true));
@@ -62,7 +62,7 @@ class RegisterDisplay extends Controller
     public function pdfFireRegisterAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             //array('event_active' => true));
@@ -147,7 +147,7 @@ class RegisterDisplay extends Controller
     public function iframePdfFireRegisterAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);

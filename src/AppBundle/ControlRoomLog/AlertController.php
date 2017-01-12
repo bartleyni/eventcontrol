@@ -33,7 +33,7 @@ class AlertController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
@@ -95,7 +95,7 @@ class AlertController extends Controller
     public function AlertAckAction($id = null)
     {   
         
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         
         $em = $this->getDoctrine()->getManager();
         

@@ -31,7 +31,7 @@ class entry_form extends Controller
             throw $this->createAccessDeniedException();
         }
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.context')->getToken()->getUser();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
         $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);

@@ -87,7 +87,7 @@ class RegisterController extends Controller
         }else{
             // 1) build the form
             
-            $usr = $this->get('security.context')->getToken()->getUser();
+            $usr = $this->get('security.token_storage')->getToken()->getUser();
             $operatorId = $usr->getId();
             
             $attendee = new event_control_register();
