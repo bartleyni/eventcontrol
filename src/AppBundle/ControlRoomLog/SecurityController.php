@@ -5,6 +5,7 @@ namespace AppBundle\ControlRoomLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManager;
 
 class SecurityController extends Controller
 {
@@ -30,6 +31,23 @@ class SecurityController extends Controller
                 'error'         => $error,
             )
         );    
+    }
+    
+    /**
+     * @Route("/audit", name="audit")
+     */
+    
+    public function AuditLogAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $auditLogs = $em->getRepository('AppBundle\Entity\AuditLog')->findAll();
+        
+        if (!$auditLogs)
+        {
+            $auditLogs = null;
+        }
+        
+        return $this->render('AuditLog.html.twig', array('auditLogs' => $auditLogs));
     }
     
 }

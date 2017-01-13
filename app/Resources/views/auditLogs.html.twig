@@ -1,0 +1,68 @@
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+Audit Log
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Audit Log</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if auditLogs is empty %}
+                            No logs available
+                        {% else %}
+                            <table id="Audit" class="table table-sm table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date / Time</th>
+                                        <th>Type</th>
+                                        <th>Description</td>
+                                        <th>User</td>
+                                        <th>IP</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for log in auditLogs %}
+                                        <tr>
+                                            <td>{{ log.id }}</td>
+                                            <td>{{ log.eventTime|date('Y-m-d H:i:s', "Europe/London") }}</td>
+                                            <td>{{ log.type }}</td>
+                                            <td>{{ log.description }}</td>
+                                            <td>{{ log.user }}</td>
+                                            <td>{{ log.ip }}</td>
+                                        </tr>
+                                    {% endfor %}                           
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+            {% include 'darksky.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        
+        $(document).ready(function() {
+            $('#Audit').DataTable( {
+                "order": [],
+                "pageLength": 10,
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            });
+        });
+    </script>
+{% endblock %}
