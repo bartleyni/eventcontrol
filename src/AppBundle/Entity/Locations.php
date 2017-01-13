@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Description of Locations
@@ -32,13 +33,15 @@ class Locations {
     
     /**
      * @ORM\Column(type="string", length=200)
-     * @Assert\Valid
+     * @Assert\NotBlank
+     * @Assert\Length(min = 3)
      */
     private $locationText;
     
     /**
      * @ORM\Column(type="string", length=200)
-     * @Assert\Valid
+     * @Assert\NotBlank
+     * @Assert\Length(min = 6)
      */
     private $locationLatLong;
     
