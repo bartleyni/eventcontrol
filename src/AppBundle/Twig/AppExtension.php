@@ -6,7 +6,8 @@ namespace AppBundle\Twig;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+//use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
@@ -14,7 +15,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     private $doctrine;
     private $tokenStorage;
 
-    public function __construct(RegistryInterface $doctrine, TokenStorage $tokenStorage) {
+    public function __construct(RegistryInterface $doctrine, TokenStorageInterface $tokenStorage) {
         $this->doctrine = $doctrine;
         $this->tokenStorage = $tokenStorage;
     }
