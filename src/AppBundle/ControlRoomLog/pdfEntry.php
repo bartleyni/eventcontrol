@@ -24,9 +24,8 @@ class pdfEntry extends Controller
     * 
     */
     
-    public function PDFentryAction($id=null)
+    public function PDFentryAction($id=null, Request $request)
     {
-        $request = $this->getRequest();
 
         if (is_null($id)) {
             $postData = $request->get('entry');
