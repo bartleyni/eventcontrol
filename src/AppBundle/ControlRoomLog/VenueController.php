@@ -52,7 +52,7 @@ class VenueController extends Controller
         $venue_camera->setVenueId($venue);
 
 
-        $form = $this->createForm(new VenueCameraType(), $venue_camera);
+        $form = $this->createForm(VenueCameraType::class, $venue_camera);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
