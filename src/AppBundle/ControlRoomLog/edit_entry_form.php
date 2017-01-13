@@ -28,9 +28,8 @@ class edit_entry_form extends Controller
     * 
     */
     
-    public function entryAction($id=null)
+    public function entryAction($id=null, Request $request)
     {
-        $request = $this->getRequest();
 
         if (is_null($id)) {
             $postData = $request->get('entry');
