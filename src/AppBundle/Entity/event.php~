@@ -107,6 +107,12 @@ class event {
      *
      */
     protected $UPSs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="venue", inversedBy="event")
+     *
+     */
+    protected $venues;
     
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
@@ -135,7 +141,7 @@ class event {
     private $overlay_imageName;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
@@ -146,6 +152,11 @@ class event {
     */
     protected $locations;
     
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="selected_event")
+     */
+    private $user_selected;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -154,6 +165,7 @@ class event {
     public function __construct()
     {
         $this->UPSs = new ArrayCollection();
+        $this->locations = new ArrayCollection();
     }
 
     /**
@@ -468,6 +480,11 @@ class event {
     {
         return $this->UPSs;
     }
+
+    public function getVenues()
+    {
+        return $this->venues;
+    }
     
     /**
      * Get northEastBounds_lat_long
@@ -693,6 +710,31 @@ class event {
     {
         $this->UPSs->removeElement($uPSs);
     }
+    /**
+     * Add Venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     *
+     * @return event
+     */
+
+    public function addVenues(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues[] = $venue;
+
+        return $this;
+    }
+
+    /**
+     * Remove venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     */
+    public function removeVenues(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues->removeElement($venue);
+    }
+
 
     /**
      * Add location
@@ -703,7 +745,9 @@ class event {
      */
     public function addLocation(\AppBundle\Entity\Locations $location)
     {
-        $this->locations[] = $location;
+        //$this->locations[] = $location;
+        $location->setEvent($this);
+        //$this->locations->add($location);
 
         return $this;
     }
@@ -716,5 +760,63 @@ class event {
     public function removeLocation(\AppBundle\Entity\Locations $location)
     {
         $this->locations->removeElement($location);
+    }
+
+    /**
+     * Add venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     *
+     * @return event
+     */
+    public function addVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues[] = $venue;
+
+        return $this;
+    }
+
+    /**
+     * Remove venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     */
+    public function removeVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues->removeElement($venue);
+    }
+
+    /**
+     * Add userSelected
+     *
+     * @param \AppBundle\Entity\User $userSelected
+     *
+     * @return event
+     */
+    public function addUserSelected(\AppBundle\Entity\User $userSelected)
+    {
+        $this->user_selected[] = $userSelected;
+
+        return $this;
+    }
+
+    /**
+     * Remove userSelected
+     *
+     * @param \AppBundle\Entity\User $userSelected
+     */
+    public function removeUserSelected(\AppBundle\Entity\User $userSelected)
+    {
+        $this->user_selected->removeElement($userSelected);
+    }
+
+    /**
+     * Get userSelected
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserSelected()
+    {
+        return $this->user_selected;
     }
 }

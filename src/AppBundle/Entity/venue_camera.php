@@ -40,4 +40,86 @@ class venue_camera {
      */
     protected $inverse = FALSE;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set inverse
+     *
+     * @param boolean $inverse
+     *
+     * @return venue_camera
+     */
+    public function setInverse($inverse)
+    {
+        $this->inverse = $inverse;
+
+        return $this;
+    }
+
+    /**
+     * Get inverse
+     *
+     * @return boolean
+     */
+    public function getInverse()
+    {
+        return $this->inverse;
+    }
+
+    /**
+     * Set cameraId
+     *
+     * @param \AppBundle\Entity\camera $cameraId
+     *
+     * @return venue_camera
+     */
+    public function setCameraId(\AppBundle\Entity\camera $cameraId = null)
+    {
+        $this->camera_id = $cameraId;
+
+        return $this;
+    }
+
+    /**
+     * Get cameraId
+     *
+     * @return \AppBundle\Entity\camera
+     */
+    public function getCameraId()
+    {
+        return $this->camera_id;
+    }
+
+    /**
+     * Set venueId
+     *
+     * @param \AppBundle\Entity\venue $venueId
+     *
+     * @return venue_camera
+     */
+    public function setVenueId(\AppBundle\Entity\venue $venueId = null)
+    {
+        $this->venue_id = $venueId;
+
+        return $this;
+    }
+
+    /**
+     * Get venueId
+     *
+     * @return \AppBundle\Entity\venue
+     */
+    public function getVenueId()
+    {
+        return $this->venue_id;
+    }
 }

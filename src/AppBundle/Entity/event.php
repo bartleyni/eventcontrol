@@ -761,4 +761,62 @@ class event {
     {
         $this->locations->removeElement($location);
     }
+
+    /**
+     * Add venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     *
+     * @return event
+     */
+    public function addVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues[] = $venue;
+
+        return $this;
+    }
+
+    /**
+     * Remove venue
+     *
+     * @param \AppBundle\Entity\venue $venue
+     */
+    public function removeVenue(\AppBundle\Entity\venue $venue)
+    {
+        $this->venues->removeElement($venue);
+    }
+
+    /**
+     * Add userSelected
+     *
+     * @param \AppBundle\Entity\User $userSelected
+     *
+     * @return event
+     */
+    public function addUserSelected(\AppBundle\Entity\User $userSelected)
+    {
+        $this->user_selected[] = $userSelected;
+
+        return $this;
+    }
+
+    /**
+     * Remove userSelected
+     *
+     * @param \AppBundle\Entity\User $userSelected
+     */
+    public function removeUserSelected(\AppBundle\Entity\User $userSelected)
+    {
+        $this->user_selected->removeElement($userSelected);
+    }
+
+    /**
+     * Get userSelected
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserSelected()
+    {
+        return $this->user_selected;
+    }
 }

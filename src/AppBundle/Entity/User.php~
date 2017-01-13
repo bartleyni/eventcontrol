@@ -91,7 +91,14 @@ class User implements AdvancedUserInterface, \Serializable {
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
      *
      */
-    protected $groups;    
+    protected $groups;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="user_selected")
+     * @ORM\JoinColumn(name="selected_event", referencedColumnName="id", nullable=true)
+     */
+    private $selected_event;
+    
     
     public function __construct()
     {
@@ -309,5 +316,29 @@ class User implements AdvancedUserInterface, \Serializable {
     public function removeGroup(\AppBundle\Entity\Group $group)
     {
         $this->groups->removeElement($group);
+    }
+    
+     /**
+     * Set selected_event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return User
+     */
+    public function setSelectedEvent(\AppBundle\Entity\event $event = null)
+    {
+        $this->selected_event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get selected_event
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getSelectedEvent()
+    {
+        return $this->selected_event;
     }
 }

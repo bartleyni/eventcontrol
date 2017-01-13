@@ -91,8 +91,13 @@ class log_entries {
      * @ORM\Column(type="text", nullable=true)
      */
     protected $longitude;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $geolocated;
 
-/**
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="log_supportFileName")
@@ -109,7 +114,7 @@ class log_entries {
     private $log_supportFileName;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
@@ -351,12 +356,12 @@ class log_entries {
      */
     public function setLatitude($latitude)
     {
-        if($this->id)
-        {
-            //Do nothing
-        } else {
+//        if($this->id)
+//        {
+//            //Do nothing
+//        } else {
             $this->latitude = $latitude;
-        }
+//        }
         return $this;
     }
 
@@ -379,12 +384,12 @@ class log_entries {
      */
     public function setLongitude($longitude)
     {
-        if($this->id)
-        {
-            //Do nothing
-        } else {
+//        if($this->id)
+//        {
+//            //Do nothing
+//        } else {
             $this->longitude = $longitude;
-        }
+//        }
         
         return $this;
     }
@@ -397,6 +402,29 @@ class log_entries {
     public function getLongitude()
     {
         return $this->longitude;
+    }
+    
+        /** Set geolocated
+     *
+     * @param boolean $geolocated
+     *
+     * @return log_entries
+     */
+    public function setGeolocated($geolocated)
+    {
+        $this->geolocated = $geolocated;
+
+        return $this;
+    }
+
+    /**
+     * Get geolocated
+     *
+     * @return boolean
+     */
+    public function getGeolocated()
+    {
+        return $this->geolocated;
     }
     
     /**

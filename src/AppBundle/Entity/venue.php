@@ -56,4 +56,164 @@ class venue
     {
         $this->event = new ArrayCollection();
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set doors
+     *
+     * @param \DateTime $doors
+     *
+     * @return venue
+     */
+    public function setDoors($doors)
+    {
+        $this->doors = $doors;
+
+        return $this;
+    }
+
+    /**
+     * Get doors
+     *
+     * @return \DateTime
+     */
+    public function getDoors()
+    {
+        return $this->doors;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return venue
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add venueCamera
+     *
+     * @param \AppBundle\Entity\venue_camera $venueCamera
+     *
+     * @return venue
+     */
+    public function addVenueCamera(\AppBundle\Entity\venue_camera $venueCamera)
+    {
+        $this->venue_camera[] = $venueCamera;
+
+        return $this;
+    }
+
+    /**
+     * Remove venueCamera
+     *
+     * @param \AppBundle\Entity\venue_camera $venueCamera
+     */
+    public function removeVenueCamera(\AppBundle\Entity\venue_camera $venueCamera)
+    {
+        $this->venue_camera->removeElement($venueCamera);
+    }
+
+    /**
+     * Get venueCamera
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVenueCamera()
+    {
+        return $this->venue_camera;
+    }
+
+    /**
+     * Add skew
+     *
+     * @param \AppBundle\Entity\skew $skew
+     *
+     * @return venue
+     */
+    public function addSkew(\AppBundle\Entity\skew $skew)
+    {
+        $this->skew[] = $skew;
+
+        return $this;
+    }
+
+    /**
+     * Remove skew
+     *
+     * @param \AppBundle\Entity\skew $skew
+     */
+    public function removeSkew(\AppBundle\Entity\skew $skew)
+    {
+        $this->skew->removeElement($skew);
+    }
+
+    /**
+     * Get skew
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkew()
+    {
+        return $this->skew;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return venue
+     */
+    public function addEvent(\AppBundle\Entity\event $event)
+    {
+        $this->event[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvent(\AppBundle\Entity\event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
 }
