@@ -150,6 +150,24 @@ class event {
     /**
     * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
     * @Assert\Valid
+    * @Assert\Collection(
+    *     fields = {
+    *         "locationText" = {
+    *             @Assert\NotBlank(),
+    *             @Assert\Length(
+    *                 min = 3,
+    *                 minMessage = "Location does not have enough characters"
+    *             )
+    *         }
+    *         "locationLatLong" = {
+    *             @Assert\NotBlank(),
+    *             @Assert\Length(
+    *                 min = 6,
+    *                 minMessage = "Lat Long does not have enough characters"
+    *             )
+    *         }
+    *     },
+    * )
     */
     protected $locations;
     
