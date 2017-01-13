@@ -140,6 +140,7 @@ class EventType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'delete_empty' => true,
+                'cascade_validation' => true,
                 'attr' => array(
                     'class' => 'form-control',
                 )
@@ -189,6 +190,7 @@ class EventType extends AbstractType
             'data_class' => 'AppBundle\Entity\event',
             'event_id' => null,
             'em' => null,
+            'cascade_validation' => true,
         ));
     }
     
