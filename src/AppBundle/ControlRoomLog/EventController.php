@@ -150,7 +150,7 @@ class EventController extends Controller
             $form->handleRequest($request);
         }
         
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
             
             $event_operators = $form['event_operators']->getData();
             
