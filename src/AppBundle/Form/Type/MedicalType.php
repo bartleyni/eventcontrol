@@ -12,27 +12,36 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MedicalType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('medical_reported_injury_type', 'entity', array(
+            ->add('medical_reported_injury_type', EntityType::class, array(
                 'class' => 'AppBundle:medical_reported_injury_type',
                 'label' => 'Injury Type',
                 'attr' => array(
                     'class' => 'form-control col-sm-10'
                 )
             ))
-            ->add('medical_description', 'textarea', array(
+            ->add('medical_description', TextareaType::class, array(
                 'label' => 'Description',
                 'attr' => array(
                     'class' => 'form-control tsText',
                     'rows' => '5'
                 )
             ))            
-            ->add('medical_response', 'entity', array(
+            ->add('medical_response', EntityType::class, array(
                 'class' => 'AppBundle:medical_response',
                 'label' => 'Medical Response',
                 'required' => false,
@@ -40,21 +49,21 @@ class MedicalType extends AbstractType
                     'class' => 'form-control col-sm-10'
                 )
             ))
-            ->add('medics_informed', 'checkbox', array(
+            ->add('medics_informed', CheckboxType::class, array(
                 'label' => "Medics Informed?",
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('nine_nine_nine_required', 'checkbox', array(
+            ->add('nine_nine_nine_required', CheckboxType::class, array(
                 'label' => "999 Required?",
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('medical_treatment', 'entity', array(
+            ->add('medical_treatment', EntityType::class, array(
                 'class' => 'AppBundle:medical_treatment',
                 'label' => 'Medical Treatment',
                 'required' => false,
@@ -62,7 +71,7 @@ class MedicalType extends AbstractType
                     'class' => 'form-control col-sm-10'
                 )
             ))
-            ->add('medical_resolution', 'entity', array(
+            ->add('medical_resolution', EntityType::class, array(
                 'class' => 'AppBundle:medical_resolution',
                 'label' => 'Medical Resolution',
                 'required' => false,
@@ -70,7 +79,7 @@ class MedicalType extends AbstractType
                     'class' => 'form-control col-sm-10'
                 )
             ))
-            ->add('medical_notes', 'textarea', array(
+            ->add('medical_notes', TextareaType::class, array(
                 'label' => 'Medical Notes',
                 'required' => false,
                 'attr' => array(
@@ -78,7 +87,7 @@ class MedicalType extends AbstractType
                     'rows' => '5'
                 )
             ))              
-            ->add('submit_medical', 'submit', array(
+            ->add('submit_medical', SubmitType::class, array(
                 'label' => 'Submit Medical',
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
@@ -86,11 +95,7 @@ class MedicalType extends AbstractType
                     'method' => 'POST',
                 )
             ))
-//            ->add('reset', 'reset', array(
-//                'attr' => array(
-//                    'class' => 'btn btn-danger btn-block'
-//                )
-//            ))
+
             ->setMethod('POST')
         ;
     }
