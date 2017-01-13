@@ -17,6 +17,11 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Xiidea\EasyAuditBundle\Entity\BaseAuditLog;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="audit_log")
+ */
+
 class AuditLog extends BaseAuditLog
 {
     /**
