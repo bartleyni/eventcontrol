@@ -11,10 +11,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EventType extends AbstractType
 {
@@ -38,46 +47,46 @@ class EventType extends AbstractType
             $operators = $query->getResult();
         
         $builder
-            ->add('name', 'text', array(
+            ->add('name', TextType::class, array(
                 'label' => 'Event Name',
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('client', 'text', array(
+            ->add('client', TextType::class, array(
                 'label' => 'Client',
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('event_lat_long', 'text', array(
+            ->add('event_lat_long', TextType::class, array(
                 'label' => 'Latitude,Longitude',
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('northEastBounds_lat_long', 'text', array(
+            ->add('northEastBounds_lat_long', TextType::class, array(
                 'label' => 'North East Bound Latitude,Longitude',
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('southWestBounds_lat_long', 'text', array(
+            ->add('southWestBounds_lat_long', TextType::class, array(
                 'label' => 'South West Bound Latitude,Longitude',
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('overlay_imageFile', 'file', array(
+            ->add('overlay_imageFile', FileType::class, array(
                 'label' => 'Overlay Image (.png)',
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             )) 
-            ->add('event_date', 'datetime', array(
+            ->add('event_date', DateTimeType::class, array(
                 'label' => 'Date of Event',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
@@ -88,7 +97,7 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm'
                 )
             ))
-            ->add('event_log_start_date', 'datetime', array(
+            ->add('event_log_start_date', DateTimeType::class, array(
                 'label' => 'Event Logging Start Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
@@ -99,7 +108,7 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))
-            ->add('event_log_stop_date', 'datetime', array(
+            ->add('event_log_stop_date', DateTimeType::class, array(
                 'label' => 'Event Logging Stop Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
@@ -110,7 +119,7 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))            
-            ->add('event_operators', 'entity', array(
+            ->add('event_operators', EntityType::class, array(
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
@@ -122,7 +131,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
-            ->add('locations', 'collection', array(
+            ->add('locations', CollectionType::class, array(
                 'label' => 'Locations',
                 'entry_type' => LocationType::class,
                 'allow_add'  => true,
@@ -135,19 +144,19 @@ class EventType extends AbstractType
                     'class' => 'form-control',
                 )
             ))    
-            ->add('submit', 'submit', array(
+            ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
                     'class' => 'btn btn-success btn-block',
                     'method' => 'POST',
                 )
             ))
-            ->add('reset', 'reset', array(
+            ->add('reset', ResetType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-danger btn-block'
                 )
             )) 
-            ->add('UPSs', 'entity', array(
+            ->add('UPSs', EntityType::class, array(
                 'class' => 'AppBundle:UPS',
                 'label' => 'UPS',
                 'multiple' => true,
@@ -156,7 +165,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
         ))
-            ->add('venues', 'entity', array(
+            ->add('venues', EntityType::class, array(
                 'class' => 'AppBundle:venue',
                 'label' => 'Venue',
                 'multiple' => true,
