@@ -27,7 +27,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class EventType extends AbstractType
 {
     public function __construct() {
-        $this->em = $this->getDoctrine()->getManager();
+        //$this->em = $this->getDoctrine()->getManager();
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
