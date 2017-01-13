@@ -144,13 +144,13 @@ xiidea_easy_audit:
     #List of doctrine entity:event you wish to track or set to false to disable logs for doctrine events
     # valid events are = [created, updated, deleted]
     doctrine_entities :                                              
-         AppBundle\Entity\log_entries: [created, updated, deleted]
-         AppBundle\Entity\event: [created, updated, deleted]
-         AppBundle\Entity\general_log: [created, updated, deleted]
-         AppBundle\Entity\medical_log: [created, updated, deleted]
-         AppBundle\Entity\security_log: [created, updated, deleted]
-         AppBundle\Entity\lost_property: [created, updated, deleted]
-         AppBundle\Entity\event_control_register: [created, updated, deleted]
+         AppBundle\Entity\log_entries: ~
+         AppBundle\Entity\event: ~
+         AppBundle\Entity\general_log: ~
+         AppBundle\Entity\medical_log: ~
+         AppBundle\Entity\security_log: ~
+         AppBundle\Entity\lost_property: ~
+         AppBundle\Entity\event_control_register: ~
          
 
     #List all events you want to track  (Optional from v1.2.1 you can now use subscriber to define it)

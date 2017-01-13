@@ -68,12 +68,6 @@ class AuditLog extends BaseAuditLog
 
     /**
      * @var string
-     * @ORM\Column(name="impersonatingUser", type="string", length=255)
-     */
-    protected $impersonatingUser;
-
-    /**
-     * @var string
      * @ORM\Column(name="ip", type="string", length=20, nullable=true)
      */
     protected $ip;    
