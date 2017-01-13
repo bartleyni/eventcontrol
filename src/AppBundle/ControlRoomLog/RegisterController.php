@@ -91,7 +91,7 @@ class RegisterController extends Controller
             $operatorId = $usr->getId();
             
             $attendee = new event_control_register();
-            $form = $this->createForm(new RegisterType(), $attendee);
+            $form = $this->createForm(RegisterType::class, $attendee);
             $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
             $em->flush();
             // 2) handle the submit (will only happen on POST)
