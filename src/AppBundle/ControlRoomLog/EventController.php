@@ -74,7 +74,7 @@ class EventController extends Controller
 
         $event = new event();
         $current_overlay = null;
-        $form = $this->createForm(new EventType($this->getDoctrine()->getManager()), $event, array('event_id' => null));
+        $form = $this->createForm(EventType::class($this->getDoctrine()->getManager()), $event, array('event_id' => null));
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
