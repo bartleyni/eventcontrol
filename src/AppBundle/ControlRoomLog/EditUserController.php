@@ -34,7 +34,7 @@ class EditUserController extends Controller
         
         $user = $this->get('security.token_storage')->getToken()->getUser();
         
-        $form = $this->createForm(new UpdateUserType(), $user, array(
+        $form = $this->createForm(UpdateUserType::class, $user, array(
             'method' => 'POST',
         ));
         
