@@ -32,11 +32,13 @@ class Locations {
     
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Valid
      */
     private $locationText;
     
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Valid
      */
     private $locationLatLong;
     
