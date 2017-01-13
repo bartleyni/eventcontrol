@@ -20,12 +20,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
+ * @ORMSubscribedEvents()
  */
 
 class event {

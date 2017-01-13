@@ -15,10 +15,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="lost_property")
+ * @ORMSubscribedEvents()
  */
 
 class lost_property {

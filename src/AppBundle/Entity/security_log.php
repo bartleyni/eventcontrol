@@ -15,10 +15,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="security_log")
+ * @ORMSubscribedEvents()
  */
 
 class security_log {

@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,7 @@ use Symfony\Component\HttpFoundation\File\File;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
+ * @ORMSubscribedEvents()
  */
 
 class log_entries {
