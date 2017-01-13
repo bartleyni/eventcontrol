@@ -145,7 +145,7 @@ class EventController extends Controller
             
             $em->flush();
             
-            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId);
+            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId));
             
             $form->handleRequest($request);
         }
