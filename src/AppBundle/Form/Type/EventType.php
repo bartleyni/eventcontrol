@@ -190,7 +190,10 @@ class EventType extends AbstractType
             'data_class' => 'AppBundle\Entity\event',
             'event_id' => null,
             'em' => null,
-            'cascade_validation' => true,
+            'error_mapping' => array(
+                'locationText' => 'locations',
+                'locationLatLong' => 'locations',
+            ),
         ));
     }
     
