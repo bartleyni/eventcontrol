@@ -149,6 +149,7 @@ class event {
     
     /**
     * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
+    * @Assert\Valid
     */
     protected $locations;
     
