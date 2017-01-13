@@ -47,7 +47,7 @@ class SecurityController extends Controller
             $auditLogs = null;
         }
         
-        return $this->render('AuditLog.html.twig', array('auditLogs' => $auditLogs));
+        return $this->render('auditLogs.html.twig', array('auditLogs' => $auditLogs));
     }
     
 }
