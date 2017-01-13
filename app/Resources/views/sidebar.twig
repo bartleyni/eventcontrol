@@ -138,7 +138,6 @@
             </li>
         {% endif %}
         {% if is_granted('ROLE_USER') %}
-            {% if is_granted('ROLE_FIELD') %}
                 <li>
                     <a href="{{ path('field_user_toggle') }}" style="margin-bottom:4px;white-space: normal;" role="button">
                         <div class="row">
