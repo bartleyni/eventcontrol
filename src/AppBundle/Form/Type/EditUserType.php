@@ -18,33 +18,41 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ResetType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EditUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', 'text', array(
+        $builder->add('username', TextType::class, array(
                     'required' => false,
                     'attr' => array(
                     'class' => 'form-control'
                 )))
-                ->add('name', 'text', array(
+                ->add('name', TextType::class, array(
                     'required' => false,
                     'attr' => array(
                     'class' => 'form-control'
                 )))
-                ->add('email', 'email', array(
+                ->add('email', EmailType::class, array(
                     'required' => false,
                     'attr' => array(
                     'class' => 'form-control'
                 )))
-                //->add('oldPassword', 'password')
-                ->add('plainPassword', 'repeated', array(
-                    'type' => 'password',
+                ->add('plainPassword', RepeatedType::class, array(
+                    'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must match.',
                     'required' => false,
                     'first_options'  => array('label' => 'Password', 'attr' => array(
@@ -53,7 +61,7 @@ class EditUserType extends AbstractType
                     'second_options' => array('label' => 'Repeat Password', 'attr' => array(
                     'class' => 'form-control'
                 ))))
-                ->add('groups', 'entity', array(
+                ->add('groups', EntityType::class, array(
                 'class' => 'AppBundle:Group',
                 'label' => 'Groups',
                 'multiple' => true,
