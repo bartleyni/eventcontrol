@@ -24,7 +24,7 @@ class entry_form extends Controller
     * 
     */
     
-    public function entryAction()
+    public function entryAction(Request $request)
     {
         $new_entry = new log_entries();
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -46,8 +46,6 @@ class entry_form extends Controller
         $form = $this->createForm(LogType::class, $new_entry, array(
             'method' => 'POST',
         ));
-        
-        $request = $this->getRequest();
         
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
