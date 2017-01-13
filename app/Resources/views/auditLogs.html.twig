@@ -59,8 +59,8 @@ Audit Log
         
         $(document).ready(function() {
             $('#Audit').DataTable( {
-                "order": [],
-                "pageLength": 10,
+                "order": [[ 0, 'desc' ]],
+                "pageLength": 25,
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
             });
         });

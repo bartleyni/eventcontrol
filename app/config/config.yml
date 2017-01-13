@@ -156,6 +156,7 @@ xiidea_easy_audit:
     #List all events you want to track  (Optional from v1.2.1 you can now use subscriber to define it)
     events :                                                   #Optional
         - security.interactive_login
+        - security.authentication.failure
 
     #List all custom resolver for event
     #custom_resolvers :
