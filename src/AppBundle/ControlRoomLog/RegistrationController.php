@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     {
         // 1) build the form
         $user = new User();
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->createForm(UserType::class, $user);
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
