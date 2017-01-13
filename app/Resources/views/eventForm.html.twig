@@ -191,6 +191,8 @@ Event Entry Form
                                             <li>
                                                 {{ form_widget(location.locationText) }}
                                                 {{ form_widget(location.locationLatLong) }}
+                                                {{ form_errors(location.locationText) }}
+                                                {{ form_errors(location.locationLatLong) }}
                                             </li>
                                         {% endfor %}
                                     </ul>
