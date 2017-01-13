@@ -18,8 +18,8 @@ class SkewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('skew_in', 'integer')
-            ->add('skew_out', 'integer');
+            ->add('skew_in', IntegerType::class)
+            ->add('skew_out', IntegerType::class);
     }
     public function getName()
     {
