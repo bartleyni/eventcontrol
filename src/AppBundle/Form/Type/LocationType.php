@@ -21,6 +21,8 @@ use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Description of LocationType
@@ -35,6 +37,10 @@ class LocationType extends AbstractType
             ->add('locationText', TextType::class, array(
                 'label' => 'Location (Text): ',
                 'required' => true,
+                'constraints' => array(
+                    new NotBlank(),
+                    new Length(array('min' => 3)),
+                ),
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Location'
@@ -42,7 +48,11 @@ class LocationType extends AbstractType
             ))
             ->add('locationLatLong', TextType::class, array(
                 'label' => 'Co-ordinates (Latitude, Longitude): ',
-                'required' => true,
+                'required' => true,                
+                'constraints' => array(
+                    new NotBlank(),
+                    new Length(array('min' => 6)),
+                ),
                 'attr' => array(
                     'placeholder' => 'Co-ordinates (Latitude, Longitude)',
                     'class' => 'form-control'
