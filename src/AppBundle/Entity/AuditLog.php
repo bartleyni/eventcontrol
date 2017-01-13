@@ -72,4 +72,14 @@ class AuditLog extends BaseAuditLog
      */
     protected $ip;    
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }
