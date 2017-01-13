@@ -158,7 +158,7 @@ class event {
     *                 min = 3,
     *                 minMessage = "Location does not have enough characters"
     *             )
-    *         }
+    *         },
     *         "locationLatLong" = {
     *             @Assert\NotBlank(),
     *             @Assert\Length(
