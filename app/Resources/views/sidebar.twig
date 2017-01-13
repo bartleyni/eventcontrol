@@ -115,68 +115,91 @@
 <div class="row">
     <h4>Operator Functions</h4>
 </div>
-<a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-    <div class="row">
-        Logout
-    </div>
-</a>
-{% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+<div class="btn-group">
+    
+    <a href="{{ path('logout') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
         <div class="row">
-            Event Control User Settings
+            Logout
         </div>
     </a>
-{% endif %}
-{% if is_granted('ROLE_USER') %}
-    {% if is_granted('ROLE_FIELD') %}
-        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    Toggle field user off
-                </div>
-            </div>
-        </a>
-    {% else %}
-        <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    Toggle field user on
-                </div>
-            </div>
-        </a>
-    {% endif %}
-    {% if activeEventId(app.user.id) != 0 %}
-        <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                Fire Register Sign-in
-            </div>
-        </a>
-        <a href="{{ path('fire_register') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                Fire Register
-            </div>
-        </a>
-    {% endif %}
-
-        <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                People Counting
-            </div>
-        </a>
-
-{% endif %}
-{% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-        <div class="row">
-            Event System Settings
-        </div>
-    </a>
-    <a href="{{ path('audit') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-        <div class="row">
-            Audit Log
-        </div>
-    </a>
-{% endif %}
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('user_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                    <div class="row">
+                        Event Control User Settings
+                    </div>
+                </a>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_FIELD') %}
+                <li>
+                    <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                Toggle field user off
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ path('field_user_toggle') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                Toggle field user on
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% endif %}
+            {% if activeEventId(app.user.id) != 0 %}
+                <li>
+                    <a href="{{ path('signin') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                        <div class="row">
+                            Fire Register Sign-in
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('fire_register') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                        <div class="row">
+                            Fire Register
+                        </div>
+                    </a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="{{ path('peoplecounting') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                    <div class="row">
+                        People Counting
+                    </div>
+                </a>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('event_list') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                    <div class="row">
+                        Event System Settings
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('audit') }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
+                    <div class="row">
+                        Audit Log
+                    </div>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</div>
 <div class="row">
         <h4>Files & Information</h4>
 </div>
