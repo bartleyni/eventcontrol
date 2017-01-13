@@ -140,7 +140,7 @@ class EventType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'delete_empty' => true,
-                'cascade_validation' => true,
+                'error_bubbling' => true,
                 'attr' => array(
                     'class' => 'form-control',
                 )
