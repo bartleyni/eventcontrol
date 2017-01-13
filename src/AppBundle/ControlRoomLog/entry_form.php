@@ -38,20 +38,14 @@ class entry_form extends Controller
         $em->flush();
 
         $user = $this->getUser();
-        
-        //$new_entry->setLogTimestamp(new \DateTime());
+
         $new_entry->setLogEntryOpenTime(new \DateTime());
         $new_entry->setOperator($user);
-        //$new_general = new general_log();
-        //$new_lost_property = new lost_property();
-        //$new_medical = new medical_log();
-        //$new_security = new security_log();
+
         
-        $form = $this->createForm(new LogType(), $new_entry, array(
+        $form = $this->createForm(LogType::class, $new_entry, array(
             'method' => 'POST',
         ));
-         
-        //$form = $this->createForm(new LogType(), $new_entry);
         
         $request = $this->getRequest();
         
