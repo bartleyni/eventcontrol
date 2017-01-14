@@ -116,13 +116,13 @@
     <h4>Operator Functions</h4>
 </div>
 <div class="btn-group btn-block" role="group" style="margin-bottom:4px;white-space: normal;">
-    <button type="button" class="btn btn-default col-sm-10" role="button">
-        <a href="{{ path('logout') }}" >
+    {#<button type="button" class="btn btn-default col-sm-10" role="button"> #}
+        <a href="{{ path('logout') }}" class="btn btn-default col-sm-10" role="button" >
             <div class="row">
                 Logout
             </div>
         </a>
-    </button>
+    {# </button>#}
     <button type="button" class="btn btn-default dropdown-toggle col-sm-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="caret"></span>
         <span class="sr-only">Toggle Dropdown</span>
@@ -165,6 +165,7 @@
             </li>
         {% endif %}
         {% if is_granted('ROLE_ADMIN') %}
+            <li role="separator" class="divider"></li>
             <li>
                 <a href="{{ path('user_list') }}" style="margin-bottom:4px;white-space: normal;" role="button">
                     <div class="row">
