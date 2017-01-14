@@ -1,29 +1,27 @@
 <div class="panel panel-primary">
-    
     <div class="panel-heading">
         {{ activeEventName(app.user.id) }}
     </div>
     <div class="panel-body">
-            <a href="{{ path('user_update') }}">
-                <strong>User:</strong> {{ app.user.username }}
+        <a href="{{ path('user_update') }}">
+            <strong>User:</strong> {{ app.user.username }}
+        </a>
+        <br>
+        <a href="{{ path('event_weather_radar') }}">
+            <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
+        </a>
+        {% if is_granted('ROLE_FIELD') %}
+            <a class="locationURL" href="#" target="_blank">
+                <div id="Location"><strong>Location:</strong><br>Updating... </div>
             </a>
-            <br>
-            <a href="{{ path('event_weather_radar') }}">
-                <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
-            </a>
-            {% if is_granted('ROLE_FIELD') %}
-                <a class="locationURL" href="#" target="_blank">
-                    <div id="Location"><strong>Location:</strong><br>Updating... </div>
-                </a>
-            {% endif %}
+        {% endif %}
     </div>
 </div>
 {% if is_granted('ROLE_USER') %}
     {% if (activeEvents(app.user.id)|length > 1) or (activeEventId(app.user.id) == 0) %}
         <div class="form-group">
-            <label>Select Event:</label>
             <select id="event" class="form-control" onchange="setActiveEvent(this)">
-                <option value = "0" class = "form-control"></option>
+                <option value = "0" class = "form-control">Select Event</option>
                 {% for event in activeEvents(app.user.id) %}
                     {% if event.id == activeEventId(app.user.id) %}
                         <option value = "{{ event.id }}" class = "form-control" selected = "selected">{{ event.name }}</option>
