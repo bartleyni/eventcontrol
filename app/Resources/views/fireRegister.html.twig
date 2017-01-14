@@ -65,15 +65,12 @@ Event Control Fire Register
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
 
-    $(document).ready(function() {
-        $('#Register').DataTable( {
-            "pageLength": 25,
-            "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ]
+        $(document).ready(function() {
+            $('#Register').DataTable( {
+                "pageLength": 25,
+                "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ]
+            });
         });
-    });
     </script>
 {% endblock %}
