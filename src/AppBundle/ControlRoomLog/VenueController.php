@@ -74,7 +74,7 @@ class VenueController extends Controller
         $skew = new skew();
         $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $id));
         $skew->setVenueId($venue);
-        $form_skew = $this->createForm(new SkewType(), $skew);
+        $form_skew = $this->createForm(SkewType::class, $skew);
 
         // 2) handle the submit (will only happen on POST)
         $form_skew->handleRequest($request);
@@ -88,7 +88,7 @@ class VenueController extends Controller
 
             $skew = new skew();
             $skew->setVenueId($venue);
-            $form_skew = $this->createForm(new SkewType(), $skew);
+            $form_skew = $this->createForm(SkewType::class, $skew);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
         $em->flush();
