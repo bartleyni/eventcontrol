@@ -27,7 +27,8 @@
         "suncat/mobile-detect-bundle": "^1.0",
         "components/jqueryui":   "~1.11",
         "datatables/datatables": "^1.10",
-        "xiidea/easy-audit": "1.4.*@dev"
+        "xiidea/easy-audit": "1.4.*@dev",
+        "richsage/rms-push-notifications-bundle": "dev-master"
 
     },
     "require-dev": {

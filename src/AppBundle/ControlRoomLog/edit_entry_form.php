@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use RMS\PushNotificationsBundle\Message\AndroidMessage;
 
 use AppBundle\Form\Type\LogType;
 use AppBundle\Form\Type\MedicalType;
@@ -182,6 +183,7 @@ class edit_entry_form extends Controller
                             $entry->setLongitude($latLong[1]);
                         }
                     }
+                    
                     $em->persist($entry);
                     $em->flush();
                 }

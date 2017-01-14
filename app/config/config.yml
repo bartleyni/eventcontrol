@@ -168,3 +168,23 @@ xiidea_easy_audit:
     #    file.logger: ["!info", "!debug"]
 
     #Custom Event Resolver Service
+
+rms_push_notifications:
+  android:
+      timeout: 5 # Seconds to wait for connection timeout, default is 5
+      gcm:
+          api_key: "AIzaSyC5Jhbfcf_moIoqv8-WFr6GyLe03LmgvV0" # This is titled "Server Key" when creating it
+          use_multi_curl: true # default is true
+          dry_run: true
+#  ios:
+#      timeout: 60 # Seconds to wait for connection timeout, default is 60
+#      sandbox: <bool_use_apns_sandbox>
+#      pem: <path_apns_certificate> # can be absolute or relative path (from app directory)
+#      passphrase: <string_apns_certificate_passphrase>
+#  mac:
+#      timeout: 60 # Seconds to wait for connection timeout, default is 60
+#      sandbox: <bool_use_apns_sandbox>
+#      pem: <path_apns_certificate>
+#      passphrase: <string_apns_certificate_passphrase>
+  windowsphone:
+      timeout: 5 # Seconds to wait for connection timeout, default is 5
