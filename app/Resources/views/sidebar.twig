@@ -233,24 +233,34 @@
 
 {% if is_granted('ROLE_USER') %}
     {% if activeEventId(app.user.id) != 0 %}
-        <div class="row">
-                <h4>Control Room Functions</h4>
-        </div>
-        <div id="LEDBtn1" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                Full Working Light
+<div class="btn-group btn-block">
+    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Control Room Functions <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+            <div id="LEDBtn1" style="margin-bottom:4px;white-space: normal;" role="button">
+                <div class="row">
+                    Full Working Light
+                </div>
             </div>
-        </div>
-        <div id="LEDBtn2" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                Control Mode Working Light
+        </li>
+        <li>
+            <div id="LEDBtn2" style="margin-bottom:4px;white-space: normal;" role="button">
+                <div class="row">
+                    Control Mode Working Light
+                </div>
             </div>
-        </div>
-        <div id="LEDBtn3" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-            <div class="row">
-                Lighting Off
+        </li>
+        <li>
+            <div id="LEDBtn3" style="margin-bottom:4px;white-space: normal;" role="button">
+                <div class="row">
+                    Lighting Off
+                </div>
             </div>
-        </div>
+        </li>
+    </ul>
+</div>
     {% endif %}
 {% endif %}
 <br>
