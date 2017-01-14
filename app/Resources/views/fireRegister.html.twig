@@ -40,19 +40,19 @@ Event Control Fire Register
                                     {% endfor %}                           
                                 </tbody>
                             </table>
-                                    <div class="col-md-12">
-                                        <a href="{{ path('signout', {'id': 'all'}) }}" class="btn btn-warning btn-block">
-                                           Sign All Out
-                                        </a>
-                                        <br>
-                                        {% if is_full_view() %}
-                                            <a href="{{ path('iframe_pdf_fire_register') }}" class="btn btn-info btn-block">
-                                        {% else %}
-                                            <a href="{{ path('pdf_fire_register') }}" target="_blank" class="btn btn-info btn-block">
-                                        {% endif %}
-                                           Generate PDF Fire Register
-                                        </a>
-                                    </div> 
+                            <div class="col-md-12">
+                                <a href="{{ path('signout', {'id': 'all'}) }}" class="btn btn-warning btn-block">
+                                   Sign All Out
+                                </a>
+                                <br>
+                                {% if is_full_view() %}
+                                    <a href="{{ path('iframe_pdf_fire_register') }}" class="btn btn-info btn-block">
+                                {% else %}
+                                    <a href="{{ path('pdf_fire_register') }}" target="_blank" class="btn btn-info btn-block">
+                                {% endif %}
+                                   Generate PDF Fire Register
+                                </a>
+                            </div> 
                         {% endif %}  
                     </div>
                 </div>
@@ -65,7 +65,6 @@ Event Control Fire Register
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript">
-
         $(document).ready(function() {
             $('#Register').DataTable( {
                 "pageLength": 25,
