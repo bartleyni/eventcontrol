@@ -193,34 +193,47 @@
 <div class="row">
         <h4>Files & Information</h4>
 </div>
-{% if is_mobile_view() %}
-    <a href="{{ path('media', {'filename': "ECCoP", 'type': "pdf"}) }}"  target="_blank" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% else %}
-    <a href="{{ path('media_iframe', {'filename': "ECCoP", 'type': "pdf"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% endif %}
-    <div class="row">
-        Code of Practice
-    </div>
-    </a>
-{% if is_mobile_view() %}
-    <a href="{{ path('media', {'filename': "CRC", 'type': "pdf"}) }}"  target="_blank" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% else %}
-    <a href="{{ path('media_iframe', {'filename': "CRC", 'type': "pdf"}) }}" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% endif %}
-    <div class="row">
-        Control Room Checklist
-    </div>
-    </a>
-    </a>
-{% if is_mobile_view() %}
-    <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx"  target="_blank" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% else %}
-    <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx" class="btn btn-default btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
-{% endif %}
-    <div class="row">
-        University of Bath Incident Report Form
-    </div>
-    </a>
+<div class="btn-group">
+    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Files & Information <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>
+        {% if is_mobile_view() %}
+            <a href="{{ path('media', {'filename': "ECCoP", 'type': "pdf"}) }}"  target="_blank" style="margin-bottom:4px;white-space: normal;" role="button">
+        {% else %}
+            <a href="{{ path('media_iframe', {'filename': "ECCoP", 'type': "pdf"}) }}" style="margin-bottom:4px;white-space: normal;" role="button">
+        {% endif %}
+                <div class="row">
+                    Code of Practice
+                </div>
+            </a>
+        </li>
+        <li>
+            {% if is_mobile_view() %}
+                <a href="{{ path('media', {'filename': "CRC", 'type': "pdf"}) }}"  target="_blank" style="margin-bottom:4px;white-space: normal;" role="button">
+            {% else %}
+                <a href="{{ path('media_iframe', {'filename': "CRC", 'type': "pdf"}) }}" style="margin-bottom:4px;white-space: normal;" role="button">
+            {% endif %}
+                <div class="row">
+                    Control Room Checklist
+                </div>
+            </a>
+        </li>
+        <li>
+            {% if is_mobile_view() %}
+                <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx"  target="_blank" style="margin-bottom:4px;white-space: normal;" role="button">
+            {% else %}
+                <a href="http://www.bath.ac.uk/hr/hrdocuments/staying-safe-well/accidents/incident-report-form.docx" style="margin-bottom:4px;white-space: normal;" role="button">
+            {% endif %}
+                <div class="row">
+                    University of Bath Incident Report Form
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>        
+
 {% if is_granted('ROLE_USER') %}
     {% if activeEventId(app.user.id) != 0 %}
         <div class="row">
