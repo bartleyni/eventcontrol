@@ -17,14 +17,16 @@ Event Control Fire Register
                             No attendees signed in
                         {% else %}
                             <table id="Register" class="table table-striped">
-                                <tbody>
+                                <thead>
                                     <tr>
-                                        <td><strong>Name</strong></td>
-                                        <td><strong>Phone</strong></td>
-                                        <td><strong>Email</strong></td>
-                                        <td><strong>Time In</strong></td>
-                                        <td><strong>Time Out</strong></td>
+                                        <td>Name</td>
+                                        <td>Phone</td>
+                                        <td>Email</td>
+                                        <td>Time In</td>
+                                        <td>Time Out</td>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     {% for attendee in attendees %}
                                         <tr>
                                             <td>{{ attendee.name }}</td>
