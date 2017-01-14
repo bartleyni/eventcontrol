@@ -69,6 +69,7 @@ Event Control Fire Register
     <script type="text/javascript">
         $(document).ready(function() {
             $('#Register').DataTable( {
+                "order": [[ 3, 'desc' ], [ 4, 'asc' ]],
                 "pageLength": 25,
                 "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ]
             });
