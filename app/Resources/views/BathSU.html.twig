@@ -273,7 +273,13 @@
                         }
                     });
                 }
-                
+            
+            function AlertShow()
+            {
+                display = false;
+                AlertCheck();
+            }
+            
             function AlertUpdate()
                 {
                 $.getJSON('{{ path('Alert_Queue') }}', function(data) {
@@ -299,6 +305,12 @@
                 if(alertCounter === 300)
                 {
                     display = false;
+                }
+                if(alertData)
+                {
+                    $("#viewAlertsButton").show();
+                }else{
+                    $("#viewAlertsButton").hide();
                 }
             }
             
