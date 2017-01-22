@@ -25,15 +25,10 @@ class venueRepository extends EntityRepository
     }
     public function getvenuedoors($id, $event)
     {
-           $query = $this->getEntityManager()
-           ->createQuery('SELECT ve.doors FROM AppBundle\Entity\venue_event ve WHERE ve.event_id = :event_id AND ve.venue_id = :venue_id')
-           ->setParameter('event_id', $event)
-           ->setParameter('venue_id', $id);
-
-        $output =  $query->getResult();
-        print_r($output);
-        return $output;
-        
+        //return "hi";
+        $doors = $this->getEntityManager()->createQuery('SELECT p.doors FROM AppBundle\Entity\venue_event p  WHERE p.venue_id = :venue_id AND p.event_id = :event_id')->setParameter('event_id', $event)->setParameter('venue_id', $id)->getOneOrNullResult();
+        return $doors['doors'];
+               
     }
  
     public function getvenuestatus($id)
