@@ -26,12 +26,12 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
+        $venue_event = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         //echo $venue->getName();
 
-        foreach ($venues as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
+        foreach ($venue_event as $key => $value) {
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date']);
         }
 
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
@@ -120,10 +120,10 @@ class VenueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $venues = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
+        $venue_event = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
-        foreach ($venues as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['id'], $value['event'][0]['event_log_stop_date']);
+        foreach ($venue_event as $key => $value) {
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date']);
             $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['id']);
             if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
             $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
