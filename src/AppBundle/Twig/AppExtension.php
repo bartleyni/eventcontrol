@@ -61,7 +61,6 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                     )->setParameter('id', $active_event);
 
                 $venue = $query->getArrayResult();
-                print_r($venue);
                 if($active_event)
                 {
                     $eventId=$active_event->getId();
