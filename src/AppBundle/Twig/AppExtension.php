@@ -54,7 +54,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
 
                 $query = $this->doctrine->getManager()
-                    ->createQuery('SELECT v, e FROM AppBundle\Entity\venue_event ve
+                    ->createQuery('SELECT v, e, ve FROM AppBundle\Entity\venue_event ve
                     JOIN ve.event_id e
                     JOIN ve.venue_id v
                     WHERE ve.event_id = :id'
