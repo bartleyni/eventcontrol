@@ -111,10 +111,9 @@ class event {
     protected $UPSs;
 
     /**
-     * @ORM\ManyToMany(targetEntity="venue", inversedBy="event")
-     *
+     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id")
      */
-    protected $venues;
+    protected $venue_event;
     
     /**
      * @ORM\Column(type="string", length=200, nullable=true)

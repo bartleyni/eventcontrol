@@ -24,11 +24,7 @@ class venue
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $doors;
-    /**
+     /**
      * @ORM\Column(type="text")
      */
     protected $name;
@@ -42,10 +38,9 @@ class venue
     protected $skew;
 
     /**
-     * @ORM\ManyToMany(targetEntity="event", mappedBy="venues")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="venue_id")
      */
-    private $event;
+    protected $venue_event;
 
     public function __toString()
     {
