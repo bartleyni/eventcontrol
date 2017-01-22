@@ -31,10 +31,10 @@ class VenueController extends Controller
         //echo $venue->getName();
 
         foreach ($venue_event as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
+            $venue_event[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
         }
 
-        return $this->render('peoplecounting.html.twig', array('venues' => $venues));
+        return $this->render('peoplecounting.html.twig', array('venues' => $venue_event));
     }
     /**
      * @Route("/venue/detailed/{id}", name="venue_detailed");
