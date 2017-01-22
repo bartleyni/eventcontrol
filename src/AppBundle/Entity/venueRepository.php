@@ -19,7 +19,9 @@ class venueRepository extends EntityRepository
             WHERE ve.event_id = :id'
             )->setParameter('id', $active_event);
 
-        return $query->getArrayResult();
+        $output =  $query->getArrayResult();
+        print_r($output);
+        return $output;
     }
     
     public function getvenuedoors($id)
