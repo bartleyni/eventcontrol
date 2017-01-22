@@ -30,7 +30,7 @@ class venueRepository extends EntityRepository
            ->setParameter('event_id', $event)
            ->setParameter('venue_id', $id);
 
-        $output =  $query->getArrayResult();
+        $output =  $query->getResult();
         print_r($output);
         return $output;
         
