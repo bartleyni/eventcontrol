@@ -5,7 +5,7 @@
         <div id="PCcollapse" class="panel-collapse collapse in">
             <ul class="list-group">
                 {% for venue in venues %}
-                    <li class="list-group-item" id="venue-{{ venue.id }}">{{ venue.name }}: 0</li>
+                    <li class="list-group-item" id="venue-{{ venue.venue_id.id }}">{{ venue.venue_id.name }}: 0</li>
                 {% endfor %}
             </ul>
         </div>
