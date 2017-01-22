@@ -31,7 +31,7 @@ class VenueController extends Controller
         //echo $venue->getName();
 
         foreach ($venue_event as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date']);
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
         }
 
         return $this->render('peoplecounting.html.twig', array('venues' => $venues));
@@ -123,7 +123,7 @@ class VenueController extends Controller
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
 
         foreach ($venue_event as $key => $value) {
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date']);
+            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
             $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['id']);
             if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
             $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
