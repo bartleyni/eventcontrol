@@ -20,7 +20,7 @@ class venueRepository extends EntityRepository
             )->setParameter('id', $active_event);
 
         $output =  $query->getArrayResult();
-        print_r($output);
+       
         return $output;
     }
     
