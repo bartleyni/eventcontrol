@@ -92,9 +92,9 @@ class VenueController extends Controller
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
         $em->flush();
-        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
+        $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id, $active_event);
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time);
+        $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time, $timestamp);
         return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
 

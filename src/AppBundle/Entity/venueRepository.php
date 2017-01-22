@@ -23,7 +23,18 @@ class venueRepository extends EntityRepository
        
         return $output;
     }
-    
+    public function getvenuedoors($id, $event)
+    {
+           $query = $this->getEntityManager()
+           ->createQuery('SELECT ve.doors FROM AppBundle\Entity\venue_event ve WHERE ve.event_id = :event_id AND ve.venue_id = :venue_id')
+           ->setParameter('event_id', $event)
+           ->setParameter('venue_id', $id);
+
+        $output =  $query->getArrayResult();
+        print_r($output);
+        return $output;
+        
+    }
  
     public function getvenuestatus($id)
     {
@@ -84,10 +95,9 @@ class venueRepository extends EntityRepository
         return $output;
     }
 
-    public function getvenuedetailedcount($id, $endtimestamp)
+    public function getvenuedetailedcount($id, $endtimestamp, $timestamp)
     {
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
-        $timestamp = $this->getEntityManager()->getRepository('AppBundle\Entity\venue')->getvenuedoors($id);
         $skews = $this->getEntityManager()->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
         $output['totals']['running_count_in'] = 0;
         $output['totals']['running_count_out'] = 0;
