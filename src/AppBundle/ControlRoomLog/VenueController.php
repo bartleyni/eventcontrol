@@ -105,11 +105,10 @@ class VenueController extends Controller
     public function doors($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $venue = $em->getRepository('AppBundle\Entity\venue')->find($id);
-        $venue->setDoors(new \DateTime());
-        $name = $venue->getName();
+        $venue_event = $em->getRepository('AppBundle\Entity\venue_event')->find($id);
+        $venue_event->setDoors(new \DateTime());
         $em->flush();
-        $this->get('session')->getFlashBag()->add('notice','Doors set for '.$name);
+        $this->get('session')->getFlashBag()->add('notice','Doors set');
         return $this->redirectToRoute('peoplecounting');
     }
     /**
