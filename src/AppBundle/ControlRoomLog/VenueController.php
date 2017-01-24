@@ -175,11 +175,10 @@ class VenueController extends Controller
 
     public function slackOccupancy()
     {
-               
-            $response = new HttpResponse();
-            $response->setContent('Hello slack');
-            $response->headers->set('Content-Type', 'text/plain');
-        $response->send();
+
+        $response = new Response('Hello Slack - I will work on retuning usefull data tomorow',Response::HTTP_OK, array('content-type' => 'text/html'));
+
+        return $response;
         
     }
 
