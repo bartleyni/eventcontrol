@@ -176,7 +176,7 @@ class VenueController extends Controller
     {
                
             $response = new HttpResponse();
-            $response->setContent('Hello slack);
+            $response->setContent('Hello slack');
             $response->headers->set('Content-Type', 'text/plain');
         
     }
