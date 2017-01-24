@@ -1,3 +1,3 @@
 Event Control System
 ========================
-Incident Loggind and information dashboard for temporary events.
+Incident Logging and information dashboard for temporary events.

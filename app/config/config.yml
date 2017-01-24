@@ -188,3 +188,8 @@ rms_push_notifications:
 #      passphrase: <string_apns_certificate_passphrase>
   windowsphone:
       timeout: 5 # Seconds to wait for connection timeout, default is 5
+
+d_zunke_slack:
+    token: "xoxb-132080534388-CQBarP0XEbMjTBlo5RLalZE5"
+    identities:
+        echo-charlie: ~
