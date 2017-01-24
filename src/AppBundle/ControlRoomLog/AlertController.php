@@ -62,10 +62,7 @@ class AlertController extends Controller
             
             $response = new JsonResponse();
             $response->setData(null);
-//            $response = new Response();
-//            $response->setContent('None');
-//            $response->headers->set('Content-Type', 'text/plain');
-//            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+
         }
         return $response;
     }

@@ -96,6 +96,17 @@ class UPSController extends Controller
             $em->persist($alert_queue);
             $em->flush();
         }
+        
+        $client   = $this->get('dz.slack.client');
+        $slackrResponse = $client->send(
+            \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
+            [
+                'identity' => $this->get('dz.slack.identity_bag')->get('echo-charlie'),
+                'channel'  => '#alerts',
+                'text'     => 'UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation()
+            ]
+        );
+        
         $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
