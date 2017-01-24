@@ -141,6 +141,7 @@ class VenueController extends Controller
             $response->setContent('Hello World');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            $response->send();
         }
 
         return $response;
@@ -178,6 +179,7 @@ class VenueController extends Controller
             $response = new HttpResponse();
             $response->setContent('Hello slack');
             $response->headers->set('Content-Type', 'text/plain');
+        $response->send();
         
     }
 
