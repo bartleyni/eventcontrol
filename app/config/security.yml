@@ -48,6 +48,7 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
 
     access_control:
+        - { path: ^/peoplecounting/slack_occupancy/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/camera/newdata/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/update/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
