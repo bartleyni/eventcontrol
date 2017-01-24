@@ -159,7 +159,7 @@ class UPSController extends Controller
             [
                 'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
                 'channel'  => '#alerts',
-                'text'     => "The ".$ups." UPS which is located at ".$ups->getLocation().", has updated with the following status: ".$status." \n Line Voltage: ".$line." Volts AC \n Load: ".$load."% \n Battery Voltage: ".$battery." Volts DC \n Time Remaining: ".$time."minutes"
+                'text'     => "The ".$ups." UPS which is located at ".$ups->getLocation().", has updated with the following status: ".$status." \n Line Voltage: ".$line." Volts AC \n Load: ".$load."% \n Battery Voltage: ".$battery." Volts DC \n Time Remaining: ".$time." minutes"
             ]
         );
         
