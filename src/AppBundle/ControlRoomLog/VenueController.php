@@ -168,4 +168,17 @@ class VenueController extends Controller
        return $this->redirectToRoute('venue_detailed',  array('id' => $venue_id));
     }
 
+    /**
+     * @Route("/peoplecounting/slack_occupancy", name="slack_peoplecounting_occupancy");
+     */
+
+    public function slackOccupancy()
+    {
+               
+            $response = new HttpResponse();
+            $response->setContent('Hello slack);
+            $response->headers->set('Content-Type', 'text/plain');
+        
+    }
+
 }
