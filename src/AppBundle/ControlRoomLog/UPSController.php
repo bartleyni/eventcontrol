@@ -101,7 +101,7 @@ class UPSController extends Controller
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
-                'identity' => $this->get('dz.slack.identity_bag')->get('echo-charlie'),
+                'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
                 'channel'  => '#alerts',
                 'text'     => 'UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation()
             ]
