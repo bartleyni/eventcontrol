@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use DZunke\SlackBundle\Slack;
 
 /**
  * @ORM\Table(name="alerts")
@@ -82,8 +81,7 @@ class Alert
      */
     public function sendSlackAlert()
     {  
-        $slack = new \DZunke\SlackBundle\Slack;
-        $client  = $slack->get('dz.slack.client');
+        $client  = $this->container->get('dz.slack.client');
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
