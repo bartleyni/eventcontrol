@@ -43,12 +43,10 @@ class AlertListener
                 'channel'  => '#alerts',
                 'text'     => "Alert!",
                 "attachments" => [
-                    {
-                        "text": $message,
-                        "color": "warning",
-                        "attachment_type": "default",
-                    }
-                        ]
+                    "text"  => $message,
+                    "color" =>"warning",
+                    "attachment_type"   => "default"
+                    ]
             ]
         );
     }
