@@ -172,4 +172,5 @@ xiidea_easy_audit:
 d_zunke_slack:
     token: "%echo-charlie%"
     identities:
-        echo-charlie: ~
+        echo-charlie:
+            icon_emoji:    :rotating_light:
