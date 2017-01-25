@@ -6,7 +6,7 @@ parameters:
 services:
     doctrine.alert_listener:
         class: AppBundle\Entity\AlertListener
-        arguments: [%d_zunke_slack%]
+        arguments: [d_zunke_slack.config]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
 #    service_name:
