@@ -74,24 +74,6 @@ class Alert
         return $this;
     }
     
-   /**
-     * Send Slack Alert
-     *
-     * @ORM\PrePersist
-     */
-    public function sendSlackAlert()
-    {  
-        $client  = $this->container->get('dz.slack.client');
-        $slackrResponse = $client->send(
-            \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
-            [
-                'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
-                'channel'  => '#alerts',
-                'text'     => $this->message
-            ]
-        );
-    } 
-    
     /**
      * Get Created
      *
