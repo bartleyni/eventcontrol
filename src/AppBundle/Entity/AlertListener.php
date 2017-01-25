@@ -31,7 +31,9 @@ class AlertListener
     
     private function postToSlack(Alert $alert)
     {
-        $message = $alert->getMessage();
+        $unformatted_message = $alert->getMessage();
+        $breaks = array("<br />","<br>","<br/>");  
+        $message = str_ireplace($breaks, "\r\n", $unformatted_message);  
         $client   = $this->slackBundle_client;
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
