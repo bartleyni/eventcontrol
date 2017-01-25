@@ -8,11 +8,15 @@ use DZunke\SlackBundle;
 
 class AlertListener
 {
-    private $slackBundleClient;
+    private $slackBundle_client;
+    private $slackBundle_identity_bag;
+    //private $slackBundle_connection;
 
-    public function __construct($slackBundleService)
+    public function __construct($client, $identity_bag)
     {
-        $this->slackBundleClient = $slackBundleService;
+        $this->slackBundle_client = $client;
+        $this->slackBundle_identity_bag = $identity_bag;
+        //$this->slackBundle_connection = $connection;
     }
     
     public function prePersist(LifecycleEventArgs $args)
