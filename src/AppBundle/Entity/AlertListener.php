@@ -21,9 +21,7 @@ class AlertListener
     }
     
     public function prePersist(LifecycleEventArgs $args)
-    {
-        //die('Something is being inserted!');
-        
+    {        
         $entity = $args->getEntity();
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
@@ -39,7 +37,7 @@ class AlertListener
         
         $attachment = new DZunke\SlackBundle\Slack\Entity\MessageAttachment();
         $attachment->setColor('danger');
-        $attachment->addField('text', $message');
+        $attachment->addField('text', $message);
         
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
