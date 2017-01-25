@@ -82,7 +82,7 @@ class Alert
      */
     public function sendSlackAlert()
     {    
-        $client   = $Slack->get('dz.slack.client');
+        $client   = Slack->get('dz.slack.client');
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
