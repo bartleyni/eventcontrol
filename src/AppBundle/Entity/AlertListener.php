@@ -46,7 +46,7 @@ class AlertListener
                 'identity' => $this->slackBundle_identity_bag->get('echo_charlie'),
                 'channel'  => '#alerts',
                 'text'     => "Alert!",
-                "attachment" => $attachment
+                'attachments' => $attachment
             ]
         );
     }
