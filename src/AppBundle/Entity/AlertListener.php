@@ -17,7 +17,6 @@ class AlertListener
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
-        //$this->slackBundle_attachment = $attachment;
         //$this->slackBundle_connection = $connection;
     }
     
@@ -36,7 +35,7 @@ class AlertListener
         $message = str_ireplace($breaks, "\r\n", $unformatted_message);  
         $client   = $this->slackBundle_client;
         
-        $attachment = new DZunke\SlackBundle\Slack\Entity\MessageAttachment();
+        $attachment = new \DZunke\SlackBundle\Slack\Entity\MessageAttachment();
         $attachment->setColor('danger');
         $attachment->addField('text', $message);
         
