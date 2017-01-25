@@ -4,11 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
-#    doctrine.alert_listener:
-#        class: AppBundle\Entity\AlertListener
-#        arguments: ['@d_zunke_slack']
-#        tags:
-#            - { name: doctrine.event_listener, event: prePersist }
+    doctrine.alert_listener:
+        class: AppBundle\Entity\AlertListener
+        arguments: ['@dz.slack.client']
+        tags:
+           - { name: doctrine.event_listener, event: prePersist }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
