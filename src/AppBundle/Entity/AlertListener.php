@@ -16,6 +16,7 @@ class AlertListener
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
+        //$this->slackBundle_attachment = $attachment;
         //$this->slackBundle_connection = $connection;
     }
     
@@ -35,6 +36,11 @@ class AlertListener
         $breaks = array("<br />","<br>","<br/>");  
         $message = str_ireplace($breaks, "\r\n", $unformatted_message);  
         $client   = $this->slackBundle_client;
+        
+        $attachment = new DZunke\SlackBundle\Slack\Entity\MessageAttachment();
+        $attachment->setColor('danger');
+        $attachment->addField('text', $message');
+        
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
@@ -42,11 +48,7 @@ class AlertListener
                 'identity' => $this->slackBundle_identity_bag->get('echo_charlie'),
                 'channel'  => '#alerts',
                 'text'     => "Alert!",
-                "attachments" => [
-                    "text"  => $message,
-                    "color" =>"warning",
-                    "attachment_type"   => "default"
-                    ]
+                "attachment" => $attachment
             ]
         );
     }
