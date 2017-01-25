@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use DZunke\SlackBundle\Slack\Client as Slack;
+use DZunke\SlackBundle\DZunkeSlackBundle as Slack;
 
 /**
  * @ORM\Table(name="alerts")
