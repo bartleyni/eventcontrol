@@ -175,9 +175,8 @@ class VenueController extends Controller
 
     public function slackOccupancy()
     {
-        $request = $this->getRequest();
-
-        $text= $request->get('text');
+        $request = Request::createFromGlobals();
+        $text= $request->request->get('text');
 
         //$em = $this->getDoctrine()->getEntityManager();
 
