@@ -81,8 +81,9 @@ class Alert
      * @ORM\PrePersist
      */
     public function sendSlackAlert()
-    {    
-        $client   = $this->get('dz.slack.client');
+    {  
+        $slack = new DZunke\SlackBundle\Slack;
+        $client  = $slack->get('dz.slack.client');
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
