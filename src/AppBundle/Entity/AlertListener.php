@@ -41,7 +41,14 @@ class AlertListener
                 //'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
                 'identity' => $this->slackBundle_identity_bag->get('echo_charlie'),
                 'channel'  => '#alerts',
-                'text'     => $message
+                'text'     => "Alert!",
+                "attachments" => [
+                    {
+                        "text": $message,
+                        "color": "warning",
+                        "attachment_type": "default",
+                    }
+                        ]
             ]
         );
     }
