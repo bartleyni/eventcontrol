@@ -30,9 +30,12 @@ class AlertListener
     
     private function postToSlack(Alert $alert)
     {
+        $breaks = array("<br />","<br>","<br/>");
+        $unformatted_title = $alert->getTitle();
+        $title = str_ireplace($breaks, "\r\n", $unformatted_title);
         $unformatted_message = $alert->getMessage();
-        $breaks = array("<br />","<br>","<br/>");  
-        $message = str_ireplace($breaks, "\r\n", $unformatted_message);  
+        $message = str_ireplace($breaks, "\r\n", $unformatted_message); 
+        
         $client   = $this->slackBundle_client;
         
         $attachment = new \DZunke\SlackBundle\Slack\Entity\MessageAttachment();
@@ -45,7 +48,7 @@ class AlertListener
             [
                 'identity' => $this->slackBundle_identity_bag->get('echo_charlie'),
                 'channel'  => '#alerts',
-                'text'     => "Alert!",
+                'text'     => $title,
                 'attachments' => [$attachment],
             ]
         );
