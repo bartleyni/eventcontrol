@@ -4,10 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
-	doctrine.alert_listener:
-		class: AppBundle\Entity\AlertListener
-		arguments: []
-		tags:
+    doctrine.alert_listener:
+        class: AppBundle\Entity\AlertListener
+        arguments: []
+        tags:
             - { name: doctrine.alert_listener, event: prePersist }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
