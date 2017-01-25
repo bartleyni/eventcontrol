@@ -24,7 +24,8 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new AppBundle\AppBundle(),
             new Xiidea\EasyAuditBundle\XiideaEasyAuditBundle(),
-            new RMS\PushNotificationsBundle\RMSPushNotificationsBundle()
+            new RMS\PushNotificationsBundle\RMSPushNotificationsBundle(),
+            new DZunke\SlackBundle\DZunkeSlackBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
