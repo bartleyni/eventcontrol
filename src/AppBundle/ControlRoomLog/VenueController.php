@@ -179,7 +179,7 @@ class VenueController extends Controller
         $text= $request->request->get('text');
 
         $em = $this->getDoctrine()->getEntityManager();
-        $query = $em->createQuery("SELECT v FROM AppBundle\Entity\venue v WHERE v.name LIKE :name")->setParameter('name', $text);
+        $query = $em->createQuery("SELECT v.id, v.name FROM AppBundle\Entity\venue v WHERE v.name LIKE :name")->setParameter('name', $text);
         $venues = $query->getArrayResult();
         
         print_r($venues);
