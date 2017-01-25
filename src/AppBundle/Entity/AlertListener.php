@@ -30,5 +30,3 @@ class AlertListener
             ]
         );
     }
-
-?>
