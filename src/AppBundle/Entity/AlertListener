@@ -1,0 +1,13 @@
+<?php
+
+namespace AppBundle\Doctrine;
+
+class AlertListener
+{
+    public function prePersist()
+    {
+        die('Something is being inserted!');
+    }
+}
+
+?>
