@@ -28,8 +28,8 @@ class AlertListener
     private function postToSlack(Alert $alert)
     {
         $message = $alert->getMessage();
-       // $client   = $this->slackBundle->get('dz.slack.client');
-        $slackrResponse = $slackBundleClient->send(
+        $client   = $this->slackBundleClient;
+        $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
                 'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
