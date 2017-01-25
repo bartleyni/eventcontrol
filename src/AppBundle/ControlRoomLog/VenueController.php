@@ -175,17 +175,17 @@ class VenueController extends Controller
 
     public function slackOccupancy()
     {
-        $request = $this->getRequest();
+        //$request = $this->getRequest();
 
-        $text= $request->get('text');
+        //$text= $request->get('text');
 
-        $em = $this->getDoctrine()->getEntityManager();
+        //$em = $this->getDoctrine()->getEntityManager();
 
        // $query = $em->createQuery("SELECT n FROM AcmeNodeBundle:Node n WHERE n.title LIKE :searchterm")->setParameter('searchterm', $searchterm);
 
         //$entities = $query->getResult();
 
-        $response = new Response('Hello Slack - This is what you said '.$text,Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response('Hello Slack - This is what you said ',Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
