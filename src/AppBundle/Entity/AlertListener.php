@@ -43,11 +43,10 @@ class AlertListener
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
-                //'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
                 'identity' => $this->slackBundle_identity_bag->get('echo_charlie'),
                 'channel'  => '#alerts',
                 'text'     => "Alert!",
-                'attachments' => $attachment
+                'attachments' => [$attachment],
             ]
         );
     }
