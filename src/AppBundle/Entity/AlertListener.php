@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Alert;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DZunke\SlackBundle;
-use DZunke\SlackBundle\Slack\Entity\MessageAttachment;
+use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
 
 class AlertListener
 {
