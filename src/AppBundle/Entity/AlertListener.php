@@ -38,6 +38,7 @@ class AlertListener
         $attachment = new \DZunke\SlackBundle\Slack\Entity\MessageAttachment();
         $attachment->setColor('danger');
         $attachment->setText($message);
+        $attachment->setFallback($message);
         
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
