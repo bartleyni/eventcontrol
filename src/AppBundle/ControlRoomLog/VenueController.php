@@ -178,11 +178,11 @@ class VenueController extends Controller
         $request = Request::createFromGlobals();
         $text= $request->request->get('text');
 
-        //$em = $this->getDoctrine()->getEntityManager();
-
-       // $query = $em->createQuery("SELECT n FROM AcmeNodeBundle:Node n WHERE n.title LIKE :searchterm")->setParameter('searchterm', $searchterm);
-
-        //$entities = $query->getResult();
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery("SELECT v FROM AppBundle\Entity\venue v WHERE v.name LIKE :name")->setParameter('name', $text);
+        $venues = $query->getArrayResult();
+        
+        print_r($venues);
         
         $response_text = "this is that you said ".$text;
 
