@@ -8,13 +8,12 @@ use DZunke\SlackBundle;
 
 class AlertListener
 {
-    private $slackBundle;
+    private $slackBundleClient;
 
-    public function __construct(SlackBundle $slackBundle)
+    public function __construct($slackBundleService)
     {
-        $this->slackBundle = $slackBundle;
+        $this->slackBundleClient = $slackBundleService;
     }
-    
     
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -29,8 +28,8 @@ class AlertListener
     private function postToSlack(Alert $alert)
     {
         $message = $alert->getMessage();
-        $client   = $this->slackBundle->get('dz.slack.client');
-        $slackrResponse = $client->send(
+       // $client   = $this->slackBundle->get('dz.slack.client');
+        $slackrResponse = $slackBundleClient->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
             [
                 'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
