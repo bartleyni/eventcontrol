@@ -96,7 +96,7 @@ class UPSController extends Controller
             $em->persist($alert_queue);
             $em->flush();
         }
-        
+/*        
         $client   = $this->get('dz.slack.client');
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
@@ -105,7 +105,7 @@ class UPSController extends Controller
                 'channel'  => '#alerts',
                 'text'     => 'The '.$ups.' UPS which is located at '.$ups->getLocation().', has updated with the following status: '.$status
             ]
-        );
+        ); */
         
         $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
 
@@ -152,7 +152,7 @@ class UPSController extends Controller
             $em->persist($alert_queue);
             $em->flush();
         }
-        
+ /*         
         $client   = $this->get('dz.slack.client');
         $slackrResponse = $client->send(
             \DZunke\SlackBundle\Slack\Client\Actions::ACTION_POST_MESSAGE,
@@ -161,7 +161,7 @@ class UPSController extends Controller
                 'channel'  => '#alerts',
                 'text'     => "The ".$ups." UPS which is located at ".$ups->getLocation().", has updated with the following status: ".$status." \n Line Voltage: ".$line." Volts AC \n Load: ".$load."% \n Battery Voltage: ".$battery." Volts DC \n Time Remaining: ".$time." minutes"
             ]
-        );
+        ); */
         
         $response = new Response('UPS updated',Response::HTTP_OK, array('content-type' => 'text/html'));
 
