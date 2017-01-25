@@ -87,7 +87,7 @@ class Alert
             [
                 'identity' => $this->get('dz.slack.identity_bag')->get('echo_charlie'),
                 'channel'  => '#alerts',
-                'text'     => $this->message;
+                'text'     => $this->message
             ]
         );
     } 
