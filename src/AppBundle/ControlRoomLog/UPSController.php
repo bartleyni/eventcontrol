@@ -107,7 +107,7 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        if($status!=$last_status){
+        if($status!=$last_status['status']){
             $alert = new Alert();
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation());
@@ -171,7 +171,7 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        if($status!=$last_status){
+        if($status!=$last_status['status']){
             $alert = new Alert();
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation().'<br>Line Voltage: '.$line.' Volts AC<br>Load: '.$load.'%<br>Battery Voltage: '.$battery.' Volts DC<br>Time Remaining: '.$time.'minutes');
