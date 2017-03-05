@@ -64,6 +64,10 @@ class UPSController extends Controller
         
         $em->flush();
         
+        $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
+        
+        $em->flush();
+        
         $UPSstatus = new UPS_Status();
         
         $UPSstatus->setUPS($ups);
@@ -77,7 +81,7 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        if($status!="Mains"){
+        if($status!=$last_status){
             $alert = new Alert();
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation());
@@ -124,6 +128,10 @@ class UPSController extends Controller
         
         $em->flush();
         
+        $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
+        
+        $em->flush();
+        
         $UPSstatus = new UPS_Status();
         
         $UPSstatus->setUPS($ups);
@@ -137,7 +145,7 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        if($status!="Mains"){
+        if($status!=$last_status){
             $alert = new Alert();
             $alert->setTitle($ups.' '.$status);
             $alert->setMessage('UPS: '.$ups.'<br>Status: '.$status.'<br>Location: '.$ups->getLocation().'<br>Line Voltage: '.$line.' Volts AC<br>Load: '.$load.'%<br>Battery Voltage: '.$battery.' Volts DC<br>Time Remaining: '.$time.'minutes');
