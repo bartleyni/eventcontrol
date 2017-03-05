@@ -43,4 +43,11 @@ class UPS_StatusRepository extends EntityRepository
         
         return $statuses;
     }
+    
+    public function getLatestSpecificUPS($ups)
+    {
+        $status = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, status1.lineVoltage, status1.loadPercentage, status1.batteryVoltage, status1.timeLeft, ups.name, ups.location, ups.power, ups.id, event.id as eId FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups JOIN ups.event event WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS) AND ups.id = :ups')->setParameter('ups', $ups)->setMaxResults(1)->getOneOrNullResult();
+        
+        return $status;
+    }
 }
