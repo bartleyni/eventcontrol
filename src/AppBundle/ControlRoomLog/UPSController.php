@@ -62,7 +62,7 @@ class UPSController extends Controller
         
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
         
-        $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
+        $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($ups_id);
         
         if ($last_status)
         {
