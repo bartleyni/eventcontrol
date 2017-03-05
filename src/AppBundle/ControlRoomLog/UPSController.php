@@ -53,6 +53,32 @@ class UPSController extends Controller
     }
     
     /**
+     * @Route("/UPS/test/{ups_id}", name="UPS_test");
+     * 
+     */
+    public function UPSTestAction(Request $request, $ups_id = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
+        
+        $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
+        
+        if ($last_status)
+        {
+                $response = new JsonResponse();
+                $response->setData($lats_status);
+
+        } else {
+            $response->setContent('Hello World');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        
+        return $response;
+    }
+    
+    /**
      * @Route("/UPS/update/{id}/{status}/", name="UPS_update");
      * 
      */
