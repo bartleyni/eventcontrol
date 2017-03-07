@@ -152,7 +152,7 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $response = new Response();
             $response->setContent('Form Submitted and is valid!');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
@@ -161,7 +161,7 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted()) {
-            
+            $response = new Response();
             $response->setContent('Form Submitted but NOT valid!');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
