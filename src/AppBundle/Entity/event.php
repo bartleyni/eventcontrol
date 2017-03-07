@@ -178,6 +178,11 @@ class event {
      */
     private $user_selected;
     
+    /**
+     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id")
+     */
+    protected $venue_event;
+    
     public function __toString()
     {
         return (string) $this->getName();
