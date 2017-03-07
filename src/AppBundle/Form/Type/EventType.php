@@ -178,7 +178,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             ))
-            
+         /*   
             ->add('venues', EntityType::class, array(
                 'class' => 'AppBundle:venue',
                 'label' => 'Venue',
@@ -188,6 +188,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             ))
+            */
             ->setMethod('POST')
         ;
     }
