@@ -83,7 +83,7 @@ class EditUserController extends Controller
         
         $user = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $id));
         
-        $form = $this->createForm(new EditUserType(), $user, array(
+        $form = $this->createForm(EditUserType::class, $user, array(
             'method' => 'POST',
         ));
         
