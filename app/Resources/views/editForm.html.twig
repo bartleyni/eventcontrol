@@ -328,8 +328,8 @@ Control Room Log Edit
             }
         };
 
-        $("#new_entry_form_location").easyAutocomplete(locationOptions);
-        $("#new_entry_form_reported_by").easyAutocomplete(reportedOptions);
+        $("#log_location").easyAutocomplete(locationOptions);
+        $("#log_reported_by").easyAutocomplete(reportedOptions);
         
         //Map Overlay Below here
         {% if (entry.longitude is not null) and (entry.latitude is not null) %}
