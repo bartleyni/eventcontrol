@@ -25,7 +25,7 @@ class venue_event {
     protected $id;
     /**
      *
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="venue_camera")
+     * @ORM\ManyToOne(targetEntity="event", inversedBy="venue_event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      *
      */
