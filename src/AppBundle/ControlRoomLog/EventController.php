@@ -126,15 +126,7 @@ class EventController extends Controller
         if ($editId){
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
             $em->flush();
-            /*$qb = $em->createQueryBuilder(); 
-            $qb
-                ->select('User.username, User.id')
-                ->from('AppBundle\Entity\User', 'User')
-                ;
             
-            $query = $qb->getQuery();
-            $operators = $query->getResult();
-          */
             $current_overlay = $event->getOverlayImageName();
             
             $originalLocations = new ArrayCollection();
@@ -147,32 +139,12 @@ class EventController extends Controller
             $em->flush();
             
             $form = $this->createForm(EventType::class, $event, array('event_id' => $editId, 'em' => $em));
-            
             $form->handleRequest($request);
         }
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $response = new Response();
-            $response->setContent('Form Submitted and is valid!');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        
-            return $response;
-        }
-        
+
         if ($form->isSubmitted()) {
-            //$response = new Response();
-            $response = new JsonResponse();
-            $response->setData($form->getErrors(true));
-            //$response->setContent('Form Submitted but NOT valid! /n' + serialize($form->getErrors(true)));
-            //$response->headers->set('Content-Type', 'text/plain');
-            //$response->setStatusCode(Response::HTTP_NOT_FOUND);
-        
-            return $response;
-        }
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            /* if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
             $event_operators = $form['event_operators']->getData();
             
             $all_users = $em->getRepository('AppBundle\Entity\User');
@@ -210,7 +182,7 @@ class EventController extends Controller
                     $em->flush();
                 }
             }
-            */
+            
             
             // remove the relationship between the location and the Event
             foreach ($originalLocations as $location) {
