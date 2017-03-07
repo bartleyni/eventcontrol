@@ -113,6 +113,7 @@ class User implements AdvancedUserInterface, \Serializable {
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
         $this->groups = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getEmail()
