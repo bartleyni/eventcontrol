@@ -87,8 +87,6 @@ class EditUserController extends Controller
             'method' => 'POST',
         ));
         
-        $request = $this->getRequest();
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
