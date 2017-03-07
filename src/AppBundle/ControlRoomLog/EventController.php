@@ -152,6 +152,24 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $response->setContent('Form Submitted and is valid!');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        
+            return $response;
+        }
+        
+        if ($form->isSubmitted()) {
+            
+            $response->setContent('Form Submitted but NOT valid!');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        
+            return $response;
+        }
+        
+        if ($form->isSubmitted() && $form->isValid()) {
             /* if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
             $event_operators = $form['event_operators']->getData();
             
