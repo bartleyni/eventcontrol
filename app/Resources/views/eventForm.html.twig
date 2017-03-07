@@ -95,11 +95,11 @@ Event Entry Form
                         <div class="row">   
                             <div class="form-group">                                
                                 <div class="col-md-2">
-                                    {{ form_label(form.event_operators) }} 
-                                    {{ form_errors(form.event_operators) }}
+                                    {{ form_label(form.Users) }} 
+                                    {{ form_errors(form.Users) }}
                                 </div>
                                 <div class="col-md-6">
-                                    {% for operator in form.event_operators %}
+                                    {% for operator in form.Users %}
                                         {{ form_widget(operator) }} {{ form_label(operator) }}<br>
                                     {% endfor %}
                                 </div>
