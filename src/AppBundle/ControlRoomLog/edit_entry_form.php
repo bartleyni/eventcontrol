@@ -72,7 +72,7 @@ class edit_entry_form extends Controller
         $operatorId = $usr->getId();
         
         //$activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $activeEventt = $usr->getSelectedEvent();
+        $activeEvent = $usr->getSelectedEvent();
         
         if($activeEvent != $entry->getEvent())
         {
@@ -262,7 +262,7 @@ class edit_entry_form extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         //$activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $activeEventt = $usr->getSelectedEvent();
+        $activeEvent = $usr->getSelectedEvent();
         $em->flush();
         
         $lookup1 = $em->getRepository('AppBundle\Entity\log_entries')->getLocationLookup($activeEvent, $location);
@@ -295,7 +295,7 @@ class edit_entry_form extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         //$activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $activeEventt = $usr->getSelectedEvent();
+        $activeEvent = $usr->getSelectedEvent();
         $em->flush();
         
         $lookup = $em->getRepository('AppBundle\Entity\log_entries')->getReportedByLookup($activeEvent, $reported);
