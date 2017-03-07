@@ -112,17 +112,9 @@ class Log extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
-        $user_event = $usr->getSelectedEvent();
+        $event = $usr->getSelectedEvent();
         //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
-        
-        if($user_event)
-        {
-            $eId = $user_event->getEventId();
-
-            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-                array('id' => $eId));
-        }
         
         if ($event)
         {
