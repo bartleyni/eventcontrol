@@ -506,6 +506,11 @@ class event {
     {
         return $this->UPSs;
     }
+    
+    public function getUsers()
+    {
+        return $this->Users;
+    }
 
     public function getVenues()
     {
@@ -844,5 +849,29 @@ class event {
     public function getUserSelected()
     {
         return $this->user_selected;
+    }
+    
+    /**
+     * Add Users
+     *
+     * @param \AppBundle\Entity\User $User
+     *
+     * @return event
+     */
+    public function addUsers(\AppBundle\Entity\User $User)
+    {
+        $this->Users[] = $User;
+
+        return $this;
+    }
+
+    /**
+     * Remove Users
+     *
+     * @param \AppBundle\Entity\User $User
+     */
+    public function removeUsers(\AppBundle\Entity\User $User)
+    {
+        $this->Users->removeElement($User);
     }
 }
