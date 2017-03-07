@@ -56,4 +56,14 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
     }
+    
+    public function getActiveEvents($userId)
+    {
+        $now = new \DateTime();
+        
+        //$user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        $user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event WHERE event.Users = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        
+        return $user_events;
+    }
 }
