@@ -32,7 +32,8 @@ class Log extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         
         if ($event)
         {
@@ -78,7 +79,8 @@ class Log extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
 
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         $em->flush();
         
         if($user_event)
@@ -109,7 +111,8 @@ class Log extends Controller
         
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         //$user_event = $em->getRepository('AppBundle\Entity\user_events')->findOneBy(array('User_id' => $operatorId, 'active' => true));
         $em->flush();
         
