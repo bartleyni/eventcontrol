@@ -115,12 +115,7 @@ class event {
      *
      */
     protected $Users;
-
-    /**
-     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id", nullable=true)
-     */
-    protected $venue_event;
-    
+        
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
@@ -787,30 +782,6 @@ class event {
     public function removeLocation(\AppBundle\Entity\Locations $location)
     {
         $this->locations->removeElement($location);
-    }
-
-    /**
-     * Add venue
-     *
-     * @param \AppBundle\Entity\venue $venue
-     *
-     * @return event
-     */
-    public function addVenue(\AppBundle\Entity\venue $venue)
-    {
-        $this->venues[] = $venue;
-
-        return $this;
-    }
-
-    /**
-     * Remove venue
-     *
-     * @param \AppBundle\Entity\venue $venue
-     */
-    public function removeVenue(\AppBundle\Entity\venue $venue)
-    {
-        $this->venues->removeElement($venue);
     }
 
     /**
