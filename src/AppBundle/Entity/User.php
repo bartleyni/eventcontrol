@@ -348,4 +348,48 @@ class User implements AdvancedUserInterface, \Serializable {
     {
         return $this->selected_event;
     }
+ 
+     /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return User
+     */
+    public function addEvents(\AppBundle\Entity\event $event)
+    {
+        $this->events[] = $event;
+        return $this;
+    }
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvents(\AppBundle\Entity\event $event)
+    {
+        $this->events->removeElement($event);
+    }
+ 
+     /**
+     * Set events
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return events
+     */
+    public function setEvents(\AppBundle\Entity\event $event = null)
+    {
+        $this->events = $event;
+        return $this;
+    }
+    /**
+     * Get events
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvent()
+    {
+        return $this->events;
+    }
 }
