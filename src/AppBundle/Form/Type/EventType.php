@@ -34,7 +34,7 @@ class EventType extends AbstractType
     {
         $em = $options['em'];
         $eId = $options['event_id'];
-        $qb = $em->createQueryBuilder();
+       /* $qb = $em->createQueryBuilder();
             $qb
                 ->select('User')
                 ->from('AppBundle\Entity\User', 'User')
@@ -45,6 +45,7 @@ class EventType extends AbstractType
                         
             $query = $qb->getQuery();
             $operators = $query->getResult();
+            */
         
         $builder
             ->add('name', TextType::class, array(
@@ -119,7 +120,7 @@ class EventType extends AbstractType
                     'data-datetime-format' => 'yyyy-MM-dd HH:mm:ss'
                 )
             ))            
-            ->add('event_operators', EntityType::class, array(
+           /* ->add('event_operators', EntityType::class, array(
                 'label' => 'Event Operator Assignment',
                 'mapped' => false,
                 'class' => 'AppBundle\Entity\User',
@@ -131,6 +132,7 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox',
                 )
             ))
+            */
             ->add('locations', CollectionType::class, array(
                 'label' => 'Locations',
                 'entry_type' => LocationType::class,
@@ -165,7 +167,18 @@ class EventType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control checkbox'
                 )
-        ))
+            ))
+            
+            ->add('Users', EntityType::class, array(
+                'class' => 'AppBundle:User',
+                'label' => 'Operators',
+                'multiple' => true,
+                'expanded' => true,
+                'attr' => array(
+                    'class' => 'form-control checkbox'
+                )
+            ))
+            
             ->add('venues', EntityType::class, array(
                 'class' => 'AppBundle:venue',
                 'label' => 'Venue',
