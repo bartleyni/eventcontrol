@@ -63,6 +63,15 @@ class UpdateUserType extends AbstractType
         ));
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'validation_groups' => array('update'),
+            'data_class' => 'AppBundle\Entity\User',
+        ));
+    }
+    
+    
     public function getName()
     {
         return 'update_user_form';
