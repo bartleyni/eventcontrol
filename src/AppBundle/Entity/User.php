@@ -101,6 +101,11 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     private $selected_event;
     
+     /**
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="Users")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $events;
     
     public function __construct()
     {
