@@ -82,7 +82,7 @@ class EventController extends Controller
             $em->persist($event);
             $editId = $event->getId();
             $em->flush();
-            
+            /*
             $event_operators = $form['event_operators']->getData();
                                    
             if($event_operators)
@@ -104,6 +104,7 @@ class EventController extends Controller
                     $em->flush();
                 }
             }
+            */
 
             return $this->redirectToRoute('event_list');
         }
@@ -151,7 +152,7 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
-            
+            /*
             $event_operators = $form['event_operators']->getData();
             
             $all_users = $em->getRepository('AppBundle\Entity\User');
@@ -189,7 +190,7 @@ class EventController extends Controller
                     $em->flush();
                 }
             }
-            
+            */
             
             // remove the relationship between the location and the Event
             foreach ($originalLocations as $location) {
