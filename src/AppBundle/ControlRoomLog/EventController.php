@@ -162,7 +162,7 @@ class EventController extends Controller
         
         if ($form->isSubmitted()) {
             $response = new Response();
-            $response->setContent('Form Submitted but NOT valid! /n' + $form->getErrorsAsString());
+            $response->setContent('Form Submitted but NOT valid! /n' + $form->getErrors(true));
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         
