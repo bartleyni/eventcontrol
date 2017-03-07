@@ -92,17 +92,13 @@ class RegisterController extends Controller
             
             $attendee = new event_control_register();
             $form = $this->createForm(RegisterType::class, $attendee);
-            $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+            $event = $usr->getSelectedEvent();
             $em->flush();
             // 2) handle the submit (will only happen on POST)
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 
                 $attendee->setTimeIn(new \DateTime());
-                
-                //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-                    //array('event_active' => true));
-
         
                 if ($event){
                     $attendee->setEvent($event);
