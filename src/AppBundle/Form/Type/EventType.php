@@ -168,12 +168,12 @@ class EventType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             ))
-            
             ->add('Users', EntityType::class, array(
                 'class' => 'AppBundle:User',
                 'label' => 'Operators',
                 'multiple' => true,
                 'expanded' => true,
+                'required' => false,
                 'attr' => array(
                     'class' => 'form-control checkbox'
                 )
