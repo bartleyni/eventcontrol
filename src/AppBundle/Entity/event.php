@@ -117,7 +117,7 @@ class event {
     protected $Users;
 
     /**
-     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id")
+     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id", nullable=true)
      */
     protected $venue_event;
     
