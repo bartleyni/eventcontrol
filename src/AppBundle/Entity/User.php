@@ -389,7 +389,7 @@ class User implements AdvancedUserInterface, \Serializable {
      *
      * @return \AppBundle\Entity\event
      */
-    public function getEvent()
+    public function getEvents()
     {
         return $this->events;
     }
