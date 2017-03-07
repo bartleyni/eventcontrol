@@ -144,7 +144,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted()) {
         //if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
+            /*if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
             $event_operators = $form['event_operators']->getData();
             
             $all_users = $em->getRepository('AppBundle\Entity\User');
@@ -183,7 +183,7 @@ class EventController extends Controller
                 }
             }
             
-            
+            */
             // remove the relationship between the location and the Event
             foreach ($originalLocations as $location) {
                 if (false === $event->getLocations()->contains($location)) {
