@@ -65,4 +65,20 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 
         return $user_events;
     }
+    
+    public function getActiveEventEndTime($userId)
+    {
+        $now = new \DateTime();
+
+        //$user_event = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getOneOrNullResult();
+        $selected_event = $this->getEntityManager()->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $userId))->getSelectedEvent();
+        if($selected_event){
+            $event_log_stop_date = $this->getEntityManager()->createQuery('SELECT event.event_log_stop_date FROM AppBundle\Entity\event event WHERE event.id = :id')->setParameter('id', $selected_event)->getOneOrNullResult();
+            
+            return $event_log_stop_date['event_log_stop_date'];
+        }
+        else {
+            return Null;
+        }
+    }
 }
