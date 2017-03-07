@@ -109,6 +109,12 @@ class event {
      *
      */
     protected $UPSs;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="event")
+     *
+     */
+    protected $Users;
 
     /**
      * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id")
