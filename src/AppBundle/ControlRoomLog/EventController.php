@@ -126,7 +126,7 @@ class EventController extends Controller
         if ($editId){
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
             $em->flush();
-            $qb = $em->createQueryBuilder(); 
+            /*$qb = $em->createQueryBuilder(); 
             $qb
                 ->select('User.username, User.id')
                 ->from('AppBundle\Entity\User', 'User')
@@ -134,7 +134,7 @@ class EventController extends Controller
             
             $query = $qb->getQuery();
             $operators = $query->getResult();
-          
+          */
             $current_overlay = $event->getOverlayImageName();
             
             $originalLocations = new ArrayCollection();
@@ -151,8 +151,8 @@ class EventController extends Controller
             $form->handleRequest($request);
         }
         
-        if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
-            /*
+        if ($form->isSubmitted() && $form->isValid()) {
+            /* if ($form->isSubmitted() && $form->isValid() && $form['locations']->isValid()) {
             $event_operators = $form['event_operators']->getData();
             
             $all_users = $em->getRepository('AppBundle\Entity\User');
