@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\UploadFile;
 use Symfony\Component\HttpFoundation\File\File;
 use AppBundle\Form\Type\EventType;
 use AppBundle\Entity\event;
-use AppBundle\Entity\user_events;
 use AppBundle\Entity\Alert;
 use AppBundle\Entity\Queue;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -181,8 +180,7 @@ class EventController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
        
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent(1);
-        $statuses = $event->getId();
+        $statuses = 1;
         
         if ($statuses)
         {

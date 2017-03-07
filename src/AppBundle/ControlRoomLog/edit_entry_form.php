@@ -71,7 +71,6 @@ class edit_entry_form extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        //$activeEvent = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $activeEvent = $usr->getSelectedEvent();
         
         if($activeEvent != $entry->getEvent())

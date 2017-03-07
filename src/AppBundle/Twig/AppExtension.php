@@ -51,7 +51,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             $usr = $token->getUser();
             if(is_object($usr)) {
                 $operatorId = $usr->getId();
-                //$active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+                
                 $active_event = $usr->getSelectedEvent();
 
                 $query = $this->doctrine->getManager()

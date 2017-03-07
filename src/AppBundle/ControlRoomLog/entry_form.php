@@ -32,9 +32,6 @@ class entry_form extends Controller
         }
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $operatorId = $usr->getId();
-        
-        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
         $event = $usr->getSelectedEvent();
         $em->flush();
 
