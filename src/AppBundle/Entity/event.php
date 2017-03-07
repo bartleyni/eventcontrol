@@ -511,11 +511,6 @@ class event {
     {
         return $this->Users;
     }
-
-    public function getVenues()
-    {
-        return $this->venues;
-    }
     
     /**
      * Get northEastBounds_lat_long
