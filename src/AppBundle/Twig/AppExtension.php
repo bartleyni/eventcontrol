@@ -51,7 +51,8 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
             $usr = $token->getUser();
             if(is_object($usr)) {
                 $operatorId = $usr->getId();
-                $active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+                //$active_event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+                $active_event = $usr->getSelectedEvent();
 
                 $query = $this->doctrine->getManager()
                     ->createQuery('SELECT v, e, ve FROM AppBundle\Entity\venue_event ve
@@ -110,8 +111,8 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     public function getEventById($operatorId = 0)
     {
         $em = $this->doctrine->getManager();
-
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        
+        $event = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId)->getSelectedEvent();
 
         if($event)
         {
@@ -127,7 +128,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId)->getSelectedEvent();
 
         if($event)
         {
@@ -143,14 +144,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvents($operatorId);
         $event = $em->getRepository('AppBundle\Entity\User')->getActiveEvents($operatorId);
-//        if($event)
-//        {
-//            $eventId=$event->getId();
-//        } else {
-//            $eventId = 0;
-//        }
 
         return $event;
     }    
@@ -167,7 +161,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId)->getSelectedEvent();
 
         if($event)
         {
@@ -181,9 +175,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
 
     public function getEventName($operatorId = 0)
     {
-        $em = $this->doctrine->getManager();
-
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $em->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $operatorId)->getSelectedEvent();
 
         if($event)
         {
