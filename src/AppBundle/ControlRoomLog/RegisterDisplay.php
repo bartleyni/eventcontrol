@@ -24,7 +24,8 @@ class RegisterDisplay extends Controller
         $operatorId = $usr->getId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             //array('event_active' => true));
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         
         $em->flush();
         
@@ -66,7 +67,8 @@ class RegisterDisplay extends Controller
         $operatorId = $usr->getId();
         //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
             //array('event_active' => true));
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         $em->flush();
         
         $qb = $em->createQueryBuilder(); 
@@ -150,7 +152,7 @@ class RegisterDisplay extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         $em->flush();
 
         $iframe = '<iframe src="https://eventcontrol.nb221.com/PDFfireregister/" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
