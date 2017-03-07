@@ -40,7 +40,7 @@ class MapController extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         
         $overlay = $event->getOverlayImageName();
         
@@ -76,7 +76,7 @@ class MapController extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $operatorId = $usr->getId();
         
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvent($operatorId);
+        $event = $usr->getSelectedEvent();
         
         $em->flush();
         
