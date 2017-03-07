@@ -161,10 +161,12 @@ class EventController extends Controller
         }
         
         if ($form->isSubmitted()) {
-            $response = new Response();
-            $response->setContent('Form Submitted but NOT valid! /n' + serialize($form->getErrors(true)));
+            //$response = new Response();
+            $response = new JsonResponse();
+            $response->setData($form->getErrors(true));
+            //$response->setContent('Form Submitted but NOT valid! /n' + serialize($form->getErrors(true)));
             $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            //$response->setStatusCode(Response::HTTP_NOT_FOUND);
         
             return $response;
         }
