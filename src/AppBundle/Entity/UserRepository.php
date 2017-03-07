@@ -63,10 +63,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         
         //$user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
         
-        $user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event event WHERE event.Users = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        $user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event event JOIN event.Users Users WHERE Users.id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
         //$user_events = $this->getEntityManager()->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $userId))->getEvents();
         
         //$user_events = $this->getEntityManager()->createQuery('SELECT event.name, event.id FROM AppBundle\Entity\event WHERE event.Users = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getResult();
+        
+       
         
         return $user_events;
     }
