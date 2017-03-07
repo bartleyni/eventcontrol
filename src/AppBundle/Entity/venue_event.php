@@ -23,13 +23,7 @@ class venue_event {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="venue_event")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
-     *
-     */
-    protected $event_id;
+
     /**
      * @ORM\ManyToOne(targetEntity="venue", inversedBy="venue_event")
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
