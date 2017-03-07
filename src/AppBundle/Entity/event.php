@@ -111,7 +111,7 @@ class event {
     protected $UPSs;
     
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="event")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="events")
      *
      */
     protected $Users;
