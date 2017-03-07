@@ -143,8 +143,8 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
     {
         $em = $this->doctrine->getManager();
 
-        $event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvents($operatorId);
-
+        //$event = $em->getRepository('AppBundle\Entity\user_events')->getActiveEvents($operatorId);
+        $event = $em->getRepository('AppBundle\Entity\User')->getEvents($operatorId);
 //        if($event)
 //        {
 //            $eventId=$event->getId();
