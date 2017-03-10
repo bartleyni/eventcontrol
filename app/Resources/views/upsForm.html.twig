@@ -1,0 +1,95 @@
+{# app/Resources/views/upsForm.html.twig #}
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+UPS
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form_start(form) }}
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.name) }} 
+                                    {{ form_errors(form.name) }}
+                                </div>
+                                <div class="col-md-6"> 
+                                    {{ form_widget(form.name) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.location) }} 
+                                    {{ form_errors(form.location) }}
+                                </div>
+                                <div class="col-md-6">                                     
+                                    {{ form_widget(form.location) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">     
+                            <div class="form-group">
+                                <div class="col-md-2">  
+                                    {{ form_label(form.power) }} 
+                                    {{ form_errors(form.power) }}
+                                </div>
+                                <div class="col-md-6">                                     
+                                    {{ form_widget(form.power) }}
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">  
+                            <div class="col-md-8">
+                                {% if ups.id is defined %}
+                                    <button type="button" id="delete_button" class="btn btn-warning btn-block" onClick="location.href='{{ path('delete_ups', {'deleteId': ups.id}) }}'">Delete UPS</button>
+                                {% endif %}
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+            {% include 'darksky.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                useCurrent: false,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+        
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                useCurrent: false,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+        
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                useCurrent: false,
+                format: 'YYYY-MM-DD HH:mm:ss',
+                showTodayButton: true
+            });
+        });
+        
+        
+    </script>
+    
+{% endblock %}        

@@ -18,6 +18,7 @@ use AppBundle\Entity\Alert;
 use AppBundle\Entity\Queue;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
+use AppBundle\Form\Type\UPSType;
 
 /**
  * Description of UPSController
@@ -26,6 +27,106 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class UPSController extends Controller
 {
+    
+    /**
+    * @Route("/UPS/new/", name="new_ups");
+    */    
+    
+    public function newUPSAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ups = new UPS();
+        $form = $this->createForm(UPSType::class, $ups);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+            
+            $em->persist($ups);
+            $upsId = $ups->getId();
+            $em->flush();
+
+            return $this->redirectToRoute('ups_list');
+        }
+        
+        return $this->render(
+            'upsForm.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+    
+    /**
+    * @Route("/UPS/edit/{editId}", name="edit_ups");
+    */
+    
+    public function editUPSAction(Request $request, $editId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        if ($editId){
+            $ups = $em->getRepository('AppBundle\Entity\UPS')->findOneBy(array('id' => $editId));
+            $em->flush();
+            
+            $form = $this->createForm(UPSType::class, $ups, array('ups_id' => $editId, 'em' => $em));
+            $form->handleRequest($request);
+        }
+
+        if ($form->isSubmitted()) {
+
+            $em->persist($ups);
+            $em->flush();
+
+            return $this->redirectToRoute('ups_list');
+        }
+        
+        return $this->render(
+            'upsForm.html.twig',
+            array('form' => $form->createView(), 'ups' => $ups)
+        );
+    }
+    
+    /**
+    * @Route("/UPS/delete/{deleteId}", name="delete_ups");
+    */
+    
+    public function deletUPSAction(Request $request, $deleteId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+                
+        if ($deleteId){
+            $event = $em->getRepository('AppBundle\Entity\UPS')->findOneBy(array('id' => $deleteId));
+            if ($ups) {
+                $em->remove($ups);
+                $em->flush();
+            }
+        }
+        
+        return $this->redirectToRoute('ups_list');
+    }
+    
+    /**
+    * @Route("/UPS/", name="ups_list");
+    */
+    
+    public function listUPSAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $UPSs = $em->getRepository('AppBundle\Entity\UPS');
+        
+        if($UPSs)
+        {
+            foreach ($UPS as $key => $UPS)
+            {
+                $UPSs[$key]["Last"] = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($UPS);
+            }
+        }
+                 
+        //$last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($ups_id);
+        
+        return $this->render('upsList.html.twig', array('UPSs' => $UPSs));
+    }
+    
     /**
      * @Route("/UPS/status/{event_id}", name="UPS_status");
      * 
@@ -59,8 +160,6 @@ class UPSController extends Controller
     public function UPSTestAction(Request $request, $ups_id = null)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
         
         $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($ups_id);
         
