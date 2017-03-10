@@ -37,11 +37,11 @@ UPS Settings
                                             <td>{{ ListUPS.Last }}</td>
                                             <td><a href="{{ path('edit_ups', {'editId': ListUPS.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                         </tr>
+                                        {{ ListUPS }}
                                     {% endfor %}                           
                                 </tbody>
                             </table>
                         {% endif %}
-                        {{ ListUPSs }}
                         <a href="{{ path('new_ups') }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" aria-label="Add"></span></a>
                     </div>
                 </div>
