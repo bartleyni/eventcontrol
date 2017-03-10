@@ -76,30 +76,6 @@ class UPS {
     {
         return $this->events;
     }
-
-    /**
-     * Add events
-     *
-     * @param \AppBundle\Entity\event $events
-     *
-     * @return UPS
-     */
-    public function addEvents(\AppBundle\Entity\event $events)
-    {
-        $this->events[] = $events;
-
-        return $this;
-    }
-
-    /**
-     * Remove events
-     *
-     * @param \AppBundle\Entity\event $events
-     */
-    public function removeEvents(\AppBundle\Entity\event $events)
-    {
-        $this->events->removeElement($events);
-    }
     
     public function getName()
     {
@@ -190,26 +166,26 @@ class UPS {
     }
 
     /**
-     * Add event
+     * Add events
      *
      * @param \AppBundle\Entity\event $event
      *
      * @return UPS
      */
-    public function addEvent(\AppBundle\Entity\event $event)
+    public function addEvents(\AppBundle\Entity\event $event)
     {
-        $this->event[] = $event;
+        $this->events[] = $event;
 
         return $this;
     }
 
     /**
-     * Remove event
+     * Remove events
      *
      * @param \AppBundle\Entity\event $event
      */
-    public function removeEvent(\AppBundle\Entity\event $event)
+    public function removeEvents(\AppBundle\Entity\event $event)
     {
-        $this->event->removeElement($event);
+        $this->events->removeElement($event);
     }
 }
