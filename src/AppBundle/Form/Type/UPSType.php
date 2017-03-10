@@ -77,6 +77,8 @@ class UPSType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\UPS',
+            'event_id' => null,
+            'em' => null,
         ));
     }
 }
