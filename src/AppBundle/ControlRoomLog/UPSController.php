@@ -112,7 +112,16 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $UPSs = $em->getRepository('AppBundle\Entity\UPS')->findAll();
+        $qb = $em->createQueryBuilder(); 
+        
+        $qb
+            ->select('UPS.id, UPS.location, UPS.name, UPS.power')
+            ->from('AppBundle\Entity\UPS', 'ups')
+            ->orderBy('UPS.id', 'ASC')
+            ;
+        
+        $query = $qb->getQuery();
+        $UPSs = $query->getResult();
         
         if($UPSs)
         {
