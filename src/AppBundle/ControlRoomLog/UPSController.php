@@ -116,7 +116,7 @@ class UPSController extends Controller
         
         if($UPSs)
         {
-            foreach ($UPS as $key => $UPS)
+            foreach ($UPSs as $key => $UPS)
             {
                 $UPSs[$key]["Last"] = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($UPS);
             }
