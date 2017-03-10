@@ -50,7 +50,7 @@ UPS
                                     {{ form_label(form.Events) }} 
                                     {{ form_errors(form.Events) }}
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     {% for Event in form.Events %}
                                         {{ form_widget(Event) }} {{ form_label(Event) }}<br>
                                     {% endfor %}
