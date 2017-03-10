@@ -13,7 +13,7 @@ UPS Settings
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        {% if UPSs is empty %}
+                        {% if ListUPSs is empty %}
                             No UPS available
                         {% else %}
                             <table id="UPS" class="table table-sm table-striped table-bordered table-hover">
@@ -28,14 +28,14 @@ UPS Settings
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for UPS in UPSs %}
+                                    {% for ListUPS in ListUPSs %}
                                         <tr>
-                                            <td>{{ UPS.id}}</td>
-                                            <td>{{ UPS.name }}</td>
-                                            <td>{{ UPS.location }}</td>
-                                            <td>{{ UPS.power }}</td>
-                                            <td>{{ UPS.Last }}</td>
-                                            <td><a href="{{ path('edit_ups', {'editId': ups.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
+                                            <td>{{ ListUPS.id}}</td>
+                                            <td>{{ ListUPS.name }}</td>
+                                            <td>{{ ListUPS.location }}</td>
+                                            <td>{{ ListUPS.power }}</td>
+                                            <td>{{ ListUPS.Last }}</td>
+                                            <td><a href="{{ path('edit_ups', {'editId': ListUPS.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                         </tr>
                                     {% endfor %}                           
                                 </tbody>

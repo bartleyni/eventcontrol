@@ -124,7 +124,7 @@ class UPSController extends Controller
                  
         //$last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($ups_id);
         
-        return $this->render('upsList.html.twig', array('UPSs' => $UPSs));
+        return $this->render('upsList.html.twig', array('ListUPSs' => $UPSs));
     }
     
     /**
