@@ -375,8 +375,10 @@
                     $("#viewAlertsButton").hide();
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
-                    $('.modal-backdrop.fade.in').remove();
-                    display = false;
+                    $('.modal-backdrop').remove();
+                    $('#mainModalHeader').remove();
+                    $('#mainModalLabel').remove();
+                    alertcounter = 299;
                 }
                 AlertCheck();
             }
