@@ -373,6 +373,8 @@
                 } else {
                     $('#mainModal').modal('hide');
                     $("#viewAlertsButton").hide();
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
                     display = false;
                 }
                 AlertCheck();
