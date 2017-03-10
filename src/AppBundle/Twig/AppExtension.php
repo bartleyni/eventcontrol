@@ -72,7 +72,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 $qb1
                 ->select('ups.id, ups.name, ups.location, event.id as eId, ups.power')
                 ->from('AppBundle\Entity\UPS', 'ups')
-                ->Join('ups.event', 'event')
+                ->Join('ups.events', 'event')
                 ->where('event.id = :eventId')
                 ->setParameter('eventId', $eventId)
                 ;
