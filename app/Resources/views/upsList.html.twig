@@ -34,7 +34,7 @@ UPS Settings
                                             <td>{{ ListUPS.name }}</td>
                                             <td>{{ ListUPS.location }}</td>
                                             <td>{{ ListUPS.power }}</td>
-                                            <td>{{ ListUPS.Last.status }} ({{ ListUPS.Last.timestamp|date('Y-m-d H:i', "Europe/London") }})</td>
+                                            <td>{% if ListUPS.Last %} {{ ListUPS.Last.status }} ({{ ListUPS.Last.timestamp|date('Y-m-d H:i', "Europe/London") }}){% endif %}</td>
                                             <td><a href="{{ path('edit_ups', {'editId': ListUPS.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" aria-label="Edit"></span></a></td>
                                         </tr>
                                     {% endfor %}                           
