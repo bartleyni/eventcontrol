@@ -66,20 +66,6 @@ class UPS {
     {
         $this->events = new ArrayCollection();
     }
-    
-    /**
-     * Set events
-     *
-     * @param \AppBundle\Entity\event $event
-     *
-     * @return UPS
-     */
-    public function setEvents(\AppBundle\Entity\event $event = null)
-    {
-        $this->events = $event;
-
-        return $this;
-    }
 
     /**
      * Get events
