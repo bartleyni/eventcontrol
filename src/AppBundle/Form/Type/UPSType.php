@@ -55,7 +55,7 @@ class UPSType extends AbstractType
                 
             ->add('Events', EntityType::class, array(
                 'class' => 'AppBundle:event',
-                'label' => 'Event',
+                'label' => 'Events',
                 'multiple' => true,
                 'expanded' => true,
                 'attr' => array(
