@@ -105,7 +105,7 @@ class event {
     protected $event_last_weather_update;
     
     /**
-     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
+     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="events")
      *
      */
     protected $UPSs;
