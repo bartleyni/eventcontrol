@@ -116,7 +116,7 @@ class UPSController extends Controller
         
         $qb
             ->select('UPS.id, UPS.location, UPS.name, UPS.power')
-            ->from('AppBundle\Entity\UPS', 'ups')
+            ->from('AppBundle\Entity\UPS', 'UPS')
             ->orderBy('UPS.id', 'ASC')
             ;
         
