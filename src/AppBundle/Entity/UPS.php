@@ -55,7 +55,7 @@ class UPS {
      * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    protected $event;
+    protected $events;
     
     public function __toString()
     {
@@ -64,31 +64,55 @@ class UPS {
     
     public function __construct()
     {
-        $this->event = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
     
     /**
-     * Set event
+     * Set events
      *
      * @param \AppBundle\Entity\event $event
      *
      * @return UPS
      */
-    public function setEvent(\AppBundle\Entity\event $event = null)
+    public function setEvents(\AppBundle\Entity\event $event = null)
     {
-        $this->event = $event;
+        $this->events = $event;
 
         return $this;
     }
 
     /**
-     * Get event
+     * Get events
      *
      * @return \AppBundle\Entity\event
      */
-    public function getEvent()
+    public function getEvents()
     {
-        return $this->event;
+        return $this->events;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\event $events
+     *
+     * @return UPS
+     */
+    public function addEvents(\AppBundle\Entity\event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\event $events
+     */
+    public function removeEvents(\AppBundle\Entity\event $events)
+    {
+        $this->events->removeElement($events);
     }
     
     public function getName()
