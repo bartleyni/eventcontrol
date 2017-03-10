@@ -112,13 +112,13 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $UPSs = $em->getRepository('AppBundle\Entity\UPS');
+        $UPSs = $em->getRepository('AppBundle\Entity\UPS')->findAll();
         
         if($UPSs)
         {
             foreach ($UPSs as $key => $UPS)
             {
-                //$UPSs[$key]["Last"] = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($UPS);
+                $UPSs[$key]["Last"] = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($UPS);
             }
         }
                  
