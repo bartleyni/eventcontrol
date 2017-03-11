@@ -174,6 +174,7 @@ class UPS {
      */
     public function addEvents(\AppBundle\Entity\event $event)
     {
+        $event->addUPSs($this);
         $this->events[] = $event;
 
         return $this;
@@ -186,6 +187,7 @@ class UPS {
      */
     public function removeEvents(\AppBundle\Entity\event $event)
     {
+        $event->removeUPSs($this);
         $this->events->removeElement($event);
     }
 }
