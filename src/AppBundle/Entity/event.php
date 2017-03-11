@@ -108,13 +108,13 @@ class event {
      * @ORM\ManyToMany(targetEntity="UPS", inversedBy="events")
      * 
      */
-    protected $UPSs;
+    private $UPSs;
     
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="events")
      *
      */
-    protected $Users;
+    private $Users;
         
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
