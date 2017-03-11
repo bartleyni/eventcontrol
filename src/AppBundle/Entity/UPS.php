@@ -55,7 +55,7 @@ class UPS {
     //ORM\JoinColumn(name="event_id", referencedColumnName="id")
     
     /**
-     * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs")
      * 
      */
     private $events;
@@ -73,7 +73,9 @@ class UPS {
     /**
      * Get events
      *
-     * @return \AppBundle\Entity\event
+     * @return ArrayCollection|events[]
+     * 
+     * 
      */
     public function getEvents()
     {
@@ -177,9 +179,14 @@ class UPS {
      */
     public function addEvents(\AppBundle\Entity\event $event)
     {
-        $event->addUPSs($this);
-        $this->events[] = $event;
 
+        if ($this->events->contains($event)) {
+            return;
+        }
+
+        $this->events[] = $event;
+        $event->addUPSs($this);
+        
         return $this;
     }
 
@@ -190,7 +197,7 @@ class UPS {
      */
     public function removeEvents(\AppBundle\Entity\event $event)
     {
-        $event->removeUPSs($this);
         $this->events->removeElement($event);
+        $event->removeUPSs($this);
     }
 }

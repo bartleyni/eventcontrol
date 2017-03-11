@@ -106,7 +106,7 @@ class event {
     
     /**
      * @ORM\ManyToMany(targetEntity="UPS", inversedBy="events")
-     * @ORM\JoinColumn(name="UPS_id", referencedColumnName="id")
+     * 
      */
     protected $UPSs;
     
