@@ -55,7 +55,7 @@ class UPS {
     //ORM\JoinColumn(name="event_id", referencedColumnName="id")
     
     /**
-     * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs" cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs", cascade={"persist", "remove"})
      * 
      */
     private $events;
