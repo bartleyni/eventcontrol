@@ -78,7 +78,7 @@ class UPSController extends Controller
             $form->handleRequest($request);
         }
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
 //            foreach ($form['Events']->getData()->getValues() as $v) {
 //                $event = $em->getRepository('AppBundle:event')->find($v->getId());
