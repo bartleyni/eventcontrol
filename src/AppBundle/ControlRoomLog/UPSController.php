@@ -83,7 +83,7 @@ class UPSController extends Controller
             foreach ($form['Events']->getData()->getValues() as $v) {
                 $event = $em->getRepository('AppBundle:event')->find($v->getId());
                 if ($event) {
-                    $event->addUPSs($$ups);
+                    $event->addUPSs($ups);
                     $em->persist($event);
                 }
             }
