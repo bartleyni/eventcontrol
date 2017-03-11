@@ -63,6 +63,17 @@ class UPSType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             ))
+                
+            ->add('Events', CollectionType::class, array(
+                'class' => 'AppBundle:event',
+                'label' => 'Events',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+                'attr' => array(
+                    'class' => 'form-control checkbox'
+                )
+            ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
                     'formvalidate' => 'formvalidate',
