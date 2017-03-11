@@ -53,7 +53,7 @@ class UPS {
     
     /**
      * @ORM\ManyToMany(targetEntity="event", mappedBy="UPSs")
-     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
      */
     protected $events;
     
