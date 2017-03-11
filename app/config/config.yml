@@ -151,7 +151,8 @@ xiidea_easy_audit:
          AppBundle\Entity\security_log: ~
          AppBundle\Entity\lost_property: ~
          AppBundle\Entity\event_control_register: ~
-         
+         AppBundle\Entity\User: ~
+         AppBundle\Entity\UPS: ~
 
     #List all events you want to track  (Optional from v1.2.1 you can now use subscriber to define it)
     events :                                                   #Optional
