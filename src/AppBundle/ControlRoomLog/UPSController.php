@@ -42,6 +42,13 @@ class UPSController extends Controller
         
         if ($form->isSubmitted()) {
             
+            foreach ($form['Events']->getData()->getValues() as $v) {
+                $event = $em->getRepository('AppBundle:event')->find($v->getId());
+                if ($event) {
+                    $event->addUPSs($$ups);
+                    $em->persist($event);
+                }
+            }
             $em->persist($ups);
             $upsId = $ups->getId();
             $em->flush();
@@ -73,6 +80,14 @@ class UPSController extends Controller
 
         if ($form->isSubmitted()) {
 
+            foreach ($form['Events']->getData()->getValues() as $v) {
+                $event = $em->getRepository('AppBundle:event')->find($v->getId());
+                if ($event) {
+                    $event->addUPSs($$ups);
+                    $em->persist($event);
+                }
+            }
+            
             $em->persist($ups);
             $em->flush();
 
