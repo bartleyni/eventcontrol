@@ -60,6 +60,7 @@ class UPSType extends AbstractType
                 'expanded' => true,
                 'disabled' => false,
                 'by_reference' => false,
+                'mapped' => false,
                 'attr' => array(
                     'class' => 'form-control checkbox'
                 )
