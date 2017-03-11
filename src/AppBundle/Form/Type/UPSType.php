@@ -65,10 +65,7 @@ class UPSType extends AbstractType
             ))
                 
             ->add('Events', CollectionType::class, array(
-                'class' => 'AppBundle:event',
                 'label' => 'Events',
-                'multiple' => true,
-                'expanded' => true,
                 'by_reference' => false,
                 'attr' => array(
                     'class' => 'form-control checkbox'
