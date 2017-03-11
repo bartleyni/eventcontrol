@@ -58,9 +58,8 @@ class UPSType extends AbstractType
                 'label' => 'Events',
                 'multiple' => true,
                 'expanded' => true,
-                'disabled' => false,
+                'disabled' => true,
                 'by_reference' => false,
-                'mapped' => false,
                 'attr' => array(
                     'class' => 'form-control checkbox'
                 )
