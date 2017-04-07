@@ -19,11 +19,14 @@ use Doctrine\ORM\EntityRepository;
 
 class UPS_StatusRepository extends EntityRepository
 {
-    public function getLatestUPS($event)
+    public function getLatestUPS($event=Null)
     {
-        //$statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)');
-        $statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, status1.lineVoltage, status1.loadPercentage, status1.batteryVoltage, status1.timeLeft, ups.name, ups.location, ups.power, ups.id, event.id as eId FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups JOIN ups.events event WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS) AND event.id = :event')->setParameter('event', $event) ->getResult();
-        
+        if($event){
+            $statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, status1.lineVoltage, status1.loadPercentage, status1.batteryVoltage, status1.timeLeft, ups.name, ups.location, ups.power, ups.id, event.id as eId FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups JOIN ups.events event WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS) AND event.id = :event')->setParameter('event', $event) ->getResult();
+            
+        } else {
+            $statuses = $this->getEntityManager()->createQuery('SELECT status1.id, status1.status, status1.timestamp, status1.lineVoltage, status1.loadPercentage, status1.batteryVoltage, status1.timeLeft, ups.name, ups.location, ups.power, ups.id FROM AppBundle\Entity\UPS_Status status1 JOIN status1.UPS ups WHERE status1.timestamp=(SELECT MAX(status2.timestamp) FROM AppBundle\Entity\UPS_Status status2 WHERE status1.UPS=status2.UPS)') ->getResult();
+        }
         $now = new \DateTime();
         
         foreach ($statuses as $key => $status)
