@@ -36,7 +36,7 @@ class LEDController extends Controller
         
         $led_statuses['Constant'] = $em->getRepository('AppBundle\Entity\ControlRoomLED')->getLatestLED();
         $people_counter_status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
-        $UPS_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS('*');
+        $UPS_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS();
         
         $people_counter_status = true;
         
