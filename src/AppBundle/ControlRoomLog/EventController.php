@@ -143,7 +143,7 @@ class EventController extends Controller
                 }
             }
 
-            $not_venues = $em->getRepository('AppBundle\Entity\venue_event')->getEventVenueNotInList($editId, $event_venues)
+            $not_venues = $em->getRepository('AppBundle\Entity\venue_event')->getEventVenueNotInList($editId, $event_venues);
 
             if($not_venues)
             {
