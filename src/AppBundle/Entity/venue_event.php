@@ -37,7 +37,7 @@ class venue_event {
      */
     protected $venue_id;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $doors;
 
