@@ -34,7 +34,17 @@ class EventType extends AbstractType
     {
         $em = $options['em'];
         $eId = $options['event_id'];
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('venue')
+            ->from('AppBundle\Entity\venue', 'venue')
+            ->leftJoin('AppBundle\Entity\venue_event', 'venue_event', 'WITH', 'venue_event.venue_id = venue.id')
+            ->where('venue_event.event_id = :eventId')
+            ->setParameter('eventId', $eId)
+        ;
 
+        $query = $qb->getQuery();
+        $venues = $query->getResult();
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Event Name',
@@ -177,6 +187,18 @@ class EventType extends AbstractType
                 )
             ))
             */
+         ->add('event_venues', EntityType::class, array(
+             'label' => 'Event Venue Assignment',
+             'mapped' => false,
+             'class' => 'AppBundle\Entity\venue',
+             'multiple' => true,
+             'expanded' => true,
+             'required' => false,
+             'data' => $venues,
+             'attr' => array(
+                 'class' => 'form-control checkbox',
+             )
+         ))
             ->setMethod('POST')
         ;
     }
