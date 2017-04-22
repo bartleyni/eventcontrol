@@ -2,6 +2,7 @@
 
 namespace AppBundle\ControlRoomLog;
 
+use AppBundle\Entity\venue_event;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,6 +120,40 @@ class EventController extends Controller
         }
 
         if ($form->isSubmitted()) {
+
+            $event_venues = $form['event_venues']->getData();
+
+            if($event_venues)
+            {
+                foreach ($event_venues as $key => $venue_id)
+                {
+
+                    $venue_event = $em->getRepository('AppBundle\Entity\venue_event')->findOneBy(array('venue_id' => $venue_id, 'event_id' => $editId));
+                    $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venue_id));
+
+                    if(!$venue_event)
+                    {
+                        $venue_event = new venue_event();
+                    }
+
+                    $venue_event->setVenueId($venue);
+                    $venue_event->setEventId($event);
+                    $em->persist($venue_event);
+                    $em->flush();
+                }
+            }
+
+            $not_venues = $em->getRepository('AppBundle\Entity\venue_event')->getEventVenueNotInList($editId, $event_venues)
+
+            if($not_venues)
+            {
+                foreach ($not_venues as $not_venue)
+                {
+                    $em->remove($not_venue);
+                    $em->flush();
+                }
+            }
+
             // remove the relationship between the location and the Event
             foreach ($originalLocations as $location) {
                 if (false === $event->getLocations()->contains($location)) {
