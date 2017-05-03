@@ -118,7 +118,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         {
             $eventId=$event->getId();
         } else {
-            $eventId = 0;
+            $eventId = Null;
         }
 
         return $eventId;
@@ -134,7 +134,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         {
             $eventId=$event->getId();
         } else {
-            $eventId = 0;
+            $eventId = Null;
         }
 
         return $eventId;
