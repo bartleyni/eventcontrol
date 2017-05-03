@@ -50,7 +50,7 @@
 <div class="row">
     <h4>Log Functions</h4>
 </div>
-{% if activeEventId(app.user.id) != 0 %}
+{% if activeEventId(app.user.id) != Null %}
     {% if is_granted('ROLE_USER') %}
         <a href="{{ path('new_entry') }}" class="btn btn-primary btn-block" style="margin-bottom:4px;white-space: normal;" role="button">
             <div class="row" data-toggle="tooltip" data-placement="right" title="ctrl-e">
