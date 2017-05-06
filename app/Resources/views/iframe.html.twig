@@ -16,7 +16,12 @@ Event Control
             {% endif %}
             {% if target is defined %}
                 </a>
-            {% endif %}    
+            {% endif %}
+            {% if iframeDynamic is defined %}
+                <script type="text/javascript">
+                    $('#iframe').attr('src',{{ iframeDynamic|raw }});  
+                </script>
+            {% endif %}
         {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}

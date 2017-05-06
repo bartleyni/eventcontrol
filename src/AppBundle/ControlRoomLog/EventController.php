@@ -379,12 +379,14 @@ class EventController extends Controller
         $operatorId = $usr->getId();
         
         $target = "http://premium.raintoday.co.uk/mobile";
-        $iframe = '<iframe id="iframe_radar" name="iframe_radar" src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+        //$iframe = '<iframe id="iframe_radar" name="iframe_radar" src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+        $iframe = '<iframe id="iframe" name="iframe_radar" src="" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
+        $iframeDynamic = 'http://premium.raintoday.co.uk/mobile';
         $data = "u: weather@nb221.com p:";
         $username = "weather@nb221.com";
         $password = "";
         
-        return $this->render('iframe.html.twig', array('iframe' => $iframe, 'target' => $target, 'iframe_username' => $username, 'iframe_password' => $password, 'data' => $data));
+        return $this->render('iframe.html.twig', array('iframeDynamic' => $iframeDynamic, 'iframe' => $iframe, 'target' => $target, 'iframe_username' => $username, 'iframe_password' => $password, 'data' => $data));
     }
 }
 
