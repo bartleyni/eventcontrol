@@ -62,6 +62,8 @@ security:
         - { path: ^/Alert/*, roles: ROLE_VIEW, requires_channel: https }
         #- { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/fieldUser, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/user/setEvent/*, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/user/setEvent, roles: ROLE_USER, requires_channel: https }
         - { path: ^/user/, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/user, roles: ROLE_ADMIN, requires_channel: https }
         - { path: ^/user/*, roles: ROLE_ADMIN, requires_channel: https }
