@@ -151,6 +151,7 @@ class event {
     
     /**
     * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
+    * @ORM\OrderBy({"locationText" = "ASC"})
     * @Assert\Valid
     * @Assert\Collection(
     *     fields = {
