@@ -73,6 +73,8 @@ class edit_entry_form extends Controller
         
         $activeEvent = $usr->getSelectedEvent();
         
+        $logFiles = $em->getRepository('AppBundle\Entity\logFile')->findBy(array('log_entry' => $id));
+        
         if($activeEvent != $entry->getEvent())
         {
             throw $this->createAccessDeniedException();
@@ -246,7 +248,7 @@ class edit_entry_form extends Controller
         {
             //return $this->redirect('../log/');
         }
-        return $this->render('editForm.html.twig', array('entry'=> $entry, 'overlayFileName' =>$overlay, 'eventLat'=> $eventLat, 'eventLong'=> $eventLong, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed, 'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
+        return $this->render('editForm.html.twig', array('entry'=> $entry, 'logFiles' =>$logFiles, 'overlayFileName' =>$overlay, 'eventLat'=> $eventLat, 'eventLong'=> $eventLong, 'NEbound' => $NEbound,'SWbound' => $SWbound, 'medicalTab' => $medicalTab, 'securityTab' => $securityTab, 'generalTab' => $generalTab, 'lostTab' => $lostTab, 'medicalClosed' => $medicalClosed, 'securityClosed' => $securityClosed, 'lostClosed' => $lostClosed, 'generalClosed' => $generalClosed, 'log_entry' => $form->createView(),'general_entry' => $generalForm->createView(),'medical_entry' => $medicalForm->createView(),'security_entry' => $securityForm->createView(),'lost_entry' => $lostPropertyForm->createView(),));
     }
     
     /**
