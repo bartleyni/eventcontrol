@@ -125,7 +125,6 @@ Control Room Log Edit
                                                     <div class="form-group">
                                                         {{ form_errors(log_entry.log_supportFile) }}
                                                         {{ form_widget(log_entry.log_supportFile) }}
-                                                        {{ logFiles }}
 							{{ dump(logFiles) }}
                                                         {% for file in logFiles %}
                                                             {{ dump(file.file) }}
