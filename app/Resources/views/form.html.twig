@@ -113,10 +113,14 @@ Control Room Log New Entry
         });
         
         var locationOptions = {
-            url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
+            url: function(phrase) {
+	    	phraseURL = "{{ path('location_lookup', {'location': "phrase"}) }}"
+	    	phraseURL = phraseURL.replace("phrase", phrase);
+		return phraseURL;
+		},
             getValue: "location",
             list: {
-		maxNumberOfElements: 5,
+		maxNumberOfElements: 6,
 		match: {
 			enabled: true
 		}
@@ -124,10 +128,14 @@ Control Room Log New Entry
         };
 
         var reportedOptions = {
-            url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
+            url: function(phrase) {
+	    	phraseURL = "{{ path('reported_by_lookup', {'reported': "phrase"}) }}"
+	    	phraseURL = phraseURL.replace("phrase", phrase);
+		return phraseURL;
+		},
             getValue: "reported_by",
             list: {
-		maxNumberOfElements: 5,
+		maxNumberOfElements: 6,
 		match: {
 			enabled: true
 		}
