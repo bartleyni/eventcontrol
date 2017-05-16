@@ -82,7 +82,7 @@ class LogType extends AbstractType
                 )
             )) 
             ->add('log_supportFile', VichFileType::class, array(
-                'label' => 'Supporting Files',
+                'label' => 'Supporting File',
                 'required' => false,
                 'attr' => array(
                     'class' => 'form-control'
