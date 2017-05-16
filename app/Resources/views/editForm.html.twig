@@ -134,6 +134,7 @@ Control Room Log Edit
                                     </div>
                                     <br>
                                 {% endif %}
+				{{ dump(logFiles) }}
 			    	{% for file in logFiles %}
 					{{ file.file }}
 					{{ dump(file) }}
