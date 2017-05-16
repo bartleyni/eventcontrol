@@ -314,7 +314,7 @@ Control Room Log Edit
         var locationOptions = {
             url: function(phrase) {
 	    	phraseURL = "{{ path('location_lookup', {'location': "phrase"}) }}"
-	    	phraseWord = phraseURL.replace("phrase", phrase);
+	    	phraseURL = phraseURL.replace("phrase", phrase);
 		return phraseURL;
 	},
             getValue: "location",
