@@ -136,6 +136,7 @@ Control Room Log Edit
                                 {% endif %}
 			    	{% for file in logFiles %}
 					{{ file.file }}
+					{{ dump(file) }}
 					{{ file.path }}
 			    	{% endfor %}
                             <div id="submit_button">
