@@ -316,7 +316,7 @@ Control Room Log Edit
 	    	phraseURL = "{{ path('location_lookup', {'location': "phrase"}) }}"
 	    	phraseURL = phraseURL.replace("phrase", phrase);
 		return phraseURL;
-	},
+		},
             getValue: "location",
             list: {
 		maxNumberOfElements: 5,
@@ -327,7 +327,11 @@ Control Room Log Edit
         };
 
         var reportedOptions = {
-            url: function(phrase) {return "{{ path('reported_by_lookup', {'reported': phrase}) }}";},
+            url: function(phrase) {
+	    	phraseURL = "{{ path('reported_by_lookup', {'reported': "phrase"}) }}"
+	    	phraseURL = phraseURL.replace("phrase", phrase);
+		return phraseURL;
+		},
             getValue: "reported_by",
             list: {
 		maxNumberOfElements: 5,
