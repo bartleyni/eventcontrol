@@ -126,8 +126,8 @@ Control Room Log Edit
                                                         {{ form_errors(log_entry.log_supportFile) }}
                                                         {{ form_widget(log_entry.log_supportFile) }}
                                                         {% for file in logFiles %}
-                                                            {{ dump(file.file) }}
-                                                            {{ dump(file.path) }}
+                                                            {{ file.file }}
+                                                            {{ file.path }}
                                                         {% endfor %}
                                                     </div>
                                                 </div>
