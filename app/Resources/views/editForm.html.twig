@@ -312,7 +312,11 @@ Control Room Log Edit
         });
         //location lookup and reported by bit goes here
         var locationOptions = {
-            url: function(phrase) {return "{{ path('location_lookup', {'location': phrase}) }}";},
+            url: function(phrase) {
+	    	phraseURL = "{{ path('location_lookup', {'location': "phrase"}) }}"
+	    	phraseWord = phraseURL.replace("phrase", phrase);
+		return phraseURL;
+	},
             getValue: "location",
             list: {
 		maxNumberOfElements: 5,
