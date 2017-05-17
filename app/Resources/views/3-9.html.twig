@@ -1,12 +1,14 @@
 <div class="page-header-push">
 </div>
 <div class="container-fluid">
-    <div class="col-sm-2 col-md-2 col-xs-6 sidebar">
-        {% block sidebar %}{% endblock %}
-    </div>
-    <div class="col-xs-12 col-sm-10 col-md-10 content">
-        {% block content %}{% endblock %}
-    </div>
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-sm-2 col-md-2 col-xs-6 sidebar sidebar-offcanvas">
+            {% block sidebar %}{% endblock %}
+        </div>
+        <div class="col-xs-12 col-sm-10 col-md-10 content">
+            {% block content %}{% endblock %}
+        </div>
+    </div><!--/.row-->
 </div>
 <!-- Modal -->
 <div class="modal fade" id="mainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
