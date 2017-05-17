@@ -168,6 +168,10 @@
     #HeaderClock{font-size: 10px;}
 }
 
+  #sidebarShow {
+    visibility: hidden;
+  }
+
 /* collapsed sidebar styles */
 @media screen and (max-width: 767px) {
   .row-offcanvas {
@@ -196,13 +200,16 @@
     top: 0;
     width: 46%;
   }
+  #sidebarShow {
+    visibility: visible;
+  }
 }
 
 </style>
 {% endblock %}
 
 {% block headertop %}
-    <button type="button" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
+    <button type="button" id="sidebarShow" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
     </button>
     Event Control
