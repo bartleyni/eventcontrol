@@ -209,12 +209,13 @@
 {% block hiddenheadertop %}
     <div class="container-fluid">
         <div class="col-xs-12 col-md-5">
-            <button type="button" class="navbar-toggle">
+            <button type="button" id="navbar-toggle">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 hello
             </button>
+            hello
             <h1> Event Control</h1>
         </div>
         <div class="col-md-3 col-xs-12">
@@ -424,12 +425,6 @@
                 }
                 AlertCheck();
             }
-
-$(document).ready(function() {
-
-});
-
-
             $(document).ready(function()
             {
                 $('[data-toggle=offcanvas]').click(function() {
