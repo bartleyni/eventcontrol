@@ -209,9 +209,6 @@
 {% endblock %}
 
 {% block headertop %}
-    <button type="button" id="sidebarShow" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
-    </button>
     Event Control
 {% endblock %}
 
@@ -230,7 +227,10 @@
         </div>
         <div class="col-md-4 col-xs-12">
             {% if app.user %}
-                <h1>
+                <h1>    
+                    <button type="button" id="sidebarShow" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </button>
                     <div id="HeaderClock">
                     </div>
                 </h1>
