@@ -170,7 +170,6 @@
 
   #sidebarShow {
     visibility: collapse;
-
   }
   
   #sidebarShowDiv {
@@ -178,7 +177,7 @@
   }
 
 /* collapsed sidebar styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -207,7 +206,6 @@
   }
   #sidebarShow {
     visibility: visible;
-    padding-bottom: 5px;
   }
 }
 
@@ -243,7 +241,7 @@
         var alertCounter = 0;
         
         function resizeHeader() {
-            $(".page-header-push").height($(".page-header").height()+20);
+            $(".page-header-push").height($(".page-header").height()+5);
         }
         $(document).ready(resizeHeader);
         $(window).resize(resizeHeader);
