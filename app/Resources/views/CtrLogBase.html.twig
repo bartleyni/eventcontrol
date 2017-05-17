@@ -30,16 +30,17 @@
     <div class="page-header">
         <div class="row">
             <h1 class="col-md-5 text-nowrap">
+                <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                </button>
                 {% block headertop %}{% endblock %}
                 <small>
                     {% block headerbottom %}{% endblock %}
                 </small>
             </h1>
-            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-                 <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-                 <span class="icon-bar"></span>
-            </button>
+
                 <h4 class="col-md-3 text-center"><br>
                     <div id="HeaderWeather" class="alert alert-warning" role="alert" style="display: none;">
                     </div>
