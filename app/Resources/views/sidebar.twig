@@ -8,7 +8,7 @@
         </a>
         <br>
         <a href="{{ path('event_weather_radar') }}"></a>
-        <a href="javascript:window.open('http://premium.raintoday.co.uk/mobile','Weather radar & forecast','width=800,height=800')">
+        <a href="javascript:window.open('http://premium.raintoday.co.uk/mobile','Weather radar & forecast','width=800,height=600')">
             <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
         </a>
         {% if is_granted('ROLE_FIELD') %}
