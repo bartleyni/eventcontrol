@@ -11,8 +11,9 @@
                 <strong>User:</strong> {{ app.user.username }}
         {% endif %}
         <br>
-        <a href="{{ path('event_weather_radar') }}"></a>
-        <a href="javascript:window.open('http://premium.raintoday.co.uk/mobile','Weather radar & forecast','width=800,height=600')">
+        <!--<a href="{{ path('event_weather_radar') }}"></a>-->
+        <!---<a href="javascript:window.open('http://premium.raintoday.co.uk/mobile','Weather radar & forecast','width=800,height=600')">
+        -->
             <div id="SidebarWeather"><strong>Weather:</strong> {{ activeEventWeather(app.user.id) }}</div>
         </a>
         {% if is_granted('ROLE_FIELD') %}
@@ -296,12 +297,31 @@
 <br>
 <br>
 {% include 'copyright.html.twig' %}
+
+<form id="WeatherForm" method="post" action="http://premium.raintoday.co.uk/mobile" target="TheWindow">
+<input type="hidden" name="email_address" value="" />
+<input type="hidden" name="password" value="" />
+</form>
 <script type="text/javascript">
     $(document).ready(function() {
         sidebarPoll();
         updateWeather();
         setInterval('updateWeather()', 30000);
         userLocate();
+    });
+    
+    function Post(name,password) {
+        var f = document.getElementById('WeatherForm');
+        f.email_address.value = name;
+        f.password.value = password;
+        window.open('', 'TheWindow');
+        f.submit();
+        } 
+    
+    Post("username","password");
+    
+    $('#SidebarWeather').click(function(){
+        Post("rain","password");
     });
     
     function setActiveEvent(sel) {
@@ -312,15 +332,15 @@
     
     $('#LEDBtn1').click(function(){
         $.post( "{{ path('LED_mode', {'mode': "Working"}) }}" );
-        });
+    });
         
     $('#LEDBtn2').click(function(){
         $.post( "{{ path('LED_mode', {'mode': "Control"}) }}" );
-        });
+    });
         
     $('#LEDBtn3').click(function(){
         $.post( "{{ path('LED_mode', {'mode': "Off"}) }}" );
-        });
+    });
     
     
     var i = 0;
