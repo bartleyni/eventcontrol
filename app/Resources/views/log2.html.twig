@@ -21,7 +21,6 @@ Control Room Log
                                     <tr>
                                         <th>Log Time</th>
                                         <th>Log Title</th>
-                                        <th>Ref</th>
                                         <th>Location</th>
                                         <th>Reported By</th>
                                         <th><br></th>
@@ -46,7 +45,7 @@ Control Room Log
                                                 {% endif %}
                                             </td>
                                             <td><a href="{{ path('edit_entry', {'id': log.id}) }}">{{ log.log_blurb }}</a></td>
-                                            <td>{{ log.ref }}</td>
+                                            
                                             <td>{{ log.location }}</td>
                                             <td>{{ log.reported_by }}</td>
                                             <td>
