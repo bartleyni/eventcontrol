@@ -39,8 +39,8 @@ class log_entries {
     
     /**
      * @ORM\Column(type="integer")
-     * @GeneratedValue(strategy="SEQUENCE")
-     * @SequenceGenerator(sequenceName="log_ref", initialValue=200, allocationSize=1)
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\SequenceGenerator(sequenceName="log_ref", initialValue=200, allocationSize=1)
      */
     protected $ref;
     
