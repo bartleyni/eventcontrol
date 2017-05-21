@@ -146,7 +146,7 @@ class edit_entry_form extends Controller
                 'method' => 'POST',
             ));
         } else {
-            $generalForm = $this->createForm(nGeneralType::class, $general, array(
+            $generalForm = $this->createForm(GeneralType::class, $general, array(
                 'method' => 'POST',
                 'disabled' => true,
             ));
