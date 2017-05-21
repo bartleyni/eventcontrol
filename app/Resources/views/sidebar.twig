@@ -392,6 +392,16 @@
                 {
                     var statusString = "UPS" + ups.id + ": "+ ups.status;
                 }
+                
+                if (ups.status == "Mains")
+                {
+                    $('#ups-'+ups.id).removeClass("flash");
+                }
+                else
+                {
+                    $('#ups-'+ups.id).addClass("flash");
+                }
+                
                 //if ($('#ups-'+ups.id).html().split(' (')[0] !== statusString.split(' (')[0])
                 if (lastStatus[ups.id] != ups.status)
                 {
