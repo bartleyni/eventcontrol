@@ -282,8 +282,8 @@ class EventController extends Controller
                 }
                 $warning = '';
                 
-                if ($data['alerts']){
-                    
+                //if ($data['alerts']){
+                if (array_key_exists('alerts', $data)){   
                     $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
                     if($last_weather_warning_update){
                         $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
