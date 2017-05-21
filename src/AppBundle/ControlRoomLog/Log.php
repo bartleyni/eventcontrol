@@ -80,13 +80,6 @@ class Log extends Controller
         $event = $usr->getSelectedEvent();
         $em->flush();
         
-        if($user_event)
-        {
-            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(
-            array('id' => $eId));
-            $eId = $user_event->getEventId();
-        }
-        
         if ($event)
         {
             $eventId = $event->getId();
