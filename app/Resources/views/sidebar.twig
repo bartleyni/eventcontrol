@@ -3,9 +3,13 @@
         {{ activeEventName(app.user.id) }}
     </div>
     <div class="panel-body">
-        <a href="{{ path('user_update') }}">
-            <strong>User:</strong> {{ app.user.username }}
-        </a>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('user_update') }}">
+                <strong>User:</strong> {{ app.user.username }}
+            </a>
+        {% else %}
+                <strong>User:</strong> {{ app.user.username }}
+        {% endif %}
         <br>
         <a href="{{ path('event_weather_radar') }}"></a>
         <a href="javascript:window.open('http://premium.raintoday.co.uk/mobile','Weather radar & forecast','width=800,height=600')">
@@ -136,11 +140,13 @@
             </div>
         {# </button> #}
     </a>
-    <button type="button" class="btn btn-default dropdown-toggle col-sm-2 col-xs-2 col-md-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        &nbsp;<span class="caret"></span>&nbsp;
-        <span class="sr-only">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
+    {% if is_granted('ROLE_USER') %}
+        <button type="button" class="btn btn-default dropdown-toggle col-sm-2 col-xs-2 col-md-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            &nbsp;<span class="caret"></span>&nbsp;
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+    {% endif %}
         {% if is_granted('ROLE_USER') %}
                 <li>
                     <a href="{{ path('field_user_toggle') }}" style="margin-bottom:4px;white-space: normal;" role="button">
@@ -208,7 +214,9 @@
                 </a>
             </li>
         {% endif %}
-    </ul>
+    {% if is_granted('ROLE_USER') %}
+        </ul>
+    {% endif %}
 </div>
 <div class="btn-group btn-block">
     <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
