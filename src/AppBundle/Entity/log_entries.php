@@ -38,8 +38,8 @@ class log_entries {
     protected $id;
     
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $ref;
     
