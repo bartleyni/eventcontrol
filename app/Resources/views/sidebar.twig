@@ -18,7 +18,7 @@
         {% endif %}
     </div>
 </div>
-{% if is_granted('ROLE_USER') %}
+{% if is_granted('ROLE_VIEW') %}
     {% if (activeEvents(app.user.id)|length > 1) or (activeEventId(app.user.id) == 0) %}
         <div class="form-group">
             <select id="event" class="form-control" onchange="setActiveEvent(this)">
