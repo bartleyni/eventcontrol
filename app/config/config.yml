@@ -45,9 +45,9 @@ twig:
     form_themes:
         - 'VichUploaderBundle:Form:fields.html.twig'
     globals:
-        gmapsKey: "%gmaps.APIkey%"
-        weatherUser: "%RainToday.username%"
-        weatherPass: "%RainToday.password%"
+        gmapsKey: "%gmaps_apikey%"
+        weatherUser: "%raintoday_username%"
+        weatherPass: "%raintoday_password%"
 
 # Assetic Configuration
 assetic:
