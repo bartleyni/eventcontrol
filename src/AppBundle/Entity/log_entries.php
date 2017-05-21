@@ -38,9 +38,7 @@ class log_entries {
     protected $id;
     
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="log_ref", initialValue=200, allocationSize=1)
+     * @ORM\Column(type="integer", nullable=true, columnDefinition="INT AUTO_INCREMENT UNIQUE")
      */
     protected $ref;
     
