@@ -321,7 +321,7 @@
     Post("username","password");
     
     $('#SidebarWeather').click(function(){
-        Post("rain","password");
+        Post("{{ weatherUser }}","{{ weatherPass }}");
     });
     
     function setActiveEvent(sel) {
