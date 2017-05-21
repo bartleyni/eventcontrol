@@ -241,13 +241,9 @@ class EventController extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        $em = $this->getDoctrine()->getManager();
-        
+        $em = $this->getDoctrine()->getManager();    
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $operatorId = $usr->getId();
-
-        $event = $usr->getSelectedEvent();
-        
+        $event = $usr->getSelectedEvent();      
         $now = new \DateTime();
         
         $last_weather_update = $event->getEventLastWeatherUpdate();
@@ -349,10 +345,8 @@ class EventController extends Controller
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
-        
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $operatorId = $usr->getId();
 
         $event = $usr->getSelectedEvent();
         
@@ -376,8 +370,7 @@ class EventController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $operatorId = $usr->getId();
-        
+
         $target = "http://premium.raintoday.co.uk/mobile";
         //$iframe = '<iframe id="iframe_radar" name="iframe_radar" src="http://premium.raintoday.co.uk/mobile" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
         $iframe = '<iframe id="iframe" name="iframe_radar" src="" frameborder=0 scrolling=no height="600px" class="col-md-12 embed-responsive-item" ></iframe>';
