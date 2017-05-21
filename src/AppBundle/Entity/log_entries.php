@@ -38,6 +38,13 @@ class log_entries {
     protected $id;
     
     /**
+     * @ORM\Column(type="integer")
+     * @GeneratedValue(strategy="SEQUENCE")
+     * @SequenceGenerator(sequenceName="log_ref", initialValue=200, allocationSize=1)
+     */
+    protected $ref;
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $log_timestamp;
@@ -131,6 +138,16 @@ class log_entries {
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Get ref
+     *
+     * @return integer
+     */
+    public function getRef()
+    {
+        return $this->ref;
     }
 
     /**
