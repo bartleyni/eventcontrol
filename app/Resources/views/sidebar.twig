@@ -428,9 +428,9 @@
                     $('#venue-' + venue.id).html(venue.name + ": " + count);
                     if (venue.status === "false") {
                         //console.log("old!");
-                        $('#venue-' + venue.id).addClass("people_counting_old");
+                        $('#venue-' + venue.id).addClass("flash");
                     } else {
-                        $('#venue-' + venue.id).removeClass("people_counting_old");
+                        $('#venue-' + venue.id).removeClass("flash");
                     }
                 }
             });
