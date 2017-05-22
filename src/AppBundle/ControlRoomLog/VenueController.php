@@ -149,7 +149,7 @@ class VenueController extends Controller
      * @Route("/venue/event/{id}", name="venue_event_json_data");
      *
      */
-    public function venue_event_json_data()
+    public function venue_event_json_data($id)
     {
         $em = $this->getDoctrine()->getManager();
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
