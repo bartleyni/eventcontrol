@@ -26,6 +26,7 @@ class venueRepository extends EntityRepository
     
     public function getEventVenues($eventId)
     {
+        $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
 
         $query = $this->getEntityManager()
