@@ -50,6 +50,7 @@ security:
     access_control:
         - { path: ^/peoplecounting/slack_occupancy/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/camera_count/newdata/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/venue/jsondata, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/update/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/UPS/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/LED/status, roles: IS_AUTHENTICATED_ANONYMOUSLY }
