@@ -117,18 +117,6 @@
         <h4>Status</h4>
     </div>
     {% include 'PeopleCountingModule.html.twig' %}
-    {# 
-
-
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                Current Occupancy
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item" id="0">Purchase this People Counting Module now for the Low Low Price of $19.99 per hour and receive your free copy of People Counting Magazine.</li>
-            </ul>
-        </div>
-       #}
     {% include 'UPSModule.html.twig' %}
 {% endif %}
 <div class="row">
@@ -163,7 +151,6 @@
                         </div>
                     </a>
                 </li>
-            {% if activeEventId(app.user.id) != 0 %}
                 <li>
                     <a href="{{ path('signin') }}" style="margin-bottom:4px;white-space: normal;" role="button">
                         <div class="row">
@@ -178,7 +165,6 @@
                         </div>
                     </a>
                 </li>
-            {% endif %}
             <li>
                 <a href="{{ path('peoplecounting') }}" tyle="margin-bottom:4px;white-space: normal;" role="button">
                     <div class="row">
