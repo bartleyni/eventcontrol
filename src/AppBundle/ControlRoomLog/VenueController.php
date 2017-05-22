@@ -152,7 +152,6 @@ class VenueController extends Controller
     public function venue_event_json_data()
     {
         $em = $this->getDoctrine()->getManager();
-        $usr = $this->get('security.token_storage')->getToken()->getUser();
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
 
         foreach ($venue_event as $key => $value) {
