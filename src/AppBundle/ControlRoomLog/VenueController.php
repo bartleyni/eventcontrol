@@ -96,6 +96,16 @@ class VenueController extends Controller
         return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
 
+     /**
+     * @Route("/venue/skew/{key}/{venue}/{in}/{out}", name="venue_skew");
+     *
+     */
+    public function venueSkew($venue, $in, $out)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        
+    }
+    
     /**
      * @Route("/venue/doors/{id}", name="venue_doors");
      *

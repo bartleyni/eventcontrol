@@ -10,6 +10,9 @@ parameters:
     log_files_directory: '%kernel.root_dir%/../media/logFiles'
     overlay_directory: '%kernel.root_dir%/../media/overlay'
     log_support_directory: '%kernel.root_dir%/../media/log_support'
+    ups_status_key: '%ups_status_key%'
+    people_count_key: '%people_count_key%'
+    dark_sky_key: '%dark_sky_key%'
 
 framework:
     #esi:             ~
