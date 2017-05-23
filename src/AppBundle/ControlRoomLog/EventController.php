@@ -265,7 +265,7 @@ class EventController extends Controller
 
             //$latlong = "51.379551,-2.325717";
             $latlong = $event->getEventLatLong();
-            $key = $this->getParameter('dark_sky_key');
+            $key = $this->getParameter('ds_key');
             $url = 'https://api.darksky.net/forecast/'.$key.'/'.$latlong.'?units=uk2&exclude=hourly,daily';
             
             $ch = curl_init();
