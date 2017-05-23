@@ -100,9 +100,13 @@ class VenueController extends Controller
      * @Route("/venue/skew/{key}/{venue}/{in}/{out}", name="venue_skew");
      *
      */
-    public function venueSkew($venue, $in, $out)
+    public function venueSkew($key, $venue, $in, $out)
     {   
-        $em = $this->getDoctrine()->getManager();
+        $lookup_key = $this->getParameter('pc_key');
+        if ($lookup_key == $key){
+            $em = $this->getDoctrine()->getManager();
+        }
+        
         
     }
     
@@ -156,37 +160,47 @@ class VenueController extends Controller
     }
     
     /**
-     * @Route("/venue/event/{id}", name="venue_event_json_data");
+     * @Route("/venue/event/{key}/{id}", name="venue_event_json_data");
      *
      */
-    public function venue_event_json_data($id)
+    public function venue_event_json_data($key, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
+        $lookup_key = $this->getParameter('pc_key');
+        if ($lookup_key == $key){
+        
+            $em = $this->getDoctrine()->getManager();
+            $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
 
-        foreach ($venue_event as $key => $value) {
-            $venues[$key]['id'] = $value['venue_id']['id'];
-            $venues[$key]['name'] = $value['venue_id']['name'];
-            $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
-            $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['venue_id']['id']);
-            if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
-            $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
-            if ($status) {   $venues['people_counting_status'] = "true"; }else{  $venues['people_counting_status'] = "false"; }
-        }
+            foreach ($venue_event as $key => $value) {
+                $venues[$key]['id'] = $value['venue_id']['id'];
+                $venues[$key]['name'] = $value['venue_id']['name'];
+                $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
+                $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['venue_id']['id']);
+                if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
+                $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
+                if ($status) {   $venues['people_counting_status'] = "true"; }else{  $venues['people_counting_status'] = "false"; }
+            }
 
-        if ($venues)
-        {
-            $response = new JsonResponse();
-            $response->setData($venues);
+            if ($venues)
+            {
+                $response = new JsonResponse();
+                $response->setData($venues);
+
+            } else {
+                $response = new Response();
+                $response->setContent('No data');
+                $response->headers->set('Content-Type', 'text/plain');
+                $response->setStatusCode(Response::HTTP_NOT_FOUND);
+                $response->send();
+            }
 
         } else {
-            $response = new Response();
-            $response->setContent('Hello World');
-            $response->headers->set('Content-Type', 'text/plain');
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-            $response->send();
+                $response = new Response();
+                $response->setContent('Unauthorised Access');
+                $response->headers->set('Content-Type', 'text/plain');
+                $response->setStatusCode(Response::HTTP_NOT_FOUND);
+                $response->send();
         }
-
         return $response;
     }
 
