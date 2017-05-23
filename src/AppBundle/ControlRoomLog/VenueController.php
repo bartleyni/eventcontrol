@@ -66,7 +66,7 @@ class VenueController extends Controller
 
             $venue_camera = new venue_camera();
             $venue_camera->setVenueId($venue);
-            $form = $this->createForm(new VenueCameraType(), $venue_camera);
+            $form = $this->createForm(VenueCameraType::class, $venue_camera);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
         $skew = new skew();
