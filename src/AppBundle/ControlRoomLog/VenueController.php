@@ -97,17 +97,35 @@ class VenueController extends Controller
     }
 
      /**
-     * @Route("/venue/skew/{key}/{venue}/{in}/{out}", name="venue_skew");
+     * @Route("/venue/skew/{key}/{venueId}/{in}/{out}", name="venue_skew");
      *
      */
-    public function venueSkew($key, $venue, $in, $out)
+    public function venueSkew($key, $venueId, $in, $out)
     {   
         $lookup_key = $this->getParameter('pc_key');
         if ($lookup_key == $key){
             $em = $this->getDoctrine()->getManager();
+            $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venueId));
+            $skew = new skew();
+            $skew->setVenueId($venue);
+            $skew->setSkewIn($in);
+            $skew->setSkewOut($out);
+            $em->persist($skew);
+            $em->flush();
+            
+            $response = new Response();
+            $response->setContent('Updated');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            $response->send();
+        } else {
+            $response = new Response();
+            $response->setContent('Unauthorised Access');
+            $response->headers->set('Content-Type', 'text/plain');
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+            $response->send();
         }
-        
-        
+        return $response;
     }
     
     /**
