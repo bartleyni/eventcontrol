@@ -176,12 +176,12 @@ class UPSController extends Controller
     }
     
         /**
-     * @Route("/UPS/json/{key]/{event_id}", name="UPS_json_status");
+     * @Route("/UPS/json/{key}/{event_id}", name="UPS_json_status");
      * 
      */
     public function UPSjsonAction($key, $event_id = null)
     {
-            $lookup_key = $this->getParameter('pc_key');
+            $lookup_key = $this->getParameter('ups_key');
             if ($lookup_key == $key){
                 $em = $this->getDoctrine()->getManager();
 
