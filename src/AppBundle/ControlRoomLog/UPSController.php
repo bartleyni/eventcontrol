@@ -159,8 +159,6 @@ class UPSController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        //$event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event_id));
-        
         $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS($event_id);
         
         if ($ups_statuses)
@@ -173,6 +171,39 @@ class UPSController extends Controller
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
         }
+        
+        return $response;
+    }
+    
+        /**
+     * @Route("/UPS/json/{key]/{event_id}", name="UPS_json_status");
+     * 
+     */
+    public function UPSjsonAction($key, $event_id = null)
+    {
+            $lookup_key = $this->getParameter('pc_key');
+            if ($lookup_key == $key){
+                $em = $this->getDoctrine()->getManager();
+
+                $ups_statuses = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestUPS($event_id);
+
+                if ($ups_statuses)
+                {
+                        $response = new JsonResponse();
+                        $response->setData($ups_statuses);
+
+                } else {
+                    $response->setContent('No Status');
+                    $response->headers->set('Content-Type', 'text/plain');
+                    $response->setStatusCode(Response::HTTP_NOT_FOUND);
+                }
+            } else {
+                $response = new Response();
+                $response->setContent('Unauthorised Access');
+                $response->headers->set('Content-Type', 'text/plain');
+                $response->setStatusCode(Response::HTTP_NOT_FOUND);
+                $response->send();
+            }
         
         return $response;
     }
