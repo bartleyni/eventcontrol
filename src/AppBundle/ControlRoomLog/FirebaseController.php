@@ -45,7 +45,7 @@ class FirebaseController extends Controller {
             }
         
         }
-        $response->send();
+        //$response->send();
         return $response;
     }
 }
