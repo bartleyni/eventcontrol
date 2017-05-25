@@ -25,6 +25,7 @@ class AlertListener
         $entity = $args->getEntity();
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
+            $this->sendFirebaseMessage($entity);
         }
     }
     
@@ -53,4 +54,18 @@ class AlertListener
             ]
         );
     }
+    
+    private function sendFirebaseMessage(Alert $alert)
+    {
+        $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+        $notification = $fcmClient->createDeviceNotification(
+            $alert->getTitle(), 
+            $alert->getMessage(), 
+            'Firebase Token of the device who will recive the notification'
+        );
+        $fcmClient->sendNotification($notification);
+        
+    }
+    
+    
 }

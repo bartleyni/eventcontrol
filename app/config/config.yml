@@ -181,4 +181,7 @@ d_zunke_slack:
     token: "%echo-charlie%"
     identities:
         echo-charlie:
-            icon_emoji:    :rotating_light:
+            icon_emoji:    :rotating_light
+
+redjan_ym_fcm:
+    firebase_api_key: "%firebase%"

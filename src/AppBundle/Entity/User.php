@@ -78,6 +78,11 @@ class User implements AdvancedUserInterface, \Serializable {
      * @Assert\NotBlank(groups={"registration", "update"})
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", length=255, unique=false, nullable=true)
+     */
+    private $firebaseID;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
