@@ -140,6 +140,16 @@ class User implements AdvancedUserInterface, \Serializable {
         $this->name = $name;
     }
     
+    public function getFirebaseID()
+    {
+        return $this->firebaseID;
+    }
+
+    public function setFirebaseID($firebaseID)
+    {
+        $this->firebaseID = $firebaseID;
+    }
+    
     public function getUsername()
     {
         return $this->username;
