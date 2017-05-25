@@ -31,6 +31,7 @@ class FirebaseController extends Controller {
         $username = $request->request->get('username');
         $response = new Response();
         $response->headers->set('Content-Type', 'text/plain');
+        $response->setContent('failure');
         
         if ($lookup_key == $key){
             $em = $this->getDoctrine()->getManager();
@@ -40,13 +41,11 @@ class FirebaseController extends Controller {
                 $em->persist($user);
                 $em->flush();
                 $response->setContent('success');
-            } else {
-                $response->setContent('failure');
             }
+        
+        }
         $response->send();
         return $response;
-        }
-        
     }
 }
 
