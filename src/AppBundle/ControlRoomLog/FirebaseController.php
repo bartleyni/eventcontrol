@@ -28,11 +28,10 @@ class FirebaseController extends Controller {
     {
         $lookup_key = $this->getParameter('pc_key');
         
-        $firebaseID = $request->request->get('firebaseid');
+        $firebaseID = $request->request->get('token');
         $username = $request->request->get('username');
-        $response = new Response();
-        $response->headers->set('Content-Type', 'text/plain');
-        $response->setContent('failure');
+
+        
         
         if ($lookup_key == $key){
             $em = $this->getDoctrine()->getManager();
@@ -41,9 +40,13 @@ class FirebaseController extends Controller {
                 $user->setFirebaseID($firebaseID);
                 $em->persist($user);
                 $em->flush();
-                $response->setContent('success');
+                $response = new JsonResponse(array('error' => false, 'message' => "Token stored"));
+            } else {
+                $response = new JsonResponse(array('error' => true, 'message' => "Username does not exist"));
             }
         
+        } else {
+            $response = new JsonResponse(array('error' => true, 'message' => "Authorisation Failure"));
         }
         //$response->send();
         return $response;
