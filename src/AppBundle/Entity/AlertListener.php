@@ -60,7 +60,7 @@ class AlertListener
     
     private function sendFirebaseMessage(Alert $alert)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getManager();
         $users = $em->getRepository('AppBundle\Entity\User')->findAll();
         $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
         $notification = $fcmClient->createDeviceNotification(
