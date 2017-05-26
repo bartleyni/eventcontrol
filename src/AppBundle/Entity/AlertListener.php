@@ -61,7 +61,7 @@ class AlertListener
         $notification = $fcmClient->createTopicNotification(
             $alert->getTitle(), 
             $alert->getMessage(),
-            'all'
+            'event'
         );
         $notification->setData(["type" => "",]);
         $fcmClient->sendNotification($notification);
