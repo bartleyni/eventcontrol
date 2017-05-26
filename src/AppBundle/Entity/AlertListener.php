@@ -13,7 +13,7 @@ class AlertListener
     private $slackBundle_client;
     private $slackBundle_identity_bag;
     //private $slackBundle_connection;
-    protected $em;
+    private $em;
 
     public function __construct($client, $identity_bag)
     {
