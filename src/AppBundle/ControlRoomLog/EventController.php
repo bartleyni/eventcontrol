@@ -295,15 +295,15 @@ class EventController extends Controller
                     } else {
                         $minutes2 = 31;
                     }
-                    foreach ($data['alerts'] as $key => $alert)
+                    foreach ($data['alerts'] as $key => $WeatherAlert)
                     {
-                        $warning = $warning.$alert['title'].'<br>';
+                        $warning = $WeatherAlert['title'].'<br>';
                         //Add Alert to Alert Queue System
                         if($minutes2 > 30){
                             $alert = new Alert();
-                            $alert->setTitle($alert['title']);
-                            $alert->setMessage($alert['description']);
-                            $alert->setURL($alert['uri']);
+                            $alert->setTitle($WeatherAlert['title']);
+                            $alert->setMessage($WeatherAlert['description']);
+                            $alert->setURL($WeatherAlert['uri']);
                             $alert->setType("warning");
                             $alert->setEvent($event);
                             $em->persist($alert);
@@ -314,7 +314,7 @@ class EventController extends Controller
                             $em->persist($alert_queue);
                             $em->flush();
                             
-                            $warning = $warning.$alert['title'].'<br>';
+                            $warning = $WeatherAlert['title'].'<br>';
                             $event->setEventLastWeatherWarningUpdate($now);
                         }
                     }
