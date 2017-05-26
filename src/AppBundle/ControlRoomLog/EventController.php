@@ -317,17 +317,16 @@ class EventController extends Controller
                                 $warning = $WeatherAlert['title'].'<br>';
                                 $event->setEventLastWeatherWarningUpdate($now);
                                 $em->persist($event);
-
                             }
                         }
                     }
                 } else {
                     $warning = '';
+                    $event->setEventLastWeatherWarning($warning);
                 }
                 if($summary) {
                     $event->setEventLastWeather($summary);
                     $event->setEventLastWeatherUpdate($now);
-                    $event->setEventLastWeatherWarning($warning);
                     $em->persist($event);
                 }
             }

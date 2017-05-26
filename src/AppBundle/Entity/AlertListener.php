@@ -6,6 +6,7 @@ use AppBundle\Entity\Alert;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DZunke\SlackBundle;
 use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
+use Doctrine\ORM\EntityManager;
 
 class AlertListener
 {
@@ -14,12 +15,12 @@ class AlertListener
     //private $slackBundle_connection;
     protected $em;
 
-    public function __construct($client, $identity_bag)
+    public function __construct($client, $identity_bag, EntityManager $entityManager)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
-        //$this->em = $em;
+        $this->em = $entityManager;
     }
     
     public function prePersist(LifecycleEventArgs $args)
