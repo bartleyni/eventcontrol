@@ -305,6 +305,7 @@ class EventController extends Controller
                             $alert->setMessage($WeatherAlert['description']);
                             $alert->setURL($WeatherAlert['uri']);
                             $alert->setType("warning");
+                            $alert->setFor("Weather");
                             $alert->setEvent($event);
                             $em->persist($alert);
                             $em->flush();
