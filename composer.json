@@ -30,8 +30,7 @@
         "xiidea/easy-audit": "1.4.*@dev",
         "richsage/rms-push-notifications-bundle": "dev-master",
         "dzunke/slack-bundle": "dev-master",
-        "kreait/firebase-php": "^3.0",
-        "jp/firebase-notification-Bundle": "dev-master"
+        "kreait/firebase-php": "^3.0"
 
     },
     "require-dev": {
