@@ -63,25 +63,25 @@ class AlertListener
     private function sendFirebaseMessage(Alert $alert)
     {
         
-//        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
-//        foreach($users as $user){
-//            $token = $user->getFirebaseID();
-//            if($token){
-//                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
-//                $notification = $fcmClient->createDeviceNotification(
-//                    $alert->getTitle(), 
-//                    $alert->getMessage(),
-//                    $token
-//                );
-//                if($alert->getFoR())
-//                {
-//                    $notification->setData(["type" => $alert->getFoR(),]);
-//                } else {
-//                    $notification->setData(["type" => "",]);
-//                }
-//                $fcmClient->sendNotification($notification);
-//            }
-//        }
+        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
+        foreach($users as $user){
+            $token = $user->getFirebaseID();
+            if($token){
+                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                $notification = $fcmClient->createDeviceNotification(
+                    $alert->getTitle(), 
+                    $alert->getMessage(),
+                    $token
+                );
+                if($alert->getFoR())
+                {
+                    $notification->setData(["type" => $alert->getFoR(),]);
+                } else {
+                    $notification->setData(["type" => "",]);
+                }
+                $fcmClient->sendNotification($notification);
+            }
+        }
     }
     
     
