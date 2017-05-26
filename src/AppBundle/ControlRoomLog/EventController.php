@@ -331,7 +331,7 @@ class EventController extends Controller
         
         $em->flush();
         
-        $response = new Response($summary,Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response($summary." ".$interval1,Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
