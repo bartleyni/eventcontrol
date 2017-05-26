@@ -20,12 +20,14 @@ class AlertListener
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
-        $this->em = $entityManager;
+        //$this->em = $entityManager;
     }
     
     public function prePersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
+        $em = $args->getEntityManager();
+        
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
             $this->sendFirebaseMessage($entity);
@@ -60,25 +62,26 @@ class AlertListener
     
     private function sendFirebaseMessage(Alert $alert)
     {
-//        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
-//        foreach($users as $user){
-//            $token = $user->getFirebaseID();
-//            if($token){
-//                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
-//                $notification = $fcmClient->createDeviceNotification(
-//                    $alert->getTitle(), 
-//                    $alert->getMessage(),
-//                    $token
-//                );
-//                if($alert->getFoR())
-//                {
-//                    $notification->setData(["type" => $alert->getFoR(),]);
-//                } else {
-//                    $notification->setData(["type" => "",]);
-//                }
-//                $fcmClient->sendNotification($notification);
-//            }
-//        }
+          //$userRepo = $entityManager->getRepository("AppBundle\Entity\UserRepository")
+        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
+        foreach($users as $user){
+            $token = $user->getFirebaseID();
+            if($token){
+                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                $notification = $fcmClient->createDeviceNotification(
+                    $alert->getTitle(), 
+                    $alert->getMessage(),
+                    $token
+                );
+                if($alert->getFoR())
+                {
+                    $notification->setData(["type" => $alert->getFoR(),]);
+                } else {
+                    $notification->setData(["type" => "",]);
+                }
+                $fcmClient->sendNotification($notification);
+            }
+        }
     }
     
     

@@ -4,11 +4,17 @@ parameters:
 #    parameter_name: value
 
 services:
+    user.repository.service:
+        class: Application\Bundle\PersonBundle\Entity\UserRepository
+        factory: ["@doctrine", getRepository]
+        arguments: [ AppBundle\Entity\User ]
+    
     doctrine.alert_listener:
         class: AppBundle\Entity\AlertListener
-        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@doctrine.orm.entity_manager']
+        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@user.repository.service']
         tags:
            - { name: doctrine.event_listener, event: prePersist }
+           
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
