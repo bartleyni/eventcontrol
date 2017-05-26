@@ -47,10 +47,10 @@
 }
 
 .alert {
-  padding: 10px;
-  margin-bottom: 2px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  padding: 4px;
+  margin-bottom: 0px;
+  border: 0px solid transparent;
+  border-radius: 0px;
 }
 
 .modal-warning {
@@ -411,11 +411,11 @@
                 $('#HeaderWeather').hide();
                 
                 updateClock();
-                //updateWeatherWarning();
+                updateWeatherWarning();
                 setInterval('updateClock()', 1000);
                 setInterval('AlertUpdate()', 5000);
                 setInterval('AlertCheck()', 500);
-                //setInterval('updateWeatherWarning()', 30000);
+                setInterval('updateWeatherWarning()', 30000);
                 $('#mainModal').on('hidden.bs.modal', function (e) {
                     alertCounter = 0;
                     if(alertData){

@@ -36,15 +36,17 @@
                 </small>
             </h1>
 
-                <h4 class="col-md-2 text-center hidden-xs"><br>
+                <h4 class="col-md-2 text-center hidden-sm hidden-xs"><br>
                     <div id="HeaderWeather" class="alert alert-warning" role="alert" style="display: none;">
                     </div>
                 </h4>
-                <div class="col-xs-1 col-md-1" id="sidebarShowDiv">
-                    <button type="button" id="sidebarShow" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
-                        <span class="glyphicon glyphicon-menu-hamburger"></span>
-                    </button>
-                </div>
+                {% if is_granted('ROLE_VIEW') %}
+                    <div class="col-xs-1 col-md-1" id="sidebarShowDiv">
+                        <button type="button" id="sidebarShow" class="btn" data-toggle="offcanvas" data-target=".sidebar-nav">
+                            <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        </button>
+                    </div>
+                {% endif %}
                 <h2 class="col-md-4 text-right hidden-xs hidden-sm">
                     <div id="HeaderClock">
                     </div>
