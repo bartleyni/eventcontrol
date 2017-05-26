@@ -60,7 +60,7 @@ class AlertListener
     
     private function sendFirebaseMessage(Alert $alert)
     {
-        $em = $this->getManager();
+        $em = $this->getContainer()->getManager();
         $users = $em->getRepository('AppBundle\Entity\User')->findAll();
         foreach($users as $user){
             $token = $user->getFirebaseID();
