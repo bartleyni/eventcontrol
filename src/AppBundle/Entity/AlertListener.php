@@ -25,7 +25,7 @@ class AlertListener
         $entity = $args->getEntity();
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            $this->sendFirebaseMessage($entity);
+            //$this->sendFirebaseMessage($entity);
         }
     }
     
@@ -63,7 +63,12 @@ class AlertListener
             $alert->getMessage(),
             'eKirY29t09I:APA91bGDUn-rq0Iai6NEmC7Pmi1sE_cvdglGU1aPW4NxqRRZ8U-F_rP4ZAN_vkc-tctRpzPjgy8UqUKrDPiPX6x2p7YoFz4NgO3QsukOEvWjJDcyx6bS43RUq1i986N6rtD-2tlt7fD6'
         );
-        $notification->setData(["type" => "",]);
+        if($alert->getFoR())
+        {
+            $notification->setData(["type" => $alert->getFoR(),]);
+        } else {
+            $notification->setData(["type" => "",]);
+        }
         $fcmClient->sendNotification($notification);
         
     }

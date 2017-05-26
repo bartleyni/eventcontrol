@@ -32,6 +32,9 @@ class Alert
     /** @ORM\Column(type="string", length=50) */
     private $type;
     
+    /** @ORM\Column(type="string", length=50, nullable=true) */
+    private $for;
+    
     /**
      * @ORM\ManyToOne(targetEntity="event")
      * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
@@ -180,6 +183,31 @@ class Alert
     {
         return $this->type;
     }
+    
+        /**
+     * Set FoR
+     *
+     * @param string $for
+     *
+     * @return Alert
+     */
+    public function setFor($for)
+    {
+        $this->for = $for;
+
+        return $this;
+    }
+
+    /**
+     * Get FoR
+     *
+     * @return string
+     */
+    public function getFoR()
+    {
+        return $this->for;
+    }
+    
     
     /**
      * Set event
