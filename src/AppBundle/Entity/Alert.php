@@ -23,7 +23,7 @@ class Alert
     /** @ORM\Column(type="string", length=200) */
     private $title;
 
-    /** @ORM\Column(type="string", length=600) */
+    /** @ORM\Column(type="string", length=1000) */
     private $message;
     
     /** @ORM\Column(type="string", length=200, nullable=true) */
@@ -33,7 +33,7 @@ class Alert
     private $type;
     
     /** @ORM\Column(type="string", length=50, nullable=true) */
-    private $for;
+    private $fieldOfResponsibility;
     
     /**
      * @ORM\ManyToOne(targetEntity="event")
@@ -193,7 +193,7 @@ class Alert
      */
     public function setFor($for)
     {
-        $this->for = $for;
+        $this->fieldOfResponsibility = $for;
 
         return $this;
     }
@@ -205,7 +205,7 @@ class Alert
      */
     public function getFoR()
     {
-        return $this->for;
+        return $this->fieldOfResponsibility;
     }
     
     
