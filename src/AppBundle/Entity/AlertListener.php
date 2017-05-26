@@ -16,21 +16,21 @@ class AlertListener
     //private $slackBundle_connection;
     protected $em;
 
-    public function __construct($client, $identity_bag, EntityManager $entityManager)
+    public function __construct($client, $identity_bag)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
-        //$this->em = $entityManager;
     }
     
     public function prePersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
+        $em = $args->getEntityManager();
         
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            //$this->sendFirebaseMessage($entity);
+            $this->sendFirebaseMessage($entity);
         }
     }
     
