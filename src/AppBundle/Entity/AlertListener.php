@@ -30,7 +30,7 @@ class AlertListener
         
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            $this->sendFirebaseMessage($entity);
+            //$this->sendFirebaseMessage($entity);
         }
     }
     
