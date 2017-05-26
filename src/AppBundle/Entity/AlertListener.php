@@ -17,7 +17,7 @@ class AlertListener
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
-        //$this->slackBundle_connection = $connection;
+        $this->slackBundle_connection = $connection;
     }
     
     public function prePersist(LifecycleEventArgs $args)
