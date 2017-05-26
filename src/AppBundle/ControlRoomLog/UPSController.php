@@ -262,7 +262,7 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
     
-        $fcmClient = $this->get('redjan_ym_fcm.client');
+        $fcmClient = $this->FCMClient;
         $notification = $fcmClient-->createDeviceNotification(
             $ups->getName(),
             $UPSstatus->getStatus(),
