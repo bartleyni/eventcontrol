@@ -13,14 +13,14 @@ class AlertListener
     private $slackBundle_client;
     private $slackBundle_identity_bag;
     //private $slackBundle_connection;
-    private $em;
+    protected $em;
 
-    public function __construct($client, $identity_bag)
+    public function __construct($client, $identity_bag, EntityManager $em)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
-        //$this->em = $em;
+        $this->em = $em;
     }
     
     public function prePersist(LifecycleEventArgs $args)
@@ -60,8 +60,7 @@ class AlertListener
     
     private function sendFirebaseMessage(Alert $alert)
     {
-        $em = $this->getContainer()->getManager();
-        $users = $em->getRepository('AppBundle\Entity\User')->findAll();
+        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
         foreach($users as $user){
             $token = $user->getFirebaseID();
             if($token){
