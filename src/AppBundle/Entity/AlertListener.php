@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
+use AppBundle\Entity\User;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DZunke\SlackBundle;
 use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
