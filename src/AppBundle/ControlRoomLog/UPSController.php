@@ -261,15 +261,18 @@ class UPSController extends Controller
         $em->persist($UPSstatus);
         $em->flush();
         
-        $fcmClient = $this->get('redjan_ym_fcm.client');
-        $notification = $fcmClient-->createDeviceNotification(
-            $ups->getName(), 
-            $UPSstatus->getStatus(),
-            'eKirY29t09I:APA91bGDUn-rq0Iai6NEmC7Pmi1sE_cvdglGU1aPW4NxqRRZ8U-F_rP4ZAN_vkc-tctRpzPjgy8UqUKrDPiPX6x2p7YoFz4NgO3QsukOEvWjJDcyx6bS43RUq1i986N6rtD-2tlt7fD6'
-        );
-        $notification->setData(["type" => "",]);
-        $fcmClient->sendNotification($notification);
         
+        $fcm = $this->get('firebase_fcm_client');
+        $fcm->createMessage(array(
+            'to' => 'eKirY29t09I:APA91bGDUn-rq0Iai6NEmC7Pmi1sE_cvdglGU1aPW4NxqRRZ8U-F_rP4ZAN_vkc-tctRpzPjgy8UqUKrDPiPX6x2p7YoFz4NgO3QsukOEvWjJDcyx6bS43RUq1i986N6rtD-2tlt7fD6',
+            'title' => $ups->getName(),
+            'body' => $UPSstatus->getStatus(),
+            'badge' => 1,
+            'data' => array(
+                'type' => "UPS"
+        )
+    ));
+    $data = $fcm->sendMessage();
         
         if($status!=$last_status['status']){
             $alert = new Alert();
