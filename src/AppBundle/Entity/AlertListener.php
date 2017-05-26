@@ -14,12 +14,12 @@ class AlertListener
     //private $slackBundle_connection;
     protected $em;
 
-    public function __construct($client, $identity_bag, EntityManager $em)
+    public function __construct($client, $identity_bag)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
-        $this->em = $em;
+        //$this->em = $em;
     }
     
     public function prePersist(LifecycleEventArgs $args)

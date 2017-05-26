@@ -6,7 +6,7 @@ parameters:
 services:
     doctrine.alert_listener:
         class: AppBundle\Entity\AlertListener
-        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@doctrine.orm.entity_manager']
+        arguments: ['@dz.slack.client', '@dz.slack.identity_bag']
         tags:
            - { name: doctrine.event_listener, event: prePersist }
            - { name: doctrine.orm.entity_listener, lazy: true }
