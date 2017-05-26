@@ -318,6 +318,9 @@ class EventController extends Controller
                             $event->setEventLastWeatherWarningUpdate($now);
                         }
                     }
+                } else {
+                    $warning = '';
+                    $event->setEventLastWeatherWarningUpdate($now);
                 }
                 
                 if($summary){
@@ -331,7 +334,7 @@ class EventController extends Controller
         
         $em->flush();
         
-        $response = new Response($summary." ".$interval1->format("Time since last update: %i."),Response::HTTP_OK, array('content-type' => 'text/html'));
+        $response = new Response($summary." ".$interval1->format("Time since last update: %s."),Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         
