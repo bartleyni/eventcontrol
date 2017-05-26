@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\EntityManager;
 use DZunke\SlackBundle;
 use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
 
@@ -11,6 +12,7 @@ class AlertListener
 {
     private $slackBundle_client;
     private $slackBundle_identity_bag;
+    protected $em;
     //private $slackBundle_connection;
 
     public function __construct($client, $identity_bag)
@@ -18,6 +20,7 @@ class AlertListener
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
+        $this->em = $em;
     }
     
     public function prePersist(LifecycleEventArgs $args)
@@ -25,7 +28,7 @@ class AlertListener
         $entity = $args->getEntity();
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            //$this->sendFirebaseMessage($entity);
+            $this->sendFirebaseMessage($entity);
         }
     }
     
@@ -57,6 +60,8 @@ class AlertListener
     
     private function sendFirebaseMessage(Alert $alert)
     {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle\Entity\User')->findAll();
         $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
         $notification = $fcmClient->createDeviceNotification(
             $alert->getTitle(), 
