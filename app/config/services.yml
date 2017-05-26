@@ -5,7 +5,7 @@ parameters:
 
 services:
     user.repository.service:
-        class: Application\Bundle\PersonBundle\Entity\UserRepository
+        class: AppBundle\Entity\UserRepository
         factory: ["@doctrine", getRepository]
         arguments: [ AppBundle\Entity\User ]
     
