@@ -58,7 +58,7 @@ class AlertListener
     private function sendFirebaseMessage(Alert $alert)
     {
         $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
-        $notification = $fcmClient-->createDeviceNotification(
+        $notification = $fcmClient->createDeviceNotification(
             $alert->getTitle(), 
             $alert->getMessage(),
             'eKirY29t09I:APA91bGDUn-rq0Iai6NEmC7Pmi1sE_cvdglGU1aPW4NxqRRZ8U-F_rP4ZAN_vkc-tctRpzPjgy8UqUKrDPiPX6x2p7YoFz4NgO3QsukOEvWjJDcyx6bS43RUq1i986N6rtD-2tlt7fD6'
