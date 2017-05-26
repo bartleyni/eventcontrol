@@ -62,20 +62,24 @@ class AlertListener
     {
         $em = $this->getManager();
         $users = $em->getRepository('AppBundle\Entity\User')->findAll();
-        $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
-        $notification = $fcmClient->createDeviceNotification(
-            $alert->getTitle(), 
-            $alert->getMessage(),
-            'eKirY29t09I:APA91bGDUn-rq0Iai6NEmC7Pmi1sE_cvdglGU1aPW4NxqRRZ8U-F_rP4ZAN_vkc-tctRpzPjgy8UqUKrDPiPX6x2p7YoFz4NgO3QsukOEvWjJDcyx6bS43RUq1i986N6rtD-2tlt7fD6'
-        );
-        if($alert->getFoR())
-        {
-            $notification->setData(["type" => $alert->getFoR(),]);
-        } else {
-            $notification->setData(["type" => "",]);
+        foreach($users as $user){
+            $token = $user->getFirebaseID();
+            if($token){
+                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                $notification = $fcmClient->createDeviceNotification(
+                    $alert->getTitle(), 
+                    $alert->getMessage(),
+                    $token
+                );
+                if($alert->getFoR())
+                {
+                    $notification->setData(["type" => $alert->getFoR(),]);
+                } else {
+                    $notification->setData(["type" => "",]);
+                }
+                $fcmClient->sendNotification($notification);
+            }
         }
-        $fcmClient->sendNotification($notification);
-        
     }
     
     
