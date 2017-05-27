@@ -70,7 +70,8 @@ class AlertListener
         foreach($users as $user){
             $token = $user->getFirebaseID();
             if($token){
-                $fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                $fcmClient = $this->get('redjan_ym_fcm.client');
                 $notification = $fcmClient->createDeviceNotification(
                     $alert->getTitle(), 
                     $alert->getMessage(),
