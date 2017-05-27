@@ -54,7 +54,7 @@ class LogListener
         if ($entity instanceof log_entries) {
             $users = $entity->getEvent()->getUsers();
             if ($users) {
-                $this->sendFirebaseMessage($entity, $users);
+                //$this->sendFirebaseMessage($entity, $users);
             }
         }
     }
