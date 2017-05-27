@@ -27,10 +27,16 @@ class AlertListener
     public function prePersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
+
         
+        $em = $args->getEntityManager();
+        $users = $em->getRepository('AppBundle\Entity\User')->findAll();
+                
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            $this->sendFirebaseMessage($entity);
+            if ($users) {
+                $this->sendFirebaseMessage($entity, $users);
+            }
         }
     }
     
@@ -60,11 +66,8 @@ class AlertListener
         );
     }
     
-    private function sendFirebaseMessage(Alert $alert)
+    private function sendFirebaseMessage(Alert $alert, USer $users)
     {
-        
-        $event = $alert->getEvent();
-        $users = $event->getUsers();
         foreach($users as $user){
             $token = $user->getFirebaseID();
             if($token){
