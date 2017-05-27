@@ -413,8 +413,8 @@
                 updateClock();
                 updateWeatherWarning();
                 setInterval('updateClock()', 1000);
-                setInterval('AlertUpdate()', 5000);
-                setInterval('AlertCheck()', 500);
+                setInterval('AlertUpdate()', 3000);
+                setInterval('AlertCheck()', 100);
                 setInterval('updateWeatherWarning()', 30000);
                 $('#mainModal').on('hidden.bs.modal', function (e) {
                     alertCounter = 0;
