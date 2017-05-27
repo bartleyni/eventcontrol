@@ -66,7 +66,7 @@ class AlertListener
         );
     }
     
-    private function sendFirebaseMessage(Alert $alert, USer $users)
+    private function sendFirebaseMessage(Alert $alert, $users)
     {
         foreach($users as $user){
             $token = $user->getFirebaseID();
