@@ -26,7 +26,7 @@ class LogListener
         $this->container = $container;
     }
     
-    public function prePersist(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
         $em = $args->getEntityManager();
