@@ -6,6 +6,7 @@ use AppBundle\Entity\Alert;
 use AppBundle\Entity\User;
 use AppBundle\Entity\event;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use RedjanYm\FCMBundle;
 use DZunke\SlackBundle;
 use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
 use Doctrine\ORM\EntityManager;
@@ -27,8 +28,6 @@ class AlertListener
     public function prePersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
-
-        
         $em = $args->getEntityManager();
         $users = $em->getRepository('AppBundle\Entity\User')->findAll();
                 
