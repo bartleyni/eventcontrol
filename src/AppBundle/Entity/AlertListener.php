@@ -17,12 +17,14 @@ class AlertListener
     private $slackBundle_identity_bag;
     //private $slackBundle_connection;
     //protected $em;
+    protected $container;
 
-    public function __construct($client, $identity_bag)
+    public function __construct($client, $identity_bag,\Symfony\Component\DependencyInjection\Container $container)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
+        $this->container = $container;
     }
     
     public function prePersist(LifecycleEventArgs $args)
@@ -71,7 +73,7 @@ class AlertListener
             $token = $user->getFirebaseID();
             if($token){
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
-                $fcmClient = $this->get('redjan_ym_fcm.client');
+                $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 $notification = $fcmClient->createDeviceNotification(
                     $alert->getTitle(), 
                     $alert->getMessage(),
