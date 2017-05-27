@@ -58,8 +58,8 @@ class venueRepository extends EntityRepository
             if(!$status){
                 $output = false;
             }
-            return $output;
         }
+        return $output;
     }
     public function getpeoplecountingstatus()
     {
