@@ -282,6 +282,7 @@ class EventController extends Controller
                 
                 if (array_key_exists('alerts', $data)) {   
                     $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
+                    $last_weather_warning = $event->getEventLastWeatherWarning();
                     if($last_weather_warning_update){
                         $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
 
@@ -295,29 +296,31 @@ class EventController extends Controller
                     if($minutes2 > 30){
                         foreach ($data['alerts'] as $key => $WeatherAlert)
                         {
-                            $warning = $WeatherAlert['title'].'<br>';
-                            //Add Alert to Alert Queue System
-
-                            $alert = new Alert();
-                            $alert->setTitle($WeatherAlert['title']);
-                            $alert->setMessage($WeatherAlert['description']);
-                            $alert->setURL($WeatherAlert['uri']);
-                            $alert->setType("warning");
-                            $alert->setFor("Weather");
-                            $alert->setEvent($event);
-                            $em->persist($alert);
-                            $em->flush();
-
-                            $alert_queue = new Queue();
-                            $alert_queue->setAlert($alert);                  
-                            $em->persist($alert_queue);
-                            $em->flush();
-
-                            $warning = $WeatherAlert['title'].'<br>';
-                            $event->setEventLastWeatherWarning($warning);
-                            $event->setEventLastWeatherWarningUpdate($now);
-                            $em->persist($event);
+                            $warning = $warning.$WeatherAlert['title'].'<br>';
                         }
+                        if ($warning != $last_weather_warning){
+                            
+                            $event->setEventLastWeatherWarning($warning);
+                            foreach ($data['alerts'] as $key => $WeatherAlert)
+                            {
+                                $alert = new Alert();
+                                $alert->setTitle($WeatherAlert['title']);
+                                $alert->setMessage($WeatherAlert['description']);
+                                $alert->setURL($WeatherAlert['uri']);
+                                $alert->setType("warning");
+                                $alert->setFor("Weather");
+                                $alert->setEvent($event);
+                                $em->persist($alert);
+                                $em->flush();
+
+                                $alert_queue = new Queue();
+                                $alert_queue->setAlert($alert);                  
+                                $em->persist($alert_queue);
+                                $em->flush();    
+                            }
+                        }
+                        $event->setEventLastWeatherWarningUpdate($now);
+                        $em->persist($event);
                     }
                 } else {
                     $warning = '';
