@@ -6,6 +6,10 @@ use AppBundle\Entity\Alert;
 use AppBundle\Entity\User;
 use AppBundle\Entity\event;
 use AppBundle\Entity\log_entries;
+use AppBundle\Entity\general_log;
+use AppBundle\Entity\medical_log;
+use AppBundle\Entity\security_log;
+use AppBundle\Entity\lost_property;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use RedjanYm\FCMBundle;
 use DZunke\SlackBundle;
@@ -26,14 +30,29 @@ class LogListener
         $this->container = $container;
     }
     
+    public function postPersist(LifecycleEventArgs $args)
+   {        
+        $entity = $args->getEntity();
+        $em = $args->getEntityManager();
+                
+        if ($entity instanceof medical_log || $entity instanceof security_log) {
+            
+            $log = $entity->getLogEntryId();
+            $users = $log->getEvent()->getUsers();
+            $this->postToSlack($log);
+            if ($users) {
+                $this->sendFirebaseLogMessage($log, $entity, $users);
+            }
+        }
+    }
+    
     public function postUpdate(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
         $em = $args->getEntityManager();
-        $users = $em->getRepository('AppBundle\Entity\User')->findAll();
-                
+        
         if ($entity instanceof log_entries) {
-            $this->postToSlack($entity);
+            $users = $entity->getEvent()->getUsers();
             if ($users) {
                 $this->sendFirebaseMessage($entity, $users);
             }
@@ -76,6 +95,38 @@ class LogListener
                 $notification = $fcmClient->createDeviceNotification(
                     "Log entry", 
                     $log->getLogBlurb(),
+                    $token
+                );
+                $notification->setData(["type" => "Log",]);
+                $fcmClient->sendNotification($notification);
+            }
+        }
+    }
+    
+    private function sendFirebaseLogMessage(log_entries $log, $entity, $users)
+    {
+        $title = "";
+        $description = "";
+        
+        if ($entity instanceof medical_log) {
+            $title = "New Log:".$entity->getMedicalReportedInjuryType();
+            $description = $entity->getMedicalDescription();
+        }
+        
+        
+        if ($entity instanceof security_log) {
+            $title = "New Log:".$entity->getSecurityIncidentType();
+            $description = $entity->getSecurityDescription();
+        }
+        
+        foreach($users as $user){
+            $token = $user->getFirebaseID();
+            if($token){
+                //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
+                $fcmClient = $this->container->get('redjan_ym_fcm.client');
+                $notification = $fcmClient->createDeviceNotification(
+                    "title", 
+                    $log->getLogBlurb()."<br>".$description,
                     $token
                 );
                 $notification->setData(["type" => "Log",]);

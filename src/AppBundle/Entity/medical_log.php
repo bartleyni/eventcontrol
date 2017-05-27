@@ -16,11 +16,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
+use AppBundle\Entity\LogListener;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="medical_log")
  * @ORMSubscribedEvents()
+ * @ORM\HasLifecycleCallbacks
  */
 
 class medical_log {
