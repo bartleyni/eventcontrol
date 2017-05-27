@@ -19,6 +19,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
+use AppBundle\Entity\LogListener;
 
 /**
  * @ORM\Entity
