@@ -125,8 +125,8 @@ class LogListener
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 $notification = $fcmClient->createDeviceNotification(
-                    "title", 
-                    $log->getLogBlurb()."<br>".$description,
+                    $title, 
+                    $log->getLogBlurb()." - ".$description,
                     $token
                 );
                 $notification->setData(["type" => "Log",]);
