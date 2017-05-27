@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
 use AppBundle\Entity\User;
+use AppBundle\Entity\event;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DZunke\SlackBundle;
 use \DZunke\SlackBundle\Slack\Entity\MessageAttachment;
@@ -14,7 +15,7 @@ class AlertListener
     private $slackBundle_client;
     private $slackBundle_identity_bag;
     //private $slackBundle_connection;
-    protected $em;
+    //protected $em;
 
     public function __construct($client, $identity_bag)
     {
@@ -26,11 +27,10 @@ class AlertListener
     public function prePersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
-        $em = $args->getEntityManager();
         
         if ($entity instanceof Alert) {
             $this->postToSlack($entity);
-            //$this->sendFirebaseMessage($entity);
+            $this->sendFirebaseMessage($entity);
         }
     }
     
@@ -63,7 +63,8 @@ class AlertListener
     private function sendFirebaseMessage(Alert $alert)
     {
         
-        $users = $this->em->getRepository('AppBundle\Entity\User')->findAll();
+        $event = $alert->getEvent();
+        $users = $event->getUsers();
         foreach($users as $user){
             $token = $user->getFirebaseID();
             if($token){
