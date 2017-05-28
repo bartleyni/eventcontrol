@@ -3,7 +3,7 @@
 parameters:
 #    parameter_name: value
 
-#services:
+services:
 #    app.form_login_authenticator:
 #        class: AppBundle\Security\FormLoginAuthenticator
 #        arguments: ["@service_container"]
