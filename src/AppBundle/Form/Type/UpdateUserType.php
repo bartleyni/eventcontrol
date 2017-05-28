@@ -37,6 +37,12 @@ class UpdateUserType extends AbstractType
                     'attr' => array(
                     'class' => 'form-control'
                 )))
+                ->add('apiToken', TextType::class, array(
+                    'required' => false,
+                    'disabled' => true,
+                    'attr' => array(
+                    'class' => 'form-control'
+                )))
                 ->add('email', EmailType::class, array(
                     'required' => false,
                     'attr' => array(
