@@ -51,7 +51,7 @@ class EditUserType extends AbstractType
                     'attr' => array(
                     'class' => 'form-control'
                 )))
-                ->add('apiKey', TextType::class, array(
+                ->add('apiToken', TextType::class, array(
                     'required' => false,
                     'disabled' => true,
                     'attr' => array(
