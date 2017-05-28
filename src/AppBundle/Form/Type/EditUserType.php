@@ -51,9 +51,9 @@ class EditUserType extends AbstractType
                     'attr' => array(
                     'class' => 'form-control'
                 )))
-                ->add('apiKey', EmailType::class, array(
+                ->add('apiKey', TextType::class, array(
                     'required' => false,
-                    'disabled' => 'true',
+                    'disabled' => true,
                     'attr' => array(
                     'class' => 'form-control'
                 )))

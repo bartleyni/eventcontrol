@@ -31,7 +31,7 @@ class UserType extends AbstractType
                 )))
             ->add('apiKey', TextType::class, array('attr' => array(
                     'class' => 'form-control',
-                    'disabled' => 'true'
+                    'disabled' => true
                 )))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
