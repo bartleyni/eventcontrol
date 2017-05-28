@@ -21,11 +21,17 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
  */
 class FormLoginAuthenticator extends AbstractGuardAuthenticator
 {
+    /**
+    * @var \Symfony\Component\Routing\RouterInterface
+    */
+    private $router;
+
     private $container;
     
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->router = $router;
     }
     
     public function getCredentials(Request $request)
@@ -64,5 +70,42 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator
     {
         return $this->container->get('router')
             ->generate('/');
-    }   
+    }
+    
+    /**
+    * {@inheritdoc}
+    */
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    {
+        $url = $this->router->generate('/');
+        return new RedirectResponse($url);
+    }
+
+    /**
+    * {@inheritdoc}
+    */
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    {
+        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        $url = $this->router->generate('login');
+        return new RedirectResponse($url);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function start(Request $request, AuthenticationException $authException = null)
+    {
+        $url = $this->router->generate('login');
+        return new RedirectResponse($url);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsRememberMe()
+    {
+        return false;
+    }
+
 }
