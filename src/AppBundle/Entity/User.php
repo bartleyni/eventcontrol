@@ -145,12 +145,12 @@ class User implements AdvancedUserInterface, \Serializable {
         $this->name = $name;
     }
     
-    public function getAPItoken()
+    public function getapitoken()
     {
         return $this->apiToken;
     }
 
-    public function setAPItoken($apiToken)
+    public function setapitoken($apiToken)
     {
         $this->apiToken = $apiToken;
     }
