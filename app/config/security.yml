@@ -31,9 +31,9 @@ security:
         main:
             anonymous: ~
             pattern: ^/
-            form_login:
-                login_path: login
-                check_path: login
+            #form_login:
+            #    login_path: login
+            #    check_path: login
             logout:
                 path:   /logout
                 target: /
