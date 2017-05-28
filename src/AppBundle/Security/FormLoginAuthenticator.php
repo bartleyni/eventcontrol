@@ -42,7 +42,7 @@ class FormLoginAuthenticator extends AbstractGuardAuthenticator
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->router = $router;
+        $this->router = $container->container->get('router');
     }
     
     public function getCredentials(Request $request)
