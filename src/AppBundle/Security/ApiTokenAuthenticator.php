@@ -8,7 +8,7 @@
 
 namespace AppBundle\Security;
 
-use KnpU\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
