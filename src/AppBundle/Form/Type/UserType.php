@@ -29,6 +29,10 @@ class UserType extends AbstractType
             ->add('name', TextType::class, array('attr' => array(
                     'class' => 'form-control'
                 )))
+            ->add('apiKey', TextType::class, array('attr' => array(
+                    'class' => 'form-control',
+                    'disabled' => 'true'
+                )))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password', 'attr' => array(

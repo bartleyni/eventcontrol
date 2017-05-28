@@ -51,6 +51,12 @@ class EditUserType extends AbstractType
                     'attr' => array(
                     'class' => 'form-control'
                 )))
+                ->add('apiKey', EmailType::class, array(
+                    'required' => false,
+                    'disabled' => 'true',
+                    'attr' => array(
+                    'class' => 'form-control'
+                )))
                 ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must match.',

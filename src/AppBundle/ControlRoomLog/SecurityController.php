@@ -34,6 +34,14 @@ class SecurityController extends Controller
     }
     
     /**
+     * @Route("/login_check", name="security_login_check")
+     */
+    public function loginCheckAction()
+    {
+        // will never be executed
+    }
+    
+    /**
      * @Route("/audit", name="audit")
      */
     

@@ -43,7 +43,18 @@ Control Room Update User Details
                                     {{ form_widget(form.email) }}
                                 </div>
                             </div>
-                        </div><br>                 
+                        </div><br>
+                        <div class="row">   
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    {{ form_label(form.apiKey) }} 
+                                    {{ form_errors(form.apiKey) }}
+                                </div>
+                                <div class="col-md-4">                                     
+                                    {{ form_widget(form.apiKey) }}
+                                </div>
+                            </div>
+                        </div><br>
                         <div class="row">                                                        
                             <div class="form-group">
                                 <div class="col-md-2">

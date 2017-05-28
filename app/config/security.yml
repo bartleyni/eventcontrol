@@ -37,6 +37,12 @@ security:
             logout:
                 path:   /logout
                 target: /
+                
+            guard:
+                authenticators:
+                    - app.form_login_authenticator
+                    - app.api_token_authenticator
+                entry_point: app.form_login_authenticator
             #logout:       true
             #anonymous:    true
             # activate different ways to authenticate

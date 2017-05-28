@@ -112,6 +112,11 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     private $events;
     
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $apiToken;
+    
     public function __construct()
     {
         $this->isActive = true;
@@ -140,7 +145,17 @@ class User implements AdvancedUserInterface, \Serializable {
         $this->name = $name;
     }
     
-    public function getFirebaseID()
+    public function getAPItoken()
+    {
+        return $this->apiToken;
+    }
+
+    public function setAPItoken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+    }
+    
+        public function getFirebaseID()
     {
         return $this->firebaseID;
     }
