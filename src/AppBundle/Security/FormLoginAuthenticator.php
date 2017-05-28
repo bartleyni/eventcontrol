@@ -8,7 +8,7 @@
 
 namespace AppBundle\Security;
 
-use Symfony\Component\Security\Guard\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
  *
  * @author Nick
  */
-class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
+class FormLoginAuthenticator extends AbstractGuardAuthenticator
 {
     private $container;
     
@@ -64,6 +64,12 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->container->get('router')
             ->generate('/');
+    }
+    
+    public function start(Request $request, AuthenticationException $authException = null)
+    {
+        $url = $this->router->generate('login');
+        return new RedirectResponse($url);
     }
 }
 
