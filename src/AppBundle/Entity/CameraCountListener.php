@@ -17,7 +17,7 @@ class CameraCountListener
     protected $container;
     protected $em;
 
-    public function __construct($client, $identity_bag, \Symfony\Component\DependencyInjection\Container $container, EntityManager $em)
+    public function __construct($client, $identity_bag, \Symfony\Component\DependencyInjection\Container $container)
     {
         $this->slackBundle_client = $client;
         $this->slackBundle_identity_bag = $identity_bag;
