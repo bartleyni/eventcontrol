@@ -17,7 +17,7 @@ services:
         arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@service_container']
         tags:
            - { name: doctrine.event_listener, event: prePersist }
-           - { name: doctrine.event_listener, event: prePersist }
+           - { name: doctrine.event_listener, event: postPersist }
            
     doctrine.log_listener:
         class: AppBundle\Entity\LogListener
