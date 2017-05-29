@@ -96,7 +96,7 @@ class AlertListener
                 );
                 if($alert->getFoR())
                 {
-                    $notification->setData(["type" => $alert->getFoR(), "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]);
+                    $notification->setData(["type" => $alert->getFoR(),]);
                 } else {
                     $notification->setData(["type" => "", "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]);
                 }
