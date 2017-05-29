@@ -90,6 +90,8 @@ class AlertListener
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 $notification = $fcmClient->createDeviceNotification(
+                    null, 
+                    null,
                     $token
                 );
                 if($alert->getFoR())
