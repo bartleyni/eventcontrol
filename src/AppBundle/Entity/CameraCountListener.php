@@ -23,12 +23,12 @@ class CameraCountListener
         $this->slackBundle_identity_bag = $identity_bag;
         //$this->slackBundle_connection = $connection;
         $this->container = $container;
-        $this->em = $em;
     }
     
     public function postPersist(LifecycleEventArgs $args)
     {        
         $entity = $args->getEntity();
+        $this->em = $args->getEntityManager();
                 
         if ($entity instanceof camera_count) {
             $this->getVenueCountCamera($entity);

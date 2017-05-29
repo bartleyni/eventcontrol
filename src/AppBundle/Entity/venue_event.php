@@ -44,7 +44,7 @@ class venue_event {
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $highCapacityAlert;#
+    protected $highCapacityAlert;
     
     /**
      * @ORM\Column(type="boolean", nullable=true)

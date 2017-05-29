@@ -27,7 +27,7 @@ services:
            
     doctrine.camera_count_listener:
         class: AppBundle\Entity\CameraCountListener
-        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@service_container', '@doctrine.orm.entity_manager']
+        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@service_container']
         tags:
            - { name: doctrine.event_listener, event: postPersist }
            
