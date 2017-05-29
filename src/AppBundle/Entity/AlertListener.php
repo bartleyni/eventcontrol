@@ -52,7 +52,7 @@ class AlertListener
             $alert_queue = new Queue();
             $alert_queue->setAlert($entity);                  
             $em->persist($alert_queue);
-            $em->em->flush();
+            $em->flush();
         }
     }
     
