@@ -64,12 +64,14 @@ class CameraCountListener
         }
     }
     
-    private function checkAndAlert(int $count, string $venueName, venue_event $venueEvent)
+    private function checkAndAlert(aray $countArray, string $venueName, venue_event $venueEvent)
     {
         $highAlert = $venueEvent->gethighCapacityAlert();
         $highFlag = $venueEvent->gethighCapacityFlag();
         $highHighAlert = $venueEvent->gethighHighCapacityAlert();
         $highHighFlag = $venueEvent->gethighHighCapacityFlag();
+        
+        $count = $countArray['running_count_in']-['running_count_out']
         
         if($highAlert and $highHighAlert){
             $alert = new Alert();
