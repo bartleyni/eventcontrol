@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
+use AppBundle\Entity\Queue;
 use AppBundle\Entity\skew;
 use AppBundle\Entity\camera_count;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -85,6 +86,10 @@ class CameraCountListener
                 $alert->setType("danger");
                 $this->em->persist($alert);
                 $this->em->flush();
+                $alert_queue = new Queue();
+                $alert_queue->setAlert($alert);                  
+                $this->em->persist($alert_queue);
+                $this->em->flush();
                 $venueEvent->sethighHighCapacityFlag(true);
                 $this->em->persist($venueEvent);
                 $this->em->flush();
@@ -93,11 +98,11 @@ class CameraCountListener
                 $alert->setType("warning");
                 $this->em->persist($alert);
                 $this->em->flush();
-                $venueEvent->sethighCapacityFlag(true);
-                $this->em->persist($venueEvent);
+                $alert_queue = new Queue();
+                $alert_queue->setAlert($alert);                  
+                $this->em->persist($alert_queue);
                 $this->em->flush();
-            } else if ($count < $highHighAlert){
-                $venueEvent->sethighHighCapacityFlag(false);
+                $venueEvent->sethighCapacityFlag(true);
                 $this->em->persist($venueEvent);
                 $this->em->flush();
             } else if ($count < $highAlert){
@@ -105,7 +110,13 @@ class CameraCountListener
                 $venueEvent->sethighCapacityFlag(false);
                 $this->em->persist($venueEvent);
                 $this->em->flush();
+            } else if ($count < $highHighAlert){
+                $venueEvent->sethighHighCapacityFlag(false);
+                $this->em->persist($venueEvent);
+                $this->em->flush();
             }
+            
+            
         }   
     }
 }
