@@ -44,8 +44,7 @@ class CameraCountListener
         $name = $venue->getName();
         $venueEvents = $venue->getVenueEvent();
         foreach($venueEvents as $venueEvent){
-            $venueEvent->getEvent();
-            $end_timestamp = $venueEvent->getEvent()->getEventLogStopDate();
+            $end_timestamp = $venueEvent->getEventId()->getEventLogStopDate();
             $doors_timestamp = $venueEvent->getDoors();
             $count = $this->em->getRepository('AppBundle:Venue')->getvenuecount($venue,$end_timestamp,$doors_timestamp);
             $this->checkAndAlert($count, $name, $venueEvent);
@@ -58,8 +57,7 @@ class CameraCountListener
         $name = $venue->getName();
         $venueEvents = $venue->getVenueEvent();
         foreach($venueEvents as $venueEvent){
-            $venueEvent->getEvent();
-            $end_timestamp = $venueEvent->getEvent()->getEventLogStopDate();
+            $end_timestamp = $venueEvent->getEventId()->getEventLogStopDate();
             $doors_timestamp = $venueEvent->getDoors();
             $count = $this->em->getRepository('AppBundle:Venue')->getvenuecount($venue,$end_timestamp,$doors_timestamp);
             $this->checkAndAlert($count, $name, $venueEvent);
