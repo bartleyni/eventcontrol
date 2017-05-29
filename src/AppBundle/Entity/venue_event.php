@@ -40,6 +40,26 @@ class venue_event {
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $doors;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $highCapacityAlert;#
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $highCapacityFlag;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $highHighCapacityAlert;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $highHighCapacityFlag;
 
 
     /**

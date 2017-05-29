@@ -25,11 +25,18 @@ services:
            - { name: doctrine.event_listener, event: postPersist }
            - { name: doctrine.event_listener, event: postUpdate }
            
+    doctrine.camera_count_listener:
+        class: AppBundle\Entity\CameraCountListener
+        arguments: ['@dz.slack.client', '@dz.slack.identity_bag', '@service_container', '@doctrine.orm.entity_manager']
+        tags:
+           - { name: doctrine.event_listener, event: postPersist }
+           
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 #app.slugger:
  #   class: AppBundle\Utils\Slugger
+    
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         arguments: ['@doctrine', '@security.token_storage']
