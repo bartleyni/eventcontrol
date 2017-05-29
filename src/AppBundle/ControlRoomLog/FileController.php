@@ -54,7 +54,7 @@ class FileController extends Controller
         }
     }
     
-        /**
+    /**
      * @Route("/log_support/{filename}", name="log_support")
      */
     public function logSupport(Request $request, $filename=null)
