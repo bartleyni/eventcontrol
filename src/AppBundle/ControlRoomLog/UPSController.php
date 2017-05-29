@@ -281,10 +281,11 @@ class UPSController extends Controller
             $em->persist($alert);
             $em->flush();
             
-            $alert_queue = new Queue();
-            $alert_queue->setAlert($alert);                  
-            $em->persist($alert_queue);
-            $em->flush();
+            //Moved to alert listener
+            //$alert_queue = new Queue();
+            //$alert_queue->setAlert($alert);                  
+            //$em->persist($alert_queue);
+            //$em->flush();
         }
 /*        
         $client   = $this->get('dz.slack.client');
@@ -349,10 +350,11 @@ class UPSController extends Controller
             $em->persist($alert);
             $em->flush();
             
-            $alert_queue = new Queue();
-            $alert_queue->setAlert($alert);                  
-            $em->persist($alert_queue);
-            $em->flush();
+            //Moved to alert listener
+            //$alert_queue = new Queue();
+            //$alert_queue->setAlert($alert);                  
+            //$em->persist($alert_queue);
+            //$em->flush();
         }
  /*         
         $client   = $this->get('dz.slack.client');

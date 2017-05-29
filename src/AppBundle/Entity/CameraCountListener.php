@@ -98,10 +98,10 @@ class CameraCountListener
                 $alert->setType("warning");
                 $this->em->persist($alert);
                 $this->em->flush();
-                $alert_queue = new Queue();
-                $alert_queue->setAlert($alert);                  
-                $this->em->persist($alert_queue);
-                $this->em->flush();
+                //$alert_queue = new Queue();
+                //$alert_queue->setAlert($alert);                  
+                //$this->em->persist($alert_queue);
+                //$this->em->flush();
                 $venueEvent->sethighCapacityFlag(true);
                 $this->em->persist($venueEvent);
                 $this->em->flush();

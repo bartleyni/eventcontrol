@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
+use AppBundle\Entity\Queue;
 use AppBundle\Entity\User;
 use AppBundle\Entity\event;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -38,6 +39,20 @@ class AlertListener
             if ($users) {
                 $this->sendFirebaseMessage($entity, $users);
             }
+        }
+    }
+    
+    public function postPersist(LifecycleEventArgs $args)
+    {        
+        $entity = $args->getEntity();
+        $em = $args->getEntityManager();
+        
+                
+        if ($entity instanceof Alert) {
+            $alert_queue = new Queue();
+            $alert_queue->setAlert($entity);                  
+            $this->em->persist($alert_queue);
+            $this->em->flush();
         }
     }
     
