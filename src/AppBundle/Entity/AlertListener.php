@@ -51,8 +51,8 @@ class AlertListener
         if ($entity instanceof Alert) {
             $alert_queue = new Queue();
             $alert_queue->setAlert($entity);                  
-            $this->em->persist($alert_queue);
-            $this->em->flush();
+            $em->persist($alert_queue);
+            $em->em->flush();
         }
     }
     
