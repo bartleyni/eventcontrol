@@ -71,7 +71,7 @@ class CameraCountListener
         $highHighAlert = $venueEvent->gethighHighCapacityAlert();
         $highHighFlag = $venueEvent->gethighHighCapacityFlag();
         
-        $count = $countArray['running_count_in']-['running_count_out']
+        $count = $countArray('running_count_in')-$countArray('running_count_out');
         
         if($highAlert and $highHighAlert){
             $alert = new Alert();
