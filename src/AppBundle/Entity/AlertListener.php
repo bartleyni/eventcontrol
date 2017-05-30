@@ -88,8 +88,8 @@ class AlertListener
             $token = $user->getFirebaseID();
             if($token){
                 $breaks = array("<br />","<br>","<br/>");
-                $title = strip_tags(str_ireplace($breaks, "\n", $alert->getTitle()), "\n"), 
-                $message = strip_tags(str_ireplace($breaks, "\n", $alert->getMessage(), "\n"),
+                $title = strip_tags(str_ireplace($breaks, "\n", $alert->getTitle()), "\n");
+                $message = strip_tags(str_ireplace($breaks, "\n", $alert->getMessage(), "\n");
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 //Vendor Package has been modified to disable the title and body fields, this will break if the vendor package is updated.
