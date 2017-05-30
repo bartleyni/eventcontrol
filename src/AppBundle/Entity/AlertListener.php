@@ -90,15 +90,15 @@ class AlertListener
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 $notification = $fcmClient->createDeviceNotification(
-                    $alert->getTitle(), 
-                    $alert->getMessage(),
+                    strip_tags($alert->getTitle()), 
+                    strip_tags($alert->getMessage()),
                     $token
                 );
                 if($alert->getFoR())
                 {
-                    $notification->setData(["type" => $alert->getFoR(), "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]);
+                    $notification->setData(["type" => $alert->getFoR(), "title" => strip_tags($alert->getTitle()), "msg" => strip_tags($alert->getMessage()),]);
                 } else {
-                    $notification->setData(["type" => "", "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]);
+                    $notification->setData(["type" => "", "title" => strip_tags($alert->getTitle()), "msg" => strip_tags($alert->getMessage()),]);
                 }
                 $fcmClient->sendNotification($notification);
             }
