@@ -89,6 +89,8 @@ class AlertListener
             if($token){
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
+                //Vendor Package has been modified to disable the title and body fields, this will break if the vendor package is updated.
+                //redjanym/php-firebase-cloud-messaging/src Notification.php and Message.php have had the json fields manipulated.
                 $notification = $fcmClient->createDeviceNotification(
                     strip_tags($alert->getTitle()), 
                     strip_tags($alert->getMessage()),
