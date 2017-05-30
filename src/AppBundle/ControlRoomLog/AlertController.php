@@ -143,7 +143,6 @@ class AlertController extends Controller
                         'notification'	=> $msg,
                         'data' => ["type" => $alert->getFoR(), "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]
                   );
-                    );
 
             $headers = array
                     (
