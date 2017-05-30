@@ -87,20 +87,23 @@ class AlertListener
         foreach($users as $user){
             $token = $user->getFirebaseID();
             if($token){
+                $breaks = array("<br />","<br>","<br/>");
+                $title = strip_tags(str_ireplace($breaks, "\n", $alert->getTitle()), "\n"), 
+                $message = strip_tags(str_ireplace($breaks, "\n", $alert->getMessage(), "\n"),
                 //$fcmClient = $this->getContainer()->get('redjan_ym_fcm.client');
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
                 //Vendor Package has been modified to disable the title and body fields, this will break if the vendor package is updated.
                 //redjanym/php-firebase-cloud-messaging/src Notification.php and Message.php have had the json fields manipulated.
                 $notification = $fcmClient->createDeviceNotification(
-                    strip_tags($alert->getTitle()), 
-                    strip_tags($alert->getMessage()),
+                    $title, 
+                    $message,
                     $token
                 );
                 if($alert->getFoR())
                 {
-                    $notification->setData(["type" => $alert->getFoR(), "title" => strip_tags($alert->getTitle()), "msg" => strip_tags($alert->getMessage()),]);
+                    $notification->setData(["type" => $alert->getFoR(), "title" => $title, "msg" => $message,]);
                 } else {
-                    $notification->setData(["type" => "", "title" => strip_tags($alert->getTitle()), "msg" => strip_tags($alert->getMessage()),]);
+                    $notification->setData(["type" => "", "title" => $title, "msg" => $message,]);
                 }
                 $fcmClient->sendNotification($notification);
             }
