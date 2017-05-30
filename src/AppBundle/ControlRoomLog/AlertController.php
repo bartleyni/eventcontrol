@@ -121,14 +121,14 @@ class AlertController extends Controller
     
     
     /**
-     * @Route("/Alert/FCMTest/{key}", name="Alert_FCM_Test");
+     * @Route("/Alert/FCMTest/{key}/{id}", name="Alert_FCM_Test");
      * 
      */
-    public function AlertFCMTestAction($key = null)
+    public function AlertFCMTestAction($key = null, $id = null)
     {
     
         #API access key from Google API's Console
-            $registrationIds = 'fJM_WPK2TiY:APA91bEHfOUtP9VddpKpZxVQbLNRNDFeyFMEwHLKGJu8YwGnFiO0-ArEMrupXgpp6URfKvd41XJWxXKwaHg8E7bKpAX7iKxnqtjJvv6r8lK5WYxj3f-NM-md_EEdbCfSFHUm3nqldBR5';
+            $registrationIds = $id;
         #prep the bundle
              $msg = array
                   (
