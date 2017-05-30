@@ -141,7 +141,7 @@ class AlertController extends Controller
                     (
                         'to'		=> $registrationIds,
                         'notification'	=> $msg,
-                        'data' => ["type" => $alert->getFoR(), "title" => $alert->getTitle(), "msg" => $alert->getMessage(),]
+                        'data' => ["type" => 'UPS', "title" => 'Title', "msg" => 'Message',]
                   );
 
             $headers = array
