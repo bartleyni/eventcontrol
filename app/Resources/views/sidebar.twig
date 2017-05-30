@@ -247,7 +247,7 @@
             </a>
         </li>
         <li>
-                <a href="https://drive.google.com/file/d/0Bwsfsw4a9GPSUWg5UDNTcVB2cFE/view?usp=sharing"  target="_blank" style="margin-bottom:4px;white-space: normal;" role="button">
+                <a href="https://drive.google.com/drive/folders/0Bwsfsw4a9GPSSEMyQXhaZUdPWHc?usp=sharing"  target="_blank" style="margin-bottom:4px;white-space: normal;" role="button">
                 <div class="row">
                     Get the Event Control App
                 </div>
@@ -257,7 +257,6 @@
 </div>        
 
 {% if is_granted('ROLE_USER') %}
-    {% if activeEventId(app.user.id) != 0 %}
 <div class="btn-group btn-block">
     <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Control Room Functions <span class="caret"></span>
@@ -286,7 +285,6 @@
         </li>
     </ul>
 </div>
-    {% endif %}
 {% endif %}
 <br>
 <br>
