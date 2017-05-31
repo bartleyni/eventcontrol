@@ -3,8 +3,7 @@
 security:
 
     encoders:
-        AppBundle\Entity\User: 
-            algorithm: bcrypt
+        AppBundle\Entity\User: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
