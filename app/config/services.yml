@@ -4,9 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
-#    app.form_login_authenticator:
-#        class: AppBundle\Security\FormLoginAuthenticator
-#        arguments: ["@service_container"]
+    app.security.login_form_authenticator:
+        class: AppBundle\Security\LoginFormAuthenticator
+        autowire: true
         
 #    app.api_token_authenticator:
 #        class: AppBundle\Security\ApiTokenAuthenticator
