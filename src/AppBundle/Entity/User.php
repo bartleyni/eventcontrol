@@ -203,6 +203,7 @@ class User implements AdvancedUserInterface, \Serializable {
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
     }
 
     public function __toString()
