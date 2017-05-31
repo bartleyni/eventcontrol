@@ -56,22 +56,22 @@ Control Room Login
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-1">  
-                            {{ form_label(form.username) }} 
-                            {{ form_errors(form.username) }}
+                            {{ form_label(form._username) }} 
+                            {{ form_errors(form_username) }}
                         </div>
                         <div class="col-md-3">   
-                            {{ form_widget(form.username) }}
+                            {{ form_widget(form._username)) }}
                         </div>
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-1">  
-                            {{ form_label(form.password) }} 
-                            {{ form_errors(form.password) }}
+                            {{ form_label(form._password) }} 
+                            {{ form_errors(form._password) }}
                         </div>
                         <div class="col-md-3">   
-                            {{ form_widget(form.password) }}
+                            {{ form_widget(form._password) }}
                         </div>
                     </div>
                 </div><br>
