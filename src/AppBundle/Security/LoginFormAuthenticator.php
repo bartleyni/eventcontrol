@@ -25,6 +25,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Form\FormFactoryInterface;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Form\Type\LoginForm;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 
 /**
@@ -40,12 +41,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $router;
     private $em;
     private $formFactory;
+    private $passwordEncoder;
     
-    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
+    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoder $passwordEncoder)
     {
         $this->formFactory = $formFactory;
         $this->em = $em;
         $this->router = $router;
+        $this->passwordEncoder = $passwordEncoder;
     }
     
     public function getCredentials(Request $request)
@@ -76,12 +79,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $plainPassword = $credentials['_password'];
-        $encoder = $this->container->get('security.password_encoder');
-        if (!$encoder->isPasswordValid($user, $plainPassword)) {
-            // throw any AuthenticationException
-            throw new BadCredentialsException();
+        $password = $credentials['_password'];
+        if ($this->passwordEncoder->isPasswordValid($user, $password)) {
+            return true;
         }
+        return false;
     }
     
     protected function getLoginUrl()
