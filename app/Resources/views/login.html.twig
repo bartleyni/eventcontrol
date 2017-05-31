@@ -55,12 +55,24 @@ Control Room Login
             {{ form_start(form) }}
                 <div class="row">
                     <div class="form-group">
-                        {{ form_row(form._username) }}
+                        <div class="col-md-1">  
+                            {{ form_label(form.username) }} 
+                            {{ form_errors(form.username) }}
+                        </div>
+                        <div class="col-md-3">   
+                            {{ form_widget(form.username) }}
+                        </div>
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="form-group">
-                        {{ form_row(form._password) }}
+                        <div class="col-md-1">  
+                            {{ form_label(form.password) }} 
+                            {{ form_errors(form.password) }}
+                        </div>
+                        <div class="col-md-3">   
+                            {{ form_widget(form.password) }}
+                        </div>
                     </div>
                 </div><br>
                 <div class="row">  
