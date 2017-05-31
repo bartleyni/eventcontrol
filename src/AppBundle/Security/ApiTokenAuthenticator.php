@@ -26,12 +26,13 @@ use Doctrine\ORM\EntityManager;
  */
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator 
 {
-    
     private $em;
+    private $router;
     
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, RouterInterface $router)
     {
         $this->em = $em;
+        $this->router = $router;
     }
     
     public function getCredentials(Request $request)
