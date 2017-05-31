@@ -8,16 +8,18 @@ Control Room Login
     {% embed '3-9.html.twig' %}
         {% block content %}
             <div class="wrapper">
-                <div class="row">
-                    <div class="col-md-12">
-                        <br>
-                        {% if error %}
-                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
+                {% if error %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 <br>
-                <form action="{{ path('login') }}" method="post">    
+                {#<form action="{{ path('login') }}" method="post">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-1">               
@@ -43,12 +45,30 @@ Control Room Login
                     is redirected to on success (more details below)
                     <input type="hidden" name="_target_path" value="/account" />
                 #}
-                <div class="row">  
+                {#<div class="row">  
                     <div class="col-md-4"> 
                         <button class="btn btn-primary btn-block" type="submit">login</button>
                     </div>
                 </div>
-            </form>
+            </form>#}
+            
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="form-group">
+                        {{ form_row(form._username) }}
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="form-group">
+                        {{ form_row(form._password) }}
+                    </div>
+                </div><br>
+                <div class="row">  
+                    <div class="col-md-4"> 
+                        <button type="submit" class="btn btn-success btn-block">Login <span class="fa fa-lock"></span></button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
         </div>
         {% endblock %}
     {% endembed %}
