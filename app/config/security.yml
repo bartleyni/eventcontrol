@@ -40,8 +40,8 @@ security:
             guard:
                 authenticators:
                     - app.security.login_form_authenticator
-            #        - app.api_token_authenticator
-            #    entry_point: app.form_login_authenticator
+                    - app.security.api_token_authenticator
+                entry_point: app.security.login_form_authenticator
             #logout:       true
             #anonymous:    true
             # activate different ways to authenticate
