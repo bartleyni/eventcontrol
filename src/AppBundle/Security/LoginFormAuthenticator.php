@@ -84,7 +84,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($this->passwordEncoder->isPasswordValid($user, $password)) {
             return true;
         }
-        return true;
+        return false;
     }
     
     protected function getLoginUrl()
@@ -94,7 +94,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     
     protected function getDefaultSuccessRedirectUrl()
     {
-        return $this->container->router->generate('/');
+        return $this->router->generate('/');
     }
    
 }
