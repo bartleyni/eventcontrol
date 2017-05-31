@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Form\Type\EditUserType;
 use AppBundle\Form\Type\UpdateUserType;
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\LoginForm;
 
 class EditUserController extends Controller
 {
