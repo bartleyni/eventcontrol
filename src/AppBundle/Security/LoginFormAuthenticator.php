@@ -75,7 +75,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $username = $credentials['_username'];
         //return $userProvider->loadUserByUsername($username);
-        return $this->em->getRepository('AppBundle:User')
+        return $this->em->getRepository(('AppBundle\Entity\User')
             ->findOneBy(['username' => $username]);
     }
     
@@ -85,7 +85,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($this->passwordEncoder->isPasswordValid($user, $password)) {
             return true;
         }
-        return false;
+        return true;
     }
     
     protected function getLoginUrl()
