@@ -74,7 +74,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $username = $credentials['_username'];
-        return $userProvider->loadUserByUsername($username);
+        //return $userProvider->loadUserByUsername($username);
+        return $this->em->getRepository('AppBundle:User')
+            ->findOneBy(['username' => $username]);
     }
     
     public function checkCredentials($credentials, UserInterface $user)
@@ -95,13 +97,5 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->container->router->generate('/');
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function supportsRememberMe()
-    {
-        return false;
-    }
-
+   
 }
