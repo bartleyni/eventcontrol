@@ -8,7 +8,7 @@
 
 namespace AppBundle\Security;
 
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -30,87 +30,68 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
  *
  * @author Nick
  */
-class FormLoginAuthenticator extends AbstractGuardAuthenticator
+class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
     /**
     * @var \Symfony\Component\Routing\RouterInterface
     */
     private $router;
-
-    private $container;
+    private $em;
+    private $formFactory;
     
-    public function __construct(ContainerInterface $container)
+    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
     {
-        $this->container = $container;
-        $this->router = $container->get('router');
+        $this->formFactory = $formFactory;
+        $this->em = $em;
+        $this->router = $router;
     }
     
     public function getCredentials(Request $request)
     {
-        if ($request->getPathInfo() != '/login_check') {
+        $isLoginSubmit = $request->getPathInfo() == '/login' && $request->isMethod('POST');
+        if (!$isLoginSubmit) {
+            // skip authentication
             return;
         }
-        $username = $request->request->get('_username');
-        $request->getSession()->set(Security::LAST_USERNAME, $username);
-        $password = $request->request->get('_password');
-        return array(
-            'username' => $username,
-            'password' => $password
+        
+        $form = $this->formFactory->create(LoginForm::class);
+        $form->handleRequest($request);
+        $data = $form->getData();
+        
+        $request->getSession()->set(
+            Security::LAST_USERNAME,
+            $data['_username']
         );
+        
+        return $data;
     }
+    
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        $username = $credentials['username'];
+        $username = $credentials['_username'];
         return $userProvider->loadUserByUsername($username);
     }
+    
     public function checkCredentials($credentials, UserInterface $user)
     {
-        $plainPassword = $credentials['password'];
+        $plainPassword = $credentials['_password'];
         $encoder = $this->container->get('security.password_encoder');
         if (!$encoder->isPasswordValid($user, $plainPassword)) {
             // throw any AuthenticationException
             throw new BadCredentialsException();
         }
     }
+    
     protected function getLoginUrl()
     {
-        return $this->container->get('router')
-            ->generate('login');
+        return $this->router->generate('login');
     }
+    
     protected function getDefaultSuccessRedirectUrl()
     {
-        return $this->container->get('router')
-            ->generate('/');
+        return $this->container->router->generate('/');
     }
     
-    /**
-    * {@inheritdoc}
-    */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
-        $url = $this->router->generate('/');
-        return new RedirectResponse($url);
-    }
-
-    /**
-    * {@inheritdoc}
-    */
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
-    {
-        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
-        $url = $this->router->generate('login');
-        return new RedirectResponse($url);
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function start(Request $request, AuthenticationException $authException = null)
-    {
-        $url = $this->router->generate('login');
-        return new RedirectResponse($url);
-    }
-
     /**
      * {@inheritdoc}
      */
