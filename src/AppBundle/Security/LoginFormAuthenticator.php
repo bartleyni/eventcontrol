@@ -55,7 +55,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         $loginUrl = $this->router->generate('login');
         $isLoginSubmit = $request->getPathInfo() == $loginUrl && $request->isMethod('POST');
-        if (!$isLoginSubmit) {
+        if($request->isMethod('POST')){
+            return [
+                '_username' => $request->request->get('_username'),
+                '_password' => $request->request->get('_password'),
+            ];
+        } else if (!$isLoginSubmit) {
             // skip authentication
             return;
         }
