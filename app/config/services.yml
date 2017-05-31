@@ -8,9 +8,9 @@ services:
         class: AppBundle\Security\LoginFormAuthenticator
         autowire: true
         
-#    app.api_token_authenticator:
-#        class: AppBundle\Security\ApiTokenAuthenticator
-#        arguments: ["@doctrine.orm.entity_manager"]
+    app.security.api_token_authenticator:
+        class: AppBundle\Security\ApiTokenAuthenticator
+        autowire: true
         
     doctrine.alert_listener:
         class: AppBundle\Entity\AlertListener
