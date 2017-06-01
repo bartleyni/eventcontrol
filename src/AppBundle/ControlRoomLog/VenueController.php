@@ -96,7 +96,7 @@ class VenueController extends Controller
         
         $countAlert = new VenueCountAlerts();
         $active_event = $usr->getSelectedEvent();
-        $venue_event2 = $em->getRepository('AppBundle\Entity\venue_event')->findOneBy(array('venue_id' => $venue_event, 'event_id' => $active_event));
+        $venue_event2 = $em->getRepository('AppBundle\Entity\venue_event')->findOneBy(array('venue_id' => $id, 'event_id' => $active_event));
         $countAlert->setVenueEvent($venue_event2);
         $form_count_alert = $this->createForm(CountAlertType::class, $countAlert);
 
