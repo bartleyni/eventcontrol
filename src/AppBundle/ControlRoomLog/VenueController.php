@@ -4,6 +4,7 @@ namespace AppBundle\ControlRoomLog;
 use AppBundle\Entity\venue;
 use AppBundle\Entity\camera_count;
 use AppBundle\Entity\venue_camera;
+use AppBundle\Entity\VenueCountAlerts;
 use AppBundle\Entity\skew;
 use AppBundle\Entity\venue_cameraRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
 use AppBundle\Form\Type;
 use AppBundle\Form\Type\SkewType;
+use AppBundle\Form\Type\CountAlertType;
 use AppBundle\Form\Type\VenueCameraType;
 
 class VenueController extends Controller
@@ -89,9 +91,26 @@ class VenueController extends Controller
             $form_skew = $this->createForm(SkewType::class, $skew);
             //return $this->redirectToRoute('skew', ['id' => $id]);
         }
+        
+        $countAlert = new VenueCountAlerts();
+        $venue_event = $em->getRepository('AppBundle\Entity\venue_event')->findOneBy(array('id' => $id));
+        $countAlert->setVenueEvent($venue_event);
+        $form_count_alert = $this->createForm(CountAlertType::class, $countAlert);
+
+        // 2) handle the submit (will only happen on POST)
+        $form_count_alert->handleRequest($request);
+        if ($form_count_alert->isSubmitted() && $form_count_alert->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($countAlert);
+            $em->flush();
+            $form_count_alert = $this->createForm(CountAlertType::class, $countAlert);
+        }
+        
         $em->flush();
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id, $active_event);
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
+        //$countAlerts = $em->getRepository('AppBundle\Entity\VenueCountAlerts')->getvenueskew($id, $timestamp);
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time, $timestamp);
         return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
