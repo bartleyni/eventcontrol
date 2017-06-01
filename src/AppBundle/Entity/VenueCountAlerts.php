@@ -47,6 +47,11 @@ class VenueCountAlerts {
     private $upDownBoth;
     
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $triggered;
+    
+    /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank
      */
