@@ -60,10 +60,29 @@ class venue_event {
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $highHighCapacityFlag;
-        
+    
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
+    * @ORM\OneToMany(targetEntity="VenueCountAlerts", mappedBy="venueEvent", cascade={"persist"})
+    * @ORM\OrderBy({"count" = "ASC"})
+    * @Assert\Valid
+    * @Assert\Collection(
+    *     fields = {
+    *         "description" = {
+    *             @Assert\NotBlank(),
+    *             @Assert\Length(
+    *                 min = 3,
+    *                 minMessage = "Description does not have enough characters"
+    *             )
+    *         },
+    *         "upDownBoth" = {
+    *             @Assert\NotBlank(),
+    *         },
+    *         "count" = {
+    *             @Assert\NotBlank(),
+    *         }
+    *     },
+    * )
+    */
     protected $countAlerts;
 
     /**
