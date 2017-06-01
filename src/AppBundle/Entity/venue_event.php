@@ -60,7 +60,11 @@ class venue_event {
      * @ORM\Column(type="boolean", nullable=true)
      */
     protected $highHighCapacityFlag;
-
+        
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    protected $countAlerts;
 
     /**
      * Get id
@@ -142,5 +146,13 @@ class venue_event {
     public function getVenueId()
     {
         return $this->venue_id;
+    }
+    
+    /**
+     * Get countAlerts
+     */
+    public function getCountAlerts()
+    {
+        return $this->countAlerts;
     }
 }
