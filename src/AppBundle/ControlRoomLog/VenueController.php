@@ -18,6 +18,7 @@ use AppBundle\Form\Type;
 use AppBundle\Form\Type\SkewType;
 use AppBundle\Form\Type\CountAlertType;
 use AppBundle\Form\Type\VenueCameraType;
+use AppBundle\Entity\VenueCountAlertsRepository;
 
 class VenueController extends Controller
 {
