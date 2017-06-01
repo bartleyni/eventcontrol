@@ -34,7 +34,7 @@ class CountAlertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('desription', TextType::class, array(
+            ->add('description', TextType::class, array(
                 'label' => 'Count Alert Description: ',
                 'required' => true,
                 'constraints' => array(
