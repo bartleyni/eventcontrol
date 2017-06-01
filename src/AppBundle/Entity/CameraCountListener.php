@@ -98,7 +98,7 @@ class CameraCountListener
                     }
                     break;
                 case "DOWN":
-                    if($count < $countAlertValue and $triggered == false){
+                    if($count < $countAlertValue and $alertTriggered == false){
                         $alert->setMessage($description."\n Venue Count: ".$count);
                         $alert->setType("warning");
                         $this->em->persist($alert);
@@ -106,7 +106,7 @@ class CameraCountListener
                         $countAlert->setTriggered(true);
                         $this->em->persist($countAlert);
                         $this->em->flush();
-                    } elseif($count > $countAlertValue and $triggered == true) {
+                    } elseif($count > $countAlertValue and $alertTriggered == true) {
                         $countAlert->setTriggered(false);
                         $this->em->persist($countAlert);
                         $this->em->flush();
