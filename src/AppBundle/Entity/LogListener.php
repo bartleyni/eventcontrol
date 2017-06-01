@@ -123,7 +123,7 @@ class LogListener
             $token = $user->getFirebaseID();
             if($token){
                 $fcmClient = $this->container->get('redjan_ym_fcm.client');
-                $message = strip_tags(str_ireplace($breaks, "\n", $log->getLogBlurb()."\n".$log->getLocation()."\n".$description."\n"), "\n");
+                $message = strip_tags(str_ireplace($breaks, "\n", "Log: ".$log->getLogBlurb()."\n"."Location: ".$log->getLocation()."\n".$description."\n"), "\n");
                 $notification = $fcmClient->createDeviceNotification(
                     $title, 
                     $message,
