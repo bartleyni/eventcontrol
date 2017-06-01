@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Alert;
+use AppBundle\Entity\VenueCountAlerts;
 use AppBundle\Entity\Queue;
 use AppBundle\Entity\skew;
 use AppBundle\Entity\camera_count;
@@ -67,57 +68,106 @@ class CameraCountListener
     
     private function checkAndAlert(array $countArray, string $venueName, venue_event $venueEvent)
     {
-        $highAlert = $venueEvent->gethighCapacityAlert();
-        $highFlag = $venueEvent->gethighCapacityFlag();
-        $highHighAlert = $venueEvent->gethighHighCapacityAlert();
-        $highHighFlag = $venueEvent->gethighHighCapacityFlag();
-        
+        $countAlerts = $venueEvent->getCountAlerts();
         $count = $countArray['running_count_in']-$countArray['running_count_out'];
+        $alert = new Alert();
+        $alert->setTitle('People Counting Capacity Alert: '.$venueName);
+        $alert->setURL(null);
+        $alert->setFoR('People');  
         
-        if($highAlert and $highHighAlert){
-            $alert = new Alert();
-            $alert->setTitle('People Counting Capacity: '.$venueName);
-
-            $alert->setURL(null);
-            $alert->setFoR('People');     
-
-            if($count >= $highHighAlert and $highHighFlag == false){
-                $alert->setMessage('High High Alert, Venue Count: '.$count);
-                $alert->setType("danger");
-                $this->em->persist($alert);
-                $this->em->flush();
-                //Moved to alert listener
-                //$alert_queue = new Queue();
-                //$alert_queue->setAlert($alert);                  
-                //$em->persist($alert_queue);
-                //$em->flush();
-                $venueEvent->sethighHighCapacityFlag(true);
-                $this->em->persist($venueEvent);
-                $this->em->flush();
-            } else if($count >= $highAlert and $highFlag == false){
-                $alert->setMessage('High Alert, Venue Count: '.$count);
-                $alert->setType("warning");
-                $this->em->persist($alert);
-                $this->em->flush();
-                //$alert_queue = new Queue();
-                //$alert_queue->setAlert($alert);                  
-                //$this->em->persist($alert_queue);
-                //$this->em->flush();
-                $venueEvent->sethighCapacityFlag(true);
-                $this->em->persist($venueEvent);
-                $this->em->flush();
-            } else if ($count < $highAlert){
-                $venueEvent->sethighHighCapacityFlag(false);
-                $venueEvent->sethighCapacityFlag(false);
-                $this->em->persist($venueEvent);
-                $this->em->flush();
-            } else if ($count < $highHighAlert){
-                $venueEvent->sethighHighCapacityFlag(false);
-                $this->em->persist($venueEvent);
-                $this->em->flush();
+        foreach($countAlerts as $countAlert){
+            $direction = $countAlert->getUpDownBoth();
+            $description = $countAlert->getDescription();
+            $countAlertValue = $countAlert->getCount();
+            $alertTriggered = $countAlert->getTriggered();
+            switch ($direction)
+            {
+                case "UP":
+                    if($count > $countAlertValue and $alertTriggered == false){
+                        $alert->setMessage($description."\n Venue Count: ".$count);
+                        $alert->setType("warning");
+                        $this->em->persist($alert);
+                        $this->em->flush();
+                        $countAlert->setTriggered(true);
+                        $this->em->persist($countAlert);
+                        $this->em->flush();
+                    } elseif($count < $countAlertValue and $alertTriggered == true) {
+                        $countAlert->setTriggered(false);
+                        $this->em->persist($countAlert);
+                        $this->em->flush();
+                    }
+                    break;
+                case "DOWN":
+                    if($count < $countAlertValue and $triggered == false){
+                        $alert->setMessage($description."\n Venue Count: ".$count);
+                        $alert->setType("warning");
+                        $this->em->persist($alert);
+                        $this->em->flush();
+                        $countAlert->setTriggered(true);
+                        $this->em->persist($countAlert);
+                        $this->em->flush();
+                    } elseif($count > $countAlertValue and $triggered == true) {
+                        $countAlert->setTriggered(false);
+                        $this->em->persist($countAlert);
+                        $this->em->flush();
+                    }
+                    break;
+                case "BOTH":
+                    break;
             }
-            
-            
-        }   
+        }
+        
+        
+        
+//        $highAlert = $venueEvent->gethighCapacityAlert();
+//        $highFlag = $venueEvent->gethighCapacityFlag();
+//        $highHighAlert = $venueEvent->gethighHighCapacityAlert();
+//        $highHighFlag = $venueEvent->gethighHighCapacityFlag();
+//        
+//        if($highAlert and $highHighAlert){
+//            $alert = new Alert();
+//            $alert->setTitle('People Counting Capacity: '.$venueName);
+//
+//            $alert->setURL(null);
+//            $alert->setFoR('People');     
+//
+//            if($count >= $highHighAlert and $highHighFlag == false){
+//                $alert->setMessage('High High Alert, Venue Count: '.$count);
+//                $alert->setType("danger");
+//                $this->em->persist($alert);
+//                $this->em->flush();
+//                //Moved to alert listener
+//                //$alert_queue = new Queue();
+//                //$alert_queue->setAlert($alert);                  
+//                //$em->persist($alert_queue);
+//                //$em->flush();
+//                $venueEvent->sethighHighCapacityFlag(true);
+//                $this->em->persist($venueEvent);
+//                $this->em->flush();
+//            } else if($count >= $highAlert and $highFlag == false){
+//                $alert->setMessage('High Alert, Venue Count: '.$count);
+//                $alert->setType("warning");
+//                $this->em->persist($alert);
+//                $this->em->flush();
+//                //$alert_queue = new Queue();
+//                //$alert_queue->setAlert($alert);                  
+//                //$this->em->persist($alert_queue);
+//                //$this->em->flush();
+//                $venueEvent->sethighCapacityFlag(true);
+//                $this->em->persist($venueEvent);
+//                $this->em->flush();
+//            } else if ($count < $highAlert){
+//                $venueEvent->sethighHighCapacityFlag(false);
+//                $venueEvent->sethighCapacityFlag(false);
+//                $this->em->persist($venueEvent);
+//                $this->em->flush();
+//            } else if ($count < $highHighAlert){
+//                $venueEvent->sethighHighCapacityFlag(false);
+//                $this->em->persist($venueEvent);
+//                $this->em->flush();
+//            }
+//            
+//            
+//        }   
     }
 }
