@@ -109,13 +109,13 @@ class LogListener
         $description = "";
         
         if ($entity instanceof medical_log) {
-            $title = "New Log:".$entity->getMedicalReportedInjuryType();
+            $title = "New Log: ".$entity->getMedicalReportedInjuryType();
             $description = $entity->getMedicalDescription();
         }
         
         
         if ($entity instanceof security_log) {
-            $title = "New Log:".$entity->getSecurityIncidentType();
+            $title = "New Log: ".$entity->getSecurityIncidentType();
             $description = $entity->getSecurityDescription();
         }
         
