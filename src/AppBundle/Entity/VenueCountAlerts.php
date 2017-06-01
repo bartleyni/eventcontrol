@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="VenueCountAlerts")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\locationsRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\VenueCountAlertsRepository")
  */
 class VenueCountAlerts {
     
