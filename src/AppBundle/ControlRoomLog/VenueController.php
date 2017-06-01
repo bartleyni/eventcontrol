@@ -116,7 +116,7 @@ class VenueController extends Controller
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
         $countAlerts = $em->getRepository('AppBundle\Entity\VenueCountAlerts')->getVenueEventCountAlerts($venue_event2);
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time, $timestamp);
-        return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
+        return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews, 'countAlerts' => $countAlerts, 'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
 
      /**
