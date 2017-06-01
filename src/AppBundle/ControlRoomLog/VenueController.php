@@ -4,6 +4,7 @@ namespace AppBundle\ControlRoomLog;
 use AppBundle\Entity\venue;
 use AppBundle\Entity\camera_count;
 use AppBundle\Entity\venue_camera;
+use AppBundle\Entity\venue_event;
 use AppBundle\Entity\VenueCountAlerts;
 use AppBundle\Entity\skew;
 use AppBundle\Entity\venue_cameraRepository;
@@ -94,7 +95,9 @@ class VenueController extends Controller
         }
         
         $countAlert = new VenueCountAlerts();
-        $countAlert->setVenueEvent($venue_event);
+        $active_event = $usr->getSelectedEvent();
+        $venue_event2 = $em->getRepository('AppBundle\Entity\venue_event')->findOneBy(array('venue_id' => $venue_event, 'event_id' => $active_event));
+        $countAlert->setVenueEvent($venue_event2);
         $form_count_alert = $this->createForm(CountAlertType::class, $countAlert);
 
         // 2) handle the submit (will only happen on POST)
@@ -110,7 +113,7 @@ class VenueController extends Controller
         $em->flush();
         $timestamp = $em->getRepository('AppBundle\Entity\venue')->getvenuedoors($id, $active_event);
         $skews = $em->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
-        $countAlerts = $em->getRepository('AppBundle\Entity\VenueCountAlerts')->getVenueEventCountAlerts($venue_event);
+        $countAlerts = $em->getRepository('AppBundle\Entity\VenueCountAlerts')->getVenueEventCountAlerts($venue_event2);
         $venue_detailed_count= $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($id, $active_event_end_time, $timestamp);
         return $this->render('venue_detailed.html.twig', array('venue' => $venue,'skews' => $skews,'venue_detailed_count' => $venue_detailed_count, 'form' => $form->createView(), 'form_skew' => $form_skew->createView()));
     }
