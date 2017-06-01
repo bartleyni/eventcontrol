@@ -178,4 +178,28 @@ class venue_event {
     {
         return $this->countAlerts;
     }
+    
+    /**
+     * Add countAlert
+     *
+     * @param \AppBundle\Entity\VenueCountAlerts $alert
+     *
+     * @return venue_event
+     */
+    public function addCountAlert(\AppBundle\Entity\VenueCountAlerts $alert)
+    {
+        //$this->locations[] = $location;
+        $alert->setVenueEvent($this);
+        //$this->locations->add($location);
+        return $this;
+    }
+    /**
+     * Remove countAlert
+     *
+     * @param \AppBundle\Entity\VenueCountAlerts $alert
+     */
+    public function removeCountAlert(\AppBundle\Entity\VenueCountAlerts $alert)
+    {
+        $this->countAlerts->removeElement($alert);
+    }
 }
