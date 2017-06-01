@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Locations")
+ * @ORM\Table(name="VenueCountAlerts")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\locationsRepository")
  */
 class VenueCountAlerts {
