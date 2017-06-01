@@ -11,7 +11,11 @@
  * @author Matthew
  */
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Table(name="venue_event")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\venue_eventRepository")
