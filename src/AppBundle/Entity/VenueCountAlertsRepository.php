@@ -2,7 +2,7 @@
 namespace AppBundle\Entity;
 use AppBundle\Entity;
 use Doctrine\ORM\EntityRepository;
-class VenueCountAlertRepository extends EntityRepository
+class VenueCountAlertsRepository extends EntityRepository
 {
     public function getVenueEventCountAlerts($id)
     {
