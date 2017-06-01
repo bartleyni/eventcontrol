@@ -42,6 +42,7 @@ class VenueCountAlerts {
      * @ORM\Column(type="string", length=200)
      * @Assert\NotBlank
      * @Assert\Length(min = 2)
+     * @Assert\Choice(choices = {"UP", "DOWN", "BOTH"}, message = "Select counting direction")
      */
     private $upDownBoth;
     
