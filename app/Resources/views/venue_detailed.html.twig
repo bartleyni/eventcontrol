@@ -171,10 +171,35 @@
                             {{ form_end(form_skew) }}
                         </div>
                     </div>
-                </div>
-
-
-
+               {# start of skew rows#}
+                    <div class="row">
+                        <br>
+                        <h4>Venue skew's</h4>
+                        <div class="col-md-6">
+                            {% if countAlerts empty %}
+                                No Count Alerts
+                            {% else %}
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Description</strong></td>
+                                            <td><strong>Direction/strong></td>
+                                            <td><strong>Count</strong></td>
+                                            <td><strong>Currently Triggered?</strong></td>
+                                        </tr>
+                                        {% for countAlert in countAlerts %}
+                                            <tr>
+                                                <td>{{ countAlert.description }}</td>
+                                                <td>{{ countAlert.upDownBoth }}</td>
+                                                <td>{{ countAlert.count }}</td>
+                                                <td>{{ countAlert.triggered }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% endif %}
+                        </div>
+                    </div>
             </div>
         {% endblock %}
         {% block sidebar %}
