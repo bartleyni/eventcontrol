@@ -100,13 +100,13 @@ class VenueCountAlerts {
     /**
      * Set event
      *
-     * @param \AppBundle\Entity\event $event
+     * @param \AppBundle\Entity\venue_event $venue_event
      *
-     * @return Locations
+     * @return VenueCountAlerts
      */
-    public function setEvent(\AppBundle\Entity\event $event = null)
+    public function setVenueEvent(\AppBundle\Entity\venue_event $venue_event = null)
     {
-        $this->event = $event;
+        $this->venueEvent = $venue_event;
 
         return $this;
     }
