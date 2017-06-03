@@ -42,7 +42,8 @@ class CameraCountListener
     
     private function getVenueCountCamera(camera_count $camCount)
     {
-        $venue = $camCount->getVenueCamera()->getVenueId();
+        $camera = $this->em->getRepository('AppBundle\Entity\camera')->findOneBy((array('id' => $camCount->getCameraId())));
+        $venue = $camera->getVenueCamera()->getVenueId();
         $name = $venue->getName();
         $venueEvents = $venue->getVenueEvent();
         foreach($venueEvents as $venueEvent){
