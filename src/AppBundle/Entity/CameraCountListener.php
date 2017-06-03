@@ -42,7 +42,7 @@ class CameraCountListener
     
     private function getVenueCountCamera(camera_count $camCount)
     {
-        $venue = $camCount->getCameraId()->getVenueCamera()->getVenue();
+        $venue = $camCount->getCameraId()->getVenueCamera()->getVenueId();
         $name = $venue->getName();
         $venueEvents = $venue->getVenueEvent();
         foreach($venueEvents as $venueEvent){
