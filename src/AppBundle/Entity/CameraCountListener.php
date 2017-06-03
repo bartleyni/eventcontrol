@@ -33,7 +33,7 @@ class CameraCountListener
         $this->em = $args->getEntityManager();
                 
         if ($entity instanceof camera_count) {
-            $this->getVenueCountCamera($entity);
+            //$this->getVenueCountCamera($entity);
         }
         if ($entity instanceof skew) {
             $this->getVenueCountSkew($entity);
