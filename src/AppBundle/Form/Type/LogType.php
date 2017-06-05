@@ -40,7 +40,6 @@ class LogType extends AbstractType
                 'label' => 'Time',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
-                'view_timezone' => 'Europe/London',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
                     'data-provide' => 'datetimepicker1',
@@ -113,7 +112,6 @@ class LogType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\log_entries',
-            'view_timezone'     => 'Europe/London',
         ));
     }
 }
