@@ -37,7 +37,7 @@ class entry_form extends Controller
 
         $user = $this->getUser();
 
-        $new_entry->setLogEntryOpenTime(new \DateTime("now", new DateTimeZone('Europe/London') ));
+        $new_entry->setLogEntryOpenTime(new \DateTime("now", new \DateTimeZone('Europe/London') ));
         $new_entry->setOperator($user);
 
         
