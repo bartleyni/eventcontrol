@@ -113,6 +113,7 @@ class LogType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\log_entries',
+            'view_timezone'     => 'Europe/London',
         ));
     }
 }
