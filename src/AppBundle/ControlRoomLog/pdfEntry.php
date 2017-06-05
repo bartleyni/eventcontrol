@@ -103,7 +103,8 @@ class pdfEntry extends Controller
             $reports = array();
             
             //find all entries that are active
-            $entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+            //$entries = $em->getRepository('AppBundle\Entity\log_entries')->findByEvent($event);
+            $entries = $em->getRepository('AppBundle\Entity\log_entries')->findBy(array('event' => $event, 'log_entry_open_time' => 'ASC'));
             //$em->flush();
             
             $reports[] = $this->renderView(
