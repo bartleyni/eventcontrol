@@ -84,7 +84,7 @@ Event Entry Form
                                 </div>
                                 <div class="col-md-6">                                     
                                     <div class='input-group date' id='datetimepicker3'>
-                                        {{ form_widget(form.event_log_stop_date|date('Y-m-d H:i:s', "Europe/London") ) }}
+                                        {{ form_widget(form.event_log_stop_date) }}
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -306,7 +306,8 @@ Event Entry Form
             $('#datetimepicker1').datetimepicker({
                 useCurrent: false,
                 format: 'YYYY-MM-DD HH:mm:ss',
-                showTodayButton: true
+                showTodayButton: true,
+                locale: 'en-gb'
             });
         });
         
@@ -314,7 +315,8 @@ Event Entry Form
             $('#datetimepicker2').datetimepicker({
                 useCurrent: false,
                 format: 'YYYY-MM-DD HH:mm:ss',
-                showTodayButton: true
+                showTodayButton: true,
+                locale: 'en-gb'
             });
         });
         
@@ -322,7 +324,8 @@ Event Entry Form
             $('#datetimepicker3').datetimepicker({
                 useCurrent: false,
                 format: 'YYYY-MM-DD HH:mm:ss',
-                showTodayButton: true
+                showTodayButton: true,
+                locale: 'en-gb'
             });
         });
         

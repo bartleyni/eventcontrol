@@ -30,7 +30,7 @@ Control Room Log Edit
                                         {{ form_label(log_entry.log_entry_open_time) }}
                                         {{ form_errors(log_entry.log_entry_open_time) }}
                                         <div class='input-group date' id='datetimepicker1'>
-                                            {{ form_widget(log_entry.log_entry_open_time|date('Y-m-d H:i:s', "Europe/London") ) }}
+                                            {{ form_widget(log_entry.log_entry_open_time) }}
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -255,7 +255,8 @@ Control Room Log Edit
             $('#datetimepicker1').datetimepicker({
                 useCurrent: true,
                 format: 'YYYY-MM-DD HH:mm:ss',
-                showTodayButton: true
+                showTodayButton: true,
+                locale: 'en-gb'
             });
         });
         
