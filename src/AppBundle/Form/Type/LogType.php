@@ -41,6 +41,7 @@ class LogType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
                 'view_timezone' => 'Europe/London',
+                'model_timezone' => 'UTC',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
                     'data-provide' => 'datetimepicker1',
