@@ -33,19 +33,21 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $em = $options['em'];
-        $eId = 0;
-        $eId = $options['event_id'];
-        $qb = $em->createQueryBuilder();
-        $qb
-            ->select('venue')
-            ->from('AppBundle\Entity\venue', 'venue')
-            ->leftJoin('AppBundle\Entity\venue_event', 'venue_event', 'WITH', 'venue_event.venue_id = venue.id')
-            ->where('venue_event.event_id = :eventId')
-            ->setParameter('eventId', $eId)
-        ;
-
-        $query = $qb->getQuery();
-        $venues = $query->getResult();
+        if($options['event_id']){
+            $eId = $options['event_id'];
+            $qb = $em->createQueryBuilder();
+            $qb
+                ->select('venue')
+                ->from('AppBundle\Entity\venue', 'venue')
+                ->leftJoin('AppBundle\Entity\venue_event', 'venue_event', 'WITH', 'venue_event.venue_id = venue.id')
+                ->where('venue_event.event_id = :eventId')
+                ->setParameter('eventId', $eId)
+            ;
+            $query = $qb->getQuery();
+            $venues = $query->getResult();
+        } else {
+            $venues = '';
+        }
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Event Name',
