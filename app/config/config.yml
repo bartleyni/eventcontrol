@@ -52,7 +52,7 @@ twig:
         weatherUser: "%raintoday_username%"
         weatherPass: "%raintoday_password%"
     date:
-        timezone: Europe/London
+        timezone: UTC
 
 # Assetic Configuration
 assetic:
