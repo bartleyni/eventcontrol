@@ -84,7 +84,7 @@ Event Entry Form
                                 </div>
                                 <div class="col-md-6">                                     
                                     <div class='input-group date' id='datetimepicker3'>
-                                        {{ form_widget(form.event_log_stop_date) }}
+                                        {{ form_widget(form.event_log_stop_date|date('Y-m-d H:i:s', "Europe/London") ) }}
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
