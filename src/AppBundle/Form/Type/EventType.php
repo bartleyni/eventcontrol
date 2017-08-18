@@ -33,6 +33,7 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $em = $options['em'];
+        $eId = 0;
         $eId = $options['event_id'];
         $qb = $em->createQueryBuilder();
         $qb
