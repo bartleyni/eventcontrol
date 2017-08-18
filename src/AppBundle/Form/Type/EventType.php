@@ -197,7 +197,7 @@ class EventType extends AbstractType
              'multiple' => true,
              'expanded' => true,
              'required' => false,
-             'data' => $venues,
+             #'data' => $venues,
              'attr' => array(
                  'class' => 'form-control checkbox',
              )
