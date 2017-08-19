@@ -33,11 +33,11 @@ Events Settings
                                 <tbody>
                                     {% for event in events %}
                                         <tr>
-                                            <td>{{ event.event_date|date('Y-m-d H:i', "Europe/London") }}</td>
+                                            <td>{{ event.event_date|date('Y-m-d H:i') }}</td>
                                             <td>{{ event.name }}</td>
                                             <td>{{ event.client }}</td>
-                                            <td>{{ event.event_log_start_date|date('Y-m-d H:i', "Europe/London") }}</td>
-                                            <td>{{ event.event_log_stop_date|date('Y-m-d H:i', "Europe/London") }}</td>
+                                            <td>{{ event.event_log_start_date|date('Y-m-d H:i') }}</td>
+                                            <td>{{ event.event_log_stop_date|date('Y-m-d H:i') }}</td>
                                             <td>{% if date(event.event_log_start_date) < date() and  date(event.event_log_stop_date) > date()%}
                                                     <span class="glyphicon glyphicon-ok" aria-hidden="true" aria-label="Active"></span> 
                                                 {% endif %}
@@ -46,7 +46,7 @@ Events Settings
                                             <td>
                                                 <a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a>
                                                 {% if event.event_report_run_date %}
-                                                    {{ event.event_report_run_date|date('Y-m-d H:i:s', "Europe/London") }}
+                                                    {{ event.event_report_run_date|date('Y-m-d H:i:s') }}
                                                 {% endif %}
                                             </td>
                                             <td>
