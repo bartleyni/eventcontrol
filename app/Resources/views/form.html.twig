@@ -107,19 +107,20 @@ Control Room Log New Entry
                 showTodayButton: true
             });
         });
+        
         $('#now_button').click(function(){
             setTime();
         });
         
         $(document).ready(function() {
             setTime();
-        };
+        });
         
         function setTime(){
             var d = Date();
             var nowTime = moment(d).format("YYYY-MM-DD HH:mm:ss");
             $('.datetimepicker1').val(nowTime);  
-        };
+        }
         
         
         var locationOptions = {
