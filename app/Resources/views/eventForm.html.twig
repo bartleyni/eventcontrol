@@ -213,6 +213,21 @@ Event Entry Form
                                 {% do form.locations.setRendered %}
                             </div>
                         </div><br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                Copy locations from other event?
+                            </div>
+                            <div class="col-md-8">
+                                <select name="copy_locations">
+                                    {% for event in events %}
+                                        <option value="{{ event.id }}">{{ event.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                Copy button
+                            </div>
+                        </div>
                         <div class="row">  
                             <div class="col-md-8">
                                 {% if event.id is defined %}
