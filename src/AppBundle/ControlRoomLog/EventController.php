@@ -117,7 +117,7 @@ class EventController extends Controller
     
             $em->flush();
             
-            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId, 'em' => $em, 'events' => $events));
+            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId, 'em' => $em));
             $form->handleRequest($request);
         }
 
@@ -186,7 +186,7 @@ class EventController extends Controller
         
         return $this->render(
             'eventForm.html.twig',
-            array('form' => $form->createView(), 'event' => $event, 'current_overlay' => $current_overlay)
+            array('form' => $form->createView(), 'event' => $event, 'current_overlay' => $current_overlay, 'events' => $events)
         );
     }
     
