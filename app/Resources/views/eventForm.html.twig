@@ -348,9 +348,9 @@ Event Entry Form
         $('#copy_locations_button').click(function(){
             var e = document.getElementById("copy_locations");
             var copyId = e.options[e.selectedIndex].value;
-            $.post( "{{ path('location_copy') }}/{{ editId }}/"+copyId );
+            $.post( "{{ path('location_copy') }}/{{ event }}/"+copyId );
         });
         
     </script>
     
-{% endblock %}        
+{% endblock %}
