@@ -397,14 +397,14 @@ class EventController extends Controller
     * @Route("/event/locationCopy/{editId}/{copyId}", name="location_copy");
     */
     
-    public function editEventLocationCopyAction(Request $request, $editId=null, $copyId=null)
+    public function editEventLocationCopyAction($editId=null, $copyId=null)
     {
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
         $em->flush();
         $copyEvent = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $copyId));
         $em->flush();
-
+                
         $locations = $copyEvent->getLocations();
 
         foreach ($locations as $location){
@@ -412,8 +412,9 @@ class EventController extends Controller
             $newLocation->setLocationLatLong($location->getLocationLatLong());
             $newLocation->setLocationText($location->getLocationText());
             $newLocation->setEvent($event);
-            $newLocation->addEvent($event);
+            $event->addLocation($newLocation);
             $em->persist($newLocation);
+            $em->persist($event);
             $em->flush();
         }
         
