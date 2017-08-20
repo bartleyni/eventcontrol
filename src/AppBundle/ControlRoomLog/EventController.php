@@ -391,6 +391,36 @@ class EventController extends Controller
         
         return $this->render('iframe.html.twig', array('iframeDynamic' => $iframeDynamic, 'iframe' => $iframe, 'target' => $target, 'iframe_username' => $username, 'iframe_password' => $password, 'data' => $data));
     }
+    
+    /**
+    * @Route("/event/locationCopy/{editId}/{copyId}", name="location_copy");
+    */
+    
+    public function editEventLocationCopyAction(Request $request, $editId=null, $copyId=null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if ($editId && $copyId){
+            $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
+            $em->flush();
+            $copyEvent = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $copyId));
+            $em->flush();
+            
+            $locations = $copyEvent->getLocations();
+          
+            foreach ($locations as $location){
+                $newLocation = new \AppBundle\Entity\Locations;
+                $newLocation->setLocationLatLong($location->getLocationLatLong);
+                $newLocation->setLocationText($location->getLocationText);
+                $newLocation->setEvent($event);
+                $em->persist($newLocation);
+            }
+            
+        }
+        return $this->redirectToRoute('edit_event', array('editId' => $editId));
+            
+            
+    }
+     
 }
 
 
