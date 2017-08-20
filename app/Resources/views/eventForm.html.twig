@@ -226,7 +226,7 @@ Event Entry Form
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" id="copy_locations_button" class="btn btn-info">Copy Button</button>
+                                    <button type="button" id="copy_locations_button" class="btn btn-info">Copy</button>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +348,9 @@ Event Entry Form
         $('#copy_locations_button').click(function(){
             var e = document.getElementById("copy_locations");
             var copyId = e.options[e.selectedIndex].value;
-            $.post( "{{ path('location_copy') }}/{{ event }}/"+copyId );
+            var url = '{{ path("location_copy", {'eventId': event, 'copyId': 'copyID'}) }}'; 
+            url = url.replace("copyID", copyId);
+            $.post(url);
         });
         
     </script>
