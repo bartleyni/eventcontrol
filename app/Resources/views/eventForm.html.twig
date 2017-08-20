@@ -351,8 +351,9 @@ Event Entry Form
             console.log("Copy Button");
             var e = document.getElementById("copy_locations");
             var copyId = e.options[e.selectedIndex].value;
-            var url = '{{ path("location_copy", {'eventId': event.id, 'copyId': 'copyID'}) }}'; 
-            url = url.replace("copyID", copyId);
+            var url = '{{ path("location_copy") }}'; 
+            //url = url.replace("copyID", copyId);
+            url = url+"/{{ event.id }}/"+copyId;
             //$.post(url);
             window.location = url;
         });
