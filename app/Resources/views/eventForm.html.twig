@@ -214,18 +214,20 @@ Event Entry Form
                             </div>
                         </div><br>
                         <div class="row">
-                            <div class="col-md-2">
-                                Copy locations from other event?
-                            </div>
-                            <div class="col-md-8">
-                                <select name="copy_locations">
-                                    {% for event in events %}
-                                        <option value="{{ event.id }}">{{ event.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                Copy button
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label for="copy_locations">Copy locations from other event?</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="copy_locations" id="copy_locations">
+                                        {% for event in events %}
+                                            <option value="{{ event.id }}">{{ event.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    Copy button
+                                </div>
                             </div>
                         </div>
                         <div class="row">  
