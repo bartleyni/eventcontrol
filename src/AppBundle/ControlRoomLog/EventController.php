@@ -412,7 +412,9 @@ class EventController extends Controller
             $newLocation->setLocationLatLong($location->getLocationLatLong());
             $newLocation->setLocationText($location->getLocationText());
             $newLocation->setEvent($event);
+            $newLocation->addEvent($event);
             $em->persist($newLocation);
+            $em->flush();
         }
         
         return $this->redirectToRoute('edit_event', array('editId' => $editId));       
