@@ -113,9 +113,11 @@ class EventController extends Controller
                 $originalLocations->add($location);
             }
             
+            $events = $em->getRepository('AppBundle\Entity\event')->findAll();
+    
             $em->flush();
             
-            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId, 'em' => $em));
+            $form = $this->createForm(EventType::class, $event, array('event_id' => $editId, 'em' => $em, 'events' => $events));
             $form->handleRequest($request);
         }
 
