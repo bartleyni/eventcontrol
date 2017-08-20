@@ -3,6 +3,7 @@
 namespace AppBundle\ControlRoomLog;
 
 use AppBundle\Entity\venue_event;
+use AppBundle\Entity\Locations;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -399,7 +400,7 @@ class EventController extends Controller
     public function editEventLocationCopyAction(Request $request, $editId=null, $copyId=null)
     {
         $em = $this->getDoctrine()->getManager();
-        if ($editId && $copyId){
+        if ($copyId){
             $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $editId));
             $em->flush();
             $copyEvent = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $copyId));
@@ -408,7 +409,7 @@ class EventController extends Controller
             $locations = $copyEvent->getLocations();
           
             foreach ($locations as $location){
-                $newLocation = new \AppBundle\Entity\Locations;
+                $newLocation = new Locations;
                 $newLocation->setLocationLatLong($location->getLocationLatLong());
                 $newLocation->setLocationText($location->getLocationText());
                 $newLocation->setEvent($event);
