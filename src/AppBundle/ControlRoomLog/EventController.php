@@ -409,8 +409,8 @@ class EventController extends Controller
           
             foreach ($locations as $location){
                 $newLocation = new \AppBundle\Entity\Locations;
-                $newLocation->setLocationLatLong($location->getLocationLatLong);
-                $newLocation->setLocationText($location->getLocationText);
+                $newLocation->setLocationLatLong($location->getLocationLatLong());
+                $newLocation->setLocationText($location->getLocationText());
                 $newLocation->setEvent($event);
                 $em->persist($newLocation);
             }
