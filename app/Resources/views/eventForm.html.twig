@@ -346,6 +346,7 @@ Event Entry Form
         });
         
         $('#copy_locations_button').click(function(){
+            console.log("Copy Button");
             var e = document.getElementById("copy_locations");
             var copyId = e.options[e.selectedIndex].value;
             var url = '{{ path("location_copy", {'eventId': event, 'copyId': 'copyID'}) }}'; 
