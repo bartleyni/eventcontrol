@@ -213,24 +213,26 @@ Event Entry Form
                                 {% do form.locations.setRendered %}
                             </div>
                         </div><br>
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    <label for="copy_locations">Copy locations from other event?</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <select class="form-control" name="copy_locations" id="copy_locations">
-                                        {% for event in events %}
-                                            <option value="{{ event.id }}">{{ event.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="button" id="copy_locations_button" class="btn btn-info">Copy</button>
+                        {% if event.id is defined %}
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <label for="copy_locations">Copy locations from other event?</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="copy_locations" id="copy_locations">
+                                            {% for event in events %}
+                                                <option value="{{ event.id }}">{{ event.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" id="copy_locations_button" class="btn btn-info">Copy</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
+                            <br>
+                        {% endif %}
                         <div class="row">  
                             <div class="col-md-8">
                                 {% if event.id is defined %}
@@ -349,9 +351,10 @@ Event Entry Form
             console.log("Copy Button");
             var e = document.getElementById("copy_locations");
             var copyId = e.options[e.selectedIndex].value;
-            var url = '{{ path("location_copy", {'eventId': event, 'copyId': 'copyID'}) }}'; 
+            var url = '{{ path("location_copy", {'eventId': event.id, 'copyId': 'copyID'}) }}'; 
             url = url.replace("copyID", copyId);
-            $.post(url);
+            //$.post(url);
+            window.location = url;
         });
         
     </script>
