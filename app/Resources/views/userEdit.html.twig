@@ -115,7 +115,7 @@ Control Room Edit User Details
         $('#generate_token_button').click(function(){
             var hash = CryptoJS.SHA3("{{ app.user.username }}" + new Date().getTime());
             var newToken = hash.toString().substring(0, 24);
-            $('#update_user_apiToken').val(newToken);
+            $('#edit_user_apiToken').val(newToken);
             console.log(newToken);
         });
     </script>
