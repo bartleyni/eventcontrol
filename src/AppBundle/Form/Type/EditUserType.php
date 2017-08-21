@@ -53,9 +53,10 @@ class EditUserType extends AbstractType
                 )))
                 ->add('apiToken', TextType::class, array(
                     'required' => false,
-                    'disabled' => true,
+                    'disabled' => false,
                     'attr' => array(
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'readonly' => true
                 )))
                 ->add('plainPassword', RepeatedType::class, array(
                     'type' => PasswordType::class,
