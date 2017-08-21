@@ -9,6 +9,7 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_USER:      ROLE_VIEW
         ROLE_FIELD:      ROLE_VIEW
+        ROLE_VIEW:      ROLE_API_USER
         #ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 
@@ -40,7 +41,6 @@ security:
             guard:
                 authenticators:
                     - app.security.login_form_authenticator
-                    - app.security.api_token_authenticator
                 entry_point: app.security.login_form_authenticator
             #logout:       true
             #anonymous:    true
@@ -51,6 +51,12 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            
+        api:
+            pattern: ^/api/
+            guard:
+                authenticators:
+                    - app.security.api_token_authenticator
 
     access_control:
         - { path: ^/peoplecounting/slack_occupancy/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -65,6 +71,7 @@ security:
         - { path: ^/UPS/status/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/so/*, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/api/*, roles: ROLE_API_USER }
         - { path: ^/register, role: ROLE_USER, requires_channel: https }
         - { path: ^/mySettings/, role: ROLE_USER, requires_channel: https }
         - { path: ^/fireregister, role: ROLE_USER, requires_channel: https }
