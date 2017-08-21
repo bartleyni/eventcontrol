@@ -31,7 +31,7 @@ class APIController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
-        $selected_event = $usr->getSelectedEvent();
+        $selected_event = $usr;
         $active_events = $em->getRepository('AppBundle\Entity\User')->getActiveEvents($usr);
 
         if ($selected_event)
