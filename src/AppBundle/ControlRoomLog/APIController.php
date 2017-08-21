@@ -36,11 +36,16 @@ class APIController extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $selected_event = $usr->getSelectedEvent();
         $active_events = $em->getRepository('AppBundle\Entity\User')->getActiveEvents($usr);
-
-        if ($selected_event)
+        
+        $json_data->selected = $selected_event;
+        $json_data->active = $active_events;
+        
+        json_encode($json_data);
+        
+        if ($json_data)
         {
                 $response = new JsonResponse();
-                $response->setData($active_events);
+                $response->setData($json_data);
 
         } else {
             $response->setContent('No Events');
