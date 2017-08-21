@@ -53,10 +53,11 @@ Control Room Update User Details
                                 <div class="col-md-4">                                     
                                     {{ form_widget(form.apiToken) }}
                                 </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="generate_token_button" class="btn btn-info">Generate New Token</button>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <button type="button" id="generate_token_button" class="btn btn-info">Generate New Token</button>
-                            </div>
+                            
                         </div><br>
                         <div class="row">                                                        
                             <div class="form-group">
@@ -101,9 +102,10 @@ Control Room Update User Details
     <script type="text/javascript" src="{{ asset('assets/vendor/crypto-js/components/enc-base64-min.js') }}"></script>
     <script type="text/javascript">
         $('#generate_token_button').click(function(){
-            var hash = CryptoJS.SHA3("{{ app.user.username }}");
-            $('#update_user_apiToken').val(hash.toString());
-            console.log(hash.toString());
+            var hash = CryptoJS.SHA3("{{ app.user.username }}" + new Date().getTime());
+            var newToken = hash.toString().substring(0, 24);
+            $('#update_user_apiToken').val(newToken);
+            console.log(newToken);
         });
     </script>
 {% endblock %}
