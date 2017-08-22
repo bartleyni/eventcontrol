@@ -33,11 +33,11 @@ Events Settings
                                 <tbody>
                                     {% for event in events %}
                                         <tr>
-                                            <td>{{ event.event_date|date('Y-m-d H:i') }}</td>
+                                            <td>{{ event.event_date|date('Y-m-d H:i T' , 'Europe/London') }}</td>
                                             <td>{{ event.name }}</td>
                                             <td>{{ event.client }}</td>
-                                            <td>{{ event.event_log_start_date|date('Y-m-d H:i') }}</td>
-                                            <td>{{ event.event_log_stop_date|date('Y-m-d H:i') }}</td>
+                                            <td>{{ event.event_log_start_date|date('Y-m-d H:i T', 'Europe/London') }}</td>
+                                            <td>{{ event.event_log_stop_date|date('Y-m-d H:i T', 'Europe/London') }}</td>
                                             <td>{% if date(event.event_log_start_date) < date() and  date(event.event_log_stop_date) > date()%}
                                                     <span class="glyphicon glyphicon-ok" aria-hidden="true" aria-label="Active"></span> 
                                                 {% endif %}
