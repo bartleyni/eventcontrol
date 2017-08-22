@@ -9,13 +9,13 @@
                 <div class="row">
                     <h1>{{ event.name }} Event Control</h1>
                     {{ event.client }}<br>
-                    Report Produced: {{ "now"|date('Y-m-d H:i:s', "Europe/London") }}
+                    Report Produced: {{ "now"|date('Y-m-d H:i:s T', "Europe/London") }}
                     <h2>Event Summary Sheet</h2>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="row">
-                    <h4>Logs recorded between {{ event.eventLogStartDate|date('Y-m-d H:i:s', "Europe/London") }} and {{ event.eventLogStopDate|date('Y-m-d H:i:s', "Europe/London") }}</h4>
+                    <h4>Logs recorded between {{ event.eventLogStartDate|date('Y-m-d H:i:s T', "Europe/London") }} and {{ event.eventLogStopDate|date('Y-m-d H:i:s T', "Europe/London") }}</h4>
                 </div>
                 <div class="row">
                     <ul class="list-group">
