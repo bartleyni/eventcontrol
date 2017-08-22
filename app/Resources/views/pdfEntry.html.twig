@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <h1>{{ event.name }} Event Control</h1>
                     {{ event.client }}<br>
-                    Report Produced: {{ "now"|date('Y-m-d H:i:s e', "Europe/London") }}
+                    Report Produced: {{ "now"|date('Y-m-d H:i:s T', "Europe/London") }}
                     <h2>Log Entry ID:</h2> <h3>{{ entry.id }}</h3>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                             <strong>Operator: </strong>
                             {{ entry.operator }}<br>
                             <strong>Log Open Time (Submit Timestamp): </strong>
-                            {{ entry.logEntryOpenTime|date('Y-m-d H:i:s e', "Europe/London")}} ({{ entry.logTimestamp|date('Y-m-d H:i:s e', "Europe/London") }})<br>
+                            {{ entry.logEntryOpenTime|date('Y-m-d H:i:s T')}} ({{ entry.logTimestamp|date('Y-m-d H:i:s T', "Europe/London") }})<br>
                             <strong>Short Description:</strong><br>
                             {{ entry.logBlurb }}<br>
                             <strong>Location: </strong>
@@ -58,7 +58,7 @@
                             <div class="panel-body">
                                 <strong>Description:</strong><br>
                                 {{ general.generalDescription }}<br>
-                                <strong>Closed: </strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s e', "Europe/London") }} {% endif %}
+                                <strong>Closed: </strong> {% if general.generalEntryClosedTime %} {{ general.generalEntryClosedTime|date('Y-m-d H:i:s T', "Europe/London") }} {% endif %}
                             </div>
                         </div>
                     {% endif %}
@@ -81,7 +81,7 @@
                                 {{ medical.medicalResolution }}<br>
                                 <strong>Notes:</strong><br>
                                 {{ medical.medicalNotes }}<br>
-                                <strong>Closed: </strong>{% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s e', "Europe/London") }}{% endif %}<br>
+                                <strong>Closed: </strong>{% if medical.medicalEntryClosedTime %}{{ medical.medicalEntryClosedTime|date('Y-m-d H:i:s T', "Europe/London") }}{% endif %}<br>
                             </div>
                         </div>
                     {% endif %}
@@ -102,7 +102,7 @@
                                 {{ security.securityResponded ? 'Yes':'No' }}<br>
                                 <strong>Security Resolution:</strong><br>
                                 {{ security.securityResolution }}<br>
-                                <strong>Closed: </strong>{% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s e', "Europe/London") }} {% endif %}<br>          
+                                <strong>Closed: </strong>{% if security.securityEntryClosedTime %}{{ security.securityEntryClosedTime|date('Y-m-d H:i:s T', "Europe/London") }} {% endif %}<br>          
                             </div>
                         </div>
                     {% endif %}
@@ -123,7 +123,7 @@
                                 {{ lost.lostPropertyResolution }}<br>
                                 <strong>Resolution Description:</strong><br>
                                 {{ lost.lostPropertyResolutionDescription }}<br>
-                                <strong>Closed: </strong>{% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s e', "Europe/London") }}{% endif %}<br>
+                                <strong>Closed: </strong>{% if lost.lostPropertyEntryClosedTime %}{{ lost.lostPropertyEntryClosedTime|date('Y-m-d H:i:s T', "Europe/London") }}{% endif %}<br>
                             </div>
                         </div>
                     {% endif %}
