@@ -46,7 +46,7 @@ Events Settings
                                             <td>
                                                 <a href="{{ path('event_entries', {'eventId': event.id}) }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" aria-label="Generate Report"></span></a>
                                                 {% if event.event_report_run_date %}
-                                                    {{ event.event_report_run_date|date('Y-m-d H:i:s') }}
+                                                    {{ event.event_report_run_date|date('Y-m-d H:i:s e') }}
                                                 {% endif %}
                                             </td>
                                             <td>
