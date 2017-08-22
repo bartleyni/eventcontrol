@@ -92,7 +92,7 @@ class EventType extends AbstractType
                 'label' => 'Date of Event',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm',
-                #'view_timezone' => 'Europe/London',
+                'view_timezone' => 'Europe/London',
                 #'model_timezone' => 'UTC',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
@@ -104,7 +104,7 @@ class EventType extends AbstractType
                 'label' => 'Event Logging Start Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
-                #'view_timezone' => 'Europe/London',
+                'view_timezone' => 'Europe/London',
                 #'model_timezone' => 'UTC',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
@@ -116,7 +116,7 @@ class EventType extends AbstractType
                 'label' => 'Event Logging Stop Date',
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd HH:mm:ss',
-                #'view_timezone' => 'Europe/London',
+                'view_timezone' => 'Europe/London',
                 #'model_timezone' => 'UTC',
                 'attr' => array(
                     'class' => 'form-control datetimepicker1',
