@@ -39,7 +39,7 @@ Control Room Log
                                                 {% if log.log_update_timestamp is not null %}
                                                     <div data-toggle="tooltip" data-placement="left" title="Updated: {{ log.log_update_timestamp|date('Y-m-d H:i:s', "Europe/London") }}">
                                                 {% endif %}
-                                                {{ log.log_entry_open_time|date('Y-m-d H:i:s') }}
+                                                {{ log.log_entry_open_time|date('Y-m-d H:i:s, "Europe/London"') }}
                                                 {% if log.log_update_timestamp is not null %}
                                                     </div>
                                                 {% endif %}
