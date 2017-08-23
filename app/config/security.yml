@@ -53,7 +53,7 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             
         api:
-            pattern: ^/api/
+            pattern: ^/api/*
             guard:
                 authenticators:
                     - app.security.api_token_authenticator

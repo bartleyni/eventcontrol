@@ -38,18 +38,32 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     
     public function getCredentials(Request $request)
     {
-        return $request->headers->get('X-TOKEN');
+        if(!$token = $request->headers->get('X-AUTH-TOKEN'))
+        {
+            $token = null;
+        }
+        return array(
+            'token' => $token,
+        );
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+//        $user = $this->em->getRepository('AppBundle:User')
+//            ->findOneBy(array('apiToken' => $credentials));
+//        // we could just return null, but this allows us to control the message a bit more
+//        if (!$user) {
+//            throw new AuthenticationCredentialsNotFoundException();
+//        }
         
-        $user = $this->em->getRepository('AppBundle:User')
-            ->findOneBy(array('apiToken' => $credentials));
-        // we could just return null, but this allows us to control the message a bit more
-        if (!$user) {
-            throw new AuthenticationCredentialsNotFoundException();
+        $apiKey = $credentials['token'];
+
+        if (null === $apiKey) {
+            return;
         }
-        return $user;
+
+        // if a User object, checkCredentials() is called
+        return $userProvider->loadUserByUsername($apiKey);
+        //return $user;
     }
     public function checkCredentials($credentials, UserInterface $user)
     {
@@ -80,7 +94,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         return new JsonResponse(
             // you could translate the message
             array('message' => 'Authentication required'),
-            401
+            Response::HTTP_UNAUTHORIZED
         );
     }
 }
