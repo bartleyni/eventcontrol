@@ -48,22 +48,22 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        $user = $this->em->getRepository('AppBundle:User')
-            ->findOneBy(array('apiToken' => $credentials));
-        // we could just return null, but this allows us to control the message a bit more
-        if (!$user) {
-            throw new AuthenticationCredentialsNotFoundException();
-        }
-        
-//        $apiKey = $credentials['token'];
-//
-//        if (null === $apiKey) {
-//            return;
+//        $user = $this->em->getRepository('AppBundle:User')
+//            ->findOneBy(array('apiToken' => $credentials));
+//        // we could just return null, but this allows us to control the message a bit more
+//        if (!$user) {
+//            throw new AuthenticationCredentialsNotFoundException();
 //        }
+        
+        $apiKey = $credentials['token'];
+
+        if (null === $apiKey) {
+            return;
+        }
 
         // if a User object, checkCredentials() is called
-        //return $userProvider->loadUserByUsername($apiKey);
-        return $user;
+        return $userProvider->loadUserByUsername($apiKey);
+        //return $user;
     }
     public function checkCredentials($credentials, UserInterface $user)
     {
