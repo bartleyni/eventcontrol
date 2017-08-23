@@ -9,7 +9,7 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_USER:      ROLE_VIEW
         ROLE_FIELD:      ROLE_VIEW
-        ROLE_VIEW:      ROLE_API_USER
+        #ROLE_VIEW:      ROLE_API_USER
         #ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 
