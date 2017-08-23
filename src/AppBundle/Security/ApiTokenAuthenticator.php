@@ -76,7 +76,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     {
         return new JsonResponse(
             // you could translate the message
-            array('message' => $exception->getMessageKey()),
+            array('message' => $exception->getMessageKey(), 'message2' => 'Authenticaion Failure'),
             403
         );
     }
