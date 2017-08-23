@@ -19,6 +19,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 
 /**
  * Description of ApiTokenAuthenticator
@@ -28,6 +29,17 @@ use Symfony\Component\Routing\RouterInterface;
 
 class ApiTokenAuthenticator extends AbstractGuardAuthenticator
 {
+    private $router;
+    private $em;
+    private $formFactory;
+    
+    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
+    {
+        $this->formFactory = $formFactory;
+        $this->em = $em;
+        $this->router = $router;
+    }
+    
    public function getCredentials(Request $request)
     {
         if (!$token = $request->headers->get('X-AUTH-TOKEN')) {
