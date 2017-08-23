@@ -42,15 +42,14 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         {
             $token = null;
         }
-//        return array(
-//            'token' => $token,
-//        );
-        return $token;
+        return array(
+            'token' => $token,
+        );
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $user = $this->em->getRepository('AppBundle:User')
-            ->findOneBy(array('apiToken' => $credentials));
+            ->findOneBy(array('apiToken' => $credentials['token']));
         // we could just return null, but this allows us to control the message a bit more
         if (!$user) {
             throw new AuthenticationCredentialsNotFoundException();
