@@ -78,7 +78,7 @@ class APIController extends Controller
      * @Route("/api/venue/count/{id}", name="api_venue_count");
      *
      */
-    public function venue_event_json_data($id)
+    public function apiVenueCountAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
@@ -106,4 +106,29 @@ class APIController extends Controller
     }
 }
 
+    /**
+     * @Route("/api/venue/skew/{venueId}/{in}/{out}", name="api_venue_skew");
+     *
+     */
+    public function apiVenueSkewAction($venueId, $in, $out)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $venueId));
+        $skew = new skew();
+        $skew->setVenueId($venue);
+        $skew->setSkewIn($in);
+        $skew->setSkewOut($out);
+        $em->persist($skew);
+        $em->flush();
 
+        $response = new Response();
+        $response->setContent('Updated');
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        $response->send();
+        
+        return $response;
+    }
+
+
+PI
