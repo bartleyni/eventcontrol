@@ -78,7 +78,7 @@ class APIController extends Controller
      * @Route("/api/venue/count/{id}", name="api_venue_count");
      *
      */
-    public function venue_event_json_data($key, $id)
+    public function venue_event_json_data($id)
     {
         $em = $this->getDoctrine()->getManager();
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($id);
