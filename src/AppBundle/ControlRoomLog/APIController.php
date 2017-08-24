@@ -7,7 +7,6 @@ use AppBundle\Entity\Locations;
 use AppBundle\Entity\venue;
 use AppBundle\Entity\camera_count;
 use AppBundle\Entity\venue_camera;
-use AppBundle\Entity\venue_event;
 use AppBundle\Entity\VenueCountAlerts;
 use AppBundle\Entity\skew;
 use AppBundle\Entity\venue_cameraRepository;
