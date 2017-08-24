@@ -106,7 +106,7 @@ class APIController extends Controller
             $response->setContent('No data');
             $response->headers->set('Content-Type', 'text/plain');
             $response->setStatusCode(Response::HTTP_NOT_FOUND);
-            $response->send();
+            //$response->send();
         }
         return $response;
     }
@@ -130,7 +130,6 @@ class APIController extends Controller
         $response->setContent('Updated');
         $response->headers->set('Content-Type', 'text/plain');
         $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        $response->send();
         
         return $response;
     }
