@@ -104,7 +104,6 @@ class APIController extends Controller
         }
         return $response;
     }
-}
 
     /**
      * @Route("/api/venue/skew/{venueId}/{in}/{out}", name="api_venue_skew");
@@ -129,6 +128,4 @@ class APIController extends Controller
         
         return $response;
     }
-
-
-PI
+}
