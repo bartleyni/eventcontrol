@@ -19,11 +19,11 @@ use Doctrine\ORM\EntityRepository;
 
 class GroupRepository extends EntityRepository
 {
-    public function getEventUsers($event)
+    public function getEventUsers($event, $group)
     {
         $em = $this->getEntityManager();
         
-        $users = $em->getRepository('AppBundle\Entity\User')->findBy(array('event' => $event, 'group' => $this));
+        $users = $em->getRepository('AppBundle\Entity\User')->findBy(array('events' => $event, 'groups' => $group));
         
         return $users;
     }
