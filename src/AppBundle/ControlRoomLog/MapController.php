@@ -107,10 +107,10 @@ class MapController extends Controller
         
         foreach ($field_users as $field_user)
         {
-            if ($field_user['lat_long'] != null)
+            if ($field_user->getLatLong() != null)
             {
-                $lat_long = explode(" ", $field_user['lat_long']);
-                $field_user_marker = ['latlong' => round($lat_long[0], 6).", ".round($lat_long[1], 6), 'latitude' => $lat_long[0], 'longitude' => $lat_long[1], ['field_user' => $field_user['username']]];
+                $lat_long = explode(" ", $field_user->getLatLong());
+                $field_user_marker = ['latlong' => round($lat_long[0], 6).", ".round($lat_long[1], 6), 'latitude' => $lat_long[0], 'longitude' => $lat_long[1], ['field_user' => $field_user->getUsername()]];
                 array_push($field_user_markers, $field_user_marker);
             }
         }
