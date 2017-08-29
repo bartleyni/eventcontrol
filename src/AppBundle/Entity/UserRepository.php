@@ -70,7 +70,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     
     public function getActiveEventEndTime($userId)
     {
-        $now = new \DateTime();
+        //$now = new \DateTime();
 
         //$user_event = $this->getEntityManager()->createQuery('SELECT IDENTITY(user_event.event_id) FROM AppBundle\Entity\user_events user_event JOIN user_event.event_id event WHERE user_event.User_id = :id AND :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('id', $userId)->setParameter('nowdate', $now)->getOneOrNullResult();
         $selected_event = $this->getEntityManager()->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $userId))->getSelectedEvent();
@@ -78,36 +78,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             $event_log_stop_date = $this->getEntityManager()->createQuery('SELECT event.event_log_stop_date FROM AppBundle\Entity\event event WHERE event.id = :id')->setParameter('id', $selected_event)->getOneOrNullResult();
             
             return $event_log_stop_date['event_log_stop_date'];
-        }
-        else {
-            return Null;
-        }
-    }
-    
-    public function getLocationUsers($event)
-    {
-        //$now = new \DateTime();
-
-        $field_user_group = $this->getEntityManager()->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
-        
-        $qb = $this->getEntityManager()->createQueryBuilder('user'); 
-        
-        $qb
-            ->select('user.id, user.name, user.lat_long, user.lat_long_timestamp')
-            ->where('user.events = :event')
-            ->setParameter('event', $event)
-            ;
-
-        $users = $qb->getQuery()->getResult();
-        
-        //$users = $this->getEntityManager()->createQuery('SELECT user.name, user.lat_long, user.lat_long_timestamp FROM AppBundle\Entity\User user WHERE user.events = :event AND user.groups = :group')->setParameter('event', $event)->setParameter('group', $field_user_group)->getResult();
-        //$users = $this->getEntityManager()->createQuery('SELECT user.name, user.lat_long, user.lat_long_timestamp FROM AppBundle\Entity\User user WHERE user.groups = :group')->setParameter('group', $field_user_group)->getResult();
-        //$selected_event = $this->getEntityManager()->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $userId))->getSelectedEvent();
-        
-        if($users){
-            //$event_log_stop_date = $this->getEntityManager()->createQuery('SELECT event.event_log_stop_date FROM AppBundle\Entity\event event WHERE event.id = :id')->setParameter('id', $selected_event)->getResult();
-            
-            return $users;
         }
         else {
             return Null;

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="groups")
  * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\GroupRepository")
  */
 class Group implements RoleInterface
 {
