@@ -94,11 +94,11 @@ class MapController extends Controller
         $field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
         
         
-        #$field_users = $field_user_group->getUsers();
+        $field_users = $field_user_group->getUsers();
         
         #$event_users = $event->getUsers();
         
-        $field_users = $field_user_group = $em->getRepository('AppBundle\Entity\Group')->getEventUsers($event, $field_user_group);
+        //$field_users = $field_user_group = $em->getRepository('AppBundle\Entity\Group')->getEventUsers($event, $field_user_group);
         
         #$field_users = $em->getRepository('AppBundle\Entity\User')->findBy(array('group' => $field_user_group));
         #$field_users = $em->getRepository('AppBundle\Entity\User')->getLocationUsers($event);
