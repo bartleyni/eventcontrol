@@ -94,9 +94,9 @@ class MapController extends Controller
         $field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
         
         
-        #$field_users = $field_user_group->getUsers();
+        $field_users = $field_user_group->getUsers();
         
-        $field_users = $em->getRepository('AppBundle\Entity\User')->findBy(array('groups' => $field_user_group));
+        #$field_users = $em->getRepository('AppBundle\Entity\User')->findBy(array('group' => $field_user_group));
         //$field_users = $em->getRepository('AppBundle\Entity\User')->getLocationUsers($event);
         
         //Now convert the data from logs in to GeoJson formatting.
