@@ -133,4 +133,31 @@ class APIController extends Controller
         
         return $response;
     }
+    
+    /**
+    * @Route("/api/user/locaton/{lat_long}/", name="api_user_location")
+    * 
+    * @param Request $request
+    * @param type $filter
+    * @return type
+    */
+    
+    public function apiUserLocationAction($lat_long)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
+
+        $usr->setLatLong($lat_long);
+        
+        $em->persist($usr);
+        $em->flush();
+
+        $response = new Response();
+        $response->setContent('Updated');
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->setStatusCode(Response::HTTP_NOT_FOUND);
+        
+        return $response;
+    }
 }
