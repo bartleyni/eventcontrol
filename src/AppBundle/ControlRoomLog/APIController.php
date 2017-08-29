@@ -153,7 +153,6 @@ class APIController extends Controller
         $response = new Response();
         $response->setContent('Updated');
         $response->headers->set('Content-Type', 'text/plain');
-        $response->setStatusCode(Response::HTTP_NOT_FOUND);
         
         return $response;
     }
