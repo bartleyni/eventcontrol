@@ -459,4 +459,28 @@ class User implements UserInterface, \Serializable {
     {
         return $this->lat_long;
     }
+    
+    /**
+     * Set lat_long_timestamp
+     *
+     * @param \DateTime $Timestamp
+     *
+     * @return log_entries
+     */
+    public function setLatLongTimestamp($Timestamp)
+    {
+        $this->lat_long_timestamp = $Timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get lat_long_timestamp
+     *
+     * @return \DateTime
+     */
+    public function getLatLongTimestamp()
+    {
+        return $this->log_timestamp;
+    }
 }
