@@ -91,6 +91,10 @@ class MapController extends Controller
         
         $logs = $em->getRepository('AppBundle\Entity\log_entries')->getLogEntries($eventId, $sort, $filter, $filter_type);
         
+        $field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
+        
+        $field_users = $field_user_group->getUsers();
+        
         //Now convert the data from logs in to GeoJson formatting.
         $data['type'] = "FeatureCollection";
         $data['features'] = array();
@@ -99,12 +103,22 @@ class MapController extends Controller
         $markers = array();
         $key = null;
         $distances = array();
+        $field_user_markers = array();
+        
+        foreach ($field_users as $field_user)
+        {
+            if ($field_user['lat_long'] != null)
+            {
+                $lat_long = explode(" ", $field_user['lat_long']);
+                $field_user_marker = ['latlong' => round($lat_long[0], 6).", ".round($lat_long[1], 6), 'latitude' => $lat_long[0], 'longitude' => $lat_long[1], ['field_user' => $field_user['username']]];
+                array_push($field_user_markers, $field_user_marker);
+            }
+        }
         
         foreach ($logs as $log)
         {
             if($log['latitude'] != null)
             {
-                                //$key = array_search(round($log['latitude'], 4).", ".round($log['longitude'], 3), array_column($markers, 'latlong'));
                 $key = null;
                 if($markers){
                     $old_distance = 10;
@@ -235,6 +249,14 @@ class MapController extends Controller
         if ($markers)
         {
             foreach ($markers as $marker)
+            {
+                $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
+                array_push($data['features'],$logFeature);
+            }
+        }
+        if ($field_user_markers)
+        {
+            foreach ($field_user_markers as $marker)
             {
                 $logFeature = ['type' => "Feature", 'properties' => ["marker" => $marker], 'geometry' => ["type" => "point", "coordinates" => [floatval($marker['longitude']), floatval($marker['latitude'])]]];
                 array_push($data['features'],$logFeature);

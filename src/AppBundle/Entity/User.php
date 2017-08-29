@@ -118,6 +118,11 @@ class User implements UserInterface, \Serializable {
      */
     private $apiToken;
     
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $lat_long;
+    
     public function __construct()
     {
         $this->isActive = true;
@@ -424,5 +429,29 @@ class User implements UserInterface, \Serializable {
     public function getEvents()
     {
         return $this->events;
+    }
+    
+    /**
+     * Set lat_long
+     *
+     * @param string $lat_long
+     *
+     * @return User
+     */
+    public function setLatLong($lat_long)
+    {
+        $this->lat_long = $lat_long;
+
+        return $this;
+    }
+
+    /**
+     * Get lat_long
+     *
+     * @return string
+     */
+    public function getLatLong()
+    {
+        return $this->lat_long;
     }
 }
