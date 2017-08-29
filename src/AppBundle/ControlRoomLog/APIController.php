@@ -135,7 +135,7 @@ class APIController extends Controller
     }
     
     /**
-    * @Route("/api/user/locaton/{lat_long}/", name="api_user_location")
+    * @Route("/api/user/locaton/{lat_long}", name="api_user_location")
     * 
     * @param Request $request
     * @param type $filter
