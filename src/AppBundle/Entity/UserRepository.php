@@ -86,7 +86,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         //$now = new \DateTime();
 
-        $field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
+        $field_user_group = $this->getEntityManager()->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
         $groupId = $field_user_group->getId();
         
         $users = $this->getEntityManager()->createQuery('SELECT user.name, user.lat_long, user.lat_long_timestamp FROM AppBundle\Entity\User user WHERE user.events = :eId AND user.groups= :gId')->setParameter('uId', $eventId)->setParameter('gId', $groupId)->getResult();
