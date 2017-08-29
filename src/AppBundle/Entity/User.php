@@ -481,6 +481,6 @@ class User implements UserInterface, \Serializable {
      */
     public function getLatLongTimestamp()
     {
-        return $this->log_timestamp;
+        return $this->lat_long_timestamp;
     }
 }
