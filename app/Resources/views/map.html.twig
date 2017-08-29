@@ -120,7 +120,9 @@ Control Room Log Map
                     if (marker['field_user'])
                     {
                         var field_user = marker['field_user'];
-                        info_content = '<div><h4>'+field_user+'</h4></div>';
+                        var utc_location_timestamp = moment.tz(marker['field_user_timestamp']['date'], marker['field_user_timestamp']['timezone']);
+                        var location_timestamp = moment(utc_location_timestamp).local();
+                        info_content = '<div><h4>'+field_user+'</h4><p>Last Updated: '+location_timestamp.format("YYYY-MM-DD HH:mm:ss")+'</p></div>';
                         
                     } else {
                                             

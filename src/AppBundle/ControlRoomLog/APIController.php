@@ -146,6 +146,7 @@ class APIController extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
 
         $usr->setLatLong($lat_long);
+        $usr>setLatLongTimestamp(new \DateTime());
         
         $em->persist($usr);
         $em->flush();

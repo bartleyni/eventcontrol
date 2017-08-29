@@ -123,6 +123,11 @@ class User implements UserInterface, \Serializable {
      */
     protected $lat_long;
     
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $lat_long_timestamp;
+    
     public function __construct()
     {
         $this->isActive = true;

@@ -110,7 +110,7 @@ class MapController extends Controller
             if ($field_user->getLatLong() != null)
             {
                 $lat_long = explode(",", $field_user->getLatLong());
-                $field_user_marker = ['latlong' => round($lat_long[0], 6).", ".round($lat_long[1], 6), 'latitude' => $lat_long[0], 'longitude' => $lat_long[1], 'field_user' => $field_user->getUsername()];
+                $field_user_marker = ['latlong' => round($lat_long[0], 6).", ".round($lat_long[1], 6), 'latitude' => $lat_long[0], 'longitude' => $lat_long[1], 'field_user' => $field_user->getUsername(), 'field_user_timestamp' => $field_user->getLatLongTimestamp()];
                 array_push($field_user_markers, $field_user_marker);
             }
         }
