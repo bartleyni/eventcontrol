@@ -95,7 +95,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         $qb
             ->select('user.id, user.name, user.lat_long, user.lat_long_timestamp')
             ->from('AppBundle\Entity\Users', 'user')
-            ->where('events = :event')
+            ->where('user.events = :event')
             ->setParameter('event', $event)
             ;
 
