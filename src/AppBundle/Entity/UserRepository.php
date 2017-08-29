@@ -82,14 +82,13 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         }
     }
     
-    public function getLocationUsers($eventId)
+    public function getLocationUsers($event)
     {
         //$now = new \DateTime();
 
         $field_user_group = $this->getEntityManager()->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
-        $groupId = $field_user_group->getId();
-        
-        $users = $this->getEntityManager()->createQuery('SELECT user.name, user.lat_long, user.lat_long_timestamp FROM AppBundle\Entity\User user WHERE user.events.id = :eId AND user.groups.id = :gId')->setParameter('uId', $eventId)->setParameter('gId', $groupId)->getResult();
+
+        $users = $this->getEntityManager()->createQuery('SELECT user.name, user.lat_long, user.lat_long_timestamp FROM AppBundle\Entity\User user WHERE user.events = :event AND user.groups = :group')->setParameter('event', $event)->setParameter('group', $field_user_group)->getResult();
         
         //$selected_event = $this->getEntityManager()->getRepository('AppBundle\Entity\User')->findOneBy(array('id' => $userId))->getSelectedEvent();
         
