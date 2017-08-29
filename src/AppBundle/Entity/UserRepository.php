@@ -87,8 +87,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         //$now = new \DateTime();
 
         $field_user_group = $this->getEntityManager()->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
-
-        $qb = $this->getEntityManager(); 
+        
+        $qb = $this->getEntityManager()->createQueryBuilder(); 
         
         $qb
             ->select('user.id, user.name, user.lat_long, user.lat_long_timestamp')
