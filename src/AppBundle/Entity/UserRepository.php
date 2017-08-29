@@ -92,4 +92,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         
         return $users;
     }
+    
+    public function getUsersByEventGroup($event, $group)
+    {
+        
+        $users = $this->getEntityManager()->createQuery('SELECT u FROM AppBundle:User u WHERE :event MEMBER OF u.events AND :group MEMBER OF u.groups')->setParameter('event', $event)->setParameter('group', $group)->getResult();
+        
+        return $users;
+    }
 }

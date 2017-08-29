@@ -91,17 +91,12 @@ class MapController extends Controller
         
         $logs = $em->getRepository('AppBundle\Entity\log_entries')->getLogEntries($eventId, $sort, $filter, $filter_type);
         
-        $field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
+        //$field_user_group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "Field User"));
+        $group = $em->getRepository('AppBundle\Entity\Group')->findOneBy(array('name' => "API User"));
         
+        //$field_users = $em->getRepository('AppBundle\Entity\User')->getFieldUsersByEvent($event);
         
-        //$field_users = $field_user_group->getUsers();
-        
-        #$event_users = $event->getUsers();
-        
-        //$field_users = $field_user_group = $em->getRepository('AppBundle\Entity\Group')->getEventUsers($event, $field_user_group);
-        
-        #$field_users = $em->getRepository('AppBundle\Entity\User')->findBy(array('group' => $field_user_group));
-        $field_users = $em->getRepository('AppBundle\Entity\User')->getFieldUsersByEvent($event);
+        $field_users = $em->getRepository('AppBundle\Entity\User')->getFieldUsersByEventGroup($event, $group);
         
         //Now convert the data from logs in to GeoJson formatting.
         $data['type'] = "FeatureCollection";
