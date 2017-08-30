@@ -11,9 +11,9 @@ $loader = require __DIR__.'/../app/autoload.php';
 // in order to prevent cache key conflicts with other applications
 // also using APC.
 
-$apcLoader = new ApcClassLoader(sha1(__FILE__), $loader);
+//$apcLoader = new ApcClassLoader(sha1(__FILE__), $loader);
 //$loader->unregister();
-$apcLoader->register(true);
+//$apcLoader->register(true);
 
 
 //require_once __DIR__.'/../app/AppKernel.php';
