@@ -28,7 +28,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  * @UniqueEntity(fields="username", message="Username already taken")
- * @ORMSubscribedEvents()
+ * @ORMSubscribedEvents("created, deleted")
  */
 
 //class User implements AdvancedUserInterface, \Serializable {
