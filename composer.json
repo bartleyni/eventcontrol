@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=5.3.9",
-        "symfony/symfony": "3.2.*",
+        "symfony/symfony": "3.3.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.6",
         "symfony/assetic-bundle": "~2.3",
@@ -31,7 +31,8 @@
         "richsage/rms-push-notifications-bundle": "dev-master",
         "dzunke/slack-bundle": "dev-master",
         "kreait/firebase-php": "^3.0",
-        "redjanym/fcm-bundle": "1.*"
+        "redjanym/fcm-bundle": "1.*",
+	"jmose/command-scheduler-bundle": "1.*"
 
     },
     "require-dev": {
