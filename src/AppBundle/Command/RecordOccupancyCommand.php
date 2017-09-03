@@ -51,11 +51,12 @@ class RecordOccupancyCommand extends ContainerAwareCommand
                 $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
                 $venues[$key]['running'] = $venues[$key]['count']['running_count_in'] - $venues[$key]['count']['running_count_out'];
                 $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $value['venue_id']['id']));
+                $event2 = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event['id']));
                 
                 $new_people_counter_log = new PeopleCounterLog();
                 $new_people_counter_log->setTimestamp(new \DateTime());
                 $new_people_counter_log->setVenue($venue);
-                $new_people_counter_log->setEvent($event);
+                $new_people_counter_log->setEvent($event2);
                 $new_people_counter_log->setRunningIn($venues[$key]['count']['running_count_in']);
                 $new_people_counter_log->setRunningOut($venues[$key]['count']['running_count_out']);
                 
