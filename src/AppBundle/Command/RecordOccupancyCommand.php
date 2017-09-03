@@ -45,12 +45,17 @@ class RecordOccupancyCommand extends ContainerAwareCommand
         
         $active_events = $em->getRepository('AppBundle\Entity\event')->getActiveEvents();
         
-        $output->write(json_encode($active_events));
+        $now = new \DateTime();
+        
+        //$output->write(json_encode($active_events));
         
         foreach ($active_events as $event) {
             $venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event);
-                     
-            $output->write(json_encode($venues));            
+            foreach ($venues as $venue) {
+                $count = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($venue['id'], $now, $venue['doors']);
+                $output->write(json_encode($count));
+            }            
+           
         }
 
     }
