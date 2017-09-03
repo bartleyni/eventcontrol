@@ -67,5 +67,29 @@ class PeopleCounterLog {
     {
         return $this->id;
     }
+    
+    /**
+     * Set Timestamp
+     *
+     * @param \DateTime $timestamp
+     *
+     * @return PeopleCounterLog
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get Timestamp
+     *
+     * @return \DateTime
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
 
 }
