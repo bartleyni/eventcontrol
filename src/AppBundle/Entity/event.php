@@ -26,6 +26,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  * @ORM\Entity
  * @ORM\Table(name="event")
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\eventRepository")
  * @Vich\Uploadable
  * @ORMSubscribedEvents()
  */
