@@ -1,26 +1,44 @@
 {% extends 'BathSU.html.twig' %}
 {% block headerbottom %}
 Event Control Command Scheduler
-        {# Succes flash messages #}
-        {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="alert alert-success" role="alert">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
-
-        {# Errors flash messages #}
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="alert alert-danger" role="alert">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
-        {% block title %}{% endblock title %}
+        {% block content %}
+            {% include 'JMoseCommandSchedulerBundle:Navbar:navbar.html.twig' %}
+            <div class="jumbotron">
+                <div class="container">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{% block title %}{% endblock title %}</h2>
 
-        {% block content %}{% endblock content %}
+                            {# Succes flash messages #}
+                            {% for flashMessage in app.session.flashbag.get('success') %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ flashMessage }}
+                                </div>
+                            {% endfor %}
 
+                            {# Errors flash messages #}
+                            {% for flashMessage in app.session.flashbag.get('error') %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ flashMessage }}
+                                </div>
+                            {% endfor %}
+
+                            {% block content %}{% endblock content %}
+                        </div>
+                    </div>
+                    <hr>
+                    <!--
+                    <footer>
+                        <p>&copy; Company</p>
+                    </footer>
+                    -->
+                </div>
+            </div><!-- /container -->
+        {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}
             {% include 'darksky.html.twig' %}
