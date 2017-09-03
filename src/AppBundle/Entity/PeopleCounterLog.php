@@ -38,13 +38,13 @@ class PeopleCounterLog {
     protected $timestamp;
 
     /**
-     * @ORM\ManyToOne(targetEntity="event", inversedBy="people_counter_log")
+     * @ORM\ManyToOne(targetEntity="event")
      * @ORM\JoinColumn(name="event", referencedColumnName="id")
      */
     protected $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="venue", inversedBy="people_counter_log")
+     * @ORM\ManyToOne(targetEntity="venue")
      * @ORM\JoinColumn(name="venue", referencedColumnName="id")
      */
     protected $venue;
