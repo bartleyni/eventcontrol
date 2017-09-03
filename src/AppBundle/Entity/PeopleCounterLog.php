@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of camera
+ * Description of PeopleCounterLog
  *
  *
  * @author Nick
@@ -18,6 +18,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Entity
  * @ORM\Table(name="people_counter_log")
  * @ORM\HasLifecycleCallbacks
  */
