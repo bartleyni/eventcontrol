@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 
-class RecordOccupanyCommand extends ContainerAwareCommand
+class RecordOccupancyCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
