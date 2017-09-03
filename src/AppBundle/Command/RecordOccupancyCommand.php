@@ -48,8 +48,19 @@ class RecordOccupancyCommand extends ContainerAwareCommand
             foreach ($venues as $venue) {
                 $count = $em->getRepository('AppBundle\Entity\venue')->getvenuedetailedcount($venue['id'], $event['event_log_stop_date'], $venue['doors']);
                 $cameras = $em->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($venue['id']);
-                $output->write(json_encode($cameras));
-            }            
+                //$output->write(json_encode($cameras));
+            }
+            $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
+            foreach ($venue_event as $key => $value) {
+                $venues[$key]['id'] = $value['venue_id']['id'];
+                $venues[$key]['name'] = $value['venue_id']['name'];
+                $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
+                $status = $em->getRepository('AppBundle\Entity\venue')->getvenuestatus($value['venue_id']['id']);
+                if ($status) {   $venues[$key]['status'] = "true"; }else{  $venues[$key]['status'] = "false"; }
+                $status = $em->getRepository('AppBundle\Entity\venue')->getpeoplecountingstatus();
+                if ($status) {   $venues['people_counting_status'] = "true"; }else{  $venues['people_counting_status'] = "false"; }
+            }
+            $output->write(json_encode($venues));
            
         }
 
