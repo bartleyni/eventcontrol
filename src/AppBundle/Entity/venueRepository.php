@@ -79,7 +79,7 @@ class venueRepository extends EntityRepository
     {
         $cameras = $this->getEntityManager()->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($id);
         $output = array();
-        $output['running_count_in'] = 1;
+        $output['running_count_in'] = 0;
         $output['running_count_out'] = 0;
         $skews = $this->getEntityManager()->getRepository('AppBundle\Entity\skew')->getvenueskew($id, $timestamp);
         foreach ($cameras as $camera) {
