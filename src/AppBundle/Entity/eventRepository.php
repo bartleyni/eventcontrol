@@ -24,7 +24,7 @@ class eventRepository extends EntityRepository
         
         $now = new \DateTime();
         
-        $events = $this->getEntityManager()->createQuery('SELECT event FROM AppBundle\Entity\event event WHERE :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('nowdate', $now)->getResult();
+        $events = $this->getEntityManager()->createQuery('SELECT event.id, event.name, event.event_log_stop_date FROM AppBundle\Entity\event event WHERE :nowdate BETWEEN event.event_log_start_date AND event.event_log_stop_date')->setParameter('nowdate', $now)->getResult();
         
         return $events;
     }
