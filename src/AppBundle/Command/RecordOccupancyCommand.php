@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 
+use AppBundle\Entity\PeopleCounterLog;
+
 class RecordOccupancyCommand extends ContainerAwareCommand
 {
     protected function configure()
