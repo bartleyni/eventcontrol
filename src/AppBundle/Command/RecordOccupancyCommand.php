@@ -40,22 +40,24 @@ class RecordOccupancyCommand extends ContainerAwareCommand
         
         $now = new \DateTime();
         
-        //$output->write(json_encode($active_events));
-        
         foreach ($active_events as $event) {
-            $venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
-            $output->write(json_encode($venues));
-            foreach ($venues as $venue) {
-                $count = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($venue['id'], $event['event_log_stop_date'], $venue['doors']);
-                $cameras = $em->getRepository('AppBundle\Entity\venue_camera')->getvenuecameras($venue['id']);
-                //$output->write(json_encode($cameras));
-            }
+            //$venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
             $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
             foreach ($venue_event as $key => $value) {
                 $venues[$key]['id'] = $value['venue_id']['id'];
                 $venues[$key]['name'] = $value['venue_id']['name'];
                 $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
                 $venues[$key]['running'] = $venues[$key]['count']['running_count_in'] - $venues[$key]['count']['running_count_out'];
+                
+                $new_people_counter_log = new PeopleCounterLog();
+                $new_people_counter_log->setTimestamp(new \DateTime());
+                $new_people_counter_log->setVenue($value);
+                $new_people_counter_log->setEvent($event);
+                $new_people_counter_log->setRunningIn($venues[$key]['count']['running_count_in']);
+                $new_people_counter_log->setRunningOut($venues[$key]['count']['running_count_out']);
+                
+                $em->persist($new_people_counter_log);
+                $em->flush();
             }
             $output->write(json_encode($venues));
            
