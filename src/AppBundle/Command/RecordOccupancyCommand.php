@@ -44,10 +44,14 @@ class RecordOccupancyCommand extends ContainerAwareCommand
         $em = $doctrine->getEntityManager();
         
         $active_events = $em->getRepository('AppBundle\Entity\event')->getActiveEvents();
-
-        $output->write(json_encode($active_events));
-        // outputs a message without adding a "\n" at the end of the line
-        $output->write("You've succesfully implemented your first command");
         
+        $output->write(json_encode($active_events));
+        
+        foreach ($active_events as $event) {
+            $venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event);
+                     
+            $output->write(json_encode($venues));            
+        }
+
     }
 }
