@@ -25,7 +25,7 @@ class RecordOccupancyCommand extends ContainerAwareCommand
             ->setDefinition(
                 new InputDefinition(array(
                     new InputOption('event', 'eId', InputOption::VALUE_REQUIRED,"The Event ID as a string","0"),
-                    new InputOption('venue', 'vId', InputOption::VALUE_OPTIONAL,"The Venue ID as a string","0"),
+                    new InputOption('venue', 'vId', InputOption::VALUE_REQUIRED,"The Venue ID as a string","0"),
                 ))
             )
         ;
@@ -35,16 +35,19 @@ class RecordOccupancyCommand extends ContainerAwareCommand
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output->writeln([
-            'My First Symfony command',// A line
+            'Record Occupancy Symfony command',// A line
             '============',// Another line
             '',// Empty line
         ]);
-
-        // outputs a message followed by a "\n"
-        $output->writeln('Hey welcome to the test command wizard.');
-        $output->writeln('Thanks for read the article');
         
+        $doctrine = $this->getContainer()->get('doctrine');
+        $em = $doctrine->getEntityManager();
+        
+        $active_events = $em->getRepository('AppBundle\Entity\event')->getActiveEvents();
+
+        $output->write($active_events);
         // outputs a message without adding a "\n" at the end of the line
         $output->write("You've succesfully implemented your first command");
+        
     }
 }
