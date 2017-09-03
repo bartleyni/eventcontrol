@@ -17,17 +17,10 @@ class RecordOccupancyCommand extends ContainerAwareCommand
             // the name of the command (the part after "bin/console")
             ->setName('app:RecordOccupancy')
             // the short description shown while running "php bin/console list"
-            ->setDescription('Record the current occupancy of an event venue.')
+            ->setDescription('Record the current occupancy of active event venues.')
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp("Record current occupany of event venue, requirs event id and venue id")
-                
-            ->setDefinition(
-                new InputDefinition(array(
-                    new InputOption('event', 'eId', InputOption::VALUE_REQUIRED,"The Event ID as a string","0"),
-                    new InputOption('venue', 'vId', InputOption::VALUE_REQUIRED,"The Venue ID as a string","0"),
-                ))
-            )
+            ->setHelp("Record current occupany of active events")
         ;
     }
 
