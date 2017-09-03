@@ -4,28 +4,26 @@ Event Control Command Scheduler
 {% endblock %}
 {% block layout %}
     {% embed '3-9.html.twig' %}
-        {% block content %}
-            {% include 'JMoseCommandSchedulerBundle:Navbar:navbar.html.twig' %}
+        
+        {# Succes flash messages #}
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {# Errors flash messages #}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
             <div class="jumbotron">
                 <div class="container">
                     <!-- Example row of columns -->
                     <div class="row">
                         <div class="col-md-12">
                             <h2>{% block title %}{% endblock title %}</h2>
-
-                            {# Succes flash messages #}
-                            {% for flashMessage in app.session.flashbag.get('success') %}
-                                <div class="alert alert-success" role="alert">
-                                    {{ flashMessage }}
-                                </div>
-                            {% endfor %}
-
-                            {# Errors flash messages #}
-                            {% for flashMessage in app.session.flashbag.get('error') %}
-                                <div class="alert alert-danger" role="alert">
-                                    {{ flashMessage }}
-                                </div>
-                            {% endfor %}
 
                             {% block content %}{% endblock content %}
                         </div>
@@ -38,7 +36,6 @@ Event Control Command Scheduler
                     -->
                 </div>
             </div><!-- /container -->
-        {% endblock %}
         {% block sidebar %}
             {% include 'sidebar.twig' %}
             {% include 'darksky.html.twig' %}
