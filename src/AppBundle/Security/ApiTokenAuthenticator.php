@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Description of ApiTokenAuthenticator
@@ -33,7 +34,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
     private $em;
     private $formFactory;
     
-    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
+    public function __construct(FormFactoryInterface $formFactory, EntityManagerInterface $em, RouterInterface $router)
     {
         $this->formFactory = $formFactory;
         $this->em = $em;
