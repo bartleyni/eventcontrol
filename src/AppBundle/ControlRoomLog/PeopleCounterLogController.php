@@ -91,12 +91,13 @@ class PeopleCounterLogController extends Controller
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
 
-        } else {
-            $ob = null;
-        }
-        return $this->render('::peopleCountingLog.html.twig', array(
+            return $this->render('::peopleCountingLog.html.twig', array(
                 'chart' => $ob
             ));
+        } else {
+            return $this->render('::peopleCountingLog.html.twig');
+        }
+        
     }
 
 }
