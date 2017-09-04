@@ -56,7 +56,7 @@ class PeopleCounterLogController extends Controller
             $counts = $qb->getQuery()->getResult();
 
             foreach ($counts as $count){
-                array_push($data,array($count['timestamp']->format('Y-m-d H:i:s'),$count['running_in'] - $count['running_out']));
+                array_push($data,array($count['timestamp']->format('U'),$count['running_in'] - $count['running_out']));
             }
             
             $venueName = $venue['name'];
@@ -76,7 +76,7 @@ class PeopleCounterLogController extends Controller
             $ob->title->text($event->getName().' - Venue Occupancy');
             $ob->chart->zoomType('x');
             $ob->xAxis->title(array('text'  => "Time"));
-            //$ob->xAxis->type('datetime');
+            $ob->xAxis->type('datetime');
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
 
