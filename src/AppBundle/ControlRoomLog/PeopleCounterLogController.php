@@ -56,7 +56,7 @@ class PeopleCounterLogController extends Controller
             $counts = $qb->getQuery()->getResult();
 
             foreach ($counts as $count){
-                array_push($data,array($count['timestamp']->format('U'),$count['running_in'] - $count['running_out']));
+                array_push($data,array((int)$count['timestamp']->format('U'),$count['running_in'] - $count['running_out']));
             }
             
             $venueName = $venue['name'];
