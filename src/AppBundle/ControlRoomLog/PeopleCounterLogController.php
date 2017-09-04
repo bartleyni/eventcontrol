@@ -19,6 +19,21 @@ class PeopleCounterLogController extends Controller
     
     public function chartAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
+        $event = $usr->getSelectedEvent();
+        
+        if ($event)
+        {
+            $eventId = $event->getId();
+        } else {
+            $eventId = 0;
+        }
+        
+        $em->flush();
+
+
         // Chart
         $series = array(
             array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
@@ -26,7 +41,7 @@ class PeopleCounterLogController extends Controller
 
         $ob = new Highchart();
         $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
-        $ob->title->text('Event Name - Venue Occupancy');
+        $ob->title->text($event->getName().' - Venue Occupancy');
         $ob->chart->zoomType('x');
         $ob->xAxis->title(array('text'  => "Time"));
         $ob->xAxis->type('datetime');
