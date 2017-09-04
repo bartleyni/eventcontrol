@@ -30,7 +30,7 @@ class venueRepository extends EntityRepository
         $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
 
         $query = $this->getEntityManager()
-            ->createQuery('SELECT v, e, ve FROM AppBundle\Entity\venue_event ve
+            ->createQuery('SELECT v, e, ve, v.name FROM AppBundle\Entity\venue_event ve
             JOIN ve.event_id e
             JOIN ve.venue_id v
             WHERE ve.event_id = :id'
