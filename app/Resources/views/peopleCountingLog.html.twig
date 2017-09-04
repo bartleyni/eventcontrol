@@ -30,8 +30,10 @@ People Counting Logs
 {% block scripts %}
     <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
     <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
-    <script type="text/javascript">
-        {{ chart(chart) }}
-    </script>
+    {% if chart is not defined%}
+        <script type="text/javascript">
+            {{ chart(chart) }}
+        </script>
+    {% endif %}
    
 {% endblock %}
