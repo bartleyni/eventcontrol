@@ -51,7 +51,7 @@ class PeopleCounterLogController extends Controller
                 ->where('count.event = :event')
                 ->andWhere('count.venue = :venue')
                 ->setParameter('event', $eventId)
-                ->setParameter('venue', $venue['id]'])
+                ->setParameter('venue', $venue['id'])
                 ->orderBy('count.timestamp', 'ASC')
                 ;
 
