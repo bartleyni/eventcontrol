@@ -46,19 +46,19 @@ class PeopleCounterLogController extends Controller
             $qb = $em->createQueryBuilder(); 
             
             $qb
-                ->select('count.id, count.timestamp, count.running_in, count.running_out')
-                ->from('AppBundle\Entity\PeopleCounterLog', 'count')
-                ->where('count.event = :event')
-                ->andWhere('count.venue = :venue')
+                ->select('countLogs.id, countLogs.timestamp, countLogs.running_in, countLogs.running_out')
+                ->from('AppBundle\Entity\PeopleCounterLog', 'countLogs')
+                ->where('countLogs.event = :event')
+                ->andWhere('countLogs.venue = :venue')
                 ->setParameter('event', $eventId)
                 ->setParameter('venue', $venue['id'])
-                ->orderBy('count.timestamp', 'ASC')
+                ->orderBy('countLogs.timestamp', 'ASC')
                 ;
 
             $counts = $qb->getQuery()->getResult();
 
             foreach ($counts as $count){
-                array_push($data,array($count['timestamp'],$count->getRunningIn['running_in'] - $count['running_out']));
+                array_push($data,array($count['timestamp'],$count['running_in'] - $count['running_out']));
             }
             
             $venue_count = array("name" => $venue['name'], "data" => $data);
