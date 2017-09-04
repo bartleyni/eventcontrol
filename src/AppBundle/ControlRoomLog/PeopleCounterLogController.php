@@ -40,8 +40,6 @@ class PeopleCounterLogController extends Controller
         foreach ($venues as $venue) {
             
             $data = [];
-           
-            //$counts = $em->getRepository('AppBundle\Entity\PeopleCounterLog')->findBy(array('event' => $event, 'venue' => $venue));
             
             $qb = $em->createQueryBuilder(); 
             
@@ -58,12 +56,10 @@ class PeopleCounterLogController extends Controller
             $counts = $qb->getQuery()->getResult();
 
             foreach ($counts as $count){
-                array_push($data,array($count['timestamp'],$count['running_in'] - $count['running_out']));
+                array_push($data,array($count['timestamp']->format('Y-m-d H:i:s'),$count['running_in'] - $count['running_out']));
             }
             
-            $venueObj = $em->getRepository('AppBundle\Entity\venue')->findOneById($venue['id']);
-            $venueName = $venue['id'];
-            //$venueName = "FIX VENUE NAME";
+            $venueName = $venue['name'];
             
             $venue_count = array("name" => $venueName, "data" => $data);
             
@@ -73,15 +69,8 @@ class PeopleCounterLogController extends Controller
             
         }
 
-        // Chart
-//        $series = array(
-//            array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
-//        );
-        
         if($series)
         {
-        
-
             $ob = new Highchart();
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->title->text($event->getName().' - Venue Occupancy');
