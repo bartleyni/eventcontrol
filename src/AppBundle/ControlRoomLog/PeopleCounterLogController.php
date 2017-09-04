@@ -33,7 +33,7 @@ class PeopleCounterLogController extends Controller
         
         $em->flush();
         
-        $venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($eventId);
+        $venues = $em->getRepository('AppBundle\Entity\venue')->getEventsVenuesByEventId($eventId);
         
         $series = [];
         
@@ -62,8 +62,8 @@ class PeopleCounterLogController extends Controller
             }
             
             $venueObj = $em->getRepository('AppBundle\Entity\venue')->findOneById($venue['id']);
-            //$venueName = $venueObj->getName();
-            $venueName = "FIX VENUE NAME";
+            $venueName = $venue['id'];
+            //$venueName = "FIX VENUE NAME";
             
             $venue_count = array("name" => $venueName, "data" => $data);
             

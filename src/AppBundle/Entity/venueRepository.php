@@ -41,6 +41,23 @@ class venueRepository extends EntityRepository
         return $output;
     }
     
+        public function getEventsVenuesByEventId($eventId)
+    {
+        $em = $this->getEntityManager();
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $eventId));
+
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT v.id, v.name, e, ve FROM AppBundle\Entity\venue_event ve
+            JOIN ve.event_id e
+            JOIN ve.venue_id v
+            WHERE ve.event_id = :id'
+            )->setParameter('id', $event);
+
+        $output =  $query->getArrayResult();
+       
+        return $output;
+    }
+    
     public function getvenuedoors($id, $event)
     {
         //return "hi";
