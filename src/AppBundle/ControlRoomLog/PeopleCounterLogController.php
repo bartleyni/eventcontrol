@@ -62,7 +62,8 @@ class PeopleCounterLogController extends Controller
             }
             
             $venueObj = $em->getRepository('AppBundle\Entity\venue')->findOneById($venue['id']);
-            $venueName = $venueObj->getName();
+            //$venueName = $venueObj->getName();
+            $venueName = "FIX VENUE NAME";
             
             $venue_count = array("name" => $venueName, "data" => $data);
             
