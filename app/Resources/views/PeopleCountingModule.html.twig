@@ -3,10 +3,12 @@
             Current Occupancy
         </div>
         <div id="PCcollapse" class="panel-collapse collapse in">
-            <ul class="list-group">
-                {% for venue in venues %}
-                    <a href="{{ path('people_counting_log') }}" class="link-unstyled"><li class="list-group-item" id="venue-{{ venue.venue_id.id }}">{{ venue.venue_id.name }}: 0</li></a>
-                {% endfor %}
-            </ul>
+            <a href="{{ path('people_counting_log') }}" class="link-unstyled">
+                <ul class="list-group">
+                    {% for venue in venues %}
+                        <li class="list-group-item" id="venue-{{ venue.venue_id.id }}">{{ venue.venue_id.name }}: 0</li>
+                    {% endfor %}
+                </ul>
+            </a>
         </div>
     </div>
