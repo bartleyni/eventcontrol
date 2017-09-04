@@ -2,7 +2,8 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\Security\Core\Role\RoleInterface;
+//use Symfony\Component\Security\Core\Role\RoleInterface; depreciation in 3.3
+use Symfony\Component\Security\Core\Role\Role;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\GroupRepository")
  */
-class Group implements RoleInterface
+class Group extends Role
 {
     /**
      * @ORM\Column(name="id", type="integer")
