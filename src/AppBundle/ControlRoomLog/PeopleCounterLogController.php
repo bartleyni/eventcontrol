@@ -61,8 +61,6 @@ class PeopleCounterLogController extends Controller
                 array_push($data,array($count['timestamp'],$count['running_in'] - $count['running_out']));
             }
             
-            $
-            
             $venueName = $em->getRepository('AppBundle\Entity\venue')->findOneById($venue['id'])->getName();
             
             $venue_count = array("name" => $venueName, "data" => $data);
