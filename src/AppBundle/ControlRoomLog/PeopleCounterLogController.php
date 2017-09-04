@@ -27,7 +27,9 @@ class PeopleCounterLogController extends Controller
         $ob = new Highchart();
         $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
         $ob->title->text('Event Name - Venue Occupancy');
+        $ob->chart->zoomType('x');
         $ob->xAxis->title(array('text'  => "Time"));
+        $ob->xAxis->type('datetime');
         $ob->yAxis->title(array('text'  => "Total Number of People"));
         $ob->series($series);
 
