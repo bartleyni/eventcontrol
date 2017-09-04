@@ -76,7 +76,7 @@ class PeopleCounterLogController extends Controller
             $ob->title->text($event->getName().' - Venue Occupancy');
             $ob->chart->zoomType('x');
             $ob->xAxis->title(array('text'  => "Time"));
-            $ob->xAxis->type('datetime');
+            //$ob->xAxis->type('datetime');
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
 
