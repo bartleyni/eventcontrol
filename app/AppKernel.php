@@ -27,7 +27,8 @@ class AppKernel extends Kernel
             new RMS\PushNotificationsBundle\RMSPushNotificationsBundle(),
             new DZunke\SlackBundle\DZunkeSlackBundle(),
             new RedjanYm\FCMBundle\RedjanYmFCMBundle(),
-            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle()
+            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

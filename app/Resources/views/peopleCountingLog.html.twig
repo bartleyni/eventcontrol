@@ -1,0 +1,37 @@
+{% extends 'BathSU.html.twig' %}
+{% block headerbottom %}
+People Counting Logs
+{% endblock %}
+{% block layout %}
+    {% embed '3-9.html.twig' %}
+        {% block content %}
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Chart</h4>
+                    </div>
+                </div>
+                <div class="row" id="chartsArea">
+                    <div class="col-md-12">
+                        {% if chart is empty %}
+                            No chart available
+                        {% else %}
+                            <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                        {% endif %}  
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block sidebar %}
+            {% include 'sidebar.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block scripts %}
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+   
+{% endblock %}

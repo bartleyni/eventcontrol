@@ -3,6 +3,7 @@
 /app/cache/*
 /var/cache/*
 /app/config/parameters.yml
+/app/config/parameters.yml.dist
 /app/logs/*
 /var/logs/*
 !app/cache/.gitkeep
