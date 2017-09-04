@@ -27,7 +27,7 @@
                             <strong>Operator: </strong>
                             {{ entry.operator }}<br>
                             <strong>Log Open Time (Submit Timestamp): </strong>
-                            {{ entry.logEntryOpenTime|date('Y-m-d H:i:s T', false)}} <br>({{ entry.logTimestamp|date('Y-m-d H:i:s T', "Europe/London") }})<br>
+                            {{ entry.logEntryOpenTime|date('Y-m-d H:i:s T', "Europe/London")}} <br>({{ entry.logTimestamp|date('Y-m-d H:i:s T', "Europe/London") }})<br>
                             <strong>Short Description:</strong><br>
                             {{ entry.logBlurb }}<br>
                             <strong>Location: </strong>
