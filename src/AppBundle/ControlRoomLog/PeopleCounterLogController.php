@@ -77,7 +77,7 @@ class PeopleCounterLogController extends Controller
             $ob->chart->zoomType('x');
             $ob->xAxis->title(array('text'  => "Time(UTC)"));
             $ob->xAxis->type('datetime');
-            $ob->xAxis->setExtremes((time()-24*60*60)*1000,time()*1000);
+            $ob->xAxis->setExtremes((time()-8*60*60)*1000,time()*1000);
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
 
