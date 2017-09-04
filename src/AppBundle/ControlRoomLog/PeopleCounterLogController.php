@@ -72,6 +72,7 @@ class PeopleCounterLogController extends Controller
         if($series)
         {
             $ob = new Highchart();
+            date_default_timezone_set('Europe/London');
             $utc_offset =  date('Z') / 3600;
             $ob->global->timezoneOffset($utc_offset);
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
