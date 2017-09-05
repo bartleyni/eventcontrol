@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Ob\HighchartsBundle\Highcharts\Highstock;
 
 class PeopleCounterLogController extends Controller
 {
