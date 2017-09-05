@@ -83,7 +83,7 @@ class PeopleCounterLogController extends Controller
             //$xMax = time()*1000;
             $xMin = 0;
             $xMax = 60;
-            $ob->xAxis->plotLines(array(array('color' => '#FF0000', 'width' => 1, 'value' => 10));
+            $ob->xAxis->plotLines(array(array('color' => '#FF0000', 'width' => 1, 'value' => 10)));
             $ob->xAxis->setExtremes($xMin,$xMax);
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
