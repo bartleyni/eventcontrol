@@ -62,7 +62,7 @@ class PeopleCounterLogController extends Controller
             }
             
             $venueName = $venue['name'];
-            $venueDoors = $venue['doors'];
+            $venueDoors = (int)$venue['doors']->format('U')*1000;
             
             $venue_count = array("name" => $venueName, "data" => $data);
             
