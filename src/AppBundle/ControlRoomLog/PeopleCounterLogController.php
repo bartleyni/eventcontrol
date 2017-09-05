@@ -48,8 +48,10 @@ class PeopleCounterLogController extends Controller
                 ->from('AppBundle\Entity\PeopleCounterLog', 'countLogs')
                 ->where('countLogs.event = :event')
                 ->andWhere('countLogs.venue = :venue')
+                ->andWhere('countLogs.timestamp > :doors')
                 ->setParameter('event', $eventId)
                 ->setParameter('venue', $venue['id'])
+                ->setParameter('doors', $event->getEventDate())
                 ->orderBy('countLogs.timestamp', 'ASC')
                 ;
 
