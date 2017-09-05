@@ -76,7 +76,7 @@ class PeopleCounterLogController extends Controller
         if($series)
         {
             //$ob = new Highchart();
-            $ob = new stockChart();
+            $ob = new Highstock();
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->title->text($event->getName());
             $ob->chart->zoomType('x');
