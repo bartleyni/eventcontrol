@@ -77,7 +77,7 @@ class PeopleCounterLogController extends Controller
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->title->text($event->getName());
             $ob->chart->zoomType('x');
-            $ob->xAxis->title(array('text'  => "Time(UTC)"));
+            $ob->xAxis->title(array('text'  => "Time (UTC)"));
             $ob->xAxis->type('datetime');
             //$xMin = (time()-(8*60*60))*1000;
             //$xMax = time()*1000;
