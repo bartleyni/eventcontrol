@@ -37,10 +37,12 @@ class PeopleCounterLogController extends Controller
         $venues = $em->getRepository('AppBundle\Entity\venue')->getEventsVenuesByEventId($eventId);
         
         $series = [];
+        $plotLines = [];
         
         foreach ($venues as $venue) {
             
             $data = [];
+            $venueData = [];
             
             $qb = $em->createQueryBuilder(); 
             
@@ -66,11 +68,14 @@ class PeopleCounterLogController extends Controller
             $venueDoors = (int)$venue['doors']->format('U')*1000;
             
             $venue_count = array("name" => $venueName, "data" => $data);
+            if ($venueDoors){
+                $plotLine = array('color' => '#FF0000', 'width' => 1, 'value' => $venueDoors, 'label' => array('text' => $venueName." Doors"));
+                array_push($plotLines, $plotLine);
+            }
             
             if ($data){
                 array_push($series, $venue_count);
             }
-            
         }
 
         if($series)
@@ -86,7 +91,9 @@ class PeopleCounterLogController extends Controller
             //$xMax = time()*1000;
             $xMin = 0;
             $xMax = 60;
-            $ob->xAxis->plotLines(array(array('color' => '#FF0000', 'width' => 1, 'value' => $venueDoors, 'label' => array('text' => 'Doors'))));
+            if ($plotLines){
+                $ob->xAxis->plotLines($plotLines);
+            }
             $ob->xAxis->setExtremes($xMin,$xMax);
             $ob->yAxis->title(array('text'  => "Total Number of People"));
             $ob->series($series);
