@@ -82,7 +82,6 @@ class PeopleCounterLogController extends Controller
         {
             $ob = new Highchart();
             //$ob = new Highstock();
-            $ob->setOptions(array('useUTC' => false));
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->title->text($event->getName());
             $ob->chart->zoomType('x');
