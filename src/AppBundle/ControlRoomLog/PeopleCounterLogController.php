@@ -82,6 +82,7 @@ class PeopleCounterLogController extends Controller
         {
             $ob = new Highchart();
             //$ob = new Highstock();
+            $ob->setOptions(array('useUTC' => false));
             $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
             $ob->title->text($event->getName());
             $ob->chart->zoomType('x');
@@ -94,8 +95,9 @@ class PeopleCounterLogController extends Controller
             if ($plotLines){
                 $ob->xAxis->plotLines($plotLines);
             }
-            $ob->xAxis->setExtremes($xMin,$xMax);
             $ob->yAxis->title(array('text'  => "Total Number of People"));
+            $ob->yAxis->softMin(0);
+            $ob->yAxis->softMax(1000);
             $ob->series($series);
 
             return $this->render('::peopleCountingLog.html.twig', array(
