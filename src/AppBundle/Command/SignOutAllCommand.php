@@ -23,6 +23,7 @@ class SignOutAllCommand extends ContainerAwareCommand
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp("Automatically sign-out all people on the register who are still signed in")
+            ->addArgument('event', InputArgument::REQUIRED, 'Event Id')
         ;
     }
 
@@ -35,10 +36,14 @@ class SignOutAllCommand extends ContainerAwareCommand
             '',// Empty line
         ]);
         
+        $eventId = $input->getArgument('event');
+        
         $doctrine = $this->getContainer()->get('doctrine');
         $em = $doctrine->getEntityManager();
         
-        $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(array('time_out' => null));
+        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy($eventId);
+        
+        $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(array('time_out' => null, 'event' => $event));
         
         if ($attendees){
             foreach($attendees as $attendee){
