@@ -28,4 +28,16 @@ class eventRepository extends EntityRepository
         
         return $events;
     }
+    
+    public function getFinishedEvents()
+    {
+        
+        $now = new \DateTime();
+        
+        $events = $this->getEntityManager()->createQuery('SELECT event.id, event.name, event.event_log_stop_date FROM AppBundle\Entity\event event WHERE :nowdate > event.event_log_stop_date')->setParameter('nowdate', $now)->getResult();
+        
+        return $events;
+    }
 }
+
+
