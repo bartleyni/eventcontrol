@@ -24,7 +24,7 @@ class SignOutAllCommand extends ContainerAwareCommand
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp("Automatically sign-out all people on the register who are still signed in")
-            ->addArgument('event', InputArgument::REQUIRED, 'Event Id')
+            ->addArgument('--event', InputArgument::REQUIRED, 'Event Id')
         ;
     }
 
