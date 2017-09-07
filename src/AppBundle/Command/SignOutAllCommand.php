@@ -72,8 +72,6 @@ class SignOutAllCommand extends ContainerAwareCommand
         $output->writeln(['Attendees auto signed out:', '']);
         
         $output->write(json_encode($attendees));
-           
-        }
 
     }
 }
