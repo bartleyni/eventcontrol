@@ -74,14 +74,13 @@ class SignOutAllCommand extends ContainerAwareCommand
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_out' => $attendee_time_out,
-                                    //'time_in' => $attendee_time_in,
                                 )
                             ),
                         'text/html'
                         )
                 ;
             $this->getContainer()->get('mailer')->send($message);
-            $output->write($attendee_name);
+            $output->writeln(['$attendee_name', '']);
             }
         }
     }
