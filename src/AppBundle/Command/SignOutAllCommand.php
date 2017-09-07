@@ -53,6 +53,7 @@ class SignOutAllCommand extends ContainerAwareCommand
         $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(array('time_out' => null, 'event' => $event));
         
         if ($attendees){
+            $output->writeln(['Attendees auto signed out:', '']);
             foreach($attendees as $attendee){
                 $attendee->setTimeOut(new \DateTime());
                 $em->persist($attendee);
@@ -80,12 +81,8 @@ class SignOutAllCommand extends ContainerAwareCommand
                         )
                 ;
             $this->getContainer()->get('mailer')->send($message);
-
+            $output->write($attendee_name);
             }
         }
-        $output->writeln(['Attendees auto signed out:', '']);
-        
-        $output->write(json_encode($attendees));
-
     }
 }
