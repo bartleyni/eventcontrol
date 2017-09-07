@@ -43,7 +43,7 @@ class SignOutAllCommand extends ContainerAwareCommand
             '',// Empty line
         ]);
         
-        $eventId = $input->getArgument('event');
+        $eventId = $input->getOption('event');
         
         $doctrine = $this->getContainer()->get('doctrine');
         $em = $doctrine->getEntityManager();
