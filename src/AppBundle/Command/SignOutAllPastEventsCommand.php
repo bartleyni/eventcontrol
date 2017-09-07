@@ -74,7 +74,7 @@ class SignOutAllPastEventsCommand extends ContainerAwareCommand
                             )
                     ;
                 $this->getContainer()->get('mailer')->send($message);
-                $output->writeln(['$attendee_name', '']);
+                $output->writeln([$attendee_name, '']);
                 }
             }
         }
