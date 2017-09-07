@@ -55,7 +55,7 @@ class SignOutAllCommand extends ContainerAwareCommand
                     ->setFrom('event.control@nb221.com')
                     ->setTo($email_address)
                     ->setBody(
-                        $this->renderView(
+                        $this->render(
                             'emailFireRegister.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
