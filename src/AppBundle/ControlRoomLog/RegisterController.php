@@ -106,40 +106,48 @@ class RegisterController extends Controller
         
                 if ($event){
                     $attendee->setEvent($event);
+                
+                    // 4) save the User!
+
+                    $em->persist($attendee);
+                    $em->flush();
+
+                    $attendee_name = $attendee->getName();
+                    $attendee_time_in = $attendee->getTimeIn();
+                    $email_address = $attendee->getEmail();
+                    $heading = "Event Control Site Sign-in";
+                    $hash = $attendee->getSignOutHash();
+                    $expire = $attendee->getSignOutHashExpire();
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Control Room Sign-in')
+                        ->setFrom('event.control@nb221.com')
+                        ->setTo($email_address)
+                        ->setBody(
+                            $this->renderView(
+                                'emailFireRegisterIn.html.twig',
+                                    array('heading' => $heading,
+                                        'name' => $attendee_name,
+                                        'time_in' => $attendee_time_in,
+                                        'hash' => $hash,
+                                        'expire' => $expire
+                                    )
+                                ),
+                            'text/html'
+                            )
+                    ;
+                    $this->get('mailer')->send($message);
+
+
+                    return $this->redirectToRoute('full_log');
+                    
+                } else {
+                    $response = new Response();
+                    $response->setContent('No Event Selected.');
+                    $response->headers->set('Content-Type', 'text/plain');
+                    $response->setStatusCode(Response::HTTP_NOT_FOUND);
+                    return $response;
                 }
-                // 4) save the User!
-                
-                $em->persist($attendee);
-                $em->flush();
-                
-                $attendee_name = $attendee->getName();
-                $attendee_time_in = $attendee->getTimeIn();
-                $email_address = $attendee->getEmail();
-                $heading = "Event Control Site Sign-in";
-                $hash = $attendee->getSignOutHash();
-                $expire = $attendee->getSignOutHashExpire();
-                
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Control Room Sign-in')
-                    ->setFrom('event.control@nb221.com')
-                    ->setTo($email_address)
-                    ->setBody(
-                        $this->renderView(
-                            'emailFireRegisterIn.html.twig',
-                                array('heading' => $heading,
-                                    'name' => $attendee_name,
-                                    'time_in' => $attendee_time_in,
-                                    'hash' => $hash,
-                                    'expire' => $expire
-                                )
-                            ),
-                        'text/html'
-                        )
-                ;
-                $this->get('mailer')->send($message);
-
-
-                return $this->redirectToRoute('full_log');
             }
 
             return $this->render(
