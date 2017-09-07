@@ -43,7 +43,7 @@ class RegisterController extends Controller
                             ->setTo($email_address)
                             ->setBody(
                                 $this->renderView(
-                                    'emailFireRegister.html.twig',
+                                    'emailFireRegisterOut.html.twig',
                                         array('heading' => $heading,
                                             'name' => $attendee_name,
                                             'time_out' => $attendee_time_out
@@ -75,7 +75,7 @@ class RegisterController extends Controller
                     ->setTo($email_address)
                     ->setBody(
                         $this->renderView(
-                            'emailFireRegister.html.twig',
+                            'emailFireRegisterOut.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_out' => $attendee_time_out
@@ -125,7 +125,7 @@ class RegisterController extends Controller
                     ->setTo($email_address)
                     ->setBody(
                         $this->renderView(
-                            'emailFireRegister.html.twig',
+                            'emailFireRegisterIn.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_in' => $attendee_time_in,
@@ -178,7 +178,7 @@ class RegisterController extends Controller
                             ->setTo($email_address)
                             ->setBody(
                                 $this->renderView(
-                                    'emailFireRegister.html.twig',
+                                    'emailFireRegisterIn.html.twig',
                                         array('heading' => $heading,
                                             'name' => $attendee_name,
                                             'time_out' => $attendee_time_out
