@@ -392,7 +392,7 @@ class User implements UserInterface, \Serializable {
       $now = new \DateTime();
        if($now > $this->selected_event->getEventLogStopDate())
        {
-         return 0;
+         return null;
        } else {
          return $this->selected_event;
        }
