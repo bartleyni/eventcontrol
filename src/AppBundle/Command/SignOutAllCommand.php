@@ -49,7 +49,8 @@ class SignOutAllCommand extends ContainerAwareCommand
                 $attendee_name = $attendee->getName();
                 $attendee_time_out = $attendee->getTimeOut();
                 $email_address = $attendee->getEmail();
-                $heading = "Event Control Site Sign-out";
+                $attendee_time_in = $attendee->getTimeIn();
+                $heading = "Event Control Automatic Site Sign-out";
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Automatic Control Room Sign-out - Please alert the control room if this in incorrect')
                     ->setFrom('event.control@nb221.com')
@@ -59,7 +60,8 @@ class SignOutAllCommand extends ContainerAwareCommand
                             'emailFireRegister.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
-                                    'time_out' => $attendee_time_out
+                                    'time_out' => $attendee_time_out,
+                                    'time_in' => $attendee_time_in,
                                 )
                             ),
                         'text/html'
