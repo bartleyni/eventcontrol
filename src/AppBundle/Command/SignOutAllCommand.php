@@ -48,7 +48,7 @@ class SignOutAllCommand extends ContainerAwareCommand
         $doctrine = $this->getContainer()->get('doctrine');
         $em = $doctrine->getEntityManager();
         
-        $event = $em->getRepository('AppBundle\Entity\event')->findOneBy($eventId);
+        $event = $em->getRepository('AppBundle\Entity\event')->find($eventId);
         
         $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(array('time_out' => null, 'event' => $event));
         
