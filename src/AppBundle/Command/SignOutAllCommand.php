@@ -69,7 +69,7 @@ class SignOutAllCommand extends ContainerAwareCommand
                     ->setTo($email_address)
                     ->setBody(
                         $this->getContainer()->get('templating')->render(
-                            'emailFireRegister.html.twig',
+                            'emailFireRegisterOut.html.twig',
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_out' => $attendee_time_out,
