@@ -5,9 +5,10 @@
 {% if time_in %}
     {{ name }}, you have been signed into the Event Control site register at {{ time_in|date('H:i:s d-m-Y' , "Europe/London") }}.<br>
     <br>
-    Please remember to sign-out before leaving site, this can be done by visiting the control room, calling 01225 580811 or by clicking the link below.<br>
+    Please remember to sign-out before leaving site, this can be done by visiting the control room, calling 01225 580811 {% if hash %} or by clicking the link below.<br>
     <br>
     <a href="{{ url('hash_signout', {'hash': hash}) }}">{{ url('hash_signout', {'hash': hash}) }}</a>
+    {% endif %}
     <br>
     This will expire at {{ expire|date('H:i:s d-m-Y' , "Europe/London") }}
     
