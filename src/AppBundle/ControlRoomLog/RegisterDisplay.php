@@ -50,7 +50,7 @@ class RegisterDisplay extends Controller
         }
         //$query = $qb->getQuery();
         //$attendees = $query->setMaxResults(999)
-                            ->getResult();
+        //                   ->getResult();
         return $this->render('fireRegister.html.twig', array('attendees' => $attendees));
     }
     
