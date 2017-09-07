@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 
-use AppBundle\Entity\PeopleCounterLog;
+use AppBundle\Entity\event_control_register;
 
 class SignOutAllCommand extends ContainerAwareCommand
 {
@@ -17,12 +17,12 @@ class SignOutAllCommand extends ContainerAwareCommand
     {
         $this
             // the name of the command (the part after "bin/console")
-            ->setName('app:RecordOccupancy')
+            ->setName('app:SignOutAll')
             // the short description shown while running "php bin/console list"
-            ->setDescription('Record the current occupancy of active event venues.')
+            ->setDescription('Automatically sign-out all people on the register who are still signed in')
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp("Record current occupany of active events")
+            ->setHelp("Automatically sign-out all people on the register who are still signed in")
         ;
     }
 
@@ -30,7 +30,7 @@ class SignOutAllCommand extends ContainerAwareCommand
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output->writeln([
-            'Record Occupancy Symfony command',// A line
+            'Automatically signing out all persons still signed in',// A line
             '============',// Another line
             '',// Empty line
         ]);
@@ -38,32 +38,40 @@ class SignOutAllCommand extends ContainerAwareCommand
         $doctrine = $this->getContainer()->get('doctrine');
         $em = $doctrine->getEntityManager();
         
-        $active_events = $em->getRepository('AppBundle\Entity\event')->getActiveEvents();
+        $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(array('time_out' => null));
         
-        $now = new \DateTime();
-        
-        foreach ($active_events as $event) {
-            //$venues = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
-            $venue_event = $em->getRepository('AppBundle\Entity\venue')->getEventVenues($event['id']);
-            foreach ($venue_event as $key => $value) {
-                $venues[$key]['id'] = $value['venue_id']['id'];
-                $venues[$key]['name'] = $value['venue_id']['name'];
-                $venues[$key]['count'] = $em->getRepository('AppBundle\Entity\venue')->getvenuecount($value['venue_id']['id'], $value['event_id']['event_log_stop_date'], $value['doors']);
-                $venues[$key]['running'] = $venues[$key]['count']['running_count_in'] - $venues[$key]['count']['running_count_out'];
-                $venue = $em->getRepository('AppBundle\Entity\venue')->findOneBy(array('id' => $value['venue_id']['id']));
-                $event2 = $em->getRepository('AppBundle\Entity\event')->findOneBy(array('id' => $event['id']));
-                
-                $new_people_counter_log = new PeopleCounterLog();
-                $new_people_counter_log->setTimestamp(new \DateTime());
-                $new_people_counter_log->setVenue($venue);
-                $new_people_counter_log->setEvent($event2);
-                $new_people_counter_log->setRunningIn($venues[$key]['count']['running_count_in']);
-                $new_people_counter_log->setRunningOut($venues[$key]['count']['running_count_out']);
-                
-                $em->persist($new_people_counter_log);
+        if ($attendees){
+            foreach($attendees as $attendee){
+                $attendee->setTimeOut(new \DateTime());
+                $em->persist($attendee);
                 $em->flush();
+
+                $attendee_name = $attendee->getName();
+                $attendee_time_out = $attendee->getTimeOut();
+                $email_address = $attendee->getEmail();
+                $heading = "Event Control Site Sign-out";
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Automatic Control Room Sign-out - Please alert the control room if this in incorrect')
+                    ->setFrom('event.control@nb221.com')
+                    ->setTo($email_address)
+                    ->setBody(
+                        $this->renderView(
+                            'emailFireRegister.html.twig',
+                                array('heading' => $heading,
+                                    'name' => $attendee_name,
+                                    'time_out' => $attendee_time_out
+                                )
+                            ),
+                        'text/html'
+                        )
+                ;
+            $this->get('mailer')->send($message);
+
             }
-            $output->write(json_encode($venues));
+        }
+        $output->writeln(['Attendees auto signed out:', '']);
+        
+        $output->write(json_encode($attendees));
            
         }
 
