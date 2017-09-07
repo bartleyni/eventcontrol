@@ -73,7 +73,7 @@ class SignOutAllCommand extends ContainerAwareCommand
                                 array('heading' => $heading,
                                     'name' => $attendee_name,
                                     'time_out' => $attendee_time_out,
-                                    'time_in' => $attendee_time_in,
+                                    //'time_in' => $attendee_time_in,
                                 )
                             ),
                         'text/html'
