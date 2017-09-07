@@ -31,7 +31,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         if (null === $token = $this->tokenStorage->getToken()) {
 
             $qb1
-                ->select('ups.id, ups.name, ups.location, ups.power')
+                ->select('ups.id, ups.name, ups.location, ups.event, ups.power')
                 ->from('AppBundle\Entity\UPS', 'ups')
             ;
 
@@ -66,7 +66,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
                 {
                     $eventId=$active_event->getId();
                 } else {
-                    $eventId = 0;
+                    $eventId = null;
                 }
                
                 $qb1
