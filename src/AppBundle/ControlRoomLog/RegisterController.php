@@ -18,10 +18,14 @@ class RegisterController extends Controller
     public function registerAction(Request $request, $id=null)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $usr = $this->get('security.token_storage')->getToken()->getUser();
+        $event = $usr->getSelectedEvent();
+        
         if ($id){
             if ($id == "all"){
                 $attendees = $em->getRepository('AppBundle\Entity\event_control_register')->findBy(
-                    array('time_out' => null));
+                    array('time_out' => null, 'event' => $event));
                 if ($attendees){
                     foreach($attendees as $attendee){
                         $attendee->setTimeOut(new \DateTime());
