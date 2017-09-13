@@ -1,0 +1,7 @@
+<h3>{{ heading }}</h3>
+
+{% if time_out %}
+    {{ name }}, you have been signed out of the Event Control site register at {{ time_out|date('H:i:s d-m-Y' , "Europe/London") }}.  Thank you for your assistance.<br>
+    <br>
+    If you return to site remember to sign in, this can be done by visiting the control room or calling 01225 580811.
+{% endif %}

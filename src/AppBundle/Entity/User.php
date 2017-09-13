@@ -389,7 +389,13 @@ class User implements UserInterface, \Serializable {
      */
     public function getSelectedEvent()
     {
-        return $this->selected_event;
+      $now = new \DateTime();
+       if($now > $this->selected_event->getEventLogStopDate())
+       {
+         return null;
+       } else {
+         return $this->selected_event;
+       }
     }
  
      /**

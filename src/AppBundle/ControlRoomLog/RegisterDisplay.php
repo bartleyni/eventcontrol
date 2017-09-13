@@ -38,16 +38,19 @@ class RegisterDisplay extends Controller
             
             $qb->andWhere('attendee.event = :eventId')
                 ->setParameter('eventId', $eventId);
-        }else{
-            $qb->andWhere('attendee.time_in <= :begin')
-                ->andWhere('attendee.time_in >= :end')
-                ->setParameter('begin', new \DateTime('2020-04-30'))
-                ->setParameter('end', new \DateTime('2014-04-25'));
-        }
-       
-        $query = $qb->getQuery();
-        $attendees = $query->setMaxResults(30)
+            $query = $qb->getQuery();
+            $attendees = $query->setMaxResults(999)
                             ->getResult();
+        }else{
+            //$qb->andWhere('attendee.time_in <= :begin')
+            //    ->andWhere('attendee.time_in >= :end')
+            //    ->setParameter('begin', new \DateTime('2020-04-30'))
+            //    ->setParameter('end', new \DateTime('2014-04-25'));
+            $attendees = null;
+        }
+        //$query = $qb->getQuery();
+        //$attendees = $query->setMaxResults(999)
+        //                   ->getResult();
         return $this->render('fireRegister.html.twig', array('attendees' => $attendees));
     }
     
@@ -88,7 +91,7 @@ class RegisterDisplay extends Controller
         }
        
         $query = $qb->getQuery();
-        $attendees = $query->setMaxResults(100)
+        $attendees = $query->setMaxResults(999)
                             ->getResult();
         
         //timestamp for file
