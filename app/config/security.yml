@@ -33,7 +33,6 @@ security:
             guard:
                 authenticators:
                     - app.security.api_token_authenticator
-
         main:
             anonymous: ~
             pattern: ^/
