@@ -27,9 +27,9 @@ class entry_form extends Controller
     public function entryAction(Request $request)
     {
         $new_entry = new log_entries();
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+//        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+//            throw $this->createAccessDeniedException();
+//        }
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $event = $usr->getSelectedEvent();

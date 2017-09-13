@@ -37,9 +37,9 @@ class edit_entry_form extends Controller
             $id = $postData['id'];
         }
         
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-                throw $this->createAccessDeniedException();
-            }
+        #if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+        #        throw $this->createAccessDeniedException();
+        #    }
         
         $editable = false;
         

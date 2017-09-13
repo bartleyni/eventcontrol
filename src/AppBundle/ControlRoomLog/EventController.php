@@ -240,9 +240,9 @@ class EventController extends Controller
     
     public function eventWeatherAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+//        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+//            throw $this->createAccessDeniedException();
+//        }
         
         $em = $this->getDoctrine()->getManager();    
         $usr = $this->get('security.token_storage')->getToken()->getUser();
@@ -353,9 +353,9 @@ class EventController extends Controller
     
     public function eventWeatherWarningAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+//        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+//            throw $this->createAccessDeniedException();
+//        }
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -375,9 +375,9 @@ class EventController extends Controller
     
     public function eventWeatherRadarAction()
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+//        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+//            throw $this->createAccessDeniedException();
+//        }
         
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
