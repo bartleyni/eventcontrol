@@ -48,14 +48,14 @@ security:
                 authenticators:
                     - app.security.login_form_authenticator
                 entry_point: app.security.login_form_authenticator
-            remember_me:
-                secret:   '%secret%'
-                lifetime: 604800 # 1 week in seconds
-                path:     /
+            #remember_me:
+            #    secret:   '%secret%'
+            #    lifetime: 604800 # 1 week in seconds
+            #    path:     /
                 # by default, the feature is enabled by checking a
                 # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
-                always_remember_me: true
+                #always_remember_me: true
             #logout:       true
             #anonymous:    true
             # activate different ways to authenticate
