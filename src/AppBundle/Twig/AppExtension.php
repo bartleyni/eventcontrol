@@ -31,7 +31,7 @@ class AppExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInt
         if (null === $token = $this->tokenStorage->getToken()) {
 
             $qb1
-                ->select('ups.id, ups.name, ups.location, ups.power')
+                ->select('ups.id, ups.name, ups.location, ups.power, ups.events')
                 ->from('AppBundle\Entity\UPS', 'ups')
             ;
 
