@@ -37,8 +37,6 @@ framework:
         cookie_lifetime: 21600
         gc_maxlifetime: 21600
         handler_id:  ~
-        default_locale:  "%locale%"
-        auto_start: true
     fragments:       ~
     http_method_override: true
 
