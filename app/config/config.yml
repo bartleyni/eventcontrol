@@ -35,7 +35,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         cookie_lifetime: 21600
-        gc_maxlifetime: 3600
+        gc_maxlifetime: 21600
         #handler_id:  ~
         handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         
