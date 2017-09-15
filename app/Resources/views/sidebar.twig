@@ -298,7 +298,7 @@
     $(document).ready(function() {
         sidebarPoll();
         updateWeather();
-        setInterval('updateWeather()', 30000);
+        setInterval('updateWeather2()', 30000);
         userLocate();
     });
     
@@ -364,6 +364,14 @@
                 {
                     $("#SidebarWeather").html("<strong>Weather:</strong> "+data);
                 }
+            });
+        }
+        
+        
+    function updateWeather2 ( )
+        {            
+            $.getJSON('{{ path('event_weather') }}', function(data) {
+                $("#SidebarWeather").html("<strong>Weather:</strong> "+data.summary);
             });
         }
         

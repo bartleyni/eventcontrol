@@ -248,8 +248,10 @@ class EventController extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $event = $usr->getSelectedEvent();      
         $now = new \DateTime();
+        $icon = null;
         
         $last_weather_update = $event->getEventLastWeatherUpdate();
+        
         
         if($last_weather_update){
             $interval1 = date_diff($last_weather_update, $now, TRUE);
@@ -263,6 +265,7 @@ class EventController extends Controller
         
         if($last_weather_update && $minutes < 2){
             $summary = $event->getEventLastWeather();
+            $icon = $event->getEventLastWeatherIcon();
         } else {
             $latlong = $event->getEventLatLong();
             $key = $this->getParameter('ds_key');
@@ -279,6 +282,7 @@ class EventController extends Controller
                 $data = json_decode($content, true);
                 if (is_array($data)) {
                     $summary = $data['minutely']['summary'];
+                    $icon = $data['currently']['icon'];
                     if (!$summary){
                         $summary = $data['hourly']['summary'];
                     }
@@ -338,15 +342,25 @@ class EventController extends Controller
                         $event->setEventLastWeatherUpdate($now);
                         $em->persist($event);
                     }
+                    if($icon) {
+                        $event->setEventLastWeatherIcon($con);
+                        $em->persist($event);
+                    }
                 } else {
-                 $summary = "No Weather Data";  
+                    $summary = "No Weather Data";
+                    $icon = null;
                 }
             }
         }
         
         $em->flush();
         
-        $response = new Response($summary, Response::HTTP_OK, array('content-type' => 'text/html'));
+        $weatherInfo = array("summary" => $summary, "icon" => $icon);
+        
+        $response = new JsonResponse();
+        $response->setData($weatherInfo);
+        
+        //$response = new Response($summary, Response::HTTP_OK, array('content-type' => 'text/html'));
 
         return $response;
         

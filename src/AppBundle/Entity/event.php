@@ -91,6 +91,11 @@ class event {
     protected $event_last_weather;
     
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $event_last_weather_icon;
+    
+    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     protected $event_last_weather_warning;
@@ -431,6 +436,30 @@ class event {
     public function getEventLastWeather()
     {
         return $this->event_last_weather;
+    }
+    
+        /**
+     * Set event_last_weather_icon
+     *
+     * @param string $event_last_weather_icon
+     *
+     * @return event
+     */
+    public function setEventLastWeatherIcon($event_last_weather_icon)
+    {
+        $this->event_last_weather_icon = $event_last_weather_icon;
+
+        return $this;
+    }
+    
+    /**
+     * Get event_last_weather_icon
+     *
+     * @return string
+     */
+    public function getEventLastWeatherIcon()
+    {
+        return $this->event_last_weather_icon;
     }
     
         /**
