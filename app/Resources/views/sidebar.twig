@@ -297,7 +297,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         sidebarPoll();
-        updateWeather();
+        updateWeather2();
         setInterval('updateWeather2()', 30000);
         userLocate();
     });
@@ -369,9 +369,11 @@
         
         
     function updateWeather2 ( )
-        {            
+        {   var skycons = new Skycons({"color": "black"});      
             $.getJSON('{{ path('event_weather') }}', function(data) {
                 $("#SidebarWeather").html("<strong>Weather:</strong> "+data.summary);
+                skycons.set("WeatherIcon", data.icon);
+                skycons.play();                
             });
         }
         
