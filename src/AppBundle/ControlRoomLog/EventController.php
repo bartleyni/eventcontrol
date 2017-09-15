@@ -277,64 +277,69 @@ class EventController extends Controller
 
             if ($content){
                 $data = json_decode($content, true);
-                $summary = $data['minutely']['summary'];
-                if (!$summary){
-                    $summary = $data['hourly']['summary'];
-                }
-                $warning = '';
-                
-                if (array_key_exists('alerts', $data)) {   
-                    $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
-                    $last_weather_warning = $event->getEventLastWeatherWarning();
-                    if($last_weather_warning_update){
-                        $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
-
-                        $minutes2 = $interval2->days * 24 * 60;
-                        $minutes2 += $interval2->h * 60;
-                        $minutes2 += $interval2->i;
-                    } else {
-                        $minutes2 = 31;
+                if (is_array($data)) {
+                    $summary = $data['minutely']['summary'];
+                    if (!$summary){
+                        $summary = $data['hourly']['summary'];
                     }
+                    $warning = '';
+                
+                    
+                    if (array_key_exists('alerts', $data)) {   
+                        $last_weather_warning_update = $event->getEventLastWeatherWarningUpdate();
+                        $last_weather_warning = $event->getEventLastWeatherWarning();
+                        if($last_weather_warning_update){
+                            $interval2 = date_diff($last_weather_warning_update, $now, TRUE);
 
-                    if($minutes2 > 30){
-                        foreach ($data['alerts'] as $key => $WeatherAlert)
-                        {
-                            $warning = $warning.$WeatherAlert['title'].'<br>';
+                            $minutes2 = $interval2->days * 24 * 60;
+                            $minutes2 += $interval2->h * 60;
+                            $minutes2 += $interval2->i;
+                        } else {
+                            $minutes2 = 31;
                         }
-                        if ($warning != $last_weather_warning){
-                            
-                            $event->setEventLastWeatherWarning($warning);
+
+                        if($minutes2 > 30){
                             foreach ($data['alerts'] as $key => $WeatherAlert)
                             {
-                                $alert = new Alert();
-                                $alert->setTitle($WeatherAlert['title']);
-                                $alert->setMessage($WeatherAlert['description']);
-                                $alert->setURL($WeatherAlert['uri']);
-                                $alert->setType("warning");
-                                $alert->setFor("Weather");
-                                $alert->setEvent($event);
-                                $em->persist($alert);
-                                $em->flush();
-
-                                //Moved to alert listener
-                                //$alert_queue = new Queue();
-                                //$alert_queue->setAlert($alert);                  
-                                //$em->persist($alert_queue);
-                                //$em->flush(); 
+                                $warning = $warning.$WeatherAlert['title'].'<br>';
                             }
+                            if ($warning != $last_weather_warning){
+
+                                $event->setEventLastWeatherWarning($warning);
+                                foreach ($data['alerts'] as $key => $WeatherAlert)
+                                {
+                                    $alert = new Alert();
+                                    $alert->setTitle($WeatherAlert['title']);
+                                    $alert->setMessage($WeatherAlert['description']);
+                                    $alert->setURL($WeatherAlert['uri']);
+                                    $alert->setType("warning");
+                                    $alert->setFor("Weather");
+                                    $alert->setEvent($event);
+                                    $em->persist($alert);
+                                    $em->flush();
+
+                                    //Moved to alert listener
+                                    //$alert_queue = new Queue();
+                                    //$alert_queue->setAlert($alert);                  
+                                    //$em->persist($alert_queue);
+                                    //$em->flush(); 
+                                }
+                            }
+                            $event->setEventLastWeatherWarningUpdate($now);
+                            $em->persist($event);
                         }
+                    } else {
+                        $warning = '';
+                        $event->setEventLastWeatherWarning($warning);
                         $event->setEventLastWeatherWarningUpdate($now);
+                    }
+                    if($summary) {
+                        $event->setEventLastWeather($summary);
+                        $event->setEventLastWeatherUpdate($now);
                         $em->persist($event);
                     }
                 } else {
-                    $warning = '';
-                    $event->setEventLastWeatherWarning($warning);
-                    $event->setEventLastWeatherWarningUpdate($now);
-                }
-                if($summary) {
-                    $event->setEventLastWeather($summary);
-                    $event->setEventLastWeatherUpdate($now);
-                    $em->persist($event);
+                 $summary = "No Weather Data"   
                 }
             }
         }
