@@ -339,7 +339,7 @@ class EventController extends Controller
                         $em->persist($event);
                     }
                 } else {
-                 $summary = "No Weather Data"   
+                 $summary = "No Weather Data";  
                 }
             }
         }
