@@ -343,7 +343,7 @@ class EventController extends Controller
                         $em->persist($event);
                     }
                     if($icon) {
-                        $event->setEventLastWeatherIcon($con);
+                        $event->setEventLastWeatherIcon($icon);
                         $em->persist($event);
                     }
                 } else {
