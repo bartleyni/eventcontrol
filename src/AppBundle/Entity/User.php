@@ -495,10 +495,10 @@ class User implements EquatableInterface, UserInterface, \Serializable {
     {
         if ($user instanceof User) {
             // Check that the roles are the same, in any order
-            $isEqual = count($this->getRoles()) == count($user->getRoles());
+            $isEqual = count($this->getGroups()) == count($user->getGroups());
             if ($isEqual) {
-                foreach($this->getRoles() as $role) {
-                    $isEqual = $isEqual && in_array($role, $user->getRoles());
+                foreach($this->getGroups() as $role) {
+                    $isEqual = $isEqual && in_array($role, $user->getGroups());
                 }
             }
             return $isEqual;
