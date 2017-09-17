@@ -33,7 +33,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  */
 
 //class User implements AdvancedUserInterface, \Serializable {
-class User implements EquatableInterface, UserInterface, \Serializable {
+class User implements UserInterface, EquatableInterface, \Serializable {
 /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -495,13 +495,15 @@ class User implements EquatableInterface, UserInterface, \Serializable {
     {
         if ($user instanceof User) {
             // Check that the roles are the same, in any order
-            $isEqual = count($this->getGroups()) == count($user->getGroups());
-            if ($isEqual) {
-                foreach($this->getGroups() as $role) {
-                    $isEqual = $isEqual && in_array($role, $user->getGroups());
+            if($user != null){
+                $isEqual = count($this->getRoles()) == count($user->getRoles());
+                if ($isEqual) {
+                    foreach($this->getRoles() as $role) {
+                        $isEqual = $isEqual && in_array($role, $user->getRoles());
+                    }
                 }
+                return $isEqual;
             }
-            return $isEqual;
         }
 
         return false;
