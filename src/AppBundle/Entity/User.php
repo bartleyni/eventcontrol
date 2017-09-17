@@ -317,6 +317,10 @@ class User implements UserInterface, EquatableInterface, \Serializable {
     
     public function getRoles()
     {
+        if ($this->groups === null) {
+            return null;
+        }
+        
         return $this->groups->toArray();
     }
     
