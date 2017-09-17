@@ -32,7 +32,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  */
 
 //class User implements AdvancedUserInterface, \Serializable {
-class User implements UserInterface, \Serializable {
+class User implements UserInterface, EquatableInterface \Serializable {
 /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -488,5 +488,21 @@ class User implements UserInterface, \Serializable {
     public function getLatLongTimestamp()
     {
         return $this->lat_long_timestamp;
+    }
+    
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($user instanceof User) {
+            // Check that the roles are the same, in any order
+            $isEqual = count($this->getRoles()) == count($user->getRoles());
+            if ($isEqual) {
+                foreach($this->getRoles() as $role) {
+                    $isEqual = $isEqual && in_array($role, $user->getRoles());
+                }
+            }
+            return $isEqual;
+        }
+
+        return false;
     }
 }
