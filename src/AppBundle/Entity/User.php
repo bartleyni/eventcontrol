@@ -33,7 +33,7 @@ use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
  */
 
 //class User implements AdvancedUserInterface, \Serializable {
-class User implements UserInterface, EquatableInterface, \Serializable {
+class User implements UserInterface, \Serializable, EquatableInterface {
 /**
      * @ORM\Column(type="integer")
      * @ORM\Id
