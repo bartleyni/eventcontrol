@@ -32,6 +32,10 @@ class Log extends Controller
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $event = $usr->getSelectedEvent();
         
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+        
         if ($event)
         {
             $eventId = $event->getId();
