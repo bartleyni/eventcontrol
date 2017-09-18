@@ -230,6 +230,7 @@ class User implements UserInterface, \Serializable {
             $this->id,
             $this->username,
             $this->password,
+            $this->groups
             // see section on salt below
             // $this->salt,
         ));
@@ -242,6 +243,7 @@ class User implements UserInterface, \Serializable {
             $this->id,
             $this->username,
             $this->password,
+            $this->groups,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
