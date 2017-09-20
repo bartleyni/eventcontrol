@@ -6,8 +6,11 @@ Event Control
     {% embed '3-9.html.twig' %}
         {% block content %}
             {% if iframe is defined %}
+                {{ iframe|raw }}
+            {% endif %}
+            {% if iframeResponsive %}
                 <div class="responsive-content">
-                    {{ iframe|raw }}
+                    {{ iframeResponsive|raw }}
                 </div>
             {% endif %}
             {% if target is defined %}
