@@ -128,6 +128,19 @@ class log_entries {
      */
     private $log_supportUpdatedAt;
     
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\logFile", mappedBy="log_entry", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $logFiles;
+    
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->logFiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -519,5 +532,41 @@ class log_entries {
     public function getLogSupportUpdatedAt()
     {
         return $this->log_supportUpdatedAt;
+    }
+    
+    /**
+     * Add logFile
+     *
+     * @param AppBundle\Entity\logFile $logFile
+     *
+     * @return Email
+     */
+    public function addLogFile(AppBundle\Entity\logFile $logFile)
+    {
+        $this->logFiles->add($logFile);
+        
+        $logFile->setLogEntry($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove logFile
+     *
+     * @param AppBundle\Entity\logFile $logFile
+     */
+    public function removeLogFile(AppBundle\Entity\logFile $logFile)
+    {
+        $this->logFiles->removeElement($logFile);
+    }
+
+    /**
+     * Get logFiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogFiles()
+    {
+        return $this->logFiles;
     }
 }
