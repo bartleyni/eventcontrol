@@ -74,7 +74,8 @@ class edit_entry_form extends Controller
         
         $activeEvent = $usr->getSelectedEvent();
         
-        $logFiles = $em->getRepository('AppBundle\Entity\logFile')->findBy(array('log_entry' => $id));
+        //$logFiles = $em->getRepository('AppBundle\Entity\logFile')->findBy(array('log_entry' => $id));
+        $logFiles = null;
         
         if($activeEvent != $entry->getEvent())
         {
