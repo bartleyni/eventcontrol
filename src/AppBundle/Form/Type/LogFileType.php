@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class LogType extends AbstractType
+class LogFileType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -31,7 +31,7 @@ class LogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('logSupFile', FileType::class);
+                ->add('logFile', FileType::class);
     }
   
     /**
