@@ -127,6 +127,19 @@
                             </div>
                         </div>
                     {% endif %}
+                    {% if images is null %}
+                    {% else %}
+                        <div class="panel panel-info" id="Support">
+                            <div class="panel-heading"><strong>Supporting Files</strong></div>
+                            <div class="panel-body"> 
+                                {% for image in images %}
+                                    {{ image.fileName }}
+                                    <br>
+                                    <img height="400" src="{{ log_support_directory }}/{{ image.fileName }}" ><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}    
                 </div>
             </div>
                 
