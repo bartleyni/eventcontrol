@@ -132,10 +132,10 @@ class logFile
        if (null === $this->file) {
            return;
        }
-       $this->file->move(
-           $this->path,
-           $this->fileName.'.'.$this->file->guessExtension()
-       );
+//       $this->file->move(
+//           $this->path,
+//           $this->fileName.'.'.$this->file->guessExtension()
+//       );
 
        $this->file = null;
     }
