@@ -131,7 +131,7 @@
             </div>
                 
             {% if images is not null %}
-                {% for images as image %}
+                {% for image in images %}
                     <div class="row">
                         <div class="col-md-12">
                             <img width="650" src="{{ image.file }}" alt="{{ image.fileName }}">
