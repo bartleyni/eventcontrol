@@ -541,7 +541,7 @@ class log_entries {
      *
      * @return Email
      */
-    public function addLogFile(AppBundle\Entity\logFile $logFile)
+    public function addLogFile(\AppBundle\Entity\logFile $logFile)
     {
         $this->logFiles->upload($logFile);
         
@@ -555,7 +555,7 @@ class log_entries {
      *
      * @param AppBundle\Entity\logFile $logFile
      */
-    public function removeLogFile(AppBundle\Entity\logFile $logFile)
+    public function removeLogFile(\AppBundle\Entity\logFile $logFile)
     {
         $this->logFiles->removeElement($logFile);
     }
