@@ -62,12 +62,30 @@ class FileController extends Controller
         $response = new Response();
 
         if ($filename){
-            $file = $this->getParameter('log_support_directory').'/'.$filename;
-            $iframe = '<iframe src="'.$file.'" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            //$file = $this->getParameter('log_support_directory').'/'.$filename;
+            $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
             //$response = new BinaryFileResponse($file);
             //return $response;
+            
+            
+        }else{
+                return $this->redirectToRoute('full_log');
+        }
+    }
+    
+    /**
+     * @Route("/log_support_direct/{filename}", name="log_support_direct")
+     */
+    public function logSupportDirect(Request $request, $filename=null)
+    {
+        $response = new Response();
+
+        if ($filename){
+            $file = $this->getParameter('log_support_directory').'/'.$filename;
+            $response = new BinaryFileResponse($file);
+            return $response;
             
             
         }else{
