@@ -115,9 +115,9 @@ class logFile
     */
    public function removeUpload()
    {
-       if ($file = $this->getAbsolutePath()) {
-           unlink($file); 
-       }
+       //if ($file = $this->getAbsolutePath()) {
+       //    unlink($file); 
+       //}
     }
     
     /**
@@ -131,10 +131,10 @@ class logFile
        if (null === $this->file) {
            return;
        }
-       $this->file->move(
-           $this->getUploadRootDir(),
-           $this->path
-       );
+       //$this->file->move(
+       //    $this->getUploadRootDir(),
+       //    $this->path
+       //);
 
        $this->file = null;
     }
