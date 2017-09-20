@@ -90,7 +90,7 @@ class LogType extends AbstractType
                     'class' => 'form-control'
                 )
             ))
-            ->add('logFiles', CollectionType::class, array(
+            ->add('logSupFiles', CollectionType::class, array(
                 'entry_type' => LogFileType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
