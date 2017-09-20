@@ -125,21 +125,21 @@ Control Room Log Edit
 					    {{ form_label(log_entry.logFiles) }}
 					    {{ form_errors(log_entry.logFiles) }}
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8">
 					    <ul class="files list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.fileName)|e('html_attr') }} {{ form_widget(log_entry.logFiles.vars.prototype.file)|e('html_attr') }} ">
 						{# iterate over each existing location and render its fields #}
 						{% for logFile in log_entry.logFiles %}
 						    <li>
-							<div class="col-md-4">
+							<div class="col-md-3">
                                                             {{ form_label(logFile.fileName) }}
                                                         </div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-9">
                                                             {{ form_widget(logFile.fileName) }}
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-3">
                                                               
                                                         </div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-9">
                                                             {{ form_widget(logFile.file) }}
                                                         </div>
                                                     </li>

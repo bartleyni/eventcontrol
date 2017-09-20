@@ -33,7 +33,7 @@ class LogFileType extends AbstractType
         $builder
             
                 ->add('fileName', TextType::class, array(
-                'label' => 'Supporting File Name',
+                'label' => 'File Name',
                 'required' => false,
                 'disabled' => true,
                 'attr' => array(
