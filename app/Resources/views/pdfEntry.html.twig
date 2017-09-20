@@ -127,8 +127,7 @@
                             </div>
                         </div>
                     {% endif %}
-                    {% if images is null %}
-                    {% else %}
+                    {% if images|length > 0 %}
                         <div class="panel panel-info" id="Support">
                             <div class="panel-heading"><strong>Supporting Files</strong></div>
                             <div class="panel-body"> 
@@ -142,21 +141,6 @@
                     {% endif %}    
                 </div>
             </div>
-                
-            {% if images is not null %}
-                {% for image in images %}
-                    <div class="row">
-                         <div class="panel panel-info" id="Support">
-                            <div class="panel-heading"><strong>Supporting File</strong></div>
-                            <div class="panel-body"> 
-                                {{ image.fileName }}
-                                <br>
-                                <img height="400" src="{{ log_support_directory }}/{{ image.fileName }}" >
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
         </div>
     </body>
 </html>
