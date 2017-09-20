@@ -143,7 +143,7 @@ Control Room Log Edit
 					    {{ form_errors(log_entry.logFiles) }}
 					</div>
 					<div class="col-md-6">
-					    <ul class="locations list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.logFile)|e('html_attr') }}">
+					    <ul class="files list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.logFile)|e('html_attr') }}">
 						{# iterate over each existing location and render its fields #}
 						{% for logFile in log_entry.logFiles %}
 						    <li>
@@ -239,6 +239,12 @@ Control Room Log Edit
 {% block scripts %}
     <script type="text/javascript" src="{{ asset('assets/vendor/moment/locale/en-gb.js') }}"></script>
     <script type="text/javascript">
+    
+    	var $collectionHolder;
+        // setup an "add a file" link
+        var $addFileLink = $('<a href="#" class="add_file_link">Add a new file</a>');
+        var $newLinkLi = $('<li></li>').append($addFileLink);
+	
         $(document).ready(function() {
             $('#General').hide();
             $('#Medical').hide();
@@ -270,6 +276,59 @@ Control Room Log Edit
                 e.preventDefault();
                 showLostProperty();
             });
+	    
+	    // Get the ul that holds the collection of files
+            $collectionHolder = $('ul.files');
+            // add a delete link to all of the existing files form li elements
+            $collectionHolder.find('li').each(function() {
+                addFileFormDeleteLink($(this));
+            });    
+        
+            // Get the ul that holds the collection of locations
+            $collectionHolder = $('ul.files');
+            // add the "add a file" anchor and li to the files ul
+            $collectionHolder.append($newLinkLi);
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+            $addFileLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                // add a new filen form (see next code block)
+                addFileForm($collectionHolder, $newLinkLi);
+            });
+        });
+        
+        function addFileForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+            // get the new index
+            var index = $collectionHolder.data('index');
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+            // Display the form in the page in an li, before the "Add a File" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            
+            addFileFormDeleteLink($newFormLi);
+        }
+        
+        function addFileFormDeleteLink($locationFormLi) {
+            var $removeFormA = $('<a href="#">Delete this File</a>');
+            $fileFormLi.append($removeFormA);
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                // remove the li for the file form
+                $fileFormLi.remove();
+            });
+        }
+	    
+	    
+	    
         });
         
         $(function () {
