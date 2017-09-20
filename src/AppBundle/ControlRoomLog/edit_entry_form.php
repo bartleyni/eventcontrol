@@ -83,11 +83,11 @@ class edit_entry_form extends Controller
         }
         
         
-        $originalFiles = new ArrayCollection();
+        //$originalFiles = new ArrayCollection();
         // Create an ArrayCollection of the current file objects in the database
-        foreach ($entry->getLogFiles() as $file) {
-            $originalFiles->add($file);
-        }
+        //foreach ($entry->getLogFiles() as $file) {
+        //    $originalFiles->add($file);
+        //}
         
         $entryEvent = $entry->getEvent();
         $eventLatLong = explode(",",$entryEvent->getEventLatLong());
@@ -194,11 +194,11 @@ class edit_entry_form extends Controller
                     }
                     
                     // remove the relationship between the files and the Event
-                    foreach ($originalFiles as $file) {
-                        if (false === $entry->getLogFiles()->contains($file)) {
-                            $em->remove($file);
-                        }
-                    }
+                    //foreach ($originalFiles as $file) {
+                    //    if (false === $entry->getLogFiles()->contains($file)) {
+                    //        $em->remove($file);
+                    //    }
+                    //}
 
                     $files = $form['logFiles']->getData();
 
