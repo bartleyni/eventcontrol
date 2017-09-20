@@ -21,6 +21,7 @@ use AppBundle\Entity\general_log;
 use AppBundle\Entity\medical_log;
 use AppBundle\Entity\security_log;
 use AppBundle\Entity\lost_property;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class edit_entry_form extends Controller
 {
@@ -81,7 +82,7 @@ class edit_entry_form extends Controller
         }
         
         
-        $originalLocations = new ArrayCollection();
+        $originalFiles = new ArrayCollection();
         // Create an ArrayCollection of the current file objects in the database
         foreach ($entry->getLogFiles() as $file) {
             $originalFiles->add($file);
