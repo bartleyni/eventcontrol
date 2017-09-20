@@ -80,7 +80,12 @@ class edit_entry_form extends Controller
             throw $this->createAccessDeniedException();
         }
         
-        //Get the Lat and Long from the event
+        
+        $originalLocations = new ArrayCollection();
+        // Create an ArrayCollection of the current file objects in the database
+        foreach ($entry->getLogFiles() as $file) {
+            $originalFiles->add($file);
+        }
         
         $entryEvent = $entry->getEvent();
         $eventLatLong = explode(",",$entryEvent->getEventLatLong());
@@ -185,6 +190,22 @@ class edit_entry_form extends Controller
                             $entry->setLongitude($latLong[1]);
                         }
                     }
+                    
+                    // remove the relationship between the files and the Event
+                    foreach ($originalFiles as $file) {
+                        if (false === $entry->getLogFiles()->contains($file)) {
+                            $em->remove($file);
+                        }
+                    }
+
+                    $files = $form['logFiles']->getData();
+
+                    foreach ($files as $file){
+                        $file->setLogEntry($entry);
+                        $em->persist($file);
+                    }
+                    
+                    
                     
                     $em->persist($entry);
                     $em->flush();
