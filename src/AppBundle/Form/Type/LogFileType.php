@@ -31,7 +31,7 @@ class LogFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('name', TextType::class, array(
+                ->add('fileName', TextType::class, array(
                 'label' => 'File Name:',
                 'required' => false,
                 'attr'  => array(

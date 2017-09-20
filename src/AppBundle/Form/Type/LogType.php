@@ -92,6 +92,7 @@ class LogType extends AbstractType
             ))
             ->add('logFiles', CollectionType::class, array(
                 'entry_type' => LogFileType::class,
+                'label' => 'Supporting Log Files',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
