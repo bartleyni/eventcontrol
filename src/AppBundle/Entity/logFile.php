@@ -103,40 +103,10 @@ class logFile
    {   
        if (null !== $this->file) {
            // do whatever you want to generate a unique name
-           $filename = sha1(uniqid(mt_rand(), true));
+           #$filename = sha1(uniqid(mt_rand(), true));
+           $filename = $this->fileName;
            $this->path = $filename.'.'.$this->file->guessExtension();
        }
-    }
-    
-    /**
-    * Called before entity removal
-    *
-    * @ORM\PreRemove()
-    */
-   public function removeUpload()
-   {
-       //if ($file = $this->getAbsolutePath()) {
-       //    unlink($file); 
-       //}
-    }
-    
-    /**
-    * Called after entity persistence
-    *
-    * @ORM\PostPersist()
-    * @ORM\PostUpdate()
-    */
-   public function upload()
-   {
-       if (null === $this->file) {
-           return;
-       }
-       //$this->file->move(
-       //    $this->getUploadRootDir(),
-       //    $this->path
-       //);
-
-       $this->file = null;
     }
 
     /**

@@ -546,6 +546,7 @@ class log_entries {
         //$this->logFiles->setFile($logFile);
         
         $logFile->setLogEntry($this);
+        $this->logFiles[] = $logFile;
 
         return $this;
     }
