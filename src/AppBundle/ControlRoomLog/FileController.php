@@ -63,7 +63,7 @@ class FileController extends Controller
 
         if ($filename){
             //$file = $this->getParameter('log_support_directory').'/'.$filename;
-            $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
             //$response = new BinaryFileResponse($file);
