@@ -109,17 +109,6 @@ class logFile
        }
     }
     
-    /**
-    * Called before entity removal
-    *
-    * @ORM\PreRemove()
-    */
-   public function removeUpload()
-   {
-       if ($file == $this->path) {
-           unlink($file); 
-       }
-    }
     
     /**
     * Called after entity persistence
