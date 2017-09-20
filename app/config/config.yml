@@ -142,7 +142,7 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
             
-            namer:              vich_uploader.namer_uniqid
+            #namer:              vich_uploader.namer_uniqid
     
 xiidea_easy_audit:
     entity_class : AppBundle\Entity\AuditLog
