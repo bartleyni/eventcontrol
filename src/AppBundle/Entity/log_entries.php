@@ -558,8 +558,8 @@ class log_entries {
      */
     public function removeLogFile(\AppBundle\Entity\logFile $logFile)
     {
-        //$this->logFiles->removeElement($logFile);
-        $this->logFiles->remove($logFile);
+        $this->logFiles->removeElement($logFile);
+        //$this->logFiles->remove($logFile);
         $logFile->setLogEntry(null);
     }
 
