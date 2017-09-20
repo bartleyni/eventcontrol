@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
@@ -88,6 +89,12 @@ class LogType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                 )
+            ))
+            ->add('logFiles', CollectionType::class, array(
+                'entry_type' => LogFileType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
