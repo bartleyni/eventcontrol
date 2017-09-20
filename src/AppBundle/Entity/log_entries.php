@@ -129,7 +129,7 @@ class log_entries {
     private $log_supportUpdatedAt;
     
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\logFile", mappedBy="log_entry", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\logFile", mappedBy="log_entry", cascade={"persist", "remove"}, orphanRemoval=true)
      * @Assert\Valid()
      */
     private $logFiles;
@@ -559,6 +559,8 @@ class log_entries {
     public function removeLogFile(\AppBundle\Entity\logFile $logFile)
     {
         $this->logFiles->removeElement($logFile);
+        $this->LogFiles->remove($logFile);
+        $logFile->setLogEntry(null);
     }
 
     /**
