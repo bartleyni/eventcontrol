@@ -63,8 +63,12 @@ class FileController extends Controller
 
         if ($filename){
             $file = $this->getParameter('log_support_directory').'/'.$filename;
-            $response = new BinaryFileResponse($file);
-            return $response;
+            $iframe = '<iframe src="'.$file.'" frameborder=0 scrolling=no height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            
+            return $this->render('iframe.html.twig', array('iframe' => $iframe));
+            //$response = new BinaryFileResponse($file);
+            //return $response;
+            
             
         }else{
                 return $this->redirectToRoute('full_log');
