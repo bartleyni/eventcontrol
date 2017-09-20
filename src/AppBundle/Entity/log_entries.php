@@ -543,7 +543,7 @@ class log_entries {
      */
     public function addLogFile(\AppBundle\Entity\logFile $logFile)
     {
-        $this->logFiles->setFile($logFile);
+        //$this->logFiles->setFile($logFile);
         
         $logFile->setLogEntry($this);
 
