@@ -130,8 +130,8 @@ Control Room Log Edit
 						{# iterate over each existing location and render its fields #}
 						{% for logFile in log_entry.logFiles %}
 						    <li>
-							{{ form_widget(logFile.fileName) }}
-                                                        {{ form_widget(logFile.file) }}
+							{{ form_label(logFile.fileName) }} {{ form_widget(logFile.fileName) }}
+                                                        {{ form_label(logFile.file) }} {{ form_widget(logFile.file) }}
                                                     </li>
 						{% endfor %}
 					    </ul>
@@ -281,6 +281,7 @@ Control Room Log Edit
                 // add a new filen form (see next code block)
                 addFileForm($collectionHolder, $newLinkLi);
             });
+            $('.vich-file').children("a").attr("target","_blank");
         });
         
         function addFileForm($collectionHolder, $newLinkLi) {
