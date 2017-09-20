@@ -139,20 +139,20 @@ Control Room Log Edit
 				<div class="row">   
 				    <div class="form-group">
 					<div class="col-md-2">
-					    {{ form_label(form.logFiles) }}
-					    {{ form_errors(form.logFiles) }}
+					    {{ form_label(log_entry.logFiles) }}
+					    {{ form_errors(log_entry.logFiles) }}
 					</div>
 					<div class="col-md-6">
-					    <ul class="locations list-unstyled" data-prototype="{{ form_widget(form.logFiles.vars.prototype.fileName)|e('html_attr') }}">
+					    <ul class="locations list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.fileName)|e('html_attr') }}">
 						{# iterate over each existing location and render its fields #}
-						{% for logFile in form.logFiles %}
+						{% for logFile in log_entry.logFiles %}
 						    <li>
 							{{ form_widget(logFile.file) }}
 						    </li>
 						{% endfor %}
 					    </ul>
 					</div>
-					{% do form.logFiles.setRendered %}
+					{% do log_entry.logFiles.setRendered %}
 				    </div>
 				</div><br>
 								
