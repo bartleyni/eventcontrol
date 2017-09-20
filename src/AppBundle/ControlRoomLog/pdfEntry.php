@@ -118,6 +118,8 @@ class pdfEntry extends Controller
             {
                 foreach($entries as $entry)
                 {
+                    $images = null;
+                    
                     $medical = $em->getRepository('AppBundle\Entity\medical_log')->findOneBy(array('log_entry_id' => $entry));
                     if (!$medical){
                         $medical = null;
@@ -142,13 +144,14 @@ class pdfEntry extends Controller
                     }
                     //$em->flush();
                     
+                    $images = $entry->getLogFiles();
+                    
                     $eventLatLong = explode(",",$event->getEventLatLong());
                     $eventLat = $eventLatLong[0];
                     $eventLong = $eventLatLong[1];
                     $NEbound = $event->getNorthEastBounds();
                     $SWbound = $event->getSouthWestBounds();
                     $overlay = $event->getOverlayImageName();
-                    
                     
                     $reports[] = $this->renderView(
                         'pdfEntry.html.twig',
@@ -164,6 +167,7 @@ class pdfEntry extends Controller
                             'eventLong'=> $eventLong,
                             'NEbound' => $NEbound,
                             'SWbound' => $SWbound,
+                            'images' => $images,
                         )
                     );
                 }

@@ -129,6 +129,16 @@
                     {% endif %}
                 </div>
             </div>
+                
+            {% if images is not null %}
+                {% for images as image %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img width="650" src="{{ image.file }}" alt="{{ image.fileName }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </body>
 </html>
