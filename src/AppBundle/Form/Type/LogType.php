@@ -83,13 +83,13 @@ class LogType extends AbstractType
                     'class' => 'form-control checkbox'
                 )
             )) 
-            ->add('log_supportFile', VichFileType::class, array(
-                'label' => 'Supporting File',
-                'required' => false,
-                'attr' => array(
-                    'class' => 'form-control'
-                )
-            ))
+//            ->add('log_supportFile', VichFileType::class, array(
+//                'label' => 'Supporting File',
+//                'required' => false,
+//                'attr' => array(
+//                    'class' => 'form-control'
+//                )
+//            ))
             ->add('logFiles', CollectionType::class, array(
                 'entry_type' => LogFileType::class,
                 'label' => 'Supporting Log Files',
