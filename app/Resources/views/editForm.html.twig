@@ -136,6 +136,25 @@ Control Room Log Edit
                                     </div>
                                     <br>
                                 {% endif %}
+                                <div class="row">   
+				    <div class="form-group">
+					<div class="col-md-2">
+					    {{ form_label(log_entry.logFiles) }}
+					    {{ form_errors(log_entry.logFiles) }}
+					</div>
+					<div class="col-md-6">
+					    <ul class="files list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.file)|e('html_attr') }}">
+						{# iterate over each existing location and render its fields #}
+						{% for logFile in log_entry.logFiles %}
+						    <li>
+							{{ form_widget(logFile.file) }}
+						    </li>
+						{% endfor %}
+					    </ul>
+					</div>
+					{% do log_entry.logFiles.setRendered %}
+				    </div>
+				</div><br>
 								
                             <div id="submit_button">
                                 {{ form_widget(log_entry.submit) }} <br>
