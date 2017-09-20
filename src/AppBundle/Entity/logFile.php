@@ -54,7 +54,7 @@ class logFile
 
     /**
      * @ORM\ManyToOne(targetEntity="log_entries", inversedBy="attachments")
-     * @ORM\JoinColumn(name="log_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="log_id", referencedColumnName="id", nullable=true)
      */
     
     private $log_entry;
