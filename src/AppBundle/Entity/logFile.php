@@ -53,7 +53,7 @@ class logFile
     protected $file;
 
     /**
-     * @ORM\ManyToOne(targetEntity="log_entries", inversedBy="attachments")
+     * @ORM\ManyToOne(targetEntity="log_entries", inversedBy="logFiles")
      * @ORM\JoinColumn(name="log_id", referencedColumnName="id", nullable=true)
      */
     
