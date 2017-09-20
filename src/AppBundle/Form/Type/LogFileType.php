@@ -31,14 +31,6 @@ class LogFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('fileName', TextType::class, array(
-                'label' => 'File Name:',
-                'required' => false,
-                'attr'  => array(
-                    'class' => 'form-control',
-                    'placeholder' => 'Filename'
-                )                
-            ))
                 ->add('file', VichFileType::class, array(
                 'label' => 'Supporting File',
                 'required' => false,
