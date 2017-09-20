@@ -33,15 +33,5 @@ class LogType extends AbstractType
         $builder
                 ->add('file', FileType::class);
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\logFile'
-        ));
-    }
 
 }
