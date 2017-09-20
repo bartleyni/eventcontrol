@@ -25,13 +25,23 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class LogType extends AbstractType
 {
-  /**
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
                 ->add('logSupFile', FileType::class);
+    }
+  
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\logFile'
+        ));
     }
 
 }
