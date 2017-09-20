@@ -41,7 +41,7 @@ class logFile
     /**
      * Image file
      *
-     * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="log_supportFileName")
+     * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="fileName")
      * @var File
      * @Assert\File(
      *     maxSize = "50M",
