@@ -126,13 +126,13 @@ Control Room Log Edit
 					    {{ form_errors(log_entry.logFiles) }}
 					</div>
 					<div class="col-md-6">
-					    <ul class="files list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.file)|e('html_attr') }} {{ form_widget(log_entry.logFiles.vars.prototype.fileName)|e('html_attr') }}">
+					    <ul class="files list-unstyled" data-prototype="{{ form_widget(log_entry.logFiles.vars.prototype.fileName)|e('html_attr') }} {{ form_widget(log_entry.logFiles.vars.prototype.file)|e('html_attr') }} ">
 						{# iterate over each existing location and render its fields #}
 						{% for logFile in log_entry.logFiles %}
 						    <li>
-							{{ form_widget(logFile.file) }}
-                                                        {{ form_widget(logFile.fileName) }}
-						    </li>
+							{{ form_widget(logFile.fileName) }}
+                                                        {{ form_widget(logFile.file) }}
+                                                    </li>
 						{% endfor %}
 					    </ul>
 					</div>
