@@ -79,6 +79,7 @@ Control Room Log New Entry
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+				    	{{ form_label(log_entry.log_supportFile) }}
                                         {{ form_errors(log_entry.log_supportFile) }}
                                         {{ form_widget(log_entry.log_supportFile) }}
                                     </div>
