@@ -155,7 +155,7 @@ class logFile
      *
      * @return logfile
      */
-    public function setFileName($fileName)
+    public function setfileName($fileName)
     {
         $this->fileName = $fileName;
 
@@ -167,7 +167,7 @@ class logFile
      *
      * @return string|null
      */
-    public function getFileName()
+    public function getfileName()
     {
         return $this->fileName;
     }
