@@ -133,11 +133,13 @@
             {% if images is not null %}
                 {% for image in images %}
                     <div class="row">
-                        <div class="col-md-12">
-                            Supporting File: {{ image.fileName }}
-                        </div>
-                        <div class="col-md-12">
-                            <img height="400" src="{{ log_support_directory }}/{{ image.fileName }}" >
+                         <div class="panel panel-info" id="Support">
+                            <div class="panel-heading"><strong>Supporting File</strong></div>
+                            <div class="panel-body"> 
+                                {{ image.fileName }}
+                                <br>
+                                <img height="400" src="{{ log_support_directory }}/{{ image.fileName }}" >
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
