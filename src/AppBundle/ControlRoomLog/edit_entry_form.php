@@ -200,13 +200,14 @@ class edit_entry_form extends Controller
                     //    }
                     //}
 
+                    /*
                     $files = $form['logFiles']->getData();
 
                     foreach ($files as $file){
                         $file->setLogEntry($entry);
                         $em->persist($file);
                     }
-                    
+                    */
                     
                     
                     $em->persist($entry);
