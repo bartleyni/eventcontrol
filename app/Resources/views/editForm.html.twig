@@ -316,7 +316,7 @@ Control Room Log Edit
             addFileFormDeleteLink($newFormLi);
         }
         
-        function addFileFormDeleteLink($locationFormLi) {
+        function addFileFormDeleteLink($fileFormLi) {
             var $removeFormA = $('<a href="#">Delete this File</a>');
             $fileFormLi.append($removeFormA);
             $removeFormA.on('click', function(e) {
