@@ -37,6 +37,14 @@ class LogFileType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control'
                 )
+            ))
+                ->add('fileName', TextType::class, array(
+                'label' => 'Supporting File Name',
+                'required' => false,
+                'disabled' => true,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
             ));
     }
   
