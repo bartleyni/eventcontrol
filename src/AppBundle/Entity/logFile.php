@@ -195,9 +195,6 @@ class logFile
     {
         return $this->updatedAt;
     }
-}
-
-
 
     /**
      * Set logEntry
