@@ -94,7 +94,6 @@ class LogType extends AbstractType
                 'entry_type' => LogFileType::class,
                 'label' => 'Supporting Log Files',
                 'allow_add' => true,
-                'download_label' => true,
                 //'allow_delete' => true,
                 'by_reference' => false,
                 'prototype' => true,
