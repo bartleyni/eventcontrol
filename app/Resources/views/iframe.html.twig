@@ -5,6 +5,11 @@ Event Control
 {% block layout %}
     {% embed '3-9.html.twig' %}
         {% block content %}
+            {% if back is defined %}
+                <div>
+                    <a href="{{ back }}">Back to Log Entry</a>
+                </div>
+            {% endif %}
             {% if iframe is defined %}
                 {{ iframe|raw }}
             {% endif %}
