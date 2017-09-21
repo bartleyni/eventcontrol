@@ -220,7 +220,10 @@ jmose_command_scheduler:
     doctrine_manager: default
     
 liip_imagine :
-
+    loaders:
+        default:
+            filesystem:
+                data_root: '%kernel.root_dir%/../media/log_support'
     # configure resolvers
     resolvers :
 
