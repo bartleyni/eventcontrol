@@ -218,3 +218,31 @@ jmose_command_scheduler:
 
     # Doctrine manager
     doctrine_manager: default
+    
+liip_imagine :
+
+    # configure resolvers
+    resolvers :
+
+        # setup the default resolver
+        default :
+
+            # use the default web path
+            web_path : ~
+
+    # your filter sets are defined here
+    filter_sets :
+
+        # use the default cache configuration
+        cache : ~
+        
+        # the name of the "filter set"
+        800_scale :
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # use and setup the "scale" filter
+                scale:
+
+                    dim: [ 800, 800 ]
