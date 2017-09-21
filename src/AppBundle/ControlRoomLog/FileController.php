@@ -67,7 +67,7 @@ class FileController extends Controller
             /** @var CacheManager */
             $imagineCacheManager = $this->get('liip_imagine.cache.manager');
             
-            $resizedFile = $imagineCacheManager->getBrowserPath('https://eventcontrol.nb221.com/log_support_direct/'.$filename, '800_scale');
+            $resizedFile = $imagineCacheManager->getBrowserPath($filename, '800_scale');
             
             $iframe = '<iframe src="'.$resizedFile.'" frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
