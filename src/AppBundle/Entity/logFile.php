@@ -44,8 +44,8 @@ class logFile
      * @Vich\UploadableField(mapping="log_support_file", fileNameProperty="fileName")
      * @var File
      * @Assert\File(
-     *     maxSize = "50M",
-     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf"},
+     *     maxSize = "500M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf", "video/H264", "video/mp4"},
      *     maxSizeMessage = "The maxmimum allowed file size is 50MB.",
      *     mimeTypesMessage = "Only the filetypes are allowed."
      * )
