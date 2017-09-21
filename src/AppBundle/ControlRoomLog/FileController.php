@@ -65,7 +65,7 @@ class FileController extends Controller
         //Get the link to go back to the log this file came from...
         //$back = Null;
         $em = $this->getDoctrine()->getManager();
-        $logFile = $em->getRepository(logFile::class)->findOneBy(array('fileName' => $filename));
+        $logFile = $em->getRepository('AppBundle\Entity\logFile')->findOneBy(array('fileName' => $filename));
         $logId = $logFile->getLogEntry()->getId();
         $link = "/entry/".$logId;
         $back = $link;
