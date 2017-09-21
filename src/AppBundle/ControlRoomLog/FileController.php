@@ -64,15 +64,18 @@ class FileController extends Controller
 
         if ($filename){
             //$file = $this->getParameter('log_support_directory').'/'.$filename;
-            /** @var CacheManager */
-            $imagineCacheManager = $this->get('liip_imagine.cache.manager');
             
-            $resizedFile = $imagineCacheManager->getBrowserPath($filename, '800_scale');
-            
-            $iframe = '<iframe src="'.$resizedFile.'" frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
-            
-            //$iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
-            
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            $allowed_images =  array('gif','png' ,'jpg', 'jpeg', 'bmp')
+            if(in_array($ext,$allowed_images) ) {
+                /** @var CacheManager */
+                $imagineCacheManager = $this->get('liip_imagine.cache.manager');
+
+                $resizedFile = $imagineCacheManager->getBrowserPath($filename, '1000_scale');
+                $iframe = '<iframe src="'.$resizedFile.'" frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            } else {
+                $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            }
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
             //$response = new BinaryFileResponse($file);
             //return $response;
