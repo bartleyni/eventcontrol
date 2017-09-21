@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FileController extends Controller
 {
-    /** @var CacheManager */
-    $imagineCacheManager = $this->get('liip_imagine.cache.manager');
     
     /**
      * @Route("/media/{type}/{filename}", name="media")
@@ -84,6 +82,8 @@ class FileController extends Controller
     public function logSupportDirect(Request $request, $filename=null)
     {
         $response = new Response();
+        /** @var CacheManager */
+        $imagineCacheManager = $this->get('liip_imagine.cache.manager');
 
         if ($filename){
             $file = $this->getParameter('log_support_directory').'/'.$filename;
