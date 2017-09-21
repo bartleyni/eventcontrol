@@ -1,3 +1,5 @@
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 app:
     resource: "@AppBundle/ControlRoomLog/"
     type:     annotation
@@ -8,6 +10,3 @@ logout:
 jmose_command_scheduler:
     resource: "@JMoseCommandSchedulerBundle/Resources/config/routing.yml"
     prefix:   /
-    
-_liip_imagine:
-    resource: "@LiipImagineBundle/Resources/config/routing.xml"
