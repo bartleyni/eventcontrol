@@ -28,7 +28,8 @@ class AppKernel extends Kernel
             new DZunke\SlackBundle\DZunkeSlackBundle(),
             new RedjanYm\FCMBundle\RedjanYmFCMBundle(),
             new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
-            new Ob\HighchartsBundle\ObHighchartsBundle()
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
