@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FileController extends Controller
 {
+    /** @var CacheManager */
+    $imagineCacheManager = $this->get('liip_imagine.cache.manager');
+    
     /**
      * @Route("/media/{type}/{filename}", name="media")
      */
@@ -84,6 +87,7 @@ class FileController extends Controller
 
         if ($filename){
             $file = $this->getParameter('log_support_directory').'/'.$filename;
+            $resizedFile = $imagineCacheManager->getBrowserPath($file, '800_scale');
             $response = new BinaryFileResponse($file);
             return $response;
             
