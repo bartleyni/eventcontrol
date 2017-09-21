@@ -64,7 +64,14 @@ class FileController extends Controller
 
         if ($filename){
             //$file = $this->getParameter('log_support_directory').'/'.$filename;
-            $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            /** @var CacheManager */
+            $imagineCacheManager = $this->get('liip_imagine.cache.manager');
+            
+            $resizedFile = $imagineCacheManager->getBrowserPath('https://eventcontrol.nb221.com/log_support_direct/'.$filename, '800_scale');
+            
+            $iframe = '<iframe src="'.$resizedFile.'" frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
+            
+            //$iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             
             return $this->render('iframe.html.twig', array('iframe' => $iframe));
             //$response = new BinaryFileResponse($file);
@@ -82,15 +89,11 @@ class FileController extends Controller
     public function logSupportDirect(Request $request, $filename=null)
     {
         $response = new Response();
-        /** @var CacheManager */
-        $imagineCacheManager = $this->get('liip_imagine.cache.manager');
 
         if ($filename){
             $file = $this->getParameter('log_support_directory').'/'.$filename;
-            $resizedFile = $imagineCacheManager->getBrowserPath($file, '800_scale');
-            $response = new BinaryFileResponse($resizedFile);
+            $response = new BinaryFileResponse($file);
             return $response;
-            
             
         }else{
                 return $this->redirectToRoute('full_log');
