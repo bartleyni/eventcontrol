@@ -66,7 +66,7 @@ class FileController extends Controller
             //$file = $this->getParameter('log_support_directory').'/'.$filename;
             
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            $allowed_images =  array('gif','png' ,'jpg', 'jpeg', 'bmp');
+            $allowed_images =  array('gif','png' ,'jpg', 'jpeg', 'bmp', 'GIF','PNG' ,'JPG', 'JPEG', 'BMP');
             if(in_array($ext,$allowed_images) ) {
                 /** @var CacheManager */
                 $imagineCacheManager = $this->get('liip_imagine.cache.manager');
