@@ -88,7 +88,7 @@ class FileController extends Controller
         if ($filename){
             $file = $this->getParameter('log_support_directory').'/'.$filename;
             $resizedFile = $imagineCacheManager->getBrowserPath($file, '800_scale');
-            $response = new BinaryFileResponse($file);
+            $response = new BinaryFileResponse($resizedFile);
             return $response;
             
             
