@@ -61,7 +61,15 @@ class FileController extends Controller
     public function logSupport(Request $request, $filename=null)
     {
         $response = new Response();
-
+        
+        //Get the link to go back to the log this file came from...
+        //$back = Null;
+        $em = $this->getDoctrine()->getManager();
+        $logFile = $em->getRepository(logFile::class)->findOneBy(array('fileName' => $filename));
+        $logId = $logFile->getLogEntry()->getId();
+        $link = "/entry/".$logId;
+        $back = $link;
+        
         if ($filename){
             //$file = $this->getParameter('log_support_directory').'/'.$filename;
             
@@ -76,11 +84,10 @@ class FileController extends Controller
             } else {
                 $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             }
-            return $this->render('iframe.html.twig', array('iframe' => $iframe));
+            return $this->render('iframe.html.twig', array('iframe' => $iframe, 'back' => $back));
             //$response = new BinaryFileResponse($file);
             //return $response;
-            
-            
+
         }else{
                 return $this->redirectToRoute('full_log');
         }
