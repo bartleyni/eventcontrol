@@ -44,6 +44,7 @@ class LogFileType extends AbstractType
                 'label' => 'Supporting File',
                 'required' => false,
                 'allow_delete' => false,
+                'download_label' => 'View',
                 'attr' => array(
                     'class' => 'form-control'
                 )
