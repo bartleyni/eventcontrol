@@ -257,4 +257,17 @@ liip_imagine :
                 auto_rotate: ~
                 # use and setup the "scale" filter
                 scale:
-                    dim: [ 1000, 700 ]
+                    dim: [ 1000, 800 ]
+
+                # the name of the "filter set"
+        log_file_scale :
+            # list of transformations to apply (the "filters")
+            filters:
+                # use the "auto_rotate" filter
+                auto_rotate: ~
+                # use and setup the "scale" filter
+                downscale:
+                    max: [ 1000, 700 ]
+                    
+                upscale:
+                    min: [ 500, 500 ]

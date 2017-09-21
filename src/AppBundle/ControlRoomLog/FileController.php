@@ -79,7 +79,7 @@ class FileController extends Controller
                 /** @var CacheManager */
                 $imagineCacheManager = $this->get('liip_imagine.cache.manager');
 
-                $resizedFile = $imagineCacheManager->getBrowserPath($filename, '1000_scale');
+                $resizedFile = $imagineCacheManager->getBrowserPath($filename, 'log_file_scale');
                 $iframe = '<iframe src="'.$resizedFile.'" frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
             } else {
                 $iframe = '<iframe src="https://eventcontrol.nb221.com/log_support_direct/'.$filename.'"  frameborder=0 scrolling=yes height="900px" class="col-md-12 embed-responsive-item" ></iframe>';
