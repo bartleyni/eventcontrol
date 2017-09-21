@@ -6,9 +6,11 @@ Event Control
     {% embed '3-9.html.twig' %}
         {% block content %}
             {% if back is defined %}
-                <div class="btn-block btn">
+            <div class="row">
+                <div class="btn btn-block">
                     <a href="{{ back }}">Back to Log Entry</a>
                 </div>
+            </div>
             {% endif %}
             {% if iframe is defined %}
                 {{ iframe|raw }}
