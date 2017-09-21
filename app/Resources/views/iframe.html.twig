@@ -8,7 +8,7 @@ Event Control
             {% if iframe is defined %}
                 {{ iframe|raw }}
             {% endif %}
-            {% if iframeResponsive %}
+            {% if iframeResponsive is defined %}
                 <div class="responsive-content">
                     {{ iframeResponsive|raw }}
                 </div>
