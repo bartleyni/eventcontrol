@@ -33,7 +33,8 @@
         "kreait/firebase-php": "^3.0",
         "redjanym/fcm-bundle": "1.*",
 	"jmose/command-scheduler-bundle": "1.*",
-        "ob/highcharts-bundle": "^1.5"
+        "ob/highcharts-bundle": "^1.5",
+    	"liip/imagine-bundle":	"^1.9"
 
     },
     "require-dev": {
