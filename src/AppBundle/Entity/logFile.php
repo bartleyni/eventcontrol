@@ -45,8 +45,8 @@ class logFile
      * @var File
      * @Assert\File(
      *     maxSize = "500M",
-     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf", "video/H264", "video/mp4"},
-     *     maxSizeMessage = "The maxmimum allowed file size is 50MB.",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff", "application/pdf", "video/H264", "video/mp4", "mp4"},
+     *     maxSizeMessage = "The maxmimum allowed file size is 500MB.",
      *     mimeTypesMessage = "Only the filetypes are allowed."
      * )
      */

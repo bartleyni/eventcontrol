@@ -268,6 +268,5 @@ liip_imagine :
                 # use and setup the "scale" filter
                 downscale:
                     max: [ 1000, 700 ]
-                    
                 upscale:
-                    min: [ 500, 500 ]
+                    min: [ 400, 400 ]
