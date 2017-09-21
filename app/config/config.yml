@@ -241,8 +241,8 @@ liip_imagine :
 
             # list of transformations to apply (the "filters")
             filters:
-
+                # use the "auto_rotate" filter
+                auto_rotate: ~
                 # use and setup the "scale" filter
                 scale:
-
                     dim: [ 800, 800 ]
