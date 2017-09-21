@@ -257,4 +257,4 @@ liip_imagine :
                 auto_rotate: ~
                 # use and setup the "scale" filter
                 scale:
-                    dim: [ 1000, 800 ]
+                    dim: [ 1000, 700 ]
