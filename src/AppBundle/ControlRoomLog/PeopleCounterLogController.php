@@ -48,6 +48,17 @@ class PeopleCounterLogController extends Controller
             
             dump($venue['id']);
             
+            $logStart = $event->getEventLogStartDate();
+            $logDoors = $event->getEventDate();
+            $now = new \DateTime();
+            
+            if($logDoors > $now)
+            {
+                $logTime = $logStart;
+            } else {
+                $logTime = $logDoors;
+            }
+            
             $qb = $em->createQueryBuilder(); 
             
             $qb
@@ -55,16 +66,15 @@ class PeopleCounterLogController extends Controller
                 ->from('AppBundle\Entity\PeopleCounterLog', 'countLogs')
                 ->where('countLogs.event = :event')
                 ->andWhere('countLogs.venue = :venue')
-                //->andWhere('countLogs.timestamp > :doors')
+                ->andWhere('countLogs.timestamp > :doors')
                 ->setParameter('event', $eventId)
                 ->setParameter('venue', $venue['id'])
                 //->setParameter('doors', $event->getEventDate())
+                ->setParameter('doors', $logDoors)
                 ->orderBy('countLogs.timestamp', 'ASC')
                 ;
 
             $counts = $qb->getQuery()->getResult();
-            
-            dump($counts);
 
             foreach ($counts as $count){
                 dump($count);
@@ -74,23 +84,17 @@ class PeopleCounterLogController extends Controller
             $venueName = $venue['name'];
             $venueDoors = (int)$venue['doors']->format('U')*1000;
             
-            dump($venueName);
-            dump($venueDoors);
-            
             $venue_count = array("name" => $venueName, "data" => $data);
             if ($venueDoors){
                 $plotLine = array('color' => '#FF0000', 'width' => 1, 'value' => $venueDoors, 'label' => array('text' => $venueName." Doors"));
                 array_push($plotLines, $plotLine);
             }
             
-            dump($data);
-            
             if ($data){
                 array_push($series, $venue_count);
             }
         }
-        
-        dump($series);
+
 
         if($series)
         {
@@ -112,8 +116,6 @@ class PeopleCounterLogController extends Controller
             $ob->yAxis->softMin(0);
             $ob->yAxis->softMax(1000);
             $ob->series($series);
-            
-            dump($ob);
 
             return $this->render('::peopleCountingLog.html.twig', array(
                 'chart' => $ob,
