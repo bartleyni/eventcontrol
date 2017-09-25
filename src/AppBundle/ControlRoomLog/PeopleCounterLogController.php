@@ -67,11 +67,16 @@ class PeopleCounterLogController extends Controller
             $venueName = $venue['name'];
             $venueDoors = (int)$venue['doors']->format('U')*1000;
             
+            dump($venueName);
+            dump($venueDoors);
+            
             $venue_count = array("name" => $venueName, "data" => $data);
             if ($venueDoors){
                 $plotLine = array('color' => '#FF0000', 'width' => 1, 'value' => $venueDoors, 'label' => array('text' => $venueName." Doors"));
                 array_push($plotLines, $plotLine);
             }
+            
+            dump($data);
             
             if ($data){
                 array_push($series, $venue_count);
