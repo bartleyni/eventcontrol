@@ -38,6 +38,8 @@ class PeopleCounterLogController extends Controller
         
         $series = [];
         $plotLines = [];
+        dump($event);
+        dump($venues);
         
         foreach ($venues as $venue) {
             
@@ -59,8 +61,11 @@ class PeopleCounterLogController extends Controller
                 ;
 
             $counts = $qb->getQuery()->getResult();
+            
+            dump($counts);
 
             foreach ($counts as $count){
+                dump($count);
                 array_push($data,array((int)$count['timestamp']->format('U')*1000,$count['running_in'] - $count['running_out']));
             }
             
