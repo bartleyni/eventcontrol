@@ -100,7 +100,7 @@ class PeopleCounterLogController extends Controller
             $ob->series($series);
 
             return $this->render('::peopleCountingLog.html.twig', array(
-                'chart' => $ob
+                'chart' => $ob, 'venues' => $venues,
             ));
         } else {
             return $this->render('::peopleCountingLog.html.twig');
