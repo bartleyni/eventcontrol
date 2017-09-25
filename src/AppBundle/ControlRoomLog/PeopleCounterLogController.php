@@ -70,7 +70,7 @@ class PeopleCounterLogController extends Controller
                 ->setParameter('event', $eventId)
                 ->setParameter('venue', $venue['id'])
                 //->setParameter('doors', $event->getEventDate())
-                ->setParameter('doors', $logDoors)
+                ->setParameter('doors', $logTime)
                 ->orderBy('countLogs.timestamp', 'ASC')
                 ;
 
