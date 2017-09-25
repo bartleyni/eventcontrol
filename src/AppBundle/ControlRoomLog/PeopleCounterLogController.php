@@ -116,7 +116,7 @@ class PeopleCounterLogController extends Controller
             dump($ob);
 
             return $this->render('::peopleCountingLog.html.twig', array(
-                'chart' => $ob, 'venues' => $venues,
+                'chart' => $ob,
             ));
         } else {
             return $this->render('::peopleCountingLog.html.twig');
