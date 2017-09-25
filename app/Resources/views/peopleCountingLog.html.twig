@@ -18,8 +18,10 @@ People Counting Logs
                         {% else %}
                             <div id="linechart" style="min-width: 400px; height: 500px; margin: 0 auto"></div>
                         {% endif %}
-                        
-                        {{ venues }}
+                        {% for venue in venues %}
+                            {{ venue.name }}
+                        {% endfor %}
+                            
                     </div>
                 </div>
             </div>
