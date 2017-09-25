@@ -77,6 +77,8 @@ class PeopleCounterLogController extends Controller
                 array_push($series, $venue_count);
             }
         }
+        
+        dump($series);
 
         if($series)
         {
@@ -98,6 +100,8 @@ class PeopleCounterLogController extends Controller
             $ob->yAxis->softMin(0);
             $ob->yAxis->softMax(1000);
             $ob->series($series);
+            
+            dump($ob);
 
             return $this->render('::peopleCountingLog.html.twig', array(
                 'chart' => $ob, 'venues' => $venues,
