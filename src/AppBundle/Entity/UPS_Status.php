@@ -80,6 +80,7 @@ class UPS_Status {
      *
      * @param \DateTime $timestamp
      * @ORM\PrePersist
+     * @ORM\PostUpdate
      * @return Example
      */
     public function setTimestamp()
