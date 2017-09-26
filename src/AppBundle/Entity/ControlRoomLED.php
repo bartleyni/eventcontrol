@@ -68,14 +68,15 @@ class ControlRoomLED {
      *
      * @param \DateTime $timestamp
      * @ORM\PrePersist
+     * @ORM\PostUpdate
      * @return ControlRoomLED
      */
     public function setTimestamp()
     {
 
-        if(!$this->timestamp){
+        #if(!$this->timestamp){
             $this->timestamp = new \DateTime();
-        }
+        #}
 
         return $this;
     }
