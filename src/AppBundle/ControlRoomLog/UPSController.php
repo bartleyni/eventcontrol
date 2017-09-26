@@ -243,9 +243,13 @@ class UPSController extends Controller
         
         $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
         
+        dump($ups);
+        
         $em->flush();
         
         $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
+        
+        dump($last_status);
         
         $em->flush();
         
