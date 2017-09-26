@@ -249,7 +249,11 @@ class UPSController extends Controller
         
         $em->flush();
         
-        $UPSstatus = new UPS_Status();
+        if($last_status = null){
+            $UPSstatus = new UPS_Status();
+        } else {
+            $UPSstatus = $last_status;
+        }
         
         $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
@@ -319,7 +323,11 @@ class UPSController extends Controller
         
         $em->flush();
         
-        $UPSstatus = new UPS_Status();
+        if($last_status = null){
+            $UPSstatus = new UPS_Status();
+        } else {
+            $UPSstatus = $last_status;
+        }
         
         $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
