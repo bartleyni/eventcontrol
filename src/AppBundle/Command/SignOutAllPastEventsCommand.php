@@ -12,18 +12,18 @@ use Symfony\Component\Console\Input\InputArgument;
 
 use AppBundle\Entity\event_control_register;
 
-class ClearOldDataCommand extends ContainerAwareCommand
+class SignOutAllPastEventsCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
             // the name of the command (the part after "bin/console")
-            ->setName('app:ClearOldData')
+            ->setName('app:SignOutAllPastEvents')
             // the short description shown while running "php bin/console list"
-            ->setDescription('Clear old UPS and LED data from database')
+            ->setDescription('Automatically sign-out all people on the register who are still signed in on all past events')
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp("Clear old UPS and LED data from database")
+            ->setHelp("Automatically sign-out all people on the register who are still signed in on all past events")
         ;
     }
 
@@ -31,7 +31,7 @@ class ClearOldDataCommand extends ContainerAwareCommand
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output->writeln([
-            'Clearing old UPS and LED data from database',// A line
+            'Automatically sign-out all people on the register who are still signed in on all past events',// A line
             '============',// Another line
             '',// Empty line
         ]);
@@ -39,7 +39,7 @@ class ClearOldDataCommand extends ContainerAwareCommand
         $doctrine = $this->getContainer()->get('doctrine');
         $em = $doctrine->getEntityManager();
         
-        $past_events = $em->getRepository('AppBundle\Entity\UPS_Status')->getFinishedEvents();
+        $past_events = $em->getRepository('AppBundle\Entity\event')->getFinishedEvents();
         
         foreach ($past_events as $past_event) {
             $event = $em->getRepository('AppBundle\Entity\event')->find($past_event['id']);
