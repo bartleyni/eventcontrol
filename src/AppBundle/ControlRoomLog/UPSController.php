@@ -243,23 +243,19 @@ class UPSController extends Controller
         
         $ups = $em->getRepository('AppBundle\Entity\UPS')->find($id);
         
-        dump($ups);
-        
         $em->flush();
         
         $last_status = $em->getRepository('AppBundle\Entity\UPS_Status')->getLatestSpecificUPS($id);
         
-        dump($last_status);
-        
         $em->flush();
         
-        if($last_status = null){
+        if($last_status == null){
             $UPSstatus = new UPS_Status();
+            $UPSstatus->setUPS($ups);
         } else {
             $UPSstatus = $last_status;
         }
         
-        $UPSstatus->setUPS($ups);
         $UPSstatus->setStatus($status);
         $UPSstatus->setLineVoltage(NULL);
         $UPSstatus->setLoadPercentage(NULL);
@@ -327,8 +323,9 @@ class UPSController extends Controller
         
         $em->flush();
         
-        if($last_status = null){
+        if($last_status == null){
             $UPSstatus = new UPS_Status();
+            $UPSstatus->setUPS($ups);
         } else {
             $UPSstatus = $last_status;
         }
