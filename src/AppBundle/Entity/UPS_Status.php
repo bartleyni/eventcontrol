@@ -86,9 +86,9 @@ class UPS_Status {
     public function setTimestamp()
     {
 
-        if(!$this->timestamp){
+        #if(!$this->timestamp){
             $this->timestamp = new \DateTime();
-        }
+        #}
 
         return $this;
     }
