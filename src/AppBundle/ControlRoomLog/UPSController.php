@@ -254,6 +254,8 @@ class UPSController extends Controller
             $UPSstatus->setUPS($ups);
         } else {
             #$UPSstatus = $last_status;
+            dump($last_status['id']);
+            dump($last_status);
             $UPSstatus = $em->getRepository('AppBundle\Entity\UPS_Status')->findOneBy(array('id' => $last_status['id']));
         }
         
@@ -329,6 +331,8 @@ class UPSController extends Controller
             $UPSstatus->setUPS($ups);
         } else {
             #$UPSstatus = $last_status;
+            dump($last_status['id']);
+            dump($last_status);
             $UPSstatus = $em->getRepository('AppBundle\Entity\UPS_Status')->findOneBy(array('id' => $last_status['id']));
         }
         
