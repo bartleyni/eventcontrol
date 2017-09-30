@@ -31,6 +31,7 @@ class Log extends Controller
         
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $event = $usr->getSelectedEvent();
+	#dump($event);
         
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -42,11 +43,12 @@ class Log extends Controller
         } else {
             $eventId = 0;
         }
-        
+        #dump($eventId);
         $em->flush();
 
         $logs = $em->getRepository('AppBundle\Entity\log_entries')->getLogEntries($eventId, $sort, $filter, $filter_type);
-        print_r($_format);
+        #dump($logs);
+	print_r($_format);
        if ($_format=="pdf") {
             $pageUrl = $this->generateUrl('full_log', array(), true); // use absolute path!
 

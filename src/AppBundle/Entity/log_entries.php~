@@ -18,6 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
+use AppBundle\Entity\LogListener;
 
 /**
  * @ORM\Entity
@@ -25,6 +27,7 @@ use Symfony\Component\HttpFoundation\File\File;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\log_entriesRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
+ * @ORMSubscribedEvents()
  */
 
 class log_entries {
@@ -34,6 +37,11 @@ class log_entries {
      * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true, columnDefinition="INT AUTO_INCREMENT UNIQUE")
+     */
+    protected $ref;
     
     /**
      * @ORM\Column(type="datetime")
@@ -120,6 +128,19 @@ class log_entries {
      */
     private $log_supportUpdatedAt;
     
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\logFile", mappedBy="log_entry", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @Assert\Valid()
+     */
+    private $logFiles;
+    
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->logFiles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     /**
      * Get id
@@ -129,6 +150,16 @@ class log_entries {
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Get ref
+     *
+     * @return integer
+     */
+    public function getRef()
+    {
+        return $this->ref;
     }
 
     /**
@@ -501,5 +532,58 @@ class log_entries {
     public function getLogSupportUpdatedAt()
     {
         return $this->log_supportUpdatedAt;
+    }
+    
+    /**
+     * Add logFile
+     *
+     * @param AppBundle\Entity\logFile $logFile
+     *
+     * @return Email
+     */
+    public function addLogFile(\AppBundle\Entity\logFile $logFile)
+    {
+        //$this->logFiles->setFile($logFile);
+        
+        $logFile->setLogEntry($this);
+        $this->logFiles[] = $logFile;
+
+        return $this;
+    }
+
+    /**
+     * Remove logFile
+     *
+     * @param AppBundle\Entity\logFile $logFile
+     */
+    public function removeLogFile(\AppBundle\Entity\logFile $logFile)
+    {
+        $this->logFiles->removeElement($logFile);
+        //$this->logFiles->remove($logFile);
+        $logFile->setLogEntry(null);
+    }
+
+    /**
+     * Get logFiles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLogFiles()
+    {
+        return $this->logFiles;
+    }
+
+    /**
+     * Set ref
+     *
+     * @param integer $ref
+     *
+     * @return log_entries
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+
+        return $this;
     }
 }

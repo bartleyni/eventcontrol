@@ -39,12 +39,14 @@ class log_entriesRepository extends EntityRepository
         
     }
     
-    public function getLogEntries($eventId, $sort='DESC', $filter=null, $filter_type=null)
+    public function getLogEntries($eventId = null, $sort='DESC', $filter=null, $filter_type=null)
     {
         $sort_dir = $sort == 'ASC' ? 'ASC' : 'DESC';
         $em = $this->getEntityManager();
         
-        if($eventId != 0)
+	//$eventId = 'ed5f9537-8438-11e7-ab92-1866daeff310';
+	//dump($eventId);
+        if($eventId)
         {
             $qb = $em->createQueryBuilder(); 
         

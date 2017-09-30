@@ -202,4 +202,107 @@ class venue_event {
     {
         $this->countAlerts->removeElement($alert);
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->countAlerts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set highCapacityAlert
+     *
+     * @param integer $highCapacityAlert
+     *
+     * @return venue_event
+     */
+    public function setHighCapacityAlert($highCapacityAlert)
+    {
+        $this->highCapacityAlert = $highCapacityAlert;
+
+        return $this;
+    }
+
+    /**
+     * Get highCapacityAlert
+     *
+     * @return integer
+     */
+    public function getHighCapacityAlert()
+    {
+        return $this->highCapacityAlert;
+    }
+
+    /**
+     * Set highCapacityFlag
+     *
+     * @param boolean $highCapacityFlag
+     *
+     * @return venue_event
+     */
+    public function setHighCapacityFlag($highCapacityFlag)
+    {
+        $this->highCapacityFlag = $highCapacityFlag;
+
+        return $this;
+    }
+
+    /**
+     * Get highCapacityFlag
+     *
+     * @return boolean
+     */
+    public function getHighCapacityFlag()
+    {
+        return $this->highCapacityFlag;
+    }
+
+    /**
+     * Set highHighCapacityAlert
+     *
+     * @param integer $highHighCapacityAlert
+     *
+     * @return venue_event
+     */
+    public function setHighHighCapacityAlert($highHighCapacityAlert)
+    {
+        $this->highHighCapacityAlert = $highHighCapacityAlert;
+
+        return $this;
+    }
+
+    /**
+     * Get highHighCapacityAlert
+     *
+     * @return integer
+     */
+    public function getHighHighCapacityAlert()
+    {
+        return $this->highHighCapacityAlert;
+    }
+
+    /**
+     * Set highHighCapacityFlag
+     *
+     * @param boolean $highHighCapacityFlag
+     *
+     * @return venue_event
+     */
+    public function setHighHighCapacityFlag($highHighCapacityFlag)
+    {
+        $this->highHighCapacityFlag = $highHighCapacityFlag;
+
+        return $this;
+    }
+
+    /**
+     * Get highHighCapacityFlag
+     *
+     * @return boolean
+     */
+    public function getHighHighCapacityFlag()
+    {
+        return $this->highHighCapacityFlag;
+    }
 }

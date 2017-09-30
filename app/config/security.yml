@@ -30,6 +30,7 @@ security:
             
         api:
             pattern: ^/api/
+            stateless: true
             guard:
                 authenticators:
                     - app.security.api_token_authenticator

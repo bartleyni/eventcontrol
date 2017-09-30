@@ -16,11 +16,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="event_control_register")
  * @ORM\HasLifecycleCallbacks
+ * @ORMSubscribedEvents()
  */
 
 class event_control_register {

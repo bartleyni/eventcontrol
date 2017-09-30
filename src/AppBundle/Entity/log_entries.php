@@ -572,4 +572,18 @@ class log_entries {
     {
         return $this->logFiles;
     }
+
+    /**
+     * Set ref
+     *
+     * @param integer $ref
+     *
+     * @return log_entries
+     */
+    public function setRef($ref)
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
 }

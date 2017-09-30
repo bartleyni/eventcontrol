@@ -133,4 +133,28 @@ class VenueCountAlerts {
             $this->venueEvent->add($venue_event);
         }
     }
+
+    /**
+     * Set triggered
+     *
+     * @param boolean $triggered
+     *
+     * @return VenueCountAlerts
+     */
+    public function setTriggered($triggered)
+    {
+        $this->triggered = $triggered;
+
+        return $this;
+    }
+
+    /**
+     * Get triggered
+     *
+     * @return boolean
+     */
+    public function getTriggered()
+    {
+        return $this->triggered;
+    }
 }

@@ -232,4 +232,28 @@ class Alert
     {
         return $this->event;
     }
+
+    /**
+     * Set fieldOfResponsibility
+     *
+     * @param string $fieldOfResponsibility
+     *
+     * @return Alert
+     */
+    public function setFieldOfResponsibility($fieldOfResponsibility)
+    {
+        $this->fieldOfResponsibility = $fieldOfResponsibility;
+
+        return $this;
+    }
+
+    /**
+     * Get fieldOfResponsibility
+     *
+     * @return string
+     */
+    public function getFieldOfResponsibility()
+    {
+        return $this->fieldOfResponsibility;
+    }
 }

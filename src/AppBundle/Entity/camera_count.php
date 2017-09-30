@@ -85,15 +85,26 @@ class camera_count {
 
         $diffrance_in = $this->count_in - $Camera[0]['Camera_count_count_in'];
         $diffrance_out = $this->count_out - $Camera[0]['Camera_count_count_out'];
+		
+		$percentage_in = ($Camera[0]['Camera_count_count_in']/$this->count_in)*100;
+		$percentage_out = ($Camera[0]['Camera_count_count_out']/$this->count_out)*100;
 
         if($diffrance_in < 0){
-            $this->running_count_in = $this->count_in + $Camera[0]['Camera_count_running_count_in'];
+			if($percentage_in > 90){
+				$this->running_count_in = $Camera[0]['Camera_count_running_count_in'] + $diffrance_in;
+			}else{
+				$this->running_count_in = $this->count_in + $Camera[0]['Camera_count_running_count_in'];
+			}
         }else{
             $this->running_count_in = $Camera[0]['Camera_count_running_count_in'] + $diffrance_in;
         }
 
         if($diffrance_out < 0){
-            $this->running_count_out = $this->count_out + $Camera[0]['Camera_count_running_count_out'];
+			if($percentage_out > 90){
+				 $this->running_count_out = $Camera[0]['Camera_count_running_count_out'] + $diffrance_out;
+			}else{
+				 $this->running_count_out = $this->count_out + $Camera[0]['Camera_count_running_count_out'];
+			}
         }else{
             $this->running_count_out = $Camera[0]['Camera_count_running_count_out'] + $diffrance_out;
         }

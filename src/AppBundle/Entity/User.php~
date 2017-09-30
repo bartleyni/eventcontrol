@@ -16,20 +16,24 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\Validator\Constraints as SecurityAssert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  * @UniqueEntity(fields="username", message="Username already taken")
+ * @ORMSubscribedEvents("created, deleted")
  */
 
-class User implements AdvancedUserInterface, \Serializable {
+//class User implements AdvancedUserInterface, \Serializable {
+class User implements UserInterface, \Serializable, EquatableInterface {
 /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -76,6 +80,11 @@ class User implements AdvancedUserInterface, \Serializable {
      * @Assert\NotBlank(groups={"registration", "update"})
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", length=255, unique=false, nullable=true)
+     */
+    private $firebaseID;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
@@ -99,6 +108,26 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     private $selected_event;
     
+     /**
+     * @ORM\ManyToMany(targetEntity="event", mappedBy="Users")
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $events;
+    
+    /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $apiToken;
+    
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    protected $lat_long;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $lat_long_timestamp;
     
     public function __construct()
     {
@@ -106,6 +135,7 @@ class User implements AdvancedUserInterface, \Serializable {
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
         $this->groups = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getEmail()
@@ -125,6 +155,26 @@ class User implements AdvancedUserInterface, \Serializable {
     public function setName($name)
     {
         $this->name = $name;
+    }
+    
+    public function getapitoken()
+    {
+        return $this->apiToken;
+    }
+
+    public function setapitoken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+    }
+    
+        public function getFirebaseID()
+    {
+        return $this->firebaseID;
+    }
+
+    public function setFirebaseID($firebaseID)
+    {
+        $this->firebaseID = $firebaseID;
     }
     
     public function getUsername()
@@ -165,6 +215,7 @@ class User implements AdvancedUserInterface, \Serializable {
 
     public function eraseCredentials()
     {
+        $this->plainPassword = null;
     }
 
     public function __toString()
@@ -179,6 +230,7 @@ class User implements AdvancedUserInterface, \Serializable {
             $this->id,
             $this->username,
             $this->password,
+            $this->groups
             // see section on salt below
             // $this->salt,
         ));
@@ -191,6 +243,7 @@ class User implements AdvancedUserInterface, \Serializable {
             $this->id,
             $this->username,
             $this->password,
+            $this->groups,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);
@@ -266,6 +319,10 @@ class User implements AdvancedUserInterface, \Serializable {
     
     public function getRoles()
     {
+        if ($this->groups === null) {
+            return null;
+        }
+        
         return $this->groups->toArray();
     }
     
@@ -339,6 +396,151 @@ class User implements AdvancedUserInterface, \Serializable {
      */
     public function getSelectedEvent()
     {
-        return $this->selected_event;
+      $now = new \DateTime();
+       if($this->selected_event != null)
+       {
+           if($now > $this->selected_event->getEventLogStopDate())
+           {
+             return null;
+           } else {
+             return $this->selected_event;
+           }
+        } else {
+             return null;
+        }
+    }
+ 
+     /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return User
+     */
+    public function addEvents(\AppBundle\Entity\event $event)
+    {
+        $this->events[] = $event;
+        return $this;
+    }
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvents(\AppBundle\Entity\event $event)
+    {
+        $this->events->removeElement($event);
+    }
+ 
+     /**
+     * Set events
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return events
+     */
+    public function setEvents(\AppBundle\Entity\event $event = null)
+    {
+        $this->events = $event;
+        return $this;
+    }
+    /**
+     * Get events
+     *
+     * @return \AppBundle\Entity\event
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+    
+    /**
+     * Set lat_long
+     *
+     * @param string $lat_long
+     *
+     * @return User
+     */
+    public function setLatLong($lat_long)
+    {
+        $this->lat_long = $lat_long;
+
+        return $this;
+    }
+
+    /**
+     * Get lat_long
+     *
+     * @return string
+     */
+    public function getLatLong()
+    {
+        return $this->lat_long;
+    }
+    
+    /**
+     * Set lat_long_timestamp
+     *
+     * @param \DateTime $Timestamp
+     *
+     * @return log_entries
+     */
+    public function setLatLongTimestamp($Timestamp)
+    {
+        $this->lat_long_timestamp = $Timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get lat_long_timestamp
+     *
+     * @return \DateTime
+     */
+    public function getLatLongTimestamp()
+    {
+        return $this->lat_long_timestamp;
+    }
+    
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($user instanceof User) {
+            // Check that the roles are the same, in any order
+            if($user != null){
+                $isEqual = count($this->getRoles()) == count($user->getRoles());
+                if ($isEqual) {
+                    foreach($this->getRoles() as $role) {
+//                        $isEqual = $isEqual && in_array($role, $user->getRoles());
+                    }
+                }
+                return $isEqual;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return User
+     */
+    public function addEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events->removeElement($event);
     }
 }
