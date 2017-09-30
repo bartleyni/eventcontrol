@@ -448,15 +448,10 @@
                 updateClock();
                 updateWeatherWarning();
                 setInterval('updateClock()', 1000);
-<<<<<<< HEAD
                 setInterval('AlertUpdate()', 3000);
                 setInterval('AlertCheck()', 200);
                 setInterval('updateWeatherWarning()', 30000);
-=======
-                setInterval('AlertUpdate()', 10000);
-                setInterval('AlertCheck()', 3000);
-                setInterval('updateWeatherWarning()', 100000);
->>>>>>> 8524a22a9feb98b3cff564d85d1359cb77120db6
+                
                 $('#mainModal').on('hidden.bs.modal', function (e) {
                     alertCounter = 0;
                     if(alertData){
