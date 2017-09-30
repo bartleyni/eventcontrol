@@ -20,12 +20,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Xiidea\EasyAuditBundle\Annotation\ORMSubscribedEvents;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\eventRepository")
  * @Vich\Uploadable
+ * @ORMSubscribedEvents()
  */
 
 class event {
@@ -88,6 +91,11 @@ class event {
     protected $event_last_weather;
     
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $event_last_weather_icon;
+    
+    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     protected $event_last_weather_warning;
@@ -103,17 +111,17 @@ class event {
     protected $event_last_weather_update;
     
     /**
-     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="event")
-     *
+     * @ORM\ManyToMany(targetEntity="UPS", inversedBy="events")
+     * 
      */
-    protected $UPSs;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="venue", inversedBy="event")
-     *
-     */
-    protected $venues;
+    private $UPSs;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="events")
+     *
+     */
+    private $Users;
+        
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
@@ -149,6 +157,7 @@ class event {
     
     /**
     * @ORM\OneToMany(targetEntity="Locations", mappedBy="event", cascade={"persist"})
+    * @ORM\OrderBy({"locationText" = "ASC"})
     * @Assert\Valid
     * @Assert\Collection(
     *     fields = {
@@ -176,6 +185,11 @@ class event {
      */
     private $user_selected;
     
+    /**
+     * @ORM\OneToMany(targetEntity="venue_event", mappedBy="event_id")
+     */
+    protected $venue_event;
+    
     public function __toString()
     {
         return (string) $this->getName();
@@ -184,6 +198,7 @@ class event {
     public function __construct()
     {
         $this->UPSs = new ArrayCollection();
+        $this->Users = new ArrayCollection();
         $this->locations = new ArrayCollection();
     }
 
@@ -424,6 +439,30 @@ class event {
     }
     
         /**
+     * Set event_last_weather_icon
+     *
+     * @param string $event_last_weather_icon
+     *
+     * @return event
+     */
+    public function setEventLastWeatherIcon($event_last_weather_icon)
+    {
+        $this->event_last_weather_icon = $event_last_weather_icon;
+
+        return $this;
+    }
+    
+    /**
+     * Get event_last_weather_icon
+     *
+     * @return string
+     */
+    public function getEventLastWeatherIcon()
+    {
+        return $this->event_last_weather_icon;
+    }
+    
+        /**
      * Set event_last_weather_warning
      *
      * @param string $event_last_weather_warning
@@ -499,10 +538,10 @@ class event {
     {
         return $this->UPSs;
     }
-
-    public function getVenues()
+    
+    public function getUsers()
     {
-        return $this->venues;
+        return $this->Users;
     }
     
     /**
@@ -782,30 +821,6 @@ class event {
     }
 
     /**
-     * Add venue
-     *
-     * @param \AppBundle\Entity\venue $venue
-     *
-     * @return event
-     */
-    public function addVenue(\AppBundle\Entity\venue $venue)
-    {
-        $this->venues[] = $venue;
-
-        return $this;
-    }
-
-    /**
-     * Remove venue
-     *
-     * @param \AppBundle\Entity\venue $venue
-     */
-    public function removeVenue(\AppBundle\Entity\venue $venue)
-    {
-        $this->venues->removeElement($venue);
-    }
-
-    /**
      * Add userSelected
      *
      * @param \AppBundle\Entity\User $userSelected
@@ -837,5 +852,87 @@ class event {
     public function getUserSelected()
     {
         return $this->user_selected;
+    }
+    
+    /**
+     * Add Users
+     *
+     * @param \AppBundle\Entity\User $User
+     *
+     * @return event
+     */
+    public function addUsers(\AppBundle\Entity\User $User)
+    {
+        $this->Users[] = $User;
+
+        return $this;
+    }
+
+    /**
+     * Remove Users
+     *
+     * @param \AppBundle\Entity\User $User
+     */
+    public function removeUsers(\AppBundle\Entity\User $User)
+    {
+        $this->Users->removeElement($User);
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return event
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->Users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->Users->removeElement($user);
+    }
+
+    /**
+     * Add venueEvent
+     *
+     * @param \AppBundle\Entity\venue_event $venueEvent
+     *
+     * @return event
+     */
+    public function addVenueEvent(\AppBundle\Entity\venue_event $venueEvent)
+    {
+        $this->venue_event[] = $venueEvent;
+
+        return $this;
+    }
+
+    /**
+     * Remove venueEvent
+     *
+     * @param \AppBundle\Entity\venue_event $venueEvent
+     */
+    public function removeVenueEvent(\AppBundle\Entity\venue_event $venueEvent)
+    {
+        $this->venue_event->removeElement($venueEvent);
+    }
+
+    /**
+     * Get venueEvent
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVenueEvent()
+    {
+        return $this->venue_event;
     }
 }

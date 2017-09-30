@@ -198,4 +198,28 @@ class UPS {
         $this->events->removeElement($event);
         $event->removeUPSs($this);
     }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return UPS
+     */
+    public function addEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events->removeElement($event);
+    }
 }

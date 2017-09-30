@@ -211,4 +211,38 @@ class venue
     {
         return $this->event;
     }
+
+    /**
+     * Add venueEvent
+     *
+     * @param \AppBundle\Entity\venue_event $venueEvent
+     *
+     * @return venue
+     */
+    public function addVenueEvent(\AppBundle\Entity\venue_event $venueEvent)
+    {
+        $this->venue_event[] = $venueEvent;
+
+        return $this;
+    }
+
+    /**
+     * Remove venueEvent
+     *
+     * @param \AppBundle\Entity\venue_event $venueEvent
+     */
+    public function removeVenueEvent(\AppBundle\Entity\venue_event $venueEvent)
+    {
+        $this->venue_event->removeElement($venueEvent);
+    }
+
+    /**
+     * Get venueEvent
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVenueEvent()
+    {
+        return $this->venue_event;
+    }
 }

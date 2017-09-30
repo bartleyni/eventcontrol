@@ -173,6 +173,7 @@ class VenueController extends Controller
         $em = $this->getDoctrine()->getManager();
         $usr = $this->get('security.token_storage')->getToken()->getUser();
         $venue_event = $em->getRepository('AppBundle\Entity\venue')->getactiveeventvenues($usr);
+        $venues = Null;
 
         foreach ($venue_event as $key => $value) {
             $venues[$key]['id'] = $value['venue_id']['id'];

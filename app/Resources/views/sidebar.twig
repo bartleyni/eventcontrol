@@ -303,8 +303,9 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
-        sidebarPoll();
-        updateWeather2();
+        //sidebarPoll();
+        setInterval('sidebarPoll()', 10000);
+	updateWeather2();
         setInterval('updateWeather2()', 30000);
         userLocate();
     });
@@ -345,8 +346,6 @@
     
     function sidebarPoll()
     {
-        
-    
         $.getJSON('{{ path('log_json_data') }}', function(data) {
             $('#logTotal-Total').html(data['Total']);
             $('#logTotal-Open').html(data['Open']);
@@ -357,7 +356,7 @@
         UPSUpdate();
         PeopleCounterUpdate();    
         i++;
-        setTimeout(sidebarPoll,3000);
+        //setTimeout(sidebarPoll,10000);
     }
     
     function updateWeather ( )
@@ -478,7 +477,7 @@
             $('#Location').html("<strong>Location:</strong> "+location.coords.latitude.toFixed(6)+","+location.coords.longitude.toFixed(6));
         });
         
-        setTimeout(userLocate,5000);
+        setTimeout(userLocate,60000);
     }
         
 </script>

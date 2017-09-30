@@ -19,3 +19,6 @@
 /.idea/
 /app/Resources/views/SecurityForm.html.twig
 /app/Resources/views/copyright.html.twig
+/var
+/media
+/composer.lock

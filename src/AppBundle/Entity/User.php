@@ -125,7 +125,7 @@ class User implements UserInterface, \Serializable, EquatableInterface {
     protected $lat_long;
     
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $lat_long_timestamp;
     
@@ -397,12 +397,17 @@ class User implements UserInterface, \Serializable, EquatableInterface {
     public function getSelectedEvent()
     {
       $now = new \DateTime();
-       if($now > $this->selected_event->getEventLogStopDate())
+       if($this->selected_event != null)
        {
-         return null;
-       } else {
-         return $this->selected_event;
-       }
+           if($now > $this->selected_event->getEventLogStopDate())
+           {
+             return null;
+           } else {
+             return $this->selected_event;
+           }
+        } else {
+             return null;
+        }
     }
  
      /**
@@ -513,5 +518,29 @@ class User implements UserInterface, \Serializable, EquatableInterface {
         }
 
         return false;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \AppBundle\Entity\event $event
+     *
+     * @return User
+     */
+    public function addEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events[] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \AppBundle\Entity\event $event
+     */
+    public function removeEvent(\AppBundle\Entity\event $event)
+    {
+        $this->events->removeElement($event);
     }
 }
