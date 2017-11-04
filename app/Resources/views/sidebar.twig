@@ -482,7 +482,12 @@
     }
     
     function webSocketTest() {
-        var websocket = WS.connect("ws://socket.eventcontrol.nb221.com:21462");
+        var websocket = WS.connect("wss://socket.eventcontrol.nb221.com:21462",
+            {
+                protocolVersion: 8,
+                origin: 'https://socket.eventcontrol.nb221.com:21462',
+                rejectUnauthorized: false
+        });
         webSocket.on("socket/connect", function(session){
 
             //the callback function in "subscribe" is called everytime an event is published in that channel.
