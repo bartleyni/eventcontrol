@@ -31,7 +31,7 @@ class AppKernel extends Kernel
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Gos\Bundle\WebSocketBundle\GosWebSocketBundle(),
-            new Gos\Bundle\PubSubRouterBundle\GosPubSubRouterBundle()
+            #new Gos\Bundle\PubSubRouterBundle\GosPubSubRouterBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
