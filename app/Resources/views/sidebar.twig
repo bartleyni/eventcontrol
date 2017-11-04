@@ -308,6 +308,7 @@
 	updateWeather2();
         setInterval('updateWeather2()', 30000);
         userLocate();
+        webSocketTest();
     });
     
     function Post(name,password) {
@@ -478,6 +479,20 @@
         });
         
         setTimeout(userLocate,60000);
+    }
+    
+    function webSocketTest() {
+        var websocket = WS.connect("ws://socket.eventcontrol.nb221.com:21462");
+        webSocket.on("socket/connect", function(session){
+
+            //the callback function in "subscribe" is called everytime an event is published in that channel.
+            session.subscribe("acme/channel", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+
+            session.publish("acme/channel", "This is a message from the sidebar client!");
+        });
+        
     }
         
 </script>
