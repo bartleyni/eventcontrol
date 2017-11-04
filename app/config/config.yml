@@ -270,7 +270,3 @@ liip_imagine :
                     max: [ 1000, 700 ]
                 upscale:
                     min: [ 400, 400 ]
-gos_web_socket:
-    server:
-        port: 21462        #The port the socket server will listen on
-        host: 127.0.0.1   #The host ip to bind to

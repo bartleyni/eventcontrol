@@ -29,9 +29,7 @@ class AppKernel extends Kernel
             new RedjanYm\FCMBundle\RedjanYmFCMBundle(),
             new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new Gos\Bundle\WebSocketBundle\GosWebSocketBundle(),
-            #new Gos\Bundle\PubSubRouterBundle\GosPubSubRouterBundle()
+            new Liip\ImagineBundle\LiipImagineBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
